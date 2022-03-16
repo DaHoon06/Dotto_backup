@@ -11,6 +11,7 @@
       </ul>
     </div>
     <member-register-component />
+    <tattooist-register-component />
   </div>
 </template>
 

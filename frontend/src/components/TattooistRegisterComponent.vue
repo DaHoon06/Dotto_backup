@@ -16,12 +16,14 @@
         <div style="color: red; font-size: 6px;">{{ this.PasswordCheckMessage }}</div>
       </li>
       <li>
-        <input type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임력[ 타투이스트 명 ]" />
+        <input type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임[ 타투이스트 명 ]" />
         <button @click="nickNameCheck" type="button">중복확인</button>
         <div style="color: red; font-size: 6px;">{{ this.NickNameMessage }}</div>
       </li>
       <li>
-        <p></p>
+        <input v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
+        <input v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
+        <button>주소찾기</button>
       </li>
       <li>
         <p><input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
@@ -31,6 +33,14 @@
           <input type="text" placeholder="인증번호" />
           <button>인증하기</button>
         </p>
+      </li>
+      <li>
+        <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />
+        <label for="male">남성</label>
+        <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
+        <label for="female">여성</label>
+        <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
+        <label for="empty">선택안함</label>
       </li>
       <li>
         <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
@@ -61,6 +71,9 @@ export default class TattooistRegisterComponent extends Vue {
   passwordMessage: string;
   passwordCheckMessage: string;
   emailMessage: string;
+  address: string;
+  detail_address:string;
+  gender: string;
 
   constructor() {
     super();
@@ -77,6 +90,9 @@ export default class TattooistRegisterComponent extends Vue {
     this.passwordMessage = '';
     this.passwordCheckMessage = '';
     this.emailMessage = '';
+    this.address = '';
+    this.detail_address = '';
+    this.gender = '';
   }
   async emailCheck(): Promise<void> {
     const { data } = await this.axios.get('/members/readEmail', {
