@@ -1,17 +1,19 @@
 <template>
   <div id="register-container">
     <div>
-      <ul>
-        <li class="register-btn">
-          <b-button active>일반 회원</b-button>
-        </li>
-        <li class="register-btn">
-          <button>타투이스트 회원</button>
-        </li>
-      </ul>
+      <b-tabs
+          :small="true"
+          lazy v-model="type"
+          content-class="mt-3"
+          active-nav-item-class="font-weight-bold"
+          active-tab-class="font-weight-bold text-success"
+          align="center">
+        <b-tab title="일반 회원" active />
+        <b-tab title="타투이스트 회원" />
+      </b-tabs>
     </div>
-    <member-register-component />
-    <tattooist-register-component />
+    <member-register-component v-if="this.type === 0" />
+    <tattooist-register-component v-if="this.type === 1" />
   </div>
 </template>
 
@@ -27,30 +29,21 @@ import TattooistRegisterComponent from "@/components/TattooistRegisterComponent.
   }
 })
 export default class RegisterView extends Vue {
-  type: string;
+  type: number;
 
   constructor() {
     super();
-    this.type = 'member';
+    this.type = 0;
   }
 
-  // private get currentTab() {
-  //   return '';
-  // }
+  private get currentType() {
+    return this.type;
+  }
 
 }
 </script>
 
 <style scoped>
-ul {
-  list-style: none;
-}
-
-ul .register-btn {
-  float: left;
-  padding: 10px;
-}
-
 #register-container {
   margin-top: 5rem;
   display: flex;
