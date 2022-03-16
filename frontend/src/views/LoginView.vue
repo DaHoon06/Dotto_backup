@@ -21,7 +21,7 @@
       </form>
       <div id="register-box">
         <div id="register">
-          <router-link to="/register">회원가입</router-link>
+          <router-link to="/sign-in">회원가입</router-link>
         </div>
         <div id="lost-identify">
           <router-link to="#">아이디</router-link> / <router-link to="#">비밀번호 찾기</router-link>
@@ -33,13 +33,28 @@
         간편 회원가입
       </div>
       <div>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+<!--        <ul>-->
+<!--          <li>-->
+<!--            <button>-->
+<!--              <img src="@/assets/login/naver-login.png" alt="naver" />-->
+<!--            </button>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <button>-->
+<!--              <img src="@/assets/login/facebook-login.png" alt="facebook" />-->
+<!--            </button>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <button>-->
+<!--              <img src="@/assets/login/google-login.png" alt="google" />-->
+<!--            </button>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <button>-->
+<!--              <img src="@/assets/login/kakao-login.png" alt="kakao" />-->
+<!--            </button>-->
+<!--          </li>-->
+<!--        </ul>-->
       </div>
     </section>
   </main>
