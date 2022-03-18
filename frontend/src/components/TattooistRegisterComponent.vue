@@ -57,7 +57,7 @@
         <div class="col-3">
           <b-button v-b-modal.modal-1 class="mt-2">주소찾기</b-button>
           <div>
-            <b-modal id="modal-1" title="주소 검색">
+            <b-modal id="modal-1" hide-footer title="주소 검색">
               <vue-daum-postcode @complete="oncomplete" />
             </b-modal>
           </div>
