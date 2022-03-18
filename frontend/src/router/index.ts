@@ -10,10 +10,10 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/LoginView.vue')
   },
   {
-    name: '/sign-up',
+    name: 'sign-up',
     path: '/sign-up',
     component: () => import('@/views/RegisterView.vue')
-  },
+  }
 ]
 
 const router = new VueRouter({

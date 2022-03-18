@@ -6,9 +6,12 @@
           <b-form-input  @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
         </b-col>
         <b-col cols="3">
-          <select class="mt-1" v-model="domain">
-            <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>
-          </select>
+          <div>
+            <b-form-select v-model="domain" :options="emailList" class="mt-1" size="sm"></b-form-select>
+          </div>
+<!--          <select class="mt-1" v-model="domain">-->
+<!--            <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>-->
+<!--          </select>-->
         </b-col>
         <b-col cols="3">
           <button class="mt-2" @click="emailCheck" type="button">중복확인</button>
@@ -52,13 +55,20 @@
           <b-form-input class="mt-2" v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
         </div>
         <div class="col-3">
-          <button class="mt-2">주소찾기</button>
+          <b-button v-b-modal.modal-1 class="mt-2">주소찾기</b-button>
+          <div>
+            <b-modal id="modal-1" title="주소 검색">
+              <vue-daum-postcode @complete="oncomplete" />
+            </b-modal>
+          </div>
         </div>
+      </b-row>
+
+      <b-row>
         <div class="col-12">
           <b-form-input class="mt-1" v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
         </div>
       </b-row>
-
       <b-row align-h="center">
         <div class="col-9">
           <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
@@ -106,8 +116,20 @@
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
+import { VueDaumPostcode } from "vue-daum-postcode";
 
-@Component
+interface selectedOptions {
+  value: string,
+  text: string,
+  disabled?: boolean
+}
+
+
+@Component({
+  components: {
+    VueDaumPostcode
+  }
+})
 export default class TattooistRegisterComponent extends Vue {
   @Prop() type?: string;
 
@@ -116,7 +138,7 @@ export default class TattooistRegisterComponent extends Vue {
   passwordCheck: string;
   nickName: string;
   phone: string;
-  emailList: string[];
+  emailList: selectedOptions[];
   domain: string;
   agree: boolean;
   concatEmail: string;
@@ -135,7 +157,12 @@ export default class TattooistRegisterComponent extends Vue {
     this.passwordCheck = '';
     this.nickName = '';
     this.phone = '';
-    this.emailList = ['naver.com','gmail.com','daum.net','nate.com','yahoo.co.kr'];
+    this.emailList = [
+      { value: '1', text: 'gmail.com', },
+      { value: '2', text: 'naver.com', },
+      { value: '3', text: 'daum.net', },
+      { value: '4', text: 'nate.com', },
+    ];
     this.domain = '';
     this.agree = false;
     this.concatEmail = '';
@@ -147,6 +174,18 @@ export default class TattooistRegisterComponent extends Vue {
     this.detail_address = '';
     this.gender = '';
   }
+
+  private oncomplete(result: any) {
+    // address => 전체 주소 ( 도로명 ) jibunAddress => 지번 주소 roadAddress 도로명 주소
+    if(result.userSelectedType === 'R'){  // 도로명 주소 선택
+      this.address = result.roadAddress;
+      this.$bvModal.hide('modal-1')
+    } else {  // 지번 주소 선택
+      this.address = result.jibunAddress;
+      this.$bvModal.hide('modal-1')
+    }
+  }
+
   async emailCheck(): Promise<void> {
     const { data } = await this.axios.get('/members/readEmail', {
       params: {
