@@ -21,7 +21,7 @@
       </form>
       <div id="register-box">
         <div id="register">
-          <router-link to="/sign-in">회원가입</router-link>
+          <router-link to="/sign-up">회원가입</router-link>
         </div>
         <div id="lost-identify">
           <router-link to="#">아이디</router-link> / <router-link to="#">비밀번호 찾기</router-link>

@@ -1,40 +1,84 @@
 <template>
-  <form @submit.prevent="register">
-    <ul>
-      <li>
-        <input @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />@
-        <select v-model="domain">
-          <option v-for="text of emailList" :key="text" :value="text">{{text}}</option>
-        </select>
-        <button @click="emailCheck" type="button">중복확인</button>
-        <div style="color: red; font-size: 6px;">{{ this.EmailMessage }}</div>
-      </li>
-      <li>
-        <input type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
-        <div style="color: red; font-size: 6px;">{{ this.PasswordMessage }}</div>
-        <input type="password" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
-        <div style="color: red; font-size: 6px;">{{ this.PasswordCheckMessage }}</div>
-      </li>
-      <li>
-        <input type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임" />
-        <button @click="nickNameCheck" type="button">중복확인</button>
-        <div style="color: red; font-size: 6px;">{{ this.NickNameMessage }}</div>
-      </li>
-      <li>
-        <p><input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
-          <button>인증번호 받기</button>
-        </p>
-        <p>
-          <input type="text" placeholder="인증번호 입력" />
-          <button>인증하기</button>
-        </p>
-      </li>
-      <li>
-        <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
-      </li>
-    </ul>
-    <button id="register-submit" type="submit">가입하기</button>
-  </form>
+  <section>
+    <div class="container-fluid bg-white rounded" @submit.prevent="register">
+      <b-row align-h="center">
+        <b-col cols="6">
+          <b-form-input  @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
+        </b-col>
+
+        <b-col cols="3">
+          <select class="mt-1  rounded small" v-model="domain">
+            <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>
+          </select>
+        </b-col>
+        <b-col cols="3">
+          <button class="mt-2" @click="emailCheck" type="button">중복확인</button>
+        </b-col>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <b-form-input class="mt-1" type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
+        </div>
+      </b-row>
+      <b-row align-h="center">
+        <div class="col-12">
+          <div class="mt-1 warning-msg">{{ this.PasswordMessage }}</div>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <b-form-input type="password" class="mt-1" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
+        </div>
+        <div class="col-12">
+          <div class="mt-1 warning-msg">{{ this.PasswordCheckMessage }}</div>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-1" type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임" />
+        </div>
+        <div class="col-3">
+          <button @click="nickNameCheck" type="button">중복확인</button>
+        </div>
+        <div class="col-12">
+          <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
+        </div>
+        <div class="col-3">
+          <button class="mt-1">인증번호 받기</button>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-1" type="text" placeholder="인증번호 입력" />
+        </div>
+        <div class="col-3">
+          <button class="mt-1">인증하기</button>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <input class="mt-3" type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <button class="mt-4" id="register-submit" type="submit">가입하기</button>
+        </div>
+      </b-row>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -207,6 +251,11 @@ export default class MemberRegisterComponent extends Vue {
   color: white;
   background: #072350;
   width: 100%;
+}
+
+.warning-msg {
+  font-size: 7px;
+  color: red;
 }
 
 </style>

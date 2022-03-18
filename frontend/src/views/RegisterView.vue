@@ -1,12 +1,12 @@
 <template>
-  <div id="register-container">
+  <div id="register-container" class="shadow pt-5 pb-5">
     <div>
       <b-tabs
           :small="true"
           lazy v-model="type"
           content-class="mt-3"
           active-nav-item-class="font-weight-bold"
-          active-tab-class="font-weight-bold text-success"
+          active-tab-class="font-weight-bold"
           align="center">
         <b-tab title="일반 회원" active />
         <b-tab title="타투이스트 회원" />
@@ -45,7 +45,11 @@ export default class RegisterView extends Vue {
 
 <style scoped>
 #register-container {
-  margin-top: 5rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  max-width: 1280px;
+  width: 60%;
+  margin: 5rem auto 5rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
