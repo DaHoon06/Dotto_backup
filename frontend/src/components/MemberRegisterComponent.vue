@@ -11,7 +11,7 @@
           </select>
         </b-col>
         <b-col cols="3">
-          <button class="mt-2" @click="emailCheck" type="button">중복확인</button>
+          <b-button class="mt-2 register-btn" @click="emailCheck" type="button">중복확인</b-button>
         </b-col>
       </b-row>
 
@@ -40,7 +40,7 @@
           <b-form-input class="mt-1" type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임" />
         </div>
         <div class="col-3">
-          <button @click="nickNameCheck" type="button">중복확인</button>
+          <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
         </div>
         <div class="col-12">
           <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
@@ -52,7 +52,7 @@
           <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
         </div>
         <div class="col-3">
-          <button class="mt-1">인증번호 받기</button>
+          <b-button class="mt-1 register-btn">인증번호 받기</b-button>
         </div>
       </b-row>
 
@@ -61,7 +61,7 @@
           <b-form-input class="mt-1" type="text" placeholder="인증번호 입력" />
         </div>
         <div class="col-3">
-          <button class="mt-1">인증하기</button>
+          <b-button class="mt-1 register-btn">인증하기</b-button>
         </div>
       </b-row>
 
@@ -73,7 +73,7 @@
 
       <b-row align-h="center">
         <div class="col-12">
-          <button class="mt-4" id="register-submit" type="submit">가입하기</button>
+          <b-button class="mt-4 register-btn" id="register-submit" type="submit">가입하기</b-button>
         </div>
       </b-row>
     </div>
@@ -244,12 +244,23 @@ export default class MemberRegisterComponent extends Vue {
 
 <style scoped>
 #register-submit {
-  border: 1px solid gray;
+  width: 100%;
+}
+
+.register-btn {
+  border: 1px solid #858585;
   border-radius: 7px;
-  box-shadow: 1px 1px 1px gray;
+  box-shadow: 1px 1px 1px #a6a6a6;
   color: white;
   background: #072350;
-  width: 100%;
+  font-size: 11px;
+  height: 25px;
+  padding: 4px 12px 6px 12px;
+}
+
+.register-btn:hover {
+  cursor: pointer;
+  background: #05152f;
 }
 
 .warning-msg {
