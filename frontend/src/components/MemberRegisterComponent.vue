@@ -5,9 +5,8 @@
         <b-col cols="6">
           <b-form-input  @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
         </b-col>
-
         <b-col cols="3">
-          <select class="mt-1  rounded small" v-model="domain">
+          <select class="mt-1" v-model="domain">
             <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>
           </select>
         </b-col>
@@ -18,21 +17,21 @@
 
       <b-row align-h="center">
         <div class="col-12">
-          <b-form-input class="mt-1" type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
+          <b-form-input class="mt-2" type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
         </div>
       </b-row>
       <b-row align-h="center">
         <div class="col-12">
-          <div class="mt-1 warning-msg">{{ this.PasswordMessage }}</div>
+          <div class="mt-2 warning-msg">{{ this.PasswordMessage }}</div>
         </div>
       </b-row>
 
       <b-row align-h="center">
         <div class="col-12">
-          <b-form-input type="password" class="mt-1" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
+          <b-form-input type="password" class="mt-2" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
         </div>
         <div class="col-12">
-          <div class="mt-1 warning-msg">{{ this.PasswordCheckMessage }}</div>
+          <div class="mt-2 warning-msg">{{ this.PasswordCheckMessage }}</div>
         </div>
       </b-row>
 

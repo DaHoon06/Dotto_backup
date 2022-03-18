@@ -1,53 +1,106 @@
 <template>
-  <form @submit.prevent="register">
-    <ul>
-      <li>
-        <input @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />@
-        <select v-model="domain">
-          <option v-for="text of emailList" :key="text" :value="text">{{text}}</option>
-        </select>
-        <button @click="emailCheck" type="button">중복확인</button>
-        <div style="color: red; font-size: 6px;">{{ this.EmailMessage }}</div>
-      </li>
-      <li>
-        <input type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
-        <div style="color: red; font-size: 6px;">{{ this.PasswordMessage }}</div>
-        <input type="password" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
-        <div style="color: red; font-size: 6px;">{{ this.PasswordCheckMessage }}</div>
-      </li>
-      <li>
-        <input type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임[ 타투이스트 명 ]" />
-        <button @click="nickNameCheck" type="button">중복확인</button>
-        <div style="color: red; font-size: 6px;">{{ this.NickNameMessage }}</div>
-      </li>
-      <li>
-        <input v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
-        <input v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
-        <button>주소찾기</button>
-      </li>
-      <li>
-        <p><input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
-          <button>인증번호 받기</button>
-        </p>
-        <p>
-          <input type="text" placeholder="인증번호" />
-          <button>인증하기</button>
-        </p>
-      </li>
-      <li>
-        <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />
-        <label for="male">남성</label>
-        <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
-        <label for="female">여성</label>
-        <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
-        <label for="empty">선택안함</label>
-      </li>
-      <li>
-        <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
-      </li>
-    </ul>
-    <button id="register-submit" type="submit">가입하기</button>
-  </form>
+  <section>
+    <div class="container-fluid bg-white rounded" @submit.prevent="register">
+      <b-row align-h="center">
+        <b-col cols="6">
+          <b-form-input  @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
+        </b-col>
+        <b-col cols="3">
+          <select class="mt-1" v-model="domain">
+            <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>
+          </select>
+        </b-col>
+        <b-col cols="3">
+          <button class="mt-2" @click="emailCheck" type="button">중복확인</button>
+        </b-col>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <b-form-input class="mt-2" type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
+        </div>
+      </b-row>
+      <b-row align-h="center">
+        <div class="col-12">
+          <div class="mt-2 warning-msg">{{ this.PasswordMessage }}</div>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <b-form-input type="password" class="mt-2" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
+        </div>
+        <div class="col-12">
+          <div class="mt-2 warning-msg">{{ this.PasswordCheckMessage }}</div>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-1" type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임" />
+        </div>
+        <div class="col-3">
+          <button @click="nickNameCheck" type="button">중복확인</button>
+        </div>
+        <div class="col-12">
+          <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-2" v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
+        </div>
+        <div class="col-3">
+          <button class="mt-2">주소찾기</button>
+        </div>
+        <div class="col-12">
+          <b-form-input class="mt-1" v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
+        </div>
+        <div class="col-3">
+          <button class="mt-1">인증번호 받기</button>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-9">
+          <b-form-input class="mt-1" type="text" placeholder="인증번호 입력" />
+        </div>
+        <div class="col-3">
+          <button class="mt-1">인증하기</button>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12 mt-2">
+          <input class="selected-gender ml-1" type="radio" id="male" v-model="gender" value="male" name="male" />
+          <label for="male">남성</label>
+          <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
+          <label for="female">여성</label>
+          <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
+          <label for="empty">선택안함</label>
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <input class="mt-3" type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
+        </div>
+      </b-row>
+
+      <b-row align-h="center">
+        <div class="col-12">
+          <button class="mt-3" id="register-submit" type="submit">가입하기</button>
+        </div>
+      </b-row>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -228,4 +281,8 @@ export default class TattooistRegisterComponent extends Vue {
   width: 100%;
 }
 
+.warning-msg {
+  font-size: 7px;
+  color: red;
+}
 </style>

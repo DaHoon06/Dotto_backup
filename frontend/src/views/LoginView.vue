@@ -1,7 +1,7 @@
 <template>
   <main id="loginPage-container">
     <section id="logo-img">
-      닷투
+      <img src="@/assets/dotto.jpg" alt="logo" />
     </section>
     <section>
       <form @submit.prevent="login">
@@ -135,15 +135,18 @@ export default class LoginView extends Vue {
 </script>
 
 <style scoped>
+
 .login-info {
   width: 100%;
 }
+
 #logo-img {
   margin-bottom: 30px;
 }
 #logo-img img {
-  width: 200px;
+  width: 120px;
   transform: rotate(-4deg);
+  margin-bottom: 10px;
 }
 #loginPage-container {
   display: flex;

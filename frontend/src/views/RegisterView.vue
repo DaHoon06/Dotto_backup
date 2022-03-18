@@ -48,6 +48,8 @@ export default class RegisterView extends Vue {
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   max-width: 1280px;
+  max-height: 1080px;
+  height: 100%;
   width: 60%;
   margin: 5rem auto 5rem auto;
   display: flex;
