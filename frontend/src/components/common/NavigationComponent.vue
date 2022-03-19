@@ -56,12 +56,13 @@ ul li {
   left: 0;
   top: 0;
   background: #FFFFFF;
+  z-index: 10;
 }
 .nav-menu-icon {
   width: 30px;
 }
 .nav-menu-icon:nth-child(1) {
-  margin-right: 25px;
+  margin-right: 30px;
 }
 
 .menu-icon {

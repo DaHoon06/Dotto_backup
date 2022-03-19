@@ -1,17 +1,21 @@
 <template>
   <div>
     <navigation-component />
-    TEST
+    <div id="main-wrapper">
+      <side-menu-component />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import NavigationComponent from "@/components/common/NavigationComponent.vue";
+import SideMenuComponent from "@/components/common/SideMenuComponent.vue";
 
 @Component({
   components: {
-    NavigationComponent
+    NavigationComponent,
+    SideMenuComponent
   }
 })
 export default class MainView extends Vue {
@@ -20,5 +24,7 @@ export default class MainView extends Vue {
 </script>
 
 <style scoped>
-
+#main-wrapper {
+  margin-top: 60px;
+}
 </style>
