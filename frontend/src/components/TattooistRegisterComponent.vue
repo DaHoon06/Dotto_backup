@@ -9,13 +9,15 @@
           <div>
             <b-form-select v-model="domain" :options="emailList" class="mt-1" size="sm"></b-form-select>
           </div>
-<!--          <select class="mt-1" v-model="domain">-->
-<!--            <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>-->
-<!--          </select>-->
         </b-col>
         <b-col cols="3">
           <b-button class="mt-2 register-btn" @click="emailCheck" type="button">중복확인</b-button>
         </b-col>
+      </b-row>
+      <b-row align-h="center">
+        <div class="col-12">
+          <div class="mt-2 warning-msg">{{ this.EmailMessage }}</div>
+        </div>
       </b-row>
 
       <b-row align-h="center">
@@ -45,6 +47,8 @@
         <div class="col-3">
           <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
         </div>
+      </b-row>
+      <b-row align-h="center">
         <div class="col-12">
           <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
         </div>
@@ -57,18 +61,31 @@
         <div class="col-3">
           <b-button v-b-modal.modal-1 class="mt-2 register-btn">주소찾기</b-button>
           <div>
-            <b-modal id="modal-1" hide-footer title="주소 검색">
+            <b-modal id="modal-1" hide-footer>
+              <template #modal-title>
+                주소 검색
+                <b-spinner class="mb-1" small />
+              </template>
               <vue-daum-postcode @complete="oncomplete" />
             </b-modal>
           </div>
         </div>
       </b-row>
-
       <b-row>
         <div class="col-12">
           <b-form-input class="mt-1" v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
         </div>
       </b-row>
+
+      <b-row>
+        <div class="col-4">
+          <b-button class="mt-2 register-btn">작업실 및 소개 이미지 등록</b-button>
+        </div>
+        <div class="col-8">
+          <b-form-file id="file-small" class="mt-2" placeholder="TEST" size="sm"></b-form-file>
+        </div>
+      </b-row>
+
       <b-row align-h="center">
         <div class="col-9">
           <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
@@ -118,13 +135,6 @@ import {Component, Prop, Vue} from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
 import { VueDaumPostcode } from "vue-daum-postcode";
 
-interface selectedOptions {
-  value: string,
-  text: string,
-  disabled?: boolean
-}
-
-
 @Component({
   components: {
     VueDaumPostcode
@@ -138,7 +148,7 @@ export default class TattooistRegisterComponent extends Vue {
   passwordCheck: string;
   nickName: string;
   phone: string;
-  emailList: selectedOptions[];
+  emailList: IUser.SelectedOptions[];
   domain: string;
   agree: boolean;
   concatEmail: string;
@@ -334,5 +344,6 @@ export default class TattooistRegisterComponent extends Vue {
 .warning-msg {
   font-size: 7px;
   color: red;
+  padding-left: 10px;
 }
 </style>

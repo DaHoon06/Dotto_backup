@@ -19,4 +19,10 @@ export namespace IUser {
         loginType: string,
     }
 
+    export interface SelectedOptions {
+        value: string,
+        text: string,
+        disabled?: boolean
+    }
+
 }

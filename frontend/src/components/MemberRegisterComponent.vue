@@ -3,16 +3,21 @@
     <div class="container-fluid bg-white rounded" @submit.prevent="register">
       <b-row align-h="center">
         <b-col cols="6">
-          <b-form-input  @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
+          <b-form-input @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
         </b-col>
         <b-col cols="3">
-          <select class="mt-1" v-model="domain">
-            <option v-for="text of emailList" :key="text" class="warning-msg" :value="text">{{ text }}</option>
-          </select>
+          <div>
+            <b-form-select v-model="domain" :options="emailList" class="mt-1" size="sm"></b-form-select>
+          </div>
         </b-col>
         <b-col cols="3">
           <b-button class="mt-2 register-btn" @click="emailCheck" type="button">중복확인</b-button>
         </b-col>
+      </b-row>
+      <b-row align-h="center">
+        <div class="col-12">
+          <div class="mt-2 warning-msg">{{ this.EmailMessage }}</div>
+        </div>
       </b-row>
 
       <b-row align-h="center">
@@ -42,6 +47,8 @@
         <div class="col-3">
           <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
         </div>
+      </b-row>
+      <b-row align-h="center">
         <div class="col-12">
           <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
         </div>
@@ -52,7 +59,7 @@
           <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
         </div>
         <div class="col-3">
-          <b-button class="mt-1 register-btn">인증번호 받기</b-button>
+          <b-button class="mt-1 register-btn">인증번호받기</b-button>
         </div>
       </b-row>
 
@@ -93,7 +100,7 @@ export default class MemberRegisterComponent extends Vue {
   passwordCheck: string;
   nickName: string;
   phone: string;
-  emailList: string[];
+  emailList: IUser.SelectedOptions[];
   domain: string;
   agree: boolean;
   concatEmail: string;
@@ -109,7 +116,12 @@ export default class MemberRegisterComponent extends Vue {
     this.passwordCheck = '';
     this.nickName = '';
     this.phone = '';
-    this.emailList = ['naver.com','gmail.com','daum.net','nate.com','yahoo.co.kr'];
+    this.emailList = [
+      { value: '1', text: 'gmail.com', },
+      { value: '2', text: 'naver.com', },
+      { value: '3', text: 'daum.net', },
+      { value: '4', text: 'nate.com', },
+    ];
     this.domain = '';
     this.agree = false;
     this.concatEmail = '';
@@ -118,7 +130,23 @@ export default class MemberRegisterComponent extends Vue {
     this.passwordCheckMessage = '';
     this.emailMessage = '';
   }
+
+  private validationEmail(): void {
+    // 이메일 풀 주소 정규식 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+    const reg = /^[a-zA-Z0-9]*$/;
+    let msg = '';
+    if(!reg.test(this.email)){
+      msg = '이메일 주소를 정확히 입력해주세요.'
+      this.EmailMessage = msg;
+      this.email = '';
+    } else {
+      msg = '';
+      this.EmailMessage = msg;
+    }
+  }
+
   async emailCheck(): Promise<void> {
+    this.email = this.joinEmail();
     const { data } = await this.axios.get('/members/readEmail', {
       params: {
         email: this.email,
@@ -127,6 +155,11 @@ export default class MemberRegisterComponent extends Vue {
     const { result } = data;
     console.log(result);
   }
+
+  private joinEmail(): string{
+    return this.concatEmail = this.email.concat('@').concat(this.domain);
+  }
+
   async nickNameCheck(): Promise<void> {
     const { data } = await this.axios.get('/members/readNickName',{
       params: {
@@ -166,26 +199,8 @@ export default class MemberRegisterComponent extends Vue {
     }
   }
 
-  validationEmail(): void {
-    const reg = /^[a-zA-Z0-9]*$/;
-    let msg = '';
-    if(!reg.test(this.email)){
-      msg = '이메일 주소를 정확히 입력해주세요.'
-      this.EmailMessage = msg;
-      this.email = '';
-    } else {
-      msg = '';
-      this.EmailMessage = msg;
-    }
-  }
-
-  joinEmail(): void{
-    this.concatEmail = this.email.concat('@').concat(this.domain);
-  }
-
   async register(): Promise<void> {
     if(this.agree){
-      this.joinEmail();
       const sendData: IUser.IRegisterProp = {
         nickName: this.nickName,
         password: this.password,
@@ -266,6 +281,7 @@ export default class MemberRegisterComponent extends Vue {
 .warning-msg {
   font-size: 7px;
   color: red;
+  padding-left: 10px;
 }
 
 </style>

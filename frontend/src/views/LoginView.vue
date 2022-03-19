@@ -29,32 +29,32 @@
       </div>
     </section>
     <section>
-      <div>
+      <div class="text-center">
         간편 회원가입
       </div>
       <div>
-<!--        <ul>-->
-<!--          <li>-->
-<!--            <button>-->
-<!--              <img src="@/assets/login/naver-login.png" alt="naver" />-->
-<!--            </button>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <button>-->
-<!--              <img src="@/assets/login/facebook-login.png" alt="facebook" />-->
-<!--            </button>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <button>-->
-<!--              <img src="@/assets/login/google-login.png" alt="google" />-->
-<!--            </button>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <button>-->
-<!--              <img src="@/assets/login/kakao-login.png" alt="kakao" />-->
-<!--            </button>-->
-<!--          </li>-->
-<!--        </ul>-->
+        <ul id="login-btn-img">
+          <li>
+            <button>
+              <img src="@/assets/login/naver.png" alt="naver" />
+            </button>
+          </li>
+          <li>
+            <button>
+              <img src="@/assets/login/facebook.png" alt="facebook" />
+            </button>
+          </li>
+          <li>
+            <button>
+              <img src="@/assets/login/Google.png" alt="google" />
+            </button>
+          </li>
+          <li>
+            <button>
+              <img src="@/assets/login/kakao.png" alt="kakao" />
+            </button>
+          </li>
+        </ul>
       </div>
     </section>
   </main>
@@ -176,5 +176,14 @@ export default class LoginView extends Vue {
 }
 #register {
   margin-right: 10px;
+}
+
+#login-btn-img > li {
+  float: left;
+}
+
+#login-btn-img > li > button > img {
+  width: 35px;
+  margin-right: 15px;
 }
 </style>
