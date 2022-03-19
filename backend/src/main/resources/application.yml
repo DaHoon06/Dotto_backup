@@ -5,6 +5,9 @@ spring:
     url: jdbc:h2:mem:test
     username: sa
     driver-class-name: org.h2.Driver
+  profiles:
+    active: local
+    include: secret
   jpa:
     hibernate:
       ddl-auto: create
