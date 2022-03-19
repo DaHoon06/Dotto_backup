@@ -36,9 +36,9 @@ export default class RegisterView extends Vue {
     this.type = 0;
   }
 
-  private get currentType() {
-    return this.type;
-  }
+  // private get currentType() {
+  //   return this.type;
+  // }
 
 }
 </script>
