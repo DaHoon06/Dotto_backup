@@ -19,8 +19,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MemberRegisterComponent from "@/components/MemberRegisterComponent.vue";
-import TattooistRegisterComponent from "@/components/TattooistRegisterComponent.vue";
+import MemberRegisterComponent from "@/components/User/MemberRegisterComponent.vue";
+import TattooistRegisterComponent from "@/components/User/TattooistRegisterComponent.vue";
 
 @Component({
   components: {

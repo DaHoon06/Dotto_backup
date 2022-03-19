@@ -73,7 +73,7 @@ export default class SideMenuComponent extends Vue {
 
 <style scoped>
 #sideMenu-container {
-  position: absolute;
+  position: fixed;
   width: 296px;
   max-height: 992px;
   height: 100%;

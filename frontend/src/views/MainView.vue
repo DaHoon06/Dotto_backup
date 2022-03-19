@@ -3,6 +3,7 @@
     <navigation-component />
     <div id="main-wrapper">
       <side-menu-component />
+      <main-component />
     </div>
   </div>
 </template>
@@ -11,11 +12,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import NavigationComponent from "@/components/common/NavigationComponent.vue";
 import SideMenuComponent from "@/components/common/SideMenuComponent.vue";
+import MainComponent from "@/components/MainComponent.vue";
 
 @Component({
   components: {
     NavigationComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    MainComponent
   }
 })
 export default class MainView extends Vue {
