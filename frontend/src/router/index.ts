@@ -13,6 +13,11 @@ const routes: Array<RouteConfig> = [
     name: 'sign-up',
     path: '/sign-up',
     component: () => import('@/views/RegisterView.vue')
+  },
+  {
+    name: 'index',
+    path: '/index',
+    component: () => import('@/views/MainView.vue')
   }
 ]
 

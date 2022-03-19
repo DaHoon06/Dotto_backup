@@ -207,6 +207,7 @@ export default class MemberRegisterComponent extends Vue {
         email: this.concatEmail,
         phone: this.phone
       };
+      //TODO: 반환 data에 대한 타입 정의
       const { data } = await this.axios.post('/members/', sendData) as { data: any };
       const { result } = data;
 
@@ -214,6 +215,8 @@ export default class MemberRegisterComponent extends Vue {
         await this.$router.push({
           path: '/login'
         })
+      } else {
+        alert('ERROR');
       }
     } else {
       alert('약관에 동의해주세요.');
@@ -226,8 +229,6 @@ export default class MemberRegisterComponent extends Vue {
       this.nickName = '';
     }
   }
-
-  //TODO: computed
   private set NickNameMessage(msg: string) {
     this.nickNameMessage = msg
   }
