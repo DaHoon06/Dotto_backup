@@ -20,7 +20,7 @@ public class TokenConfig {
     }
 
     @Bean
-    public TokenHelper refreshTokenHelper(@Value("${kwt.key.refresh}")String key, @Value("${jwt.max-age.refresh}")Long maxAgeSeconds){
+    public TokenHelper refreshTokenHelper(@Value("${jwt.key.refresh}")String key, @Value("${jwt.max-age.refresh}")Long maxAgeSeconds){
         return new TokenHelper(jwtHandler, key, maxAgeSeconds);
     }
 
