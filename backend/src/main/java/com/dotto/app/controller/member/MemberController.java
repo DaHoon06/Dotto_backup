@@ -22,7 +22,7 @@ public class MemberController {
     public Response read(
             @ApiParam(value = "사용자 id", required = true)
             @PathVariable Long id){
-        return Response.success();
+        return Response.success(memberService.read(id));
     }
 
 
@@ -32,6 +32,7 @@ public class MemberController {
     public Response delete(
             @ApiParam(value = "사용자 id", required = true)
             @PathVariable Long id){
+        memberService.delete(id);
         return Response.success();
     }
 
