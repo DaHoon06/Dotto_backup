@@ -22,7 +22,6 @@ import static com.dotto.app.factory.entity.MemberFactory.createMember;
 import static com.dotto.app.factory.entity.MemberFactory.createMemberWithRoles;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class MemberRepositoryTest {
@@ -191,6 +190,7 @@ class MemberRepositoryTest {
         //given
         List<RoleType> roleTypes = List.of(RoleType.ROlE_NORMAL, RoleType.ROLE_TATTOOIST, RoleType.ROLE_ADMIN);
         List<Role> roles = roleTypes.stream().map(roleType -> new Role(roleType)).collect(Collectors.toList());
+        roleRepository.saveAll(roles);
         clear();
 
         Member member = memberRepository.save(createMemberWithRoles(roleRepository.findAll()));
@@ -203,6 +203,26 @@ class MemberRepositoryTest {
         //then
         List<MemberRole> rs = em.createQuery("select mr from MemberRole  mr",MemberRole.class).getResultList();
         assertThat(rs.size()).isZero();
+    }
+
+    @Test
+    void findWithRolesByEmailTest(){
+        //given
+        List<RoleType> roleTypes = List.of(RoleType.ROlE_NORMAL, RoleType.ROLE_TATTOOIST, RoleType.ROLE_ADMIN);
+        List<Role> roles = roleTypes.stream().map(roleType -> new Role(roleType)).collect(Collectors.toList());
+        roleRepository.saveAll(roles);
+        clear();
+
+        Member member = memberRepository.save(createMemberWithRoles(roleRepository.findAll()));
+        clear();
+
+        //when
+        Member foundMember = memberRepository.findWithRolesByEmail(member.getEmail()).orElseThrow(MemberNotFoundException::new);
+
+        //then
+        List<RoleType> rs = foundMember.getRoles().stream().map(memberRole -> memberRole.getRole().getRoleType()).collect(Collectors.toList());
+        assertThat(rs.size()).isEqualTo(roleTypes.size());
+        assertThat(rs).contains(roleTypes.get(0),roleTypes.get(1),roleTypes.get(2));
     }
 
 

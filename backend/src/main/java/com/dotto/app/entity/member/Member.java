@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,6 +13,12 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NamedEntityGraph(  //연관된 엔티티들을 함께 조회 (roles)
+    name = "Member.roles",
+        attributeNodes = @NamedAttributeNode(value = "roles", subgraph = "Member.roles.role"),
+
+        subgraphs = @NamedSubgraph(name = "Member.roles.role", attributeNodes = @NamedAttributeNode("role"))
+)
 public class Member extends EntityDate {
 
     @Id
@@ -43,7 +48,8 @@ public class Member extends EntityDate {
 
     private String intro;
 
-    public Member(String email, String password, String nickname, String gender, String phone, List<Role> roles, String addr, String subAddr, String intro){
+    //아티스트 생성자
+    public Member(String email, String password, String nickname, String gender, String phone, List<Role> roles, String addr, String subAddr){
         this.email = email;
         this.password = password;
         this.nickname = nickname;
@@ -52,7 +58,16 @@ public class Member extends EntityDate {
         this.roles = roles.stream().map(r -> new MemberRole(this,r)).collect(Collectors.toSet());
         this.addr = addr;
         this.subAddr = subAddr;
-        this.intro = intro;
+    }
+
+    //일반회원 생성자
+    public Member(String email, String password, String nickname, String gender, String phone, List<Role> roles){
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.gender = gender;
+        this.phone = phone;
+        this.roles = roles.stream().map(r -> new MemberRole(this,r )).collect(Collectors.toSet());
     }
 
     public void updateNickName(String nickname){
