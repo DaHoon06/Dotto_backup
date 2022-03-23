@@ -1,13 +1,21 @@
 <template>
   <section>
-    <div class="container-fluid bg-white rounded" @submit.prevent="register">
+    <div class="container-fluid bg-white rounded">
       <b-row align-h="center">
         <b-col cols="6">
-          <b-form-input  @blur="validationEmail" type="text" v-model="email" placeholder="이메일" />
+          <b-form-input
+              @blur="validationEmail"
+              type="text"
+              v-model="email"
+              placeholder="이메일" />
         </b-col>
         <b-col cols="3">
           <div>
-            <b-form-select v-model="domain" :options="emailList" class="mt-1" size="sm"></b-form-select>
+            <b-form-select
+                v-model="domain"
+                :options="emailList"
+                class="mt-1"
+                size="sm" />
           </div>
         </b-col>
         <b-col cols="3">
@@ -22,7 +30,12 @@
 
       <b-row align-h="center">
         <div class="col-12">
-          <b-form-input class="mt-2" type="password" @change="validationPassword" v-model="password" placeholder="비밀번호" />
+          <b-form-input
+              class="mt-2"
+              type="password"
+              @change="validationPassword"
+              v-model="password"
+              placeholder="비밀번호" />
         </div>
       </b-row>
       <b-row align-h="center">
@@ -33,7 +46,12 @@
 
       <b-row align-h="center">
         <div class="col-12">
-          <b-form-input type="password" class="mt-2" @change="validationPassword" v-model="passwordCheck" placeholder="비밀번호 확인" />
+          <b-form-input
+              type="password"
+              class="mt-2"
+              @change="validationPassword"
+              v-model="passwordCheck"
+              placeholder="비밀번호 확인" />
         </div>
         <div class="col-12">
           <div class="mt-2 warning-msg">{{ this.PasswordCheckMessage }}</div>
@@ -42,7 +60,12 @@
 
       <b-row align-h="center">
         <div class="col-9">
-          <b-form-input class="mt-1" type="text" @focus="msgClear" v-model="nickName" placeholder="닉네임" />
+          <b-form-input
+              class="mt-1"
+              type="text"
+              @focus="msgClear"
+              v-model="nickName"
+              placeholder="닉네임" />
         </div>
         <div class="col-3">
           <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
@@ -82,7 +105,7 @@
           <b-button class="mt-2 register-btn">작업실 및 소개 이미지 등록</b-button>
         </div>
         <div class="col-8">
-          <b-form-file id="file-small" class="mt-2" placeholder="TEST" size="sm"></b-form-file>
+          <b-form-file id="file-small" class="mt-2" placeholder="TEST" v-model="tattooSpot" size="sm"></b-form-file>
         </div>
       </b-row>
 
@@ -97,7 +120,7 @@
 
       <b-row align-h="center">
         <div class="col-9">
-          <b-form-input class="mt-1" type="text" placeholder="인증번호 입력" />
+          <b-form-input class="mt-1" type="text" placeholder="인증번호입력" />
         </div>
         <div class="col-3">
           <b-button class="mt-1 register-btn">인증하기</b-button>
@@ -123,7 +146,7 @@
 
       <b-row align-h="center">
         <div class="col-12">
-          <b-button class="mt-3 register-btn" id="register-submit" type="submit">가입하기</b-button>
+          <b-button class="mt-3 register-btn" id="register-submit" type="button" @click="register">가입하기</b-button>
         </div>
       </b-row>
     </div>
@@ -159,6 +182,7 @@ export default class TattooistRegisterComponent extends Vue {
   address: string;
   detail_address:string;
   gender: string;
+  tattooSpot: string;
 
   constructor() {
     super();
@@ -167,11 +191,12 @@ export default class TattooistRegisterComponent extends Vue {
     this.passwordCheck = '';
     this.nickName = '';
     this.phone = '';
+    this.tattooSpot = '';
     this.emailList = [
-      { value: '1', text: 'gmail.com', },
-      { value: '2', text: 'naver.com', },
-      { value: '3', text: 'daum.net', },
-      { value: '4', text: 'nate.com', },
+      { value: 'gmail.com', text: 'gmail.com', },
+      { value: 'naver.com', text: 'naver.com', },
+      { value: 'daum.net', text: 'daum.net', },
+      { value: 'nate.com', text: 'nate.com', },
     ];
     this.domain = '';
     this.agree = false;
@@ -227,7 +252,7 @@ export default class TattooistRegisterComponent extends Vue {
     let msg = '';
     const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
-    if(!reg.test(this.password)) {
+    if (!reg.test(this.password)) {
       msg = '하나 이상의 문자, 하나의 숫자 및 특수문자를 조합하여 8자 이상 입력해주세요.';
       this.PasswordMessage = msg;
     } else {
@@ -235,7 +260,7 @@ export default class TattooistRegisterComponent extends Vue {
       this.PasswordMessage = msg;
     }
 
-    if(this.password !== this.passwordCheck) {
+    if (this.password !== this.passwordCheck) {
       msg = '비밀번호를 다시 한 번 확인해주세요.';
       this.PasswordCheckMessage = msg;
     } else {
@@ -247,7 +272,7 @@ export default class TattooistRegisterComponent extends Vue {
   validationEmail(): void {
     const reg = /^[a-zA-Z0-9]*$/;
     let msg = '';
-    if(!reg.test(this.email)){
+    if (!reg.test(this.email)) {
       msg = '이메일 주소를 정확히 입력해주세요.'
       this.EmailMessage = msg;
       this.email = '';
@@ -262,21 +287,26 @@ export default class TattooistRegisterComponent extends Vue {
   }
 
   async register(): Promise<void> {
-    if(this.agree){
+    if (this.agree) {
       this.joinEmail();
-      const sendData: IUser.IRegisterProp = {
-        nickName: this.nickName,
+      const sendData: IUser.ITattoist = {
+        nickname: this.nickName,
         password: this.password,
         email: this.concatEmail,
-        phone: this.phone
+        phone: this.phone,
+        gender: this.gender,
+        addr: this.address,
+        subAddr: this.detail_address,
       };
-      const { data } = await this.axios.post('/members/', sendData) as { data: any };
-      const { result } = data;
+      const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
+      const { success } = data;
 
-      if(result) {
+      if (success) {
         await this.$router.push({
-          path: '/login'
+          path: '/'
         })
+      } else {
+        alert('ERROR');
       }
     } else {
       alert('약관에 동의해주세요.');
@@ -289,8 +319,6 @@ export default class TattooistRegisterComponent extends Vue {
       this.nickName = '';
     }
   }
-
-  //TODO: computed
   private set NickNameMessage(msg: string) {
     this.nickNameMessage = msg
   }

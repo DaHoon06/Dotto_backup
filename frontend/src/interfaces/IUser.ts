@@ -1,20 +1,26 @@
 export namespace IUser {
     export interface IRegisterProp{
-        nickName: string,
+        nickname: string,
         password: string,
         email: string;
         phone: string;
+        gender: string;
+    }
+
+    export interface ITattoist extends IRegisterProp{
+        addr: string;
+        subAddr: string;
     }
 
     export interface ILoginProp {
-        MEMBER_ID: string,
-        PASSWORD: string
+        email: string,
+        password: string
     }
 
     export interface ILoginSuccess {
         result: boolean,
         token: string,
-        nickName: string,
+        nickname: string,
         email: string,
         loginType: string,
     }

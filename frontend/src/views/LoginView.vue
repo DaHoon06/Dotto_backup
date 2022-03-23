@@ -85,15 +85,15 @@ export default class LoginView extends Vue {
 
   async login(): Promise<void> {
     const sendData: IUser.ILoginProp = {
-      MEMBER_ID: this.email,
-      PASSWORD: this.password
+      email: this.email,
+      password: this.password
     };
     const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
     const { result } = data;
     if(result) {
       this.saveState(data);
       await this.$router.push({
-        path: '/'
+        path: '/index'
       })
     } else {
       this.loginFailed = '이메일 및 패스워드를 확인해주세요.';
