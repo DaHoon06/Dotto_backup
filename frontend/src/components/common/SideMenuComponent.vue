@@ -1,34 +1,5 @@
 <template>
   <div id="sideMenu-container">
-    <section>
-      <p><b>FILTER</b></p>
-    </section>
-    <section>
-      <div id="sort-area">
-        <span class="test">정렬</span>
-        <button @click="showSort"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
-      </div>
-      <div v-if="showSortArea">
-        <ul>
-          <li>
-            <input type="radio" id="recent" name="recent" value="1" v-model="filterType" />
-            <label for="recent">최신순</label>
-          </li>
-          <li>
-            <input type="radio" id="views" name="views" value="2" v-model="filterType" />
-            <label for="views">조회순</label>
-          </li>
-          <li>
-            <input type="radio" id="like" name="like" value="3" v-model="filterType" />
-            <label for="like">좋아요순</label>
-          </li>
-          <li>
-            <input type="radio" id="distance" name="distance" value="4" v-model="filterType" />
-            <label for="distance">거리순</label>
-          </li>
-        </ul>
-      </div>
-    </section>
 
     <hr />
 
@@ -67,41 +38,22 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class SideMenuComponent extends Vue {
-  filterType: string;
-  showSortArea: boolean;
+
   showTagArea: boolean;
   showLocationArea: boolean;
 
   constructor() {
     super();
-    this.filterType = '';
-    this.showSortArea = false;
     this.showTagArea = false;
     this.showLocationArea = false;
   }
 
-  private showSort() {
-    if (!this.showSortArea) {
-      this.showSortArea = true;
-    } else {
-      this.showSortArea = false;
-    }
-  }
-
   private showTags() {
-    if (!this.showTagArea) {
-      this.showTagArea = true;
-    } else {
-      this.showTagArea = false;
-    }
+    this.showTagArea = !this.showTagArea;
   }
 
   private showLocation() {
-    if (!this.showLocationArea) {
-      this.showLocationArea = true;
-    } else {
-      this.showLocationArea = false;
-    }
+    this.showLocationArea = !this.showLocationArea;
   }
 
 
@@ -129,7 +81,7 @@ export default class SideMenuComponent extends Vue {
   width: 12px;
 }
 
-#sort-area, #tag-area, #location-area {
+#tag-area, #location-area {
   display: flex;
   justify-content: space-between;
 }
@@ -143,7 +95,5 @@ export default class SideMenuComponent extends Vue {
   position: relative;
   right: 15px;
 }
-.test {
-  text-align: left;
-}
+
 </style>

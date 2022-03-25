@@ -46,7 +46,7 @@ import {Component, Prop, Vue} from "vue-property-decorator";
 export default class MenuButton extends Vue {
   @Prop() showMenuList?: boolean;
 
-  closeMenu() {
+  private closeMenu() {
     this.showMenuList = false;
     this.$emit('showMenu', this.showMenuList)
   }

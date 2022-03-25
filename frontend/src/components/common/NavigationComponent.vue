@@ -30,7 +30,7 @@
       </ul>
     </section>
 
-    <MenuButton :showMenuList="showMenuList" @showMenu="showMenu" />
+    <menu-button :showMenuList="showMenuList" @showMenu="showMenu" />
 
 
   </div>
@@ -53,9 +53,8 @@ export default class NavigationComponent extends Vue {
     this.showMenuList = false;
   }
 
-  showMenu() {
-    if (!this.showMenuList) this.showMenuList = true;
-    else this.showMenuList = false;
+  private showMenu() {
+    this.showMenuList = !this.showMenuList;
   }
 
 }
