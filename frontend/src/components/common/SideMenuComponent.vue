@@ -1,5 +1,8 @@
 <template>
   <div id="sideMenu-container">
+    <section>
+      <p><b>FILTER</b></p>
+    </section>
 
     <hr />
 
@@ -39,14 +42,19 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class SideMenuComponent extends Vue {
 
+  filterType: string;
+  showSortArea: boolean;
   showTagArea: boolean;
   showLocationArea: boolean;
 
   constructor() {
     super();
+    this.filterType = '';
+    this.showSortArea = false;
     this.showTagArea = false;
     this.showLocationArea = false;
   }
+
 
   private showTags() {
     this.showTagArea = !this.showTagArea;

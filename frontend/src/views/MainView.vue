@@ -2,8 +2,8 @@
   <div>
     <navigation-component />
     <div id="main-wrapper">
-      <side-menu-component />
-      <main-component />
+      <side-menu-component v-if="showSideComponent"  />
+      <main-component @showFilterDiv="showFilter" />
     </div>
   </div>
 </template>
@@ -22,7 +22,16 @@ import MainComponent from "@/components/MainComponent.vue";
   }
 })
 export default class MainView extends Vue {
+  showSideComponent: boolean;
+  constructor() {
+    super();
+    this.showSideComponent = false
+  }
 
+  private showFilter(showFilterDiv: boolean) {
+    console.log(showFilterDiv)
+    this.showSideComponent = showFilterDiv;
+  }
 }
 </script>
 
