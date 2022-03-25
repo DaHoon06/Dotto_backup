@@ -4,7 +4,7 @@
       <ul>
         <li>
           <button>
-            <img class="menu-icon" src="@/assets/nav/menu.png" alt="menu" />
+            <img class="menu-icon" src="@/assets/nav/menu.png" alt="menu" @click="showMenu" />
           </button>
         </li>
         <li>
@@ -14,6 +14,7 @@
         </li>
       </ul>
     </section>
+
     <section>
       <ul>
         <li>
@@ -28,14 +29,34 @@
         </li>
       </ul>
     </section>
+
+    <MenuButton :showMenuList="showMenuList" @showMenu="showMenu" />
+
+
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import MenuButton from "@/components/common/MenuButton.vue";
 
-@Component
+@Component({
+  components: {
+    MenuButton,
+  }
+})
 export default class NavigationComponent extends Vue {
+  showMenuList: boolean;
+
+  constructor() {
+    super();
+    this.showMenuList = false;
+  }
+
+  showMenu() {
+    if (!this.showMenuList) this.showMenuList = true;
+    else this.showMenuList = false;
+  }
 
 }
 </script>
@@ -77,5 +98,6 @@ ul li {
   left: 4px;
   top: 0;
 }
+
 
 </style>

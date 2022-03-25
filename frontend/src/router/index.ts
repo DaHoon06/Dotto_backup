@@ -16,7 +16,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     name: 'index',
-    path: '/index',
+    path: '/dotto',
     component: () => import('@/views/MainView.vue')
   }
 ]

@@ -93,7 +93,7 @@ export default class LoginView extends Vue {
     if(result) {
       this.saveState(data);
       await this.$router.push({
-        path: '/index'
+        path: '/dotto'
       })
     } else {
       this.loginFailed = '이메일 및 패스워드를 확인해주세요.';
