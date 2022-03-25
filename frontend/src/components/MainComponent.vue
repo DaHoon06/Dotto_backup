@@ -2,7 +2,7 @@
   <main id="main-container">
     <section id="filter-area">
       <span>
-        <sort-component @typeName="typeName" :showSortComponent="showSortComponent" />
+        <sort-component @typeName="typeName" :selectedType="filterType" :showSortComponent="showSortComponent" />
         <button @click="showSort" >
           {{ sendSortType }}
           <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
@@ -17,8 +17,79 @@
       </span>
     </section>
 
-    <section>
-      게시판 리스트
+    <section id="tattoo-container">
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
+      <div class="tattoo-board-list">
+        <div>
+          타투 이미지~~~
+        </div>
+        <p>글 제목</p>
+        <p>서울/마포(홍대)</p>
+        <p>50% 5만원 10만원</p>
+      </div>
+
     </section>
   </main>
 </template>
@@ -77,11 +148,18 @@ export default class MainComponent extends Vue {
   display: flex;
   flex-direction: column;
 }
+
 #filter-area {
   height: 30px;
   text-align: right;
   margin-right: 20px;
   margin-top: 10px;
+}
+
+#tattoo-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .filter-text {
@@ -90,5 +168,13 @@ export default class MainComponent extends Vue {
 
 .side-menu-drop-btn {
   width: 12px;
+}
+
+.tattoo-board-list {
+  border: 1px solid gray;
+  width: 220px;
+  height: 230px;
+  margin-left: 23px;
+  margin-top: 30px;
 }
 </style>
