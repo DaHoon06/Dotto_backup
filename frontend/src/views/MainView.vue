@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navigation-component />
+    <navigation-component @blurBackground="blurBackground" />
     <div id="main-wrapper">
       <side-menu-component v-if="showSideComponent"  />
       <main-component @showFilterDiv="showFilter" />
@@ -23,14 +23,20 @@ import MainComponent from "@/components/MainComponent.vue";
 })
 export default class MainView extends Vue {
   showSideComponent: boolean;
+  blurCss: string;
   constructor() {
     super();
     this.showSideComponent = false
+    this.blurCss = '';
   }
 
   private showFilter(showFilterDiv: boolean) {
     console.log(showFilterDiv)
     this.showSideComponent = showFilterDiv;
+  }
+
+  private blurBackground(css: string) {
+    this.blurCss = css;
   }
 }
 </script>
