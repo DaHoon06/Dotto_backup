@@ -16,6 +16,26 @@
     </section>
 
     <section>
+      <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
+      <button>
+        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
+      </button>
+      <div v-if="showSearchList" id="search-list">
+        <div id="search-list-wrapper">
+          <p class="close-search-list"><button @click="closeSearchList">x</button></p>
+          <ul>
+            <li>
+              <span>홍대</span>
+              <span>03.26</span>
+              <span>x</span>
+            </li>
+          </ul>
+        </div>
+        <div id="outer" />
+      </div>
+    </section>
+
+    <section>
       <ul>
         <li>
           <button>
@@ -47,14 +67,28 @@ import MenuButton from "@/components/common/MenuButton.vue";
 })
 export default class NavigationComponent extends Vue {
   showMenuList: boolean;
+  showSearchList: boolean;
+
+  propCss: string;
 
   constructor() {
     super();
     this.showMenuList = false;
+    this.showSearchList = false;
+    this.propCss = `filter: blur(5px)`;
   }
 
   private showMenu() {
     this.showMenuList = !this.showMenuList;
+  }
+
+  private searchLists() {
+    if (this.showSearchList) this.$emit('blurBackground', this.propCss)
+    this.showSearchList = !this.showSearchList;
+  }
+
+  private closeSearchList() {
+    this.showSearchList = !this.showSearchList;
   }
 
 }
@@ -97,6 +131,42 @@ ul li {
   left: 4px;
   top: 0;
 }
+#navigation-search-bar {
+  width: 200px;
+  height: 25px;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  background: #F5F5F5;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 10px;
+}
 
+#search-btn {
+  position: relative;
+  right: 24px;
+  width: 15px;
+}
+
+#search-list {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  max-width: 1980px;
+}
+
+#search-list-wrapper {
+  display: inline-block;
+  width: 100%;
+  height: 30vh;
+  background: #FFFFFF;
+}
+
+#outer {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3)
+}
 
 </style>
