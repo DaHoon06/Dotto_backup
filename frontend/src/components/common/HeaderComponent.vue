@@ -65,7 +65,7 @@ import MenuButton from "@/components/common/MenuButton.vue";
     MenuButton,
   }
 })
-export default class NavigationComponent extends Vue {
+export default class HeaderComponent extends Vue {
   showMenuList: boolean;
   showSearchList: boolean;
 

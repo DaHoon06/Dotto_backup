@@ -1,24 +1,28 @@
 <template>
   <div>
     <header-component @blurBackground="blurBackground" />
+    <navigation-component />
     <div id="main-wrapper">
       <side-menu-component v-if="showSideComponent"  />
       <main-component @showFilterDiv="showFilter" />
     </div>
+    <footer-component />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HeaderComponent from "@/components/common/HeaderComponent.vue";
-import SideMenuComponent from "@/components/common/SideMenuComponent.vue";
 import MainComponent from "@/components/MainComponent.vue";
+import { SideMenuComponent, HeaderComponent, NavigationComponent } from "@/components/common";
+import FooterComponent from "@/components/common/FooterComponent.vue";
 
 @Component({
   components: {
+    FooterComponent,
     HeaderComponent,
     SideMenuComponent,
-    MainComponent
+    MainComponent,
+    NavigationComponent
   }
 })
 export default class MainView extends Vue {
