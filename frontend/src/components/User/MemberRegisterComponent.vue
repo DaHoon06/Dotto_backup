@@ -206,7 +206,7 @@ export default class MemberRegisterComponent extends Vue {
     let msg = '';
 
     if (result) {
-      msg = '사용가능한 닉네임 입니다.';
+      msg = '';
       this.NickNameMessage = msg;
     } else {
       msg = '이미 사용중인 닉네임입니다.';
@@ -230,7 +230,7 @@ export default class MemberRegisterComponent extends Vue {
       msg = '비밀번호를 다시 한 번 확인해주세요.';
       this.PasswordCheckMessage = msg;
     } else {
-      msg = '비밀번호가 일치합니다.';
+      msg = '';
       this.PasswordCheckMessage = msg;
     }
   }
