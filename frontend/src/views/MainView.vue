@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navigation-component @blurBackground="blurBackground" />
+    <header-component @blurBackground="blurBackground" />
     <div id="main-wrapper">
       <side-menu-component v-if="showSideComponent"  />
       <main-component @showFilterDiv="showFilter" />
@@ -10,13 +10,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import NavigationComponent from "@/components/common/NavigationComponent.vue";
+import HeaderComponent from "@/components/common/HeaderComponent.vue";
 import SideMenuComponent from "@/components/common/SideMenuComponent.vue";
 import MainComponent from "@/components/MainComponent.vue";
 
 @Component({
   components: {
-    NavigationComponent,
+    HeaderComponent,
     SideMenuComponent,
     MainComponent
   }
