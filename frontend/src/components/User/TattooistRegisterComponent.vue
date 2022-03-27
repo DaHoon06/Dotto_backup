@@ -303,7 +303,7 @@ export default class TattooistRegisterComponent extends Vue {
 
       if (success) {
         await this.$router.push({
-          path: '/'
+          path: '/login'
         })
       } else {
         alert('ERROR');

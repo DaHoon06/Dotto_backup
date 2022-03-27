@@ -251,7 +251,7 @@ export default class MemberRegisterComponent extends Vue {
       const { success } = data;
       if (success) {
         await this.$router.push({
-          path: '/'
+          path: '/login'
         })
       } else {
         alert('ERROR');

@@ -165,6 +165,9 @@ export default class LoginView extends Vue {
   background: #072350;
   width: 100%;
 }
+#login-btn-img {
+  padding: 0;
+}
 
 #login-btn:hover{
   background: #1048a2;
