@@ -1,11 +1,15 @@
 <template>
   <div>
-    <header-component @blurBackground="blurBackground" />
-    <navigation-component />
-    <div id="main-wrapper">
-      <side-menu-component v-if="showSideComponent"  />
+    <header id="header">
+      <header-component @blurBackground="blurBackground" />
+      <navigation-component />
+    </header>
+
+    <main id="main-wrapper">
+      <side-menu-component  />
       <main-component @showFilterDiv="showFilter" />
-    </div>
+    </main>
+
     <footer-component />
   </div>
 </template>
@@ -13,16 +17,17 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
-import { SideMenuComponent, HeaderComponent, NavigationComponent } from "@/components/common";
+import { SideMenuComponent, HeaderComponent } from "@/components/common";
 import FooterComponent from "@/components/common/FooterComponent.vue";
+import NavigationComponent from "@/components/common/NavigationComponent.vue";
 
 @Component({
   components: {
+    NavigationComponent,
     FooterComponent,
     HeaderComponent,
     SideMenuComponent,
     MainComponent,
-    NavigationComponent
   }
 })
 export default class MainView extends Vue {
@@ -47,6 +52,10 @@ export default class MainView extends Vue {
 
 <style scoped>
 #main-wrapper {
-  margin-top: 60px;
+  margin-top: 100px;
+  position: relative;
+  left: 20%;
 }
+
+
 </style>

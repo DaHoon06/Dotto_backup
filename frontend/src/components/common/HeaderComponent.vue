@@ -59,10 +59,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MenuButton from "@/components/common/MenuButton.vue";
+import { NavigationComponent } from "@/components/common/index";
 
 @Component({
   components: {
     MenuButton,
+    NavigationComponent
   }
 })
 export default class HeaderComponent extends Vue {
@@ -104,7 +106,6 @@ ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1980px;
   width: 100%; /* 1980px */
   height: 60px;
   left: 0;

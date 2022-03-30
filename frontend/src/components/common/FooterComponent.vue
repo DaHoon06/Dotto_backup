@@ -81,7 +81,6 @@ export default class FooterComponent extends Vue {
   background: #222222;
   color: #FFFFFF;
   width: 100%;
-  max-width: 1920px;
   font-size: 12px;
 }
 

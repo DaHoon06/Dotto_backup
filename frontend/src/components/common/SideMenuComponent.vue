@@ -74,7 +74,7 @@ export default class SideMenuComponent extends Vue {
   width: 296px;
   max-height: 992px;
   height: 100%;
-  top: 88px;
+  top: 100px;
 }
 
 #tag-title {

@@ -7,13 +7,6 @@
           {{ sendSortType }}
           <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
         </button>
-
-      </span>
-      <span>
-        <button  @click="showFilter" >
-          <span class="filter-text"><b>FILTER</b></span>
-          <img class="filter-text" src="@/assets/main/filter.png" alt="filter" />
-        </button>
       </span>
     </section>
 
@@ -119,11 +112,6 @@ export default class MainComponent extends Vue {
     this.showSortComponent = !this.showSortComponent;
   }
 
-  private showFilter() {
-    this.showFilterComponent = !this.showFilterComponent
-    this.$emit('showFilterDiv', this.showFilterComponent)
-  }
-
   private typeName(type: string) {
     this.filterType = type;
   }
@@ -160,10 +148,6 @@ export default class MainComponent extends Vue {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-.filter-text {
-  margin-left: 20px;
 }
 
 .side-menu-drop-btn {
