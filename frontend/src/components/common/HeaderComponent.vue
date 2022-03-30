@@ -3,11 +3,6 @@
     <section>
       <ul>
         <li>
-          <button>
-            <img class="menu-icon" src="@/assets/nav/menu.png" alt="menu" @click="showMenu" />
-          </button>
-        </li>
-        <li>
           <span>
             <img id="logo" src="@/assets/dotto.jpg" alt="logo" />
           </span>
@@ -38,50 +33,39 @@
     <section>
       <ul>
         <li>
-          <button>
-            <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
+          <button class="nav-icon-btn">
+            <img class="nav-menu-icon" src="@/assets/nav/vector.png" alt="vector" />
           </button>
+          <span class="nav-icon-label">MY PAGE</span>
         </li>
         <li>
           <button>
-            <img class="nav-menu-icon" src="@/assets/nav/vector.png" alt="vector" />
+            <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
           </button>
+          <span class="nav-icon-label">LOGIN</span>
         </li>
       </ul>
     </section>
-
-    <menu-button :showMenuList="showMenuList" @showMenu="showMenu" />
-
-
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MenuButton from "@/components/common/MenuButton.vue";
 import { NavigationComponent } from "@/components/common/index";
 
 @Component({
   components: {
-    MenuButton,
     NavigationComponent
   }
 })
 export default class HeaderComponent extends Vue {
-  showMenuList: boolean;
   showSearchList: boolean;
-
   propCss: string;
 
   constructor() {
     super();
-    this.showMenuList = false;
     this.showSearchList = false;
     this.propCss = `filter: blur(5px)`;
-  }
-
-  private showMenu() {
-    this.showMenuList = !this.showMenuList;
   }
 
   private searchLists() {
@@ -99,6 +83,9 @@ export default class HeaderComponent extends Vue {
 <style scoped>
 ul li {
   float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #navBar-container {
@@ -114,16 +101,23 @@ ul li {
   z-index: 10;
 }
 .nav-menu-icon {
-  width: 30px;
+  width: 25px;
 }
+
 .nav-menu-icon:nth-child(1) {
   margin-right: 30px;
 }
 
-.menu-icon {
-  margin-top: 7px;
-  width: 30px;
+.nav-icon-label {
+  font-size: 11px;
+  color: #919191;
+  margin-right: 15px;
 }
+
+.nav-icon-btn {
+  width: 40px;
+}
+
 #logo {
   margin-left: 25px;
   margin-bottom: 10px;
@@ -132,6 +126,7 @@ ul li {
   left: 4px;
   top: 0;
 }
+
 #navigation-search-bar {
   width: 200px;
   height: 25px;

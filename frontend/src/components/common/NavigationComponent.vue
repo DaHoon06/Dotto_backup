@@ -38,6 +38,9 @@ export default class NavigationComponent extends Vue {
   height: 40px;
   border-bottom: 2px solid gray;
   z-index: 10;
+  padding-left: 25px;
+  font-size: 13px;
+  color: #919191;
 }
 #navigation-container ul li {
   float: left;

@@ -1,5 +1,5 @@
 <template>
-  <main id="main-container">
+  <div id="main-container">
     <section id="filter-area">
       <span>
         <sort-component @typeName="typeName" :selectedType="filterType" :showSortComponent="showSortComponent" />
@@ -82,17 +82,18 @@
         <p>서울/마포(홍대)</p>
         <p>50% 5만원 10만원</p>
       </div>
-
     </section>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import SortComponent from "@/components/common/SortComponent.vue";
+import SideButtonComponent from "@/components/common/SideButtonComponent.vue";
 
 @Component({
   components: {
+    SideButtonComponent,
     SortComponent,
   }
 })
@@ -129,7 +130,7 @@ export default class MainComponent extends Vue {
 #main-container {
   border: 1px solid gray;
   width: 100%;
-  margin: auto auto auto 300px;
+  margin: 100px auto auto auto;
   max-width: 1000px;
   min-height: 992px;
   height: 100%;

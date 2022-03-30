@@ -1,10 +1,8 @@
 <template>
-  <div id="sideMenu-container">
-    <section>
+  <aside id="sideMenu-container">
+    <section id="sideMenu-title">
       <p><b>FILTER</b></p>
     </section>
-
-    <hr />
 
     <section>
       <div id="tag-area">
@@ -33,7 +31,7 @@
       </div>
     </section>
 
-  </div>
+  </aside>
 </template>
 
 <script lang="ts">
@@ -75,6 +73,11 @@ export default class SideMenuComponent extends Vue {
   max-height: 992px;
   height: 100%;
   top: 100px;
+  margin-left: 100px;
+}
+
+#sideMenu-title {
+  margin-top: 65px;
 }
 
 #tag-title {

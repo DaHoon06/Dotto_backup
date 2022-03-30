@@ -8,6 +8,7 @@
     <main id="main-wrapper">
       <side-menu-component  />
       <main-component @showFilterDiv="showFilter" />
+      <side-button-component />
     </main>
 
     <footer-component />
@@ -17,12 +18,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
-import { SideMenuComponent, HeaderComponent } from "@/components/common";
-import FooterComponent from "@/components/common/FooterComponent.vue";
-import NavigationComponent from "@/components/common/NavigationComponent.vue";
+import { SideMenuComponent, HeaderComponent, FooterComponent, NavigationComponent } from "@/components/common";
+import SideButtonComponent from "@/components/common/SideButtonComponent.vue";
 
 @Component({
   components: {
+    SideButtonComponent,
     NavigationComponent,
     FooterComponent,
     HeaderComponent,
@@ -52,9 +53,9 @@ export default class MainView extends Vue {
 
 <style scoped>
 #main-wrapper {
-  margin-top: 100px;
-  position: relative;
-  left: 20%;
+  max-width: 1980px;
+  width: 100%;
+  margin: auto;
 }
 
 
