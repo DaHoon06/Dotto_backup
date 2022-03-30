@@ -88,8 +88,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SortComponent from "@/components/common/SortComponent.vue";
-import SideButtonComponent from "@/components/common/SideButtonComponent.vue";
+import { SortComponent, SideButtonComponent } from "@/components/common";
 
 @Component({
   components: {

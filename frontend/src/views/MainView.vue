@@ -18,8 +18,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
-import { SideMenuComponent, HeaderComponent, FooterComponent, NavigationComponent } from "@/components/common";
-import SideButtonComponent from "@/components/common/SideButtonComponent.vue";
+import {
+  SideButtonComponent,
+  SideMenuComponent,
+  HeaderComponent,
+  FooterComponent,
+  NavigationComponent
+} from "@/components/common";
 
 @Component({
   components: {

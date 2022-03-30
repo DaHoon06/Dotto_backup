@@ -145,26 +145,28 @@ export default class LoginView extends Vue {
 }
 #logo-img img {
   width: 120px;
-  transform: rotate(-4deg);
   margin-bottom: 10px;
 }
+
 #loginPage-container {
   display: flex;
-  margin-top: 10rem;
   width: 100%;
   height: 100%;
+  margin-top: 45px;
+  margin-bottom: 45px;
   flex-direction: column;
   align-items: center;
 }
 
 #login-btn {
   border: 1px solid gray;
-  border-radius: 7px;
+  border-radius: 5px;
   box-shadow: 1px 1px 1px gray;
   color: white;
-  background: #072350;
+  background: #222222;
   width: 100%;
 }
+
 #login-btn-img {
   padding: 0;
 }

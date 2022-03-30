@@ -39,22 +39,30 @@
           <span class="nav-icon-label">MY PAGE</span>
         </li>
         <li>
-          <button>
+          <button id="show-btn" @click="$bvModal.show('bv-modal-example')">
             <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
           </button>
           <span class="nav-icon-label">LOGIN</span>
         </li>
       </ul>
     </section>
+
+    <b-modal id="bv-modal-example" centered hide-header hide-footer>
+      <login-view />
+    </b-modal>
+
+
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { NavigationComponent } from "@/components/common/index";
+import LoginView from "@/views/LoginView.vue";
 
 @Component({
   components: {
+    LoginView,
     NavigationComponent
   }
 })
