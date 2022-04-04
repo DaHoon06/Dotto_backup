@@ -12,4 +12,8 @@ export class Mixin extends Vue {
     get token() {
         return '';
     }
+
+    get isLogin() {
+        return '';
+    }
 }
