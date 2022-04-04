@@ -10,6 +10,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueDaumPostcode from "vue-daum-postcode"
+import { Mixin } from "@/mixins/mixin";
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,8 @@ Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.use(VueMoment);
 Vue.use(VueDaumPostcode);
+
+Vue.mixin(Mixin);
 
 new Vue({
   router,

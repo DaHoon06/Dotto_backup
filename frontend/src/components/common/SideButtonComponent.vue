@@ -43,14 +43,14 @@ export default class SideButtonComponent extends Vue {}
 }
 
 #chat-icon {
-  width: 40px;
+  width: 25px;
 }
 #top {
   width: 10px;
 }
 .right-side-btn {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border: 1px solid #b9b9b9;
   border-radius: 45px;
   background: #FFFFFF;
