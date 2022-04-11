@@ -4,6 +4,7 @@ import store from '@/store';
 
 @Component
 export class Mixin extends Vue {
+    public $store = store;
 
     get userId() {
         return '';
@@ -14,6 +15,6 @@ export class Mixin extends Vue {
     }
 
     get isLogin() {
-        return '';
+        return false;
     }
 }

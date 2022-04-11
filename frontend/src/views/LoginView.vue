@@ -90,7 +90,7 @@ export default class LoginView extends Vue {
     };
     const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
     const { result } = data;
-    if(result) {
+    if (result) {
       this.saveState(data);
       await this.$router.push({
         path: '/dotto'
