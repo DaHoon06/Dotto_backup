@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueDaumPostcode from "vue-daum-postcode"
 import { Mixin } from "@/mixins/mixin";
+// import vClickOutside from 'v-click-outside';
 
 Vue.config.productionTip = false
 
@@ -20,7 +21,7 @@ Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.use(VueMoment);
 Vue.use(VueDaumPostcode);
-
+// Vue.use(vClickOutside);
 Vue.mixin(Mixin);
 
 new Vue({
