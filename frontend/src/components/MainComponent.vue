@@ -13,7 +13,7 @@
     <section id="tattoo-container">
       <div class="tattoo-board-list">
         <div>
-          타투 이미지~~~
+          <img class="tattoo-img" src="@/assets/main/sample/sample_img1.png" alt="sample1" />
         </div>
         <p>글 제목</p>
         <p>서울/마포(홍대)</p>
@@ -160,5 +160,9 @@ export default class MainComponent extends Vue {
   height: 230px;
   margin-left: 23px;
   margin-top: 30px;
+}
+
+.tattoo-img {
+  width: 160px;
 }
 </style>
