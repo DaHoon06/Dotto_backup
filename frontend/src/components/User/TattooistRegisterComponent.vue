@@ -1,15 +1,15 @@
 <template>
   <section>
     <div class="container-fluid bg-white rounded">
-      <b-row align-h="center">
-        <b-col cols="6">
-          <b-form-input
+      <div>
+        <div>
+          <input
               @blur="validationEmail"
               type="text"
               v-model="email"
               placeholder="이메일" />
-        </b-col>
-        <b-col cols="3">
+        </div>
+        <div>
           <div>
             <b-form-select
                 v-model="domain"
@@ -17,36 +17,36 @@
                 class="mt-1"
                 size="sm" />
           </div>
-        </b-col>
+        </div>
         <b-col cols="3">
           <b-button class="mt-2 register-btn" @click="emailCheck" type="button">중복확인</b-button>
         </b-col>
-      </b-row>
-      <b-row align-h="center">
+      </div>
+      <div>
         <div class="col-12">
           <div class="mt-2 warning-msg">{{ this.EmailMessage }}</div>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-12">
-          <b-form-input
+          <input
               class="mt-2"
               type="password"
               @change="validationPassword"
               v-model="password"
               placeholder="비밀번호" />
         </div>
-      </b-row>
-      <b-row align-h="center">
+      </div>
+      <div>
         <div class="col-12">
           <div class="mt-2 warning-msg">{{ this.PasswordMessage }}</div>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-12">
-          <b-form-input
+          <input
               type="password"
               class="mt-2"
               @change="validationPassword"
@@ -56,11 +56,11 @@
         <div class="col-12">
           <div class="mt-2 warning-msg">{{ this.PasswordCheckMessage }}</div>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-9">
-          <b-form-input
+          <input
               class="mt-1"
               type="text"
               @focus="msgClear"
@@ -70,16 +70,16 @@
         <div class="col-3">
           <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
         </div>
-      </b-row>
-      <b-row align-h="center">
+      </div>
+      <div>
         <div class="col-12">
           <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-9">
-          <b-form-input class="mt-2" v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
+          <input class="mt-2" v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
         </div>
         <div class="col-3">
           <b-button v-b-modal.modal-1 class="mt-2 register-btn">주소찾기</b-button>
@@ -93,41 +93,41 @@
             </b-modal>
           </div>
         </div>
-      </b-row>
-      <b-row>
+      </div>
+      <div>
         <div class="col-12">
-          <b-form-input class="mt-1" v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
+          <input class="mt-1" v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
         </div>
-      </b-row>
+      </div>
 
-      <b-row>
+      <div>
         <div class="col-4">
           <b-button class="mt-2 register-btn">작업실 및 소개 이미지 등록</b-button>
         </div>
         <div class="col-8">
           <b-form-file id="file-small" class="mt-2" placeholder="TEST" v-model="tattooSpot" size="sm"></b-form-file>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-9">
-          <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
+          <input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
         </div>
         <div class="col-3">
           <b-button class="mt-1 register-btn">인증번호받기</b-button>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-9">
           <b-form-input class="mt-1" type="text" placeholder="인증번호입력" />
         </div>
         <div class="col-3">
           <b-button class="mt-1 register-btn">인증하기</b-button>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-12 mt-2">
           <input class="selected-gender ml-1" type="radio" id="male" v-model="gender" value="male" name="male" />
           <label for="male">남성</label>
@@ -136,19 +136,19 @@
           <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
           <label for="empty">선택안함</label>
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-12">
           <input class="mt-3" type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
         </div>
-      </b-row>
+      </div>
 
-      <b-row align-h="center">
+      <div>
         <div class="col-12">
           <b-button class="mt-3 register-btn" id="register-submit" type="button" @click="register">가입하기</b-button>
         </div>
-      </b-row>
+      </div>
     </div>
   </section>
 </template>
