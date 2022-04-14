@@ -4,24 +4,12 @@
     <section id="follow-artist-area">
       <div>
         <p class="follow-artist-title">내가 팔로우 한 아티스트</p>
-        <div class="">
+        <div class="follow-artist-list">
           <div>
             <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
           </div>
           <p class="follow-artist-nickname">닉네임</p>
         </div>
-        <!--      <div class="">
-                <img class="follow-artist-list" src="@/assets/main/sample/sample_img02.png" alt="sample1" />
-              </div>
-              <div class="">
-                <img class="follow-artist-list" src="@/assets/main/sample/sample_img02.png" alt="sample1" />
-              </div>
-              <div class="">
-                <img class="follow-artist-list" src="@/assets/main/sample/sample_img02.png" alt="sample1" />
-              </div>
-              <div class="">
-                <img class="follow-artist-list" src="@/assets/main/sample/sample_img02.png" alt="sample1" />
-              </div>-->
       </div>
     </section>
 

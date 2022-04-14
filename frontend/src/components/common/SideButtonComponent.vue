@@ -58,4 +58,11 @@ export default class SideButtonComponent extends Vue {}
 .right-side {
   margin-top: 10px;
 }
+
+@media screen and (max-width: 1600px) {
+  #side-button-container {
+    display: none;
+  }
+}
+
 </style>
