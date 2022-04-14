@@ -152,7 +152,7 @@ export default class MainComponent extends Vue {
 #main-container {
   width: 100%;
   margin: 100px auto auto auto;
-  max-width: 1000px;
+  max-width: 1260px;
   min-height: 992px;
   height: 100%;
   display: flex;
@@ -161,6 +161,7 @@ export default class MainComponent extends Vue {
 
 #filter-area {
   height: 30px;
+  width: 1127px;
   text-align: right;
   margin-right: 20px;
   margin-top: 10px;
@@ -170,6 +171,7 @@ export default class MainComponent extends Vue {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .side-menu-drop-btn {
@@ -250,8 +252,30 @@ export default class MainComponent extends Vue {
     display: inline;
   }
 }
+@media screen and (max-width: 1259px){
+  #filter-area {
+    width: 100%;
+  }
+}
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 869px){
+  #tattoo-container {
+    justify-content: space-evenly;
+  }
+
+  .tattoo-board-list {
+    width: 350px;
+    height: 450px;
+  }
+
+  .tattoo-img {
+    margin-left: 20px;
+    margin-top: 13px;
+    width: 310px;
+  }
+}
+
+@media screen and (max-width: 599px){
   #tattoo-container {
     justify-content: space-around;
   }

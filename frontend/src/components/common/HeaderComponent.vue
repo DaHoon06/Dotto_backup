@@ -192,8 +192,10 @@ ul li {
   #menu-button-container {
     display: inline;
   }
+
+
 }
-@media screen and (max-width: 500px){
+@media screen and (max-width: 869px){
   #search-container {
     display: none;
   }
