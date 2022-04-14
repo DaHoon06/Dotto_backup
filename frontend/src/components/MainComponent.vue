@@ -181,8 +181,10 @@ export default class MainComponent extends Vue {
 }
 
 .tattoo-board-list {
-  width: 220px;
-  height: 300px;
+  box-shadow: 0 2px 2px 2px gray;
+  border-radius: 2px;
+  width: 260px;
+  height: 380px;
   margin-left: 23px;
   margin-top: 60px;
 }
@@ -192,7 +194,9 @@ export default class MainComponent extends Vue {
 }
 
 .tattoo-img {
-  width: 230px;
+  width: 240px;
+  margin-left: 10px;
+  margin-top: 8px;
 }
 
 .tag-area {
@@ -200,18 +204,10 @@ export default class MainComponent extends Vue {
   flex-direction: row;
   align-items: flex-start;
   padding: 5px 8px;
-
-  /*  position: absolute;
-    width: 61px;
-    height: 22px;
-    left: 361px;
-    top: 1399px;*/
-
   background: #F5F5F5;
 
 
   /* 서울 홍대 */
-
   position: static;
   width: 40px;
   height: 23px;
@@ -223,9 +219,7 @@ export default class MainComponent extends Vue {
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-
   color: #696969;
-
 
   /* Inside auto layout */
   flex: none;
@@ -263,7 +257,6 @@ export default class MainComponent extends Vue {
   }
 
   .tattoo-board-list {
-    box-shadow: 0 2px 2px 2px gray;
     width: 350px;
     height: 450px;
   }
