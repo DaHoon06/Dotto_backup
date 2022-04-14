@@ -150,7 +150,6 @@ export default class MainComponent extends Vue {
 
 <style scoped>
 #main-container {
-  /*border: 1px solid gray;*/
   width: 100%;
   margin: 100px auto auto auto;
   max-width: 1000px;
@@ -182,7 +181,6 @@ export default class MainComponent extends Vue {
 }
 
 .tattoo-board-list {
-  /*border: 1px solid gray;*/
   width: 220px;
   height: 300px;
   margin-left: 23px;
@@ -238,17 +236,11 @@ export default class MainComponent extends Vue {
 }
 
 .follow-artist-list {
-  /* unsplash:et_78QkMMQs */
-
-  /*position: absolute;*/
   width: 80px;
   height: 80px;
   left: 381px;
   top: 246px;
   margin-left: 23px;
-
-  /*background: url(.jpg), #C4C4C4;*/
-
 }
 
 .follow-artist-title {
@@ -262,6 +254,24 @@ export default class MainComponent extends Vue {
 @media screen and (max-width: 1550px){
   #filter {
     display: inline;
+  }
+}
+
+@media screen and (max-width: 500px){
+  #tattoo-container {
+    justify-content: space-around;
+  }
+
+  .tattoo-board-list {
+    box-shadow: 0 2px 2px 2px gray;
+    width: 350px;
+    height: 450px;
+  }
+
+  .tattoo-img {
+    margin-left: 10px;
+    margin-top: 8px;
+    width: 330px;
   }
 }
 </style>
