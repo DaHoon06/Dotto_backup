@@ -15,10 +15,19 @@
 
     <section id="filter-area">
       <span>
-        <sort-component @typeName="typeName" :selectedType="filterType" :showSortComponent="showSortComponent" />
+        <sort-component
+            @typeName="typeName"
+            :selectedType="filterType"
+            :showSortComponent="showSortComponent" />
         <button @click="showSort" >
           {{ sendSortType }}
-          <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
+          <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="sort" />
+        </button>
+      </span>
+      <span id="filter">
+        <button>
+          <span class="filter-text"><b>FILTER</b></span>
+          <img class="filter-text" src="@/assets/main/filter.png" alt="filter" />
         </button>
       </span>
     </section>
@@ -168,12 +177,20 @@ export default class MainComponent extends Vue {
   width: 12px;
 }
 
+#filter {
+  display: none;
+}
+
 .tattoo-board-list {
   /*border: 1px solid gray;*/
   width: 220px;
   height: 300px;
   margin-left: 23px;
   margin-top: 60px;
+}
+
+.filter-text {
+  margin-left: 20px;
 }
 
 .tattoo-img {
@@ -240,5 +257,11 @@ export default class MainComponent extends Vue {
 
 .follow-artist-nickname {
   margin-left: 37px;
+}
+
+@media screen and (max-width: 1550px){
+  #filter {
+    display: inline;
+  }
 }
 </style>
