@@ -156,4 +156,6 @@ export default class NavigationComponent extends Vue {
   padding-right: 5px;
   padding-bottom: 5px;
 }
+
+
 </style>

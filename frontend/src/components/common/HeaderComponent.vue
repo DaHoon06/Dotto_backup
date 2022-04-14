@@ -1,7 +1,13 @@
 <template>
   <div id="navBar-container">
+
     <section>
       <ul>
+        <li id="menu-button-container">
+          <button>
+            <img class="menu-icon" src="@/assets/nav/menu.png" alt="menu"  />
+          </button>
+        </li>
         <li>
           <span>
             <img id="logo" src="@/assets/dotto.jpg" alt="logo" />
@@ -10,7 +16,7 @@
       </ul>
     </section>
 
-    <section>
+    <section id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
       <button>
         <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
@@ -171,6 +177,26 @@ ul li {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3)
+}
+
+#menu-button-container > button > img {
+  width: 34px;
+  margin-top: 4px;
+}
+
+#menu-button-container {
+  display: none;
+}
+
+@media screen and (max-width: 1260px) {
+  #menu-button-container {
+    display: inline;
+  }
+}
+@media screen and (max-width: 500px){
+  #search-container {
+    display: none;
+  }
 }
 
 </style>

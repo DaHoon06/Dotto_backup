@@ -4,6 +4,7 @@ import SideMenuComponent from "@/components/common/SideMenuComponent.vue";
 import SortComponent from "@/components/common/SortComponent.vue";
 import FooterComponent from "@/components/common/FooterComponent.vue";
 import SideButtonComponent from "@/components/common/SideButtonComponent.vue";
+import MenuButton from "@/components/common/MenuButton.vue";
 
 export {
     HeaderComponent,
@@ -11,5 +12,6 @@ export {
     SideMenuComponent,
     SortComponent,
     FooterComponent,
-    SideButtonComponent
+    SideButtonComponent,
+    MenuButton
 }

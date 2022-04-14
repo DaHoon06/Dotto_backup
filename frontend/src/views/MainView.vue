@@ -2,7 +2,8 @@
   <div>
     <header id="header">
       <header-component @blurBackground="blurBackground" />
-      <navigation-component />
+      <navigation-component  />
+      <menu-button />
     </header>
 
     <main id="main-wrapper" :class='blurCss'>
@@ -23,7 +24,8 @@ import {
   SideMenuComponent,
   HeaderComponent,
   FooterComponent,
-  NavigationComponent
+  NavigationComponent,
+  MenuButton
 } from "@/components/common";
 import { BLUR } from "@/interfaces/common/ICommon";
 
@@ -36,6 +38,7 @@ import { BLUR } from "@/interfaces/common/ICommon";
     HeaderComponent,
     SideMenuComponent,
     MainComponent,
+    MenuButton
   }
 })
 export default class MainView extends Vue {
@@ -71,5 +74,17 @@ export default class MainView extends Vue {
   filter: blur(4px)
 }
 
+
+@media screen and (max-width: 1260px){
+  #navigation-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px){
+
+
+
+}
 
 </style>
