@@ -5,13 +5,13 @@
       <navigation-component />
     </header>
 
-    <main id="main-wrapper">
+    <main id="main-wrapper" :class='blurCss'>
       <side-menu-component  />
       <main-component @showFilterDiv="showFilter" />
       <side-button-component />
     </main>
 
-    <footer-component />
+    <footer-component :class='`${blurCss} `' />
   </div>
 </template>
 
@@ -25,6 +25,8 @@ import {
   FooterComponent,
   NavigationComponent
 } from "@/components/common";
+import { BLUR } from "@/interfaces/common/ICommon";
+
 
 @Component({
   components: {
@@ -38,11 +40,12 @@ import {
 })
 export default class MainView extends Vue {
   showSideComponent: boolean;
-  blurCss: string;
+  blurCss: BLUR;
+
   constructor() {
     super();
     this.showSideComponent = false
-    this.blurCss = '';
+    this.blurCss = BLUR.OFF;
   }
 
   private showFilter(showFilterDiv: boolean) {
@@ -50,9 +53,10 @@ export default class MainView extends Vue {
     this.showSideComponent = showFilterDiv;
   }
 
-  private blurBackground(css: string) {
-    this.blurCss = css;
+  private blurBackground(isBlur: boolean) {
+    isBlur ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
   }
+
 }
 </script>
 
@@ -61,6 +65,10 @@ export default class MainView extends Vue {
   max-width: 1980px;
   width: 100%;
   margin: auto;
+}
+
+.setBlur {
+  filter: blur(4px)
 }
 
 

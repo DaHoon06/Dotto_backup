@@ -26,7 +26,7 @@
             </li>
           </ul>
         </div>
-        <div id="outer" />
+        <div id="outer" @click="closeSearchList"/>
       </div>
     </section>
 
@@ -51,12 +51,11 @@
       <login-view />
     </b-modal>
 
-
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Emit, Vue} from "vue-property-decorator";
 import { NavigationComponent } from "@/components/common/index";
 import LoginView from "@/views/LoginView.vue";
 
@@ -68,21 +67,22 @@ import LoginView from "@/views/LoginView.vue";
 })
 export default class HeaderComponent extends Vue {
   showSearchList: boolean;
-  propCss: string;
 
   constructor() {
     super();
     this.showSearchList = false;
-    this.propCss = `filter: blur(5px)`;
   }
 
+  @Emit('blurBackground')
   private searchLists() {
-    if (this.showSearchList) this.$emit('blurBackground', this.propCss)
     this.showSearchList = !this.showSearchList;
+    return this.showSearchList
+
   }
 
   private closeSearchList() {
     this.showSearchList = !this.showSearchList;
+    this.$emit('blurBackground', false);
   }
 
 }
