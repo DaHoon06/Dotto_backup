@@ -247,6 +247,10 @@ export default class MainComponent extends Vue {
   margin-left: 37px;
 }
 
+#test > span {
+  display: inline-block;
+}
+
 @media screen and (max-width: 1550px){
   #filter {
     display: inline;

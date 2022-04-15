@@ -1,9 +1,9 @@
 <template>
   <main id="loginPage-container">
-    <section id="logo-img">
-      <img src="@/assets/dotto.jpg" alt="logo" />
+    <section id="logo-img" class="login-info-section">
+      <span class="logo"><img src="@/assets/dotto.jpg" alt="logo" /></span>
     </section>
-    <section>
+    <section class="login-info-section">
       <form @submit.prevent="login">
         <p>
           <input @focus="clearMsg" class="login-info" type="text" v-model="email" placeholder="아이디" />
@@ -13,22 +13,22 @@
         </p>
         <p style="color: red; font-size: 6px;" class="text-center">{{ this.loginFailed }}</p>
         <p>
-          <input type="checkbox" @change="saveId" v-model="save"> 자동 로그인
+          <input type="checkbox" id="auto" @change="saveId" v-model="save"> <label for="auto"></label> <span id="auto-login">자동로그인</span>
         </p>
         <p>
-          <button id="login-btn" type="submit" >로그인</button>
+          <button id="login-btn" type="submit" >LOGIN</button>
         </p>
       </form>
       <div id="register-box">
         <div id="register">
-          <router-link to="/sign-up">회원가입</router-link>
+          <router-link class="login-router" to="/sign-up">회원가입</router-link>
         </div>
         <div id="lost-identify">
-          <router-link to="#">아이디</router-link> / <router-link to="#">비밀번호 찾기</router-link>
+          <router-link class="login-router" to="#">아이디</router-link> / <router-link class="login-router" to="#">비밀번호 찾기</router-link>
         </div>
       </div>
     </section>
-    <section>
+    <section class="login-info-section">
       <div class="text-center">
         간편 회원가입
       </div>
@@ -138,31 +138,77 @@ export default class LoginView extends Vue {
 
 .login-info {
   width: 100%;
+  border: none;
+  font-size: 13px;
+  padding-left: 2px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid gray;
+}
+
+.login-info-section {
+  width: 60%;
+  margin: auto;
+}
+
+.logo {
+  display: inline-block;
+  width: 100%;
 }
 
 #logo-img {
   margin-bottom: 30px;
+  text-align: center;
 }
+
 #logo-img img {
   width: 120px;
   margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border:1px solid #919191;
+  position: relative;
+}
+
+input[id="auto"]:checked + label::after{
+  content:'✔';
+  font-size: 10px;
+  padding-bottom: 3px;
+  width: 10px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+
+#auto-login {
+  font-size: 9px;
 }
 
 #loginPage-container {
   display: flex;
   width: 100%;
   height: 100%;
-  margin-top: 45px;
-  margin-bottom: 45px;
+  max-width: 400px;
+  margin: 45px auto 45px auto;
   flex-direction: column;
   align-items: center;
 }
 
 #login-btn {
   border: 1px solid gray;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px gray;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px 1px #adadad;
   color: white;
+  font-size: 12px;
+  padding: 5px;
   background: #222222;
   width: 100%;
 }
@@ -172,15 +218,23 @@ export default class LoginView extends Vue {
 }
 
 #login-btn:hover{
-  background: #1048a2;
-  color: #e1d8d8;
+  background: #464646;
+  color: #ffffff;
 }
 
 #register-box {
   display: flex;
 }
-#register {
+
+#register > a {
   margin-right: 10px;
+
+}
+
+.login-router {
+  color: #919191;
+  font-size: 8px;
+  text-decoration: none;
 }
 
 #login-btn-img > li {
