@@ -16,7 +16,7 @@
           <input type="checkbox" id="auto" @change="saveId" v-model="save"> <label for="auto"></label> <span id="auto-login">자동로그인</span>
         </p>
         <p>
-          <button id="login-btn" type="submit" >LOGIN</button>
+          <button id="login-btn" type="submit">LOGIN</button>
         </p>
       </form>
       <div id="register-box">
@@ -24,15 +24,14 @@
           <router-link class="login-router" to="/sign-up">회원가입</router-link>
         </div>
         <div id="lost-identify">
-          <router-link class="login-router" to="#">아이디</router-link> / <router-link class="login-router" to="#">비밀번호 찾기</router-link>
+          <router-link class="login-router forgot-user-info" to="#">아이디</router-link>
+          <router-link class="login-router forgot-user-info" to="#">비밀번호 찾기</router-link>
         </div>
       </div>
     </section>
     <section class="login-info-section">
-      <div class="text-center">
-        간편 회원가입
-      </div>
-      <div>
+      <p id="simple-login" class="login-router">간편 회원가입</p>
+      <article id="simple-login-icons">
         <ul id="login-btn-img">
           <li>
             <button>
@@ -55,7 +54,7 @@
             </button>
           </li>
         </ul>
-      </div>
+      </article>
     </section>
   </main>
 </template>
@@ -224,6 +223,7 @@ input[id="auto"]:checked + label::after{
 
 #register-box {
   display: flex;
+  justify-content: space-evenly;
 }
 
 #register > a {
@@ -236,6 +236,25 @@ input[id="auto"]:checked + label::after{
   font-size: 8px;
   text-decoration: none;
 }
+.login-router:hover {
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #565656;
+}
+.forgot-user-info {
+  margin-right: 7px;
+}
+
+#simple-login {
+  margin-top: 5px;
+  text-align: center;
+}
+
+#simple-login-icons {
+  display: flex;
+  justify-content: center;
+}
 
 #login-btn-img > li {
   float: left;
@@ -243,6 +262,6 @@ input[id="auto"]:checked + label::after{
 
 #login-btn-img > li > button > img {
   width: 35px;
-  margin-right: 15px;
+  margin-right: 12px;
 }
 </style>

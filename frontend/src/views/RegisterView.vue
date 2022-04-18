@@ -7,7 +7,7 @@
     </header>
 
     <main id="register-container" class="shadow pt-5 pb-5">
-      <div>
+      <div id="test">
         <b-tabs
             :small="true"
             lazy v-model="type"
@@ -65,14 +65,15 @@ export default class RegisterView extends Vue {
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   max-width: 1280px;
-  max-height: 1080px;
-  height: 100%;
+  height: 100vh;
   width: 60%;
   margin: 5rem auto 5rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+#test {
+  max-height: 966px;
+}
 
 </style>

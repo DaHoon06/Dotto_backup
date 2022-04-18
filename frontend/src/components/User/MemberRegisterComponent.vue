@@ -14,24 +14,22 @@
             <b-form-select
                 v-model="domain"
                 :options="emailList"
-                class="mt-1"
                 size="sm" />
           </div>
         </div>
         <p>
-          <b-button class="mt-2 register-btn" @click="emailCheck" type="button">중복확인</b-button>
+          <button class="register-btn" @click="emailCheck" type="button">중복확인</button>
         </p>
       </div>
       <div>
-        <div class="col-12">
-          <div class="mt-2 warning-msg">{{ this.EmailMessage }}</div>
+        <div>
+          <div class="warning-msg">{{ this.EmailMessage }}</div>
         </div>
       </div>
 
       <div>
-        <div class="col-12">
+        <div>
           <input
-              class="mt-2"
               type="password"
               @change="validationPassword"
               v-model="password"
@@ -39,59 +37,57 @@
         </div>
       </div>
       <div>
-        <div class="col-12">
-          <div class="mt-2 warning-msg">{{ this.PasswordMessage }}</div>
+        <div>
+          <div class="warning-msg">{{ this.PasswordMessage }}</div>
         </div>
       </div>
 
       <div>
-        <div class="col-12">
+        <div>
           <input
               type="password"
-              class="mt-2"
               @change="validationPassword"
               v-model="passwordCheck"
               placeholder="비밀번호 확인" />
         </div>
-        <div class="col-12">
-          <div class="mt-2 warning-msg">{{ this.PasswordCheckMessage }}</div>
+        <div>
+          <div class="warning-msg">{{ this.PasswordCheckMessage }}</div>
         </div>
       </div>
 
       <div>
-        <div class="col-9">
-          <b-form-input
-              class="mt-1"
+        <div>
+          <input
               type="text"
               @focus="msgClear"
               v-model="nickName"
               placeholder="닉네임" />
         </div>
-        <div class="col-3">
-          <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
+        <div>
+          <button @click="nickNameCheck" class="register-btn" type="button">중복확인</button>
         </div>
       </div>
       <div>
-        <div class="col-12">
-          <div class="mt-1 warning-msg">{{ this.NickNameMessage }}</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="col-9">
-          <b-form-input class="mt-2" type="text" v-model="phone" placeholder="휴대폰번호 입력" />
-        </div>
-        <div class="col-3">
-          <b-button class="mt-1 register-btn">인증번호받기</b-button>
+        <div>
+          <div class="warning-msg">{{ this.NickNameMessage }}</div>
         </div>
       </div>
 
       <div>
-        <div class="col-9">
-          <b-form-input class="mt-1" type="text" placeholder="인증번호 입력" />
+        <div>
+          <input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
         </div>
-        <div class="col-3">
-          <b-button class="mt-1 register-btn">인증하기</b-button>
+        <div>
+          <button class="register-btn">인증번호받기</button>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <input type="text" placeholder="인증번호 입력" />
+        </div>
+        <div>
+          <button class="register-btn">인증하기</button>
         </div>
       </div>
 
@@ -107,14 +103,14 @@
       </div>
 
       <div>
-        <div class="col-12">
-          <input class="mt-3" type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
+        <div>
+          <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
         </div>
       </div>
 
       <div>
-        <div class="col-12">
-          <b-button class="mt-4 register-btn" id="register-submit" type="button" @click="register">가입하기</b-button>
+        <div>
+          <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
         </div>
       </div>
     </div>
@@ -297,6 +293,7 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
+
 #register-submit {
   width: 100%;
 }
