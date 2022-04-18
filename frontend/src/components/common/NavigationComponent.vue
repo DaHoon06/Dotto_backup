@@ -2,79 +2,114 @@
   <nav id="navigation-container">
     <ul>
       <li>
-        <button
-            class="nav-button"
-            @mousemove="showHome('show')"
-            @mouseleave="showHome('hide')">HOME</button>
-        <div class="nav-menu-list"
-             v-show="menu_home"
-             @mouseover="showHome('show')"
-             @mouseleave="showHome('hide')">
-          <p><a>menu1</a></p>
-          <p><a>menu2</a></p>
-          <p><a>menu3</a></p>
-          <p><a>menu4</a></p>
-        </div>
+        <article class="menu">
+          <ul>
+            <li>
+              <button
+                  class="nav-button" :class="menu_home ? active : ''"
+                  @mousemove="showHome('show')"
+                  @mouseleave="showHome('hide')">HOME</button>
+            </li>
+            <li v-show="menu_home">
+              <div class="nav-menu-list"
+                   @mouseover="showHome('show')"
+                   @mouseleave="showHome('hide')">
+                <router-link to="/" class="sub-nav-items">menu1</router-link>
+                <router-link to="/" class="sub-nav-items">menu2</router-link>
+                <router-link to="/" class="sub-nav-items">menu3</router-link>
+                <router-link to="/" class="sub-nav-items">menu4</router-link>
+              </div>
+            </li>
+          </ul>
+        </article>
       </li>
       <li>
-        <button
-            class="nav-button"
-            @mouseover="showArtist('show')"
-            @mouseleave="showArtist('hide')">ARTIST</button>
-        <div class="nav-menu-list"
-             v-show="menu_artist"
-             @mouseover="showArtist('show')"
-             @mouseleave="showArtist('hide')">
-          <p><a>menu1</a></p>
-          <p><a>menu2</a></p>
-          <p><a>menu3</a></p>
-          <p><a>menu4</a></p>
-        </div>
+        <article class="menu">
+          <ul>
+            <li>
+              <button
+                  class="nav-button" :class="menu_artist ? active : ''"
+                  @mouseover="showArtist('show')"
+                  @mouseleave="showArtist('hide')">ARTIST</button>
+            </li>
+            <li v-show="menu_artist">
+              <div class="nav-menu-list"
+                   @mouseover="showArtist('show')"
+                   @mouseleave="showArtist('hide')">
+                <router-link to="/" class="sub-nav-items">menu1</router-link>
+                <router-link to="/" class="sub-nav-items">menu2</router-link>
+                <router-link to="/" class="sub-nav-items">menu3</router-link>
+                <router-link to="/" class="sub-nav-items">menu4</router-link>
+              </div>
+            </li>
+          </ul>
+        </article>
       </li>
       <li>
-        <button
-            class="nav-button"
-            @mouseover="showTattoo('show')"
-            @mouseleave="showTattoo('hide')">TATTOO</button>
-        <div class="nav-menu-list"
-             v-show="menu_tattoo"
-             @mouseover="showTattoo('show')"
-             @mouseleave="showTattoo('hide')" >
-          <p><a>menu1</a></p>
-          <p><a>menu2</a></p>
-          <p><a>menu3</a></p>
-          <p><a>menu4</a></p>
-        </div>
+        <article class="menu">
+          <ul>
+            <li>
+              <button
+                  class="nav-button" :class="menu_tattoo ? active : ''"
+                  @mouseover="showTattoo('show')"
+                  @mouseleave="showTattoo('hide')">TATTOO</button>
+            </li>
+            <li v-show="menu_tattoo">
+              <div class="nav-menu-list"
+                   @mouseover="showTattoo('show')"
+                   @mouseleave="showTattoo('hide')" >
+                <router-link to="/" class="sub-nav-items">menu1</router-link>
+                <router-link to="/" class="sub-nav-items">menu2</router-link>
+                <router-link to="/" class="sub-nav-items">menu3</router-link>
+                <router-link to="/" class="sub-nav-items">menu4</router-link>
+              </div>
+            </li>
+          </ul>
+        </article>
       </li>
       <li>
-        <button
-            class="nav-button"
-            @mouseover="showCommunity('show')"
-            @mouseleave="showCommunity('hide')">COMMUNITY</button>
-        <div class="nav-menu-list"
-             v-show="menu_community"
-             @mouseover="showCommunity('show')"
-             @mouseleave="showCommunity('hide')">
-          <p><a>menu1</a></p>
-          <p><a>menu2</a></p>
-          <p><a>menu3</a></p>
-          <p><a>menu4</a></p>
-        </div>
+        <article class="menu">
+          <ul>
+            <li>
+              <button
+                  class="nav-button" :class="menu_community ? active : ''"
+                  @mouseover="showCommunity('show')"
+                  @mouseleave="showCommunity('hide')">COMMUNITY</button>
+            </li>
+            <li v-show="menu_community">
+              <div class="nav-menu-list"
+                   @mouseover="showCommunity('show')"
+                   @mouseleave="showCommunity('hide')">
+                <router-link to="/" class="sub-nav-items">menu1</router-link>
+                <router-link to="/" class="sub-nav-items">menu2</router-link>
+                <router-link to="/" class="sub-nav-items">menu3</router-link>
+                <router-link to="/" class="sub-nav-items">menu4</router-link>
+              </div>
+            </li>
+          </ul>
+        </article>
       </li>
       <li>
-        <button
-            class="nav-button"
-            @mouseover="showMy('show')"
-            @mouseleave="showMy('hide')">MY</button>
-        <div class="nav-menu-list"
-             v-show="menu_my"
-             @mouseover="showMy('show')"
-             @mouseleave="showMy('hide')">
-          <p><a>menu1</a></p>
-          <p><a>menu2</a></p>
-          <p><a>menu3</a></p>
-          <p><a>menu4</a></p>
-        </div>
+        <article class="menu">
+          <ul>
+            <li>
+              <button
+                  class="nav-button" :class="menu_my ? active : ''"
+                  @mouseover="showMy('show')"
+                  @mouseleave="showMy('hide')">MY</button>
+            </li>
+            <li v-show="menu_my">
+              <div class="nav-menu-list"
+                   @mouseover="showMy('show')"
+                   @mouseleave="showMy('hide')">
+                <router-link to="/" class="sub-nav-items">menu1</router-link>
+                <router-link to="/" class="sub-nav-items">menu2</router-link>
+                <router-link to="/" class="sub-nav-items">menu3</router-link>
+                <router-link to="/" class="sub-nav-items">menu4</router-link>
+              </div>
+            </li>
+          </ul>
+        </article>
       </li>
     </ul>
   </nav>
@@ -90,34 +125,31 @@ export default class NavigationComponent extends Vue {
   menu_tattoo = false;
   menu_community = false;
   menu_my = false;
+  active = 'active';
 
   constructor() {
     super();
   }
 
   private showHome(event: string) {
-    if (event === 'show') this.menu_home = true;
-    else if (event === 'hide') this.menu_home = false;
+    this.menu_home = event === 'show';
   }
 
   private showArtist(event: string) {
-    if (event === 'show') this.menu_artist = true;
-    else if (event === 'hide') this.menu_artist = false;
+    this.menu_artist = event === 'show';
   }
 
   private showTattoo(event: string) {
-    if (event === 'show') this.menu_tattoo = true;
-    else if (event === 'hide') this.menu_tattoo = false;
+    this.menu_tattoo = event === 'show';
+
   }
 
   private showCommunity(event: string) {
-    if (event === 'show') this.menu_community = true;
-    else if (event === 'hide') this.menu_community = false;
+    this.menu_community = event === 'show';
   }
 
   private showMy(event: string) {
-    if (event === 'show') this.menu_my = true;
-    else if (event === 'hide') this.menu_my = false;
+    this.menu_my = event === 'show';
   }
 }
 </script>
@@ -131,20 +163,25 @@ export default class NavigationComponent extends Vue {
   height: 40px;
   border-bottom: 2px solid gray;
   z-index: 10;
-  padding-left: 25px;
+  padding-left: 20px;
   font-size: 13px;
   color: #919191;
 }
-#navigation-container ul li {
+#navigation-container > ul {
+  padding-left: 0;
+}
+
+#navigation-container > ul > li {
   float: left;
   margin-right: 20px;
 }
 
 .nav-menu-list {
-  background: rgba(114, 112, 112, 0.9);
+  background: rgba(189, 187, 187, 0.9);
   width: 100px;
-  position: relative;
-  display: inline;
+  position: absolute;
+  margin-left: -1.5rem;
+  color: #ffffff;
   text-align: center;
   border-radius: 10px;
   z-index: 10;
@@ -153,9 +190,37 @@ export default class NavigationComponent extends Vue {
 .nav-button {
   color: #919191;
   padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
 }
 
+.active {
+  color: #222222;
+  font-weight: bold;
+}
+
+.nav-button:hover {
+  color: #222222;
+}
+
+.menu > ul > li {
+  float: none;
+  margin-right: -15px;
+}
+
+.sub-nav-items {
+  color: #919191;
+  display: block;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sub-nav-items:hover {
+  cursor: pointer;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 2px;
+  padding: 3px 30% 3px 30%;
+  color: #222222;
+}
 
 </style>

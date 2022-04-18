@@ -26,9 +26,7 @@
           <p class="close-search-list"><button @click="closeSearchList">x</button></p>
           <ul>
             <li>
-              <span>홍대</span>
-              <span>03.26</span>
-              <span>x</span>
+              <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
             </li>
           </ul>
         </div>
@@ -164,17 +162,18 @@ ul li {
   left: 0;
   width: 100%;
   max-width: 1980px;
+  text-align: center;
 }
 
 #search-list-wrapper {
   display: inline-block;
-  width: 100%;
+  width: 100vw;
   height: 30vh;
   background: #FFFFFF;
 }
 
 #outer {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3)
 }
@@ -186,6 +185,10 @@ ul li {
 
 #menu-button-container {
   display: none;
+}
+
+#empty-search-lists {
+
 }
 
 @media screen and (max-width: 1260px) {

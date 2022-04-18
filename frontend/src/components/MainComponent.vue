@@ -178,6 +178,7 @@ export default class MainComponent extends Vue {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+
 }
 
 .side-menu-drop-btn {
@@ -189,7 +190,7 @@ export default class MainComponent extends Vue {
 }
 
 .tattoo-board-list {
-  box-shadow: 0 2px 2px 2px gray;
+  box-shadow: 0 1px 2px 1px #adadad;
   border-radius: 2px;
   width: 260px;
   height: 380px;
@@ -239,7 +240,7 @@ export default class MainComponent extends Vue {
 .tattoo-board-list-info {
   font-size: 10px;
   color: #919191;
-  margin-left: 1.25rem;
+  margin-left: 0.6rem;
   margin-top: 0.225rem;
 }
 
@@ -299,11 +300,14 @@ margin-top: 0.7rem;
 #test > span {
   display: inline-block;
 }
-
-@media screen and (max-width: 1550px){
+@media screen and (max-width: 1719px){
   #filter {
     display: inline;
   }
+}
+
+@media screen and (max-width: 1550px){
+
 }
 @media screen and (max-width: 1259px){
   #filter-area {

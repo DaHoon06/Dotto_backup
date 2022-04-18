@@ -107,7 +107,7 @@ export default class SideMenuComponent extends Vue {
   right: 15px;
 }
 
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 1719px) {
   #sideMenu-container {
     display: none;
   }
