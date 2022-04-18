@@ -153,7 +153,8 @@ export default class MainComponent extends Vue {
   width: 100%;
   margin: 100px auto auto auto;
   max-width: 1260px;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
