@@ -34,12 +34,18 @@
 
     <section id="tattoo-container">
       <article class="tattoo-board-list">
-        <figure>
+        <div>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img01.png" alt="sample01" />
-        </figure>
-        <p>글 제목</p>
-        <p>50% 5만원 10만원</p>
-        <p class="tag-area">홍대</p>
+        </div>
+        <div class="tattoo-board-list-info user-name">tattooist_id</div>
+        <div class="tattoo-board-list-info title">글 제목</div>
+        <div class="tattoo-board-list-info">
+          <span class="event-price price">5만원</span>
+          <span class="original-price price">10만원</span>
+          <span class="discount-rate price">50%</span>
+        </div>
+
+        <div class="tag-area tattoo-board-list-info location">홍대</div>
       </article>
 
       <article class="tattoo-board-list">
@@ -228,7 +234,50 @@ export default class MainComponent extends Vue {
   order: 0;
   flex-grow: 0;
   margin: 0px 0px;
+}
 
+.tattoo-board-list-info {
+  font-size: 10px;
+  color: #919191;
+  margin-left: 1.25rem;
+  margin-top: 0.225rem;
+}
+
+.title {
+  color: #222222;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.user-name {
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.location {
+margin-top: 0.7rem;
+}
+
+.price {
+  margin-right: 0.2rem;
+}
+
+.event-price {
+  color: #222222;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.discount-rate {
+  color: #FF5841;
+  font-weight: 700;
+  font-size: 14px;
+}
+.original-price {
+  color: #919191;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration-line: line-through;
 }
 
 .follow-artist-list {
