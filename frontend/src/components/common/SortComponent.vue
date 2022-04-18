@@ -1,5 +1,5 @@
 <template>
-  <div id="sort-area" v-if="showSortComponent" >
+  <section id="sort-area" v-if="showSortComponent" >
     <ul>
       <li v-for="(types, index) of this.filterType" :key="index">
         <input type="radio"
@@ -10,7 +10,7 @@
         <label :for="index">{{ types }}</label>
       </li>
     </ul>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

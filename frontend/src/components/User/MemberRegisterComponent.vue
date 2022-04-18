@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container-fluid bg-white rounded">
+    <div>
       <div>
         <div>
           <input

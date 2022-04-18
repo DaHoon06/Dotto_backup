@@ -1,5 +1,5 @@
 <template>
-    <div id="menuButton" v-if="showMenuList">
+    <nav id="menuButton" v-if="showMenuList">
       <p><button class="float-end" @click="closeMenu">X</button></p>
       <ul>
         <li>
@@ -36,7 +36,7 @@
           닷투를 찾는 사람들 페이지 이동
         </li>
       </ul>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts">

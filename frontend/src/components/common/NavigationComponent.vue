@@ -1,5 +1,5 @@
 <template>
-  <div id="navigation-container">
+  <nav id="navigation-container">
     <ul>
       <li>
         <button
@@ -77,7 +77,7 @@
         </div>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts">

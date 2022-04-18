@@ -1,5 +1,5 @@
 <template>
-  <div id="navBar-container">
+  <header id="navBar-container">
 
     <section>
       <ul>
@@ -10,7 +10,7 @@
         </li>
         <li>
           <span>
-            <img id="logo" src="@/assets/dotto.jpg" alt="logo" />
+            <a href="/"><img id="logo" src="@/assets/dotto.jpg" alt="logo" /></a>
           </span>
         </li>
       </ul>
@@ -57,7 +57,7 @@
       <login-view />
     </b-modal>
 
-  </div>
+  </header>
 </template>
 
 <script lang="ts">

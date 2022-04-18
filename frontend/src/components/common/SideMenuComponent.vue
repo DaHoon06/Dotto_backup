@@ -1,34 +1,34 @@
 <template>
   <aside id="sideMenu-container">
     <section id="sideMenu-title">
-      <p><b>FILTER</b></p>
+      <article><b>FILTER</b></article>
     </section>
 
     <section>
-      <div id="tag-area">
+      <article id="tag-area">
         <span id="tag-title">#태그</span>
         <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
-      </div>
-      <div v-if="showTagArea">
+      </article>
+      <article v-if="showTagArea">
         이쪽 태그 영역
-      </div>
+      </article>
     </section>
 
     <hr />
 
     <section>
-      <div id="location-area">
+      <article id="location-area">
         <span>지역</span>
         <button @click="showLocation">
           <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
         </button>
-      </div>
-      <div v-if="showLocationArea">
+      </article>
+      <article v-if="showLocationArea">
         <input type="text" id="side-menu-search-bar" />
         <button>
           <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
         </button>
-      </div>
+      </article>
     </section>
 
   </aside>

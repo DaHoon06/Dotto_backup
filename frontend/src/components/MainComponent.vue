@@ -2,7 +2,7 @@
   <div id="main-container">
 
     <section id="follow-artist-area">
-      <div>
+      <article>
         <p class="follow-artist-title">내가 팔로우 한 아티스트</p>
         <div class="follow-artist-list">
           <div>
@@ -10,7 +10,7 @@
           </div>
           <p class="follow-artist-nickname">닉네임</p>
         </div>
-      </div>
+      </article>
     </section>
 
     <section id="filter-area">
@@ -33,77 +33,77 @@
     </section>
 
     <section id="tattoo-container">
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img01.png" alt="sample01" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img02.png" alt="sample02" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img03.png" alt="sample03" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img04.png" alt="sample04" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img05.png" alt="sample05" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img06.png" alt="sample06" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img07.png" alt="sample07" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
-      <div class="tattoo-board-list">
-        <div>
+      <article class="tattoo-board-list">
+        <figure>
           <img class="tattoo-img" src="@/assets/main/sample/sample_img08.png" alt="sample08" />
-        </div>
+        </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
         <p class="tag-area">홍대</p>
-      </div>
+      </article>
 
     </section>
   </div>
