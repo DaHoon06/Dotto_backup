@@ -21,17 +21,19 @@
       <button>
         <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
       </button>
-      <div v-if="showSearchList" id="search-list">
+      <article v-if="showSearchList" id="search-list">
         <div id="search-list-wrapper">
-          <p class="close-search-list"><button @click="closeSearchList">x</button></p>
+          <div class="close-search-list" >
+            <button @click="closeSearchList">x</button>
+          </div>
+          <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
           <ul>
             <li>
-              <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
             </li>
           </ul>
         </div>
         <div id="outer" @click="closeSearchList"/>
-      </div>
+      </article>
     </section>
 
     <section>
@@ -188,12 +190,23 @@ ul li {
 }
 
 #empty-search-lists {
+  margin-top: 1rem;
+  font-weight: 600;
+}
 
+.close-search-list {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 3rem;
+  margin-right: 3rem;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 1260px) {
   #menu-button-container {
     display: inline;
+
   }
 
 
