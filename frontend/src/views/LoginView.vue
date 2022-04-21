@@ -21,7 +21,7 @@
       </form>
       <div id="register-box">
         <div id="register">
-          <router-link class="login-router" to="/sign-up">회원가입</router-link>
+          <button class="login-router" @click="showRegisterView">회원가입</button>
         </div>
         <div id="lost-identify">
           <router-link class="login-router forgot-user-info" to="#">아이디</router-link>
@@ -60,22 +60,19 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import {Vue, Component, Emit} from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
 
 @Component
 export default class LoginView extends Vue {
-  email: string;
-  password: string;
-  save: boolean;
-  loginFailedMsg: string;
+  email = '';
+  password = '';
+  save = false;
+  loginFailedMsg = '';
+  modalType = '';
 
   constructor() {
     super();
-    this.email = '';
-    this.password = '';
-    this.save = false;
-    this.loginFailedMsg = '';
   }
 
   created(): void {
@@ -123,6 +120,11 @@ export default class LoginView extends Vue {
     this.loginFailed = '';
   }
 
+  @Emit('modalType')
+  private showRegisterView() {
+    return this.modalType = 'Register'
+  }
+
   private set loginFailed(msg) {
     this.loginFailedMsg = msg;
   }
@@ -134,12 +136,18 @@ export default class LoginView extends Vue {
 </script>
 
 <style scoped>
+#loginPage-container {
+  display: flex;
+  max-width: 400px;
+  margin: 45px auto 45px auto;
+  flex-direction: column;
+  align-items: center;
+}
 
 .login-info {
   width: 100%;
   border: none;
   font-size: 13px;
-  padding-left: 2px;
   padding-bottom: 3px;
   border-bottom: 1px solid gray;
 }
@@ -149,10 +157,7 @@ export default class LoginView extends Vue {
   margin: auto;
 }
 
-.logo {
-  display: inline-block;
-  width: 100%;
-}
+
 
 #logo-img {
   margin-bottom: 30px;
@@ -189,16 +194,6 @@ input[id="auto"]:checked + label::after{
 
 #auto-login {
   font-size: 9px;
-}
-
-#loginPage-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
-  margin: 45px auto 45px auto;
-  flex-direction: column;
-  align-items: center;
 }
 
 #login-btn {

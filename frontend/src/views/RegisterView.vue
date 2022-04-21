@@ -1,30 +1,20 @@
 <template>
-  <div>
-    <header id="header">
-      <header-component />
-      <navigation-component  />
-      <menu-button />
-    </header>
-
-    <main id="register-container" class="shadow pt-5 pb-5">
-      <div id="test">
-        <b-tabs
-            :small="true"
-            lazy v-model="type"
-            content-class="mt-3"
-            active-nav-item-class="font-weight-bold"
-            active-tab-class="font-weight-bold"
-            align="center">
-          <b-tab title="일반 회원" active />
-          <b-tab title="타투이스트 회원" />
-        </b-tabs>
-      </div>
-      <member-register-component v-if="this.type === 0" />
-      <tattooist-register-component v-if="this.type === 1" />
-    </main>
-
-    <footer-component />
-  </div>
+  <main id="register-container">
+    <div id="test">
+      <b-tabs
+          :small="true"
+          lazy v-model="type"
+          content-class="mt-3"
+          active-nav-item-class="font-weight-bold"
+          active-tab-class="font-weight-bold"
+          align="center">
+        <b-tab title="일반 회원" active />
+        <b-tab title="타투이스트 회원" />
+      </b-tabs>
+    </div>
+    <member-register-component v-if="this.type === 0" />
+    <tattooist-register-component v-if="this.type === 1" />
+  </main>
 </template>
 
 <script lang="ts">
@@ -62,15 +52,10 @@ export default class RegisterView extends Vue {
 
 <style scoped>
 #register-container {
-  border: 1px solid #e8e8e8;
-  border-radius: 10px;
-  max-width: 1280px;
-  height: 100vh;
-  width: 60%;
-  margin: 5rem auto 5rem auto;
+  margin:auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
 }
 #test {
   max-height: 966px;
