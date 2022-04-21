@@ -113,7 +113,7 @@ export default class LoginView extends Vue {
   }
 
   saveState(userData: IUser.ILoginSuccess): void {
-    this.$store.commit('userStore/setUserState',userData);
+    this.$store.commit('userStore/setUserState', userData);
   }
 
   clearMsg(): void {
@@ -122,7 +122,7 @@ export default class LoginView extends Vue {
 
   @Emit('modalType')
   private showRegisterView() {
-    return this.modalType = 'Register'
+    return this.modalType = 'Register';
   }
 
   private set loginFailed(msg) {

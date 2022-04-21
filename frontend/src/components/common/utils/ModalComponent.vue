@@ -1,9 +1,13 @@
 <template>
-  <main id="modal" v-if="showModal">
+  <main
+      id="modal"
+      v-if="showModal"
+      ref="modalContainer"
+      @click="closeModalOuter">
     <section id="modal-body">
       <component
           :is="dynamicView"
-          @modalType="changeModalType"/>
+          @modalType="changeModalType" />
     </section>
   </main>
 </template>
@@ -20,6 +24,7 @@ import RegisterView from "@/views/RegisterView.vue";
   }
 })
 export default class ModalComponent extends Vue {
+  type = '';
   @Prop()
   modalType?: string;
   @Prop()
@@ -30,14 +35,30 @@ export default class ModalComponent extends Vue {
   }
 
   private closeModalOuter() {
-    this.showModal = false;
+    window.addEventListener('click', this.resetModal);
   }
 
-  private changeModalType() {
-    this.modalType = 'Register'
+  private resetModal(e: any) {
+    if (e.target.parentNode === this.$refs.modalContainer) {
+      this.$emit('closeModal');
+    }
+  }
+
+  private changeModalType(type: string) {
+    this.modalType = type;
+  }
+
+  set modalTypeComputed(type: string) {
+    this.type = type;
+  }
+
+  get modalTypeComputed() {
+    return this.type;
   }
 
   get dynamicView() {
+    // if (this.modalType) this.modalTypeComputed(this.modalType);
+
     switch (this.modalType) {
       case 'Register':
         return RegisterView;

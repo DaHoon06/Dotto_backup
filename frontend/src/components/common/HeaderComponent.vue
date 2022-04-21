@@ -53,14 +53,11 @@
       </ul>
     </section>
 
-<!--    <b-modal id="bv-modal-example" centered hide-header hide-footer>-->
-<!--      <login-view />-->
-<!--    </b-modal>-->
-
     <ModalComponent
         :modalType="modalType"
         :showModal="showModal"
-        @modalType="modalType"/>
+        @modalType="modalType"
+        @closeModal="closeModal" />
 
   </header>
 </template>
@@ -91,6 +88,11 @@ export default class HeaderComponent extends Vue {
   private searchLists() {
     this.showSearchList = !this.showSearchList;
     return this.showSearchList
+  }
+
+  private closeModal() {
+    this.showModal = false;
+    this.modalType = '';
   }
 
   private showLoginView() {
