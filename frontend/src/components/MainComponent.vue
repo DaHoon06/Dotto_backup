@@ -1,18 +1,6 @@
 <template>
   <div id="main-container">
 
-    <section id="follow-artist-area">
-      <article>
-        <p class="follow-artist-title">내가 팔로우 한 아티스트</p>
-        <div class="follow-artist-list">
-          <div>
-            <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
-          </div>
-          <p class="follow-artist-nickname">닉네임</p>
-        </div>
-      </article>
-    </section>
-
     <section id="filter-area">
       <span>
         <sort-component
@@ -277,22 +265,6 @@ export default class MainComponent extends Vue {
   font-size: 14px;
   font-weight: 400;
   text-decoration-line: line-through;
-}
-
-.follow-artist-list {
-  width: 80px;
-  height: 80px;
-  left: 381px;
-  top: 246px;
-  margin-left: 23px;
-}
-
-.follow-artist-title {
-  margin-left: 23px;
-}
-
-.follow-artist-nickname {
-  margin-left: 37px;
 }
 
 @media screen and (max-width: 1719px){

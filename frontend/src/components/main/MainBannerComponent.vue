@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <article id="banner-container">
 
-  </div>
+  </article>
 </template>
 
 <script lang="ts">
@@ -14,5 +14,10 @@ export default class MainBannerComponent extends Vue {
 </script>
 
 <style scoped>
-
+#banner-container {
+  margin-top: 100px;
+  background: #222222;
+  width: 100vw;
+  height: 10em;
+}
 </style>

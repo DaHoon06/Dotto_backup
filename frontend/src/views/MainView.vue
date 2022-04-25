@@ -5,6 +5,13 @@
       <navigation-component  />
       <menu-button />
     </header>
+    <section>
+
+    </section>
+      <main-banner-component />
+    <section>
+      <follow-list-component />
+    </section>
 
     <main id="main-wrapper" :class='blurCss'>
       <side-menu-component v-if="showSideComponent"  />
@@ -28,10 +35,14 @@ import {
   MenuButton
 } from "@/components/common";
 import { BLUR } from "@/interfaces/common/ICommon";
+import FollowListComponent from "@/components/main/FollowListComponent.vue";
+import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 
 
 @Component({
   components: {
+    MainBannerComponent,
+    FollowListComponent,
     SideButtonComponent,
     NavigationComponent,
     FooterComponent,
