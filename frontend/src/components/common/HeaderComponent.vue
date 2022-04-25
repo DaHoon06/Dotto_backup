@@ -45,7 +45,7 @@
           <span class="nav-icon-label">MY PAGE</span>
         </li>
         <li>
-          <button id="show-btn" @click="$bvModal.show('bv-modal-example')">
+          <button id="show-btn" @click="showLoginView">
             <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
           </button>
           <span class="nav-icon-label">LOGIN</span>
@@ -53,37 +53,51 @@
       </ul>
     </section>
 
-    <b-modal id="bv-modal-example" centered hide-header hide-footer>
-      <login-view />
-    </b-modal>
+    <ModalComponent
+        :modalType="modalType"
+        :showModal="showModal"
+        @modalType="modalType"
+        @closeModal="closeModal" />
 
   </header>
 </template>
 
 <script lang="ts">
-import {Component, Emit, Vue} from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { NavigationComponent } from "@/components/common/index";
 import LoginView from "@/views/LoginView.vue";
+import ModalComponent from "@/components/common/utils/ModalComponent.vue";
 
 @Component({
   components: {
+    ModalComponent,
     LoginView,
     NavigationComponent
   }
 })
 export default class HeaderComponent extends Vue {
-  showSearchList: boolean;
+  showSearchList = false;
+  modalType = '';
+  showModal = false;
 
   constructor() {
     super();
-    this.showSearchList = false;
   }
 
   @Emit('blurBackground')
   private searchLists() {
     this.showSearchList = !this.showSearchList;
     return this.showSearchList
+  }
 
+  private closeModal() {
+    this.showModal = false;
+    this.modalType = '';
+  }
+
+  private showLoginView() {
+    this.modalType = 'Login';
+    this.showModal = true;
   }
 
   private closeSearchList() {
