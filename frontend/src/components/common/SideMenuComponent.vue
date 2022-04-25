@@ -1,37 +1,40 @@
 <template>
-  <aside id="sideMenu-container">
-    <section id="sideMenu-title">
-      <article><b>FILTER</b></article>
-    </section>
+  <div id="test">
+    <aside id="sideMenu-container">
+      <section id="sideMenu-title">
+        <article><b>FILTER</b></article>
+      </section>
 
-    <section>
-      <article id="tag-area">
-        <span id="tag-title">#태그</span>
-        <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
-      </article>
-      <article v-if="showTagArea">
-        이쪽 태그 영역
-      </article>
-    </section>
+      <section>
+        <article id="tag-area">
+          <span id="tag-title">#태그</span>
+          <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
+        </article>
+        <article v-if="showTagArea">
+          이쪽 태그 영역
+        </article>
+      </section>
 
-    <hr />
+      <hr />
 
-    <section>
-      <article id="location-area">
-        <span>지역</span>
-        <button @click="showLocation">
-          <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
-        </button>
-      </article>
-      <article v-if="showLocationArea">
-        <input type="text" id="side-menu-search-bar" />
-        <button>
-          <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
-        </button>
-      </article>
-    </section>
+      <section>
+        <article id="location-area">
+          <span>지역</span>
+          <button @click="showLocation">
+            <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
+          </button>
+        </article>
+        <article v-if="showLocationArea">
+          <input type="text" id="side-menu-search-bar" />
+          <button>
+            <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
+          </button>
+        </article>
+      </section>
 
-  </aside>
+    </aside>
+  </div>
+
 </template>
 
 <script lang="ts">
@@ -108,9 +111,7 @@ export default class SideMenuComponent extends Vue {
 }
 
 @media screen and (max-width: 1719px) {
-  #sideMenu-container {
-    display: none;
-  }
+
 }
 
 </style>

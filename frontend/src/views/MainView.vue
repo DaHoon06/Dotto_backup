@@ -7,8 +7,8 @@
     </header>
 
     <main id="main-wrapper" :class='blurCss'>
-      <side-menu-component  />
-      <main-component @showFilterDiv="showFilter" />
+      <side-menu-component v-if="showSideComponent"  />
+      <main-component @showFilter="showFilter"/>
       <side-button-component />
     </main>
 
@@ -42,18 +42,16 @@ import { BLUR } from "@/interfaces/common/ICommon";
   }
 })
 export default class MainView extends Vue {
-  showSideComponent: boolean;
+  showSideComponent = true;
   blurCss: BLUR;
 
   constructor() {
     super();
-    this.showSideComponent = false
     this.blurCss = BLUR.OFF;
   }
 
-  private showFilter(showFilterDiv: boolean) {
-    console.log(showFilterDiv)
-    this.showSideComponent = showFilterDiv;
+  private showFilter(showFilter: boolean) {
+    this.showSideComponent = showFilter;
   }
 
   private blurBackground(isBlur: boolean) {

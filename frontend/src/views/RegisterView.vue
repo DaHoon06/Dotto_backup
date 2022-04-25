@@ -7,7 +7,7 @@
     </header>
 
     <main id="register-container" class="shadow pt-5 pb-5">
-      <div id="test">
+      <section>
         <b-tabs
             :small="true"
             lazy v-model="type"
@@ -18,7 +18,7 @@
           <b-tab title="일반 회원" active />
           <b-tab title="타투이스트 회원" />
         </b-tabs>
-      </div>
+      </section>
       <member-register-component v-if="this.type === 0" />
       <tattooist-register-component v-if="this.type === 1" />
     </main>
@@ -66,14 +66,12 @@ export default class RegisterView extends Vue {
   border-radius: 10px;
   max-width: 1280px;
   height: 100vh;
-  width: 60%;
+  width: 100%;
   margin: 5rem auto 5rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#test {
-  max-height: 966px;
-}
+
 
 </style>

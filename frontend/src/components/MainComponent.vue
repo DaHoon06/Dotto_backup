@@ -25,7 +25,7 @@
         </button>
       </span>
       <span id="filter">
-        <button>
+        <button @click="showFilter">
           <span class="filter-text"><b>FILTER</b></span>
           <img class="filter-text" src="@/assets/main/filter.png" alt="filter" />
         </button>
@@ -116,7 +116,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Emit, Vue} from "vue-property-decorator";
 import { SortComponent, SideButtonComponent } from "@/components/common";
 
 @Component({
@@ -126,14 +126,12 @@ import { SortComponent, SideButtonComponent } from "@/components/common";
   }
 })
 export default class MainComponent extends Vue {
-  showSortComponent: boolean;
-  showFilterComponent: boolean;
+  showSortComponent = false;
+  showFilterComponent = false;
   filterType: string;
 
   constructor() {
     super();
-    this.showSortComponent = false;
-    this.showFilterComponent = false;
     this.filterType = '최신순'
   }
 
@@ -145,9 +143,16 @@ export default class MainComponent extends Vue {
     this.filterType = type;
   }
 
+  @Emit('showFilter')
+  private showFilter() {
+    this.showFilterComponent = !this.showFilterComponent;
+    return this.showFilterComponent;
+  }
+
   private get sendSortType() {
     return this.filterType;
   }
+
 
 
 
@@ -167,17 +172,15 @@ export default class MainComponent extends Vue {
 
 #filter-area {
   height: 30px;
-  width: 1127px;
+  display: inline-block;
   text-align: right;
-  margin-right: 20px;
-  margin-top: 10px;
 }
 
 #tattoo-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 
 }
 
@@ -185,16 +188,11 @@ export default class MainComponent extends Vue {
   width: 12px;
 }
 
-#filter {
-  display: none;
-}
-
 .tattoo-board-list {
   box-shadow: 0 1px 2px 1px #adadad;
   border-radius: 2px;
   width: 260px;
   height: 380px;
-  margin-left: 23px;
   margin-top: 60px;
 }
 
@@ -256,7 +254,7 @@ export default class MainComponent extends Vue {
 }
 
 .location {
-margin-top: 0.7rem;
+  margin-top: 0.7rem;
 }
 
 .price {
@@ -297,22 +295,15 @@ margin-top: 0.7rem;
   margin-left: 37px;
 }
 
-#test > span {
-  display: inline-block;
-}
 @media screen and (max-width: 1719px){
-  #filter {
-    display: inline;
-  }
+
 }
 
 @media screen and (max-width: 1550px){
 
 }
-@media screen and (max-width: 1259px){
-  #filter-area {
-    width: 100%;
-  }
+@media screen and (max-width: 1239px){
+
 }
 
 @media screen and (max-width: 869px){
