@@ -1,21 +1,25 @@
 <template>
   <div id="main-container">
 
+    <section>
+      <follow-list-component />
+    </section>
+
     <section id="filter-area">
-      <span>
+      <span class="filter-section">
         <sort-component
             @typeName="typeName"
             :selectedType="filterType"
             :showSortComponent="showSortComponent" />
         <button @click="showSort" >
-          {{ sendSortType }}
-          <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="sort" />
+          <span class="filter-text">{{ sendSortType }}</span>
+          <img class="side-menu-drop-btn filter-text" src="@/assets/nav/filter-btn.png" alt="sort" />
         </button>
       </span>
-      <span id="filter">
+      <span id="filter" class="filter-section">
         <button @click="showFilter">
-          <span class="filter-text"><b>FILTER</b></span>
-          <img class="filter-text" src="@/assets/main/filter.png" alt="filter" />
+          <span class="filter-text">FILTER</span>
+          <img class="filter-text filter-toggle-img" src="@/assets/main/filter.png" alt="filter" />
         </button>
       </span>
     </section>
@@ -106,11 +110,13 @@
 <script lang="ts">
 import {Component, Emit, Vue} from "vue-property-decorator";
 import { SortComponent, SideButtonComponent } from "@/components/common";
+import FollowListComponent from "@/components/main/FollowListComponent.vue";
 
 @Component({
   components: {
     SideButtonComponent,
     SortComponent,
+    FollowListComponent
   }
 })
 export default class MainComponent extends Vue {
@@ -162,6 +168,7 @@ export default class MainComponent extends Vue {
   height: 30px;
   display: inline-block;
   text-align: right;
+  padding-right: 5em;
 }
 
 #tattoo-container {
@@ -181,10 +188,21 @@ export default class MainComponent extends Vue {
   border-radius: 2px;
   width: 260px;
   height: 380px;
-  margin-top: 60px;
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
 .filter-text {
+  font-size: 14px;
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.filter-toggle-img {
+  width: 18px;
+}
+
+.filter-section {
   margin-left: 20px;
 }
 

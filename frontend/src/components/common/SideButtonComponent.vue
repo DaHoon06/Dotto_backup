@@ -31,6 +31,7 @@ export default class SideButtonComponent extends Vue {}
   right: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 #go-top {
   background: #222222;

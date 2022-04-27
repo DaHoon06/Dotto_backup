@@ -10,13 +10,9 @@
       <main-banner-component />
     </section>
 
-    <section>
-      <follow-list-component />
-    </section>
-
     <main id="main-wrapper" :class='blurCss'>
-      <side-menu-component v-if="showSideComponent"  />
-      <main-component @showFilter="showFilter"/>
+      <side-menu-component v-show="showSideComponent"  />
+      <main-component @showFilter="showFilter" />
       <side-button-component />
     </main>
 
@@ -75,9 +71,11 @@ export default class MainView extends Vue {
 
 <style scoped>
 #main-wrapper {
-  max-width: 1980px;
+  display: flex;
+  max-width: 2160px;
   width: 100%;
   margin: auto;
+  justify-content: space-between;
 }
 
 .setBlur {
