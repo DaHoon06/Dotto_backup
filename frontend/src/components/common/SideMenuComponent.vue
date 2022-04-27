@@ -31,6 +31,13 @@
       </article>
     </section>
 
+    <section>
+      <article>
+        <button>초기화</button>
+        <button>결과보기</button>
+      </article>
+    </section>
+
   </aside>
 </template>
 
@@ -73,11 +80,11 @@ export default class SideMenuComponent extends Vue {
   max-height: 992px;
   height: 100%;
   margin-left: 1em;
-  padding-top: 100px;
+  position: fixed;
+  top: 17em;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background: #ffffff;
 }
 
 #sideMenu-title {

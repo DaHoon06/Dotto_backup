@@ -22,7 +22,7 @@ export default class FollowListComponent extends Vue {
 #follow-artist-area {
   height: 10em;
   width: 100%;
-  margin: 100px auto auto auto;
+  margin: auto;
   max-width: 1260px;
   display: flex;
   flex-direction: column;
