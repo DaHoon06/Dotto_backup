@@ -1,6 +1,6 @@
 <template>
   <article id="follow-artist-area">
-    <p class="follow-artist-title">내가 팔로우 한 아티스트</p>
+    <p class="follow-artist-title">팔로우 한 아티스트</p>
 
     <div class="follow-artist-list">
       <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />

@@ -1,43 +1,46 @@
 <template>
   <aside id="sideMenu-container">
-    <section id="sideMenu-title">
-      <article><b>FILTER</b></article>
-    </section>
 
-    <section>
-      <article id="tag-area">
-        <span id="tag-title">#태그</span>
-        <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
-      </article>
-      <article v-if="showTagArea">
-        이쪽 태그 영역
-      </article>
-    </section>
+    <div id="side-menu-flex">
+      <section class="side-menu-items">
+        <article>
+          <div id="sideMenu-title">
+            <b>FILTER</b>
+          </div>
+        </article>
+        <article id="tag-area">
+          <span id="tag-title">#태그</span>
+          <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
+        </article>
+        <article v-if="showTagArea">
+          이쪽 태그 영역
+        </article>
+      </section>
 
-    <hr />
+      <hr />
 
-    <section>
-      <article id="location-area">
-        <span>지역</span>
-        <button @click="showLocation">
-          <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
-        </button>
-      </article>
-      <article v-if="showLocationArea">
-        <input type="text" id="side-menu-search-bar" />
-        <button>
-          <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
-        </button>
-      </article>
-    </section>
+      <section class="side-menu-items" id="side-menu-item-location">
+        <article id="location-area">
+          <span>지역</span>
+          <button class="side-menu-drop-btn" @click="showLocation">
+            <img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" />
+          </button>
+        </article>
+        <article v-if="showLocationArea">
+          <input type="text" id="side-menu-search-bar" />
+          <button class="side-menu-drop-btn">
+            <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
+          </button>
+        </article>
+      </section>
 
-    <section>
-      <article>
-        <button>초기화</button>
-        <button>결과보기</button>
-      </article>
-    </section>
-
+      <section class="side-menu-items">
+        <article>
+          <button class="side-menu-button" id="reset">초기화</button>
+          <button class="side-menu-button" id="show-result">결과보기</button>
+        </article>
+      </section>
+    </div>
   </aside>
 </template>
 
@@ -76,15 +79,29 @@ export default class SideMenuComponent extends Vue {
 <style scoped>
 #sideMenu-container {
   animation: fadein 3s;
-  width: 200px;
-  max-height: 992px;
-  height: 100%;
-  margin-left: 1em;
-  position: fixed;
-  top: 17em;
+  height: 100vh;
+  margin-left: 10em;
+  margin-top: 10em;
+  display: inline-block;
+  z-index: -1;
+  overflow: scroll;
+}
+
+.side-menu-items {
+  margin-bottom: 30%;
+}
+
+#side-menu-flex {
+  width: 20em;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
   align-items: stretch;
+}
+
+#side-menu-item-location {
+  height: 70%;
 }
 
 #sideMenu-title {
@@ -103,6 +120,10 @@ export default class SideMenuComponent extends Vue {
   width: 12px;
 }
 
+.side-menu-drop-btn:hover {
+  cursor: pointer;
+}
+
 #tag-area, #location-area {
   display: flex;
   justify-content: space-between;
@@ -116,6 +137,34 @@ export default class SideMenuComponent extends Vue {
 #search-btn {
   position: relative;
   right: 15px;
+}
+
+#reset {
+  width: 4em;
+  color: #919191;
+}
+
+#show-result {
+  width: 10em;
+  background: #222222;
+  color: #ffffff;
+}
+
+.side-menu-button {
+  box-sizing: border-box;
+  border: 1px solid #E2E2E2;
+  font-weight: 400;
+  border-radius: 4px;
+  margin-right: 2em;
+  margin-left: 2em;
+  line-height: 17px;
+  height: 3em;
+  font-size: 14px;
+}
+
+.side-menu-button:hover {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 1719px) {

@@ -156,7 +156,7 @@ export default class MainComponent extends Vue {
 <style scoped>
 #main-container {
   width: 100%;
-  margin: 100px auto auto auto;
+  margin: 100px auto 20em auto;
   max-width: 1260px;
   min-height: 100vh;
   height: 100%;

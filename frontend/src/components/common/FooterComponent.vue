@@ -46,6 +46,7 @@ export default class FooterComponent extends Vue {
   color: #FFFFFF;
   width: 100%;
   font-size: 12px;
+  z-index: 10;
 }
 
 #footer-top {
