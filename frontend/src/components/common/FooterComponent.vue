@@ -1,70 +1,34 @@
 <template>
-  <div id="footer-container">
-    <div id="footer-top">
-      <section>
-        <h5>고객센터</h5>
-        <ul>
-          <li>운영시간 AM 10:00 ~ PM 06:00</li>
-          <li>점심시간 AM 12:00 ~ PM 01:00</li>
-          <li>주말,공휴일 휴무 입니다.</li>
-        </ul>
-      </section>
+  <footer id="footer-container">
+    <section id="footer-top">
 
-      <section id="footer-center">
-        <div>
-          <ul>
-            <li>브랜드</li>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
+      <article id="footer-top-items">
+        <div id="footer-top-icons">
+          <img class="footer-icons" src="@/assets/icons/instagram.png" alt="instagram" />
         </div>
-        <div>
-          <ul>
-            <li>마이페이지</li>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
+        <div class="footer-top-information">
+          <span>INFO</span>
+          <span>ABOUT</span>
+          <span>TEAM</span>
+          <span>COMMUNITY</span>
         </div>
-        <div>
-          <ul>
-            <li>쇼핑</li>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
-        </div>
-        <div>
-          <ul>
-            <li>서비스</li>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
-        </div>
-      </section>
+      </article>
 
-      <section>
-        <div>
-          <ul>
-            <li>개인정보처리방침</li>
-            <li>이용약관</li>
-            <li>사업자정보확인</li>
-          </ul>
+      <article>
+        <div class="footer-top-information">
+          <span>email : dotto.02@gmail.com</span>
+          <span> ph : 010 - 1234 -1234</span>
         </div>
-      </section>
+      </article>
+    </section>
 
-
-
-    </div>
     <hr/>
-    <div id="footer-bottom">
-      <section>
-        닷투
-      </section>
-    </div>
-  </div>
+
+    <section id="footer-bottom">
+      <span class="footer-bottom-dottoo">2022 Dotto, All rights reserved.</span>
+    </section>
+
+    </footer>
 </template>
 
 <script lang="ts">
@@ -86,22 +50,57 @@ export default class FooterComponent extends Vue {
 
 #footer-top {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+  height: 15em;
+  flex-direction: column;
   align-items: center;
-  height: 272px;
 }
 
-
-#footer-center {
+#footer-top-items {
   display: flex;
   align-items: center;
+  flex-direction: column;
+}
 
+#footer-top-icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-top-information {
+  margin-top: 2.45em;
+  color: #9E9E9E;
+}
+
+.footer-top-information > span {
+  margin-left: 0.5em;
+}
+
+.footer-top-information > span:not(:last-child)::after {
+  content: '|';
+  margin-left: 0.5em;
+  color: #9E9E9E;
 }
 
 #footer-bottom {
-  height: 54px;
+  height: 5em;
   text-align: center;
   color: #9E9E9E;
   font-size: 8px;
 }
+
+.footer-bottom-dottoo {
+  font-size: 8px;
+  color: #9E9E9E;
+}
+.footer-bottom-dottoo::before {
+  content: '@';
+}
+
+.footer-icons {
+  width: 35px;
+}
+
+
 </style>

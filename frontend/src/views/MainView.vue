@@ -5,10 +5,11 @@
       <navigation-component  />
       <menu-button />
     </header>
-    <section>
 
-    </section>
+    <section>
       <main-banner-component />
+    </section>
+
     <section>
       <follow-list-component />
     </section>

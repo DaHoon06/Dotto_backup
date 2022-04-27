@@ -17,7 +17,7 @@ export default class MainBannerComponent extends Vue {
 #banner-container {
   margin-top: 100px;
   background: #222222;
-  width: 100vw;
+  width: 100%;
   height: 10em;
 }
 </style>
