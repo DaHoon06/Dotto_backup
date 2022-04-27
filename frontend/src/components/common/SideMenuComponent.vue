@@ -192,7 +192,7 @@ export default class SideMenuComponent extends Vue {
 
   #side-menu-search-bar {
     width: 70%;
-    margin-left: 1em;
+    margin-left: 2em;
   }
 
   #tag-list {
@@ -201,8 +201,10 @@ export default class SideMenuComponent extends Vue {
   }
 }
 
-@media screen and (max-width: 1719px) {
-
+@media screen and (max-width: 1260px) {
+  #sideMenu-container {
+    display: none;
+  }
 }
 
 </style>

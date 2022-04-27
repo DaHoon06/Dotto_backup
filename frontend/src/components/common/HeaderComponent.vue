@@ -21,7 +21,7 @@
       <button>
         <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
       </button>
-      <article v-if="showSearchList" id="search-list">
+      <article v-show="showSearchList" id="search-list">
         <div id="search-list-wrapper">
           <div class="close-search-list" >
             <button @click="closeSearchList">x</button>
@@ -220,11 +220,9 @@ ul li {
 @media screen and (max-width: 1260px) {
   #menu-button-container {
     display: inline;
-
   }
-
-
 }
+
 @media screen and (max-width: 869px){
   #search-container {
     display: none;

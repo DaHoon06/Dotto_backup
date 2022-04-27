@@ -52,7 +52,7 @@
               <button
                   class="nav-button" :class="menu_tattoo ? active : ''"
                   @mouseover="showTattoo('show')"
-                  @mouseleave="showTattoo('hide')">TATTOO</button>
+                  @mouseleave="showTattoo('hide')">DOTTO</button>
             </li>
             <li v-show="menu_tattoo">
               <div class="nav-menu-list"
@@ -89,28 +89,6 @@
           </ul>
         </article>
       </li>
-      <li>
-        <article class="menu">
-          <ul>
-            <li>
-              <button
-                  class="nav-button" :class="menu_my ? active : ''"
-                  @mouseover="showMy('show')"
-                  @mouseleave="showMy('hide')">MY</button>
-            </li>
-            <li v-show="menu_my">
-              <div class="nav-menu-list"
-                   @mouseover="showMy('show')"
-                   @mouseleave="showMy('hide')">
-                <router-link to="/" class="sub-nav-items">menu1</router-link>
-                <router-link to="/" class="sub-nav-items">menu2</router-link>
-                <router-link to="/" class="sub-nav-items">menu3</router-link>
-                <router-link to="/" class="sub-nav-items">menu4</router-link>
-              </div>
-            </li>
-          </ul>
-        </article>
-      </li>
     </ul>
   </nav>
 </template>
@@ -124,7 +102,6 @@ export default class NavigationComponent extends Vue {
   menu_artist = false;
   menu_tattoo = false;
   menu_community = false;
-  menu_my = false;
   active = 'active';
 
   constructor() {
@@ -148,9 +125,6 @@ export default class NavigationComponent extends Vue {
     this.menu_community = event === 'show';
   }
 
-  private showMy(event: string) {
-    this.menu_my = event === 'show';
-  }
 }
 </script>
 
@@ -167,6 +141,7 @@ export default class NavigationComponent extends Vue {
   color: #919191;
   z-index: 10;
 }
+
 #navigation-container > ul {
   padding-left: 0;
 }

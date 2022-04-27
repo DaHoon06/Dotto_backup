@@ -287,11 +287,17 @@ export default class MainComponent extends Vue {
 
 }
 
-@media screen and (max-width: 1550px){
+@media screen and (max-width: 1440px){
+  #filter-area {
+    padding-right: 5em;
+  }
 
 }
-@media screen and (max-width: 1239px){
 
+@media screen and (max-width: 1260px) {
+  #filter {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 869px){
