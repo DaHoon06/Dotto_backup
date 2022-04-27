@@ -82,7 +82,6 @@ export default class MainView extends Vue {
   filter: blur(4px)
 }
 
-
 @media screen and (max-width: 1260px){
   #navigation-container {
     display: none;

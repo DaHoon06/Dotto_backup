@@ -12,8 +12,8 @@
           <span id="tag-title">#태그</span>
           <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/nav/filter-btn.png" alt="filter" /></button>
         </article>
-        <article v-if="showTagArea">
-          이쪽 태그 영역
+        <article id="tag-list" v-if="showTagArea">
+          # 태그
         </article>
       </section>
 
@@ -83,12 +83,7 @@ export default class SideMenuComponent extends Vue {
   margin-left: 10em;
   margin-top: 10em;
   display: inline-block;
-  z-index: -1;
   overflow: scroll;
-}
-
-.side-menu-items {
-  margin-bottom: 30%;
 }
 
 #side-menu-flex {
@@ -100,12 +95,18 @@ export default class SideMenuComponent extends Vue {
   align-items: stretch;
 }
 
+.side-menu-items {
+  margin-bottom: 30%;
+}
+
 #side-menu-item-location {
   height: 70%;
+  width: 100%;
 }
 
 #sideMenu-title {
   margin-top: 65px;
+  width: 100%;
 }
 
 #tag-title {
@@ -165,6 +166,39 @@ export default class SideMenuComponent extends Vue {
 .side-menu-button:hover {
   cursor: pointer;
   font-weight: bold;
+}
+
+@media screen and (max-width: 1440px){
+  hr {
+    width: 70%;
+    margin-left: 2em;
+  }
+  #sideMenu-container {
+    margin-left: 1em;
+  }
+
+  #sideMenu-title {
+    padding-left: 4em;
+    padding-bottom: 1em;
+  }
+
+  .side-menu-button {
+    margin-left: 1.25em;
+  }
+
+  #tag-area, #location-area {
+    justify-content: space-around;
+  }
+
+  #side-menu-search-bar {
+    width: 70%;
+    margin-left: 1em;
+  }
+
+  #tag-list {
+    padding-left: 4em;
+    height: 100%;
+  }
 }
 
 @media screen and (max-width: 1719px) {

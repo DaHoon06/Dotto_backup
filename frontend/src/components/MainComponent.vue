@@ -1,6 +1,7 @@
 <template>
   <div id="main-container">
     <follow-list-component />
+
     <section id="filter-area">
       <span class="filter-section">
         <button @click="showSort" >
@@ -12,7 +13,6 @@
             :selectedType="filterType"
             :showSortComponent="showSortComponent" />
       </span>
-
 
       <span id="filter" class="filter-section">
         <button @click="showFilter">
@@ -154,7 +154,7 @@ export default class MainComponent extends Vue {
 <style scoped>
 #main-container {
   width: 100%;
-  margin: 100px auto 20em auto;
+  margin: 100px auto 10em auto;
   max-width: 1260px;
   min-height: 100vh;
   height: 100%;
