@@ -1,21 +1,19 @@
 <template>
   <div id="main-container">
-
-    <section>
-      <follow-list-component />
-    </section>
-
+    <follow-list-component />
     <section id="filter-area">
       <span class="filter-section">
-        <sort-component
-            @typeName="typeName"
-            :selectedType="filterType"
-            :showSortComponent="showSortComponent" />
         <button @click="showSort" >
           <span class="filter-text">{{ sendSortType }}</span>
           <img class="side-menu-drop-btn filter-text" src="@/assets/nav/filter-btn.png" alt="sort" />
         </button>
+        <sort-component
+            @typeName="typeName"
+            :selectedType="filterType"
+            :showSortComponent="showSortComponent" />
       </span>
+
+
       <span id="filter" class="filter-section">
         <button @click="showFilter">
           <span class="filter-text">FILTER</span>

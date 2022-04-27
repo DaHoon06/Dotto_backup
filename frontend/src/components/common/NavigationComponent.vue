@@ -165,6 +165,7 @@ export default class NavigationComponent extends Vue {
   padding-left: 20px;
   font-size: 13px;
   color: #919191;
+  z-index: 10;
 }
 #navigation-container > ul {
   padding-left: 0;
