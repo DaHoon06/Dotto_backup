@@ -52,7 +52,7 @@
               <button
                   class="nav-button" :class="menu_tattoo ? active : ''"
                   @mouseover="showTattoo('show')"
-                  @mouseleave="showTattoo('hide')">DOTTO</button>
+                  @mouseleave="showTattoo('hide')">try DOTTO</button>
             </li>
             <li v-show="menu_tattoo">
               <div class="nav-menu-list"

@@ -38,17 +38,17 @@
 
     <section>
       <ul>
-        <li>
-          <button class="nav-icon-btn">
-            <img class="nav-menu-icon" src="@/assets/nav/vector.png" alt="vector" />
-          </button>
-          <span class="nav-icon-label">MY PAGE</span>
-        </li>
-        <li>
-          <button id="show-btn" @click="showLoginView">
+        <li v-if="this.isLogin">
+          <button id="show-btn" @click="showLoginView" >
             <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
           </button>
           <span class="nav-icon-label">LOGIN</span>
+        </li>
+        <li v-else>
+          <div id="my-page">
+            <img src="@/assets/nav/vector.png" alt="my" />
+          </div>
+          <span><small>NAME</small></span>
         </li>
       </ul>
     </section>
@@ -128,6 +128,7 @@ ul li {
   background: #FFFFFF;
   z-index: 10;
 }
+
 .nav-menu-icon {
   width: 25px;
 }
@@ -142,8 +143,18 @@ ul li {
   margin-right: 15px;
 }
 
-.nav-icon-btn {
-  width: 40px;
+#my-page {
+  border-radius: 45px;
+  background: #F5F5F5;
+  width: 45px;
+  height: 45px;
+  margin: 20px 20px 0 0;
+}
+#my-page > img {
+  display: block;
+  width: 20px;
+  margin: 12px auto;
+  text-align: center;
 }
 
 #logo {
