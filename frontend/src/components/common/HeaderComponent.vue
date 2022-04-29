@@ -21,24 +21,27 @@
       <button>
         <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
       </button>
-      <article v-show="showSearchList" id="search-list">
-        <div id="search-list-wrapper">
-          <div class="close-search-list" >
-            <button @click="closeSearchList">x</button>
+
+      <transition name="fade">
+        <article v-show="showSearchList" id="search-list">
+          <div id="search-list-wrapper">
+            <div class="close-search-list" >
+              <button @click="closeSearchList">x</button>
+            </div>
+            <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
+            <ul>
+              <li>
+              </li>
+            </ul>
           </div>
-          <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
-          <ul>
-            <li>
-            </li>
-          </ul>
-        </div>
-        <div id="outer" @click="closeSearchList"/>
-      </article>
+          <div id="outer" @click="closeSearchList"/>
+        </article>
+      </transition>
     </section>
 
     <section>
       <ul>
-        <li v-if="this.isLogin">
+        <li v-if="!this.isLogin">
           <button id="show-btn" @click="showLoginView" >
             <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
           </button>
@@ -52,12 +55,14 @@
         </li>
       </ul>
     </section>
+    <transition name="fade">
+      <ModalComponent
+          :modalType="modalType"
+          :showModal="showModal"
+          @modalType="modalType"
+          @closeModal="closeModal" />
+    </transition>
 
-    <ModalComponent
-        :modalType="modalType"
-        :showModal="showModal"
-        @modalType="modalType"
-        @closeModal="closeModal" />
 
   </header>
 </template>
@@ -226,6 +231,14 @@ ul li {
   margin-right: 3rem;
   font-size: 20px;
   font-weight: 600;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media screen and (max-width: 1260px) {

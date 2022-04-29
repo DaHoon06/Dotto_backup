@@ -11,7 +11,9 @@
     </section>
 
     <main id="main-wrapper" :class='blurCss'>
-      <side-menu-component v-show="showSideComponent"  />
+      <transition name="fade">
+        <side-menu-component v-show="showSideComponent"  />
+      </transition>
       <main-component @showFilter="showFilter" />
       <side-button-component />
     </main>
@@ -80,6 +82,18 @@ export default class MainView extends Vue {
 
 .setBlur {
   filter: blur(4px)
+}
+
+.fade-enter-active {
+  transition: all .4s ease;
+}
+
+.fade-leave-active {
+  transition: all 0s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media screen and (max-width: 1260px){

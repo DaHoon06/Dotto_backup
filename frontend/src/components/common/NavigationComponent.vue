@@ -139,7 +139,7 @@ export default class NavigationComponent extends Vue {
   padding-left: 20px;
   font-size: 13px;
   color: #919191;
-  z-index: 10;
+  z-index: 5;
 }
 
 #navigation-container > ul {
