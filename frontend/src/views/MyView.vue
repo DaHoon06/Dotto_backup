@@ -76,10 +76,10 @@ export default class MyView extends Vue {
 <style scoped>
 #my-information-wrapper {
   margin: 10em auto 4em auto;
-  width: 70vw;
+  width: 50vw;
 }
 #my-follow-wrapper {
-  width: 70vw;
+  width: 50vw;
   margin: auto;
 }
 

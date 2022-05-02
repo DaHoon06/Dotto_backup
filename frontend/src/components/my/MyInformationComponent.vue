@@ -52,7 +52,7 @@ export default class MyInformationComponent extends Vue {
 #my-info-area-2 {
   position: absolute;
   display: inline-block;
-  width: 50vw;
+  width: 40vw;
   margin-left: 2em;
 }
 </style>
