@@ -14,7 +14,7 @@
       <my-follow-component />
     </section>
 
-    <section>
+    <section id="my-category">
       <ul>
         <li>마이피드</li>
         <li>좋아요</li>
@@ -22,6 +22,7 @@
         <li>내 리뷰</li>
       </ul>
     </section>
+    <hr/>
 
     <footer-component :class='`${blurCss}`' />
   </div>
@@ -74,6 +75,7 @@ export default class MyView extends Vue {
 </script>
 
 <style scoped>
+
 #my-information-wrapper {
   margin: 10em auto 4em auto;
   width: 50vw;
@@ -83,6 +85,23 @@ export default class MyView extends Vue {
   margin: auto;
 }
 
+#my-category {
+  display: flex;
+  justify-content: center;
+}
+#my-category > ul {
+  margin: 0;
+  padding: 0;
+}
+#my-category > ul > li {
+  float: left;
+  margin-left: 1em;
+  height: 20px;
+}
+#my-category > ul > li:hover {
+  cursor: pointer;
+  border-bottom: 2px solid gray;
+}
 .setBlur {
   filter: blur(4px)
 }
