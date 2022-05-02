@@ -32,6 +32,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/error/404.vue'),
     meta: { unauthorized: true },
   },
+  {
+    path: '/my',
+    name: 'my',
+    component: () => import('@/views/MyView.vue'),
+  }
 ]
 
 const router = new VueRouter({
@@ -42,7 +47,7 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   try {
-    const { meta, name } = to;
+    const { meta } = to;
     const { unauthorized } = meta || { unauthorized: true };
 
     if (unauthorized) return next();

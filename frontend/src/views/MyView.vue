@@ -6,17 +6,22 @@
       <menu-button />
     </header>
 
-    <section>
-      <main-banner-component />
+    <section id="my-information-wrapper" :class='blurCss'>
+      <my-information-component />
     </section>
 
-    <main id="main-wrapper" :class='blurCss'>
-      <transition name="fade">
-        <side-menu-component v-show="showSideComponent"  />
-      </transition>
-      <main-component @showFilter="showFilter" />
-      <side-button-component />
-    </main>
+    <section id="my-follow-wrapper" :class='blurCss'>
+      <my-follow-component />
+    </section>
+
+    <section>
+      <ul>
+        <li>마이피드</li>
+        <li>좋아요</li>
+        <li>내 댓글</li>
+        <li>내 리뷰</li>
+      </ul>
+    </section>
 
     <footer-component :class='`${blurCss}`' />
   </div>
@@ -36,10 +41,13 @@ import {
 import { BLUR } from "@/interfaces/common/ICommon";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
-
+import MyInformationComponent from "@/components/my/MyInformationComponent.vue";
+import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
 
 @Component({
   components: {
+    MyFollowComponent,
+    MyInformationComponent,
     MainBannerComponent,
     FollowListComponent,
     SideButtonComponent,
@@ -51,8 +59,7 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
     MenuButton
   }
 })
-export default class MainView extends Vue {
-  showSideComponent = true;
+export default class MyView extends Vue {
   blurCss: BLUR;
 
   constructor() {
@@ -60,52 +67,23 @@ export default class MainView extends Vue {
     this.blurCss = BLUR.OFF;
   }
 
-  private showFilter(showFilter: boolean) {
-    this.showSideComponent = showFilter;
-  }
-
   private blurBackground(isBlur: boolean) {
     isBlur ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
   }
-
 }
 </script>
 
 <style scoped>
-#main-wrapper {
-  display: flex;
-  max-width: 2160px;
-  width: 100%;
+#my-information-wrapper {
+  margin: 10em auto 4em auto;
+  width: 70vw;
+}
+#my-follow-wrapper {
+  width: 70vw;
   margin: auto;
-  justify-content: space-between;
 }
 
 .setBlur {
   filter: blur(4px)
 }
-
-.fade-enter-active {
-  transition: all .4s ease;
-}
-
-.fade-leave-active {
-  transition: all 0s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
-@media screen and (max-width: 1260px){
-  #navigation-container {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 500px){
-
-
-
-}
-
 </style>

@@ -165,8 +165,8 @@ ul li {
 #logo {
   margin-left: 25px;
   margin-bottom: 10px;
-  width: 90px;
-  height: 40px;
+  width: 80px;
+  height: 35px;
   left: 4px;
   top: 0;
 }
@@ -211,8 +211,8 @@ ul li {
 }
 
 #menu-button-container > button > img {
-  width: 34px;
-  margin-top: 4px;
+  width: 24px;
+  margin-top: 0.4em;
 }
 
 #menu-button-container {
