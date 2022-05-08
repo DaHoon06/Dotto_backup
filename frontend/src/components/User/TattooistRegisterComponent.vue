@@ -83,7 +83,6 @@
             <b-modal id="modal-1" hide-footer>
               <template #modal-title>
                 주소 검색
-                <b-spinner class="mb-1" small />
               </template>
               <vue-daum-postcode @complete="oncomplete" />
             </b-modal>

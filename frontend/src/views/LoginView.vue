@@ -33,24 +33,27 @@
       <p id="simple-login" class="login-router">간편 회원가입</p>
       <article id="simple-login-icons">
         <ul id="login-btn-img">
+<!--          <li>-->
+<!--            <button>-->
+<!--              <img src="@/assets/login/naver.png" alt="naver" />-->
+<!--            </button>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <button>-->
+<!--              <img src="@/assets/login/facebook.png" alt="facebook" />-->
+<!--            </button>-->
+<!--          </li>-->
           <li>
-            <button>
-              <img src="@/assets/login/naver.png" alt="naver" />
-            </button>
-          </li>
-          <li>
-            <button>
-              <img src="@/assets/login/facebook.png" alt="facebook" />
-            </button>
-          </li>
-          <li>
-            <button>
+            <GoogleLogin :params="params" :onSuccess="googleLogin">
               <img src="@/assets/login/Google.png" alt="google" />
+            </GoogleLogin>
+            <button>
+
             </button>
           </li>
           <li>
             <button>
-              <img src="@/assets/login/kakao.png" alt="kakao" />
+              <img src="@/assets/login/kakao.png" @click="kakaoLogin" alt="kakao" />
             </button>
           </li>
         </ul>
@@ -60,16 +63,26 @@
 </template>
 
 <script lang="ts">
-import {Vue, Component, Emit} from "vue-property-decorator";
+import { Vue, Component, Emit } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
+import GoogleLogin from 'vue-google-login';
 
-@Component
+@Component({
+  components: {
+    GoogleLogin
+  }
+})
 export default class LoginView extends Vue {
   email = '';
   password = '';
   save = false;
   loginFailedMsg = '';
   modalType = '';
+  $gAuth: any;
+  params = {
+    // client_id: process.env.GOOGLE_KEY
+    client_id: '77854822346-ogb042ak8gh3246d736e1lfj7hmdpjhk.apps.googleusercontent.com'
+  }
 
   constructor() {
     super();
@@ -118,6 +131,49 @@ export default class LoginView extends Vue {
 
   clearMsg(): void {
     this.loginFailed = '';
+  }
+
+  private async googleLogin(googleUser: any): Promise<void> {
+    try {
+      console.log(googleUser);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  private async kakaoLogin(): Promise<void> {
+    window.Kakao.init(process.env.KAKAO_KEY);
+
+    if (window.Kakao.Auth.getAccessToken()) {
+      window.Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response: any) {
+          console.log(response)
+        },
+        fail: function (error: any) {
+          console.log(error)
+        },
+      })
+      window.Kakao.Auth.setAccessToken(undefined)
+      window.Kakao.Auth.login({
+        success: () => {
+          window.Kakao.API.request({
+            url: '/v2/user/me',
+            data: {
+              property_keys: ["kakao_account.email"]
+            },
+            success: async (response: any) => {
+              console.log(response);
+            },
+            fail: (error: any) => {
+              console.log(error)
+            },
+          })
+        },fail: (error: any) => {
+          console.log(error)
+        }
+      })
+    }
   }
 
   @Emit('modalType')
