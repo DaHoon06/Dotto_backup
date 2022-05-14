@@ -1,19 +1,11 @@
 <template>
   <main id="register-container">
-    <div id="test">
-      <b-tabs
-          :small="true"
-          lazy v-model="type"
-          content-class="mt-3"
-          active-nav-item-class="font-weight-bold"
-          active-tab-class="font-weight-bold"
-          align="center">
-        <b-tab title="일반 회원" active />
-        <b-tab title="타투이스트 회원" />
-      </b-tabs>
-    </div>
-    <member-register-component v-if="this.type === 0" />
-    <tattooist-register-component v-if="this.type === 1" />
+    <section id="tab-wrapper">
+      <span @click="changeTab = 0" :class="{ 'active': actV === 0 }">일반 회원</span>
+      <span @click="changeTab = 1" :class="{ 'active': actV === 1 }">타투이스트 회원</span>
+    </section>
+    <member-register-component v-if="this.changeTab === 0" v-bind:actV = '0' />
+    <tattooist-register-component v-if="this.changeTab === 1" v-bind:actV = '1' />
   </main>
 </template>
 
@@ -46,6 +38,14 @@ export default class RegisterView extends Vue {
     this.type = 0;
   }
 
+  private get changeTab() {
+    return this.type;
+  }
+
+  private set changeTab(type: number) {
+    this.type = type;
+  }
+
 
 }
 </script>
@@ -57,8 +57,19 @@ export default class RegisterView extends Vue {
   flex-direction: column;
 
 }
-#test {
-  max-height: 966px;
+#tab-wrapper {
+
+}
+#tab-wrapper span {
+  margin-left: 0.5em;
+}
+#tab-wrapper span:first-child::after {
+  content: '|';
+  font-weight: 500;
+}
+#tab-wrapper span:hover {
+  color: #E2E2E2;
+  cursor: pointer;
 }
 
 </style>

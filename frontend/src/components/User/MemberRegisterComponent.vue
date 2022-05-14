@@ -1,119 +1,83 @@
 <template>
-  <section>
+  <section @actV = '1'>
     <div>
-      <div>
-        <div>
-          <input
-              @blur="validationEmail"
-              type="text"
-              v-model="email"
-              placeholder="이메일" />
-        </div>
-        <div>
-          <div>
-            <b-form-select
-                v-model="domain"
-                :options="emailList"
-                size="sm" />
-          </div>
-        </div>
-        <p>
-          <button class="register-btn" @click="emailCheck" type="button">중복확인</button>
-        </p>
-      </div>
-      <div>
-        <div>
-          <div class="warning-msg">{{ this.EmailMessage }}</div>
-        </div>
-      </div>
 
       <div>
-        <div>
-          <input
-              type="password"
-              @change="validationPassword"
-              v-model="password"
-              placeholder="비밀번호" />
-        </div>
-      </div>
-      <div>
-        <div>
-          <div class="warning-msg">{{ this.PasswordMessage }}</div>
-        </div>
+        <input
+            @blur="validationEmail"
+            type="text"
+            v-model="email"
+            placeholder="이메일" />
+        <b-form-select
+            v-model="domain"
+            :options="emailList"
+            size="sm" />
+        <button class="register-btn" @click="emailCheck" type="button">중복확인</button>
       </div>
 
-      <div>
-        <div>
-          <input
-              type="password"
-              @change="validationPassword"
-              v-model="passwordCheck"
-              placeholder="비밀번호 확인" />
-        </div>
-        <div>
-          <div class="warning-msg">{{ this.PasswordCheckMessage }}</div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <input
-              type="text"
-              @focus="msgClear"
-              v-model="nickName"
-              placeholder="닉네임" />
-        </div>
-        <div>
-          <button @click="nickNameCheck" class="register-btn" type="button">중복확인</button>
-        </div>
-      </div>
-      <div>
-        <div>
-          <div class="warning-msg">{{ this.NickNameMessage }}</div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
-        </div>
-        <div>
-          <button class="register-btn">인증번호받기</button>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <input type="text" placeholder="인증번호 입력" />
-        </div>
-        <div>
-          <button class="register-btn">인증하기</button>
-        </div>
-      </div>
-
-      <div>
-        <div class="col-12 mt-2">
-          <input class="selected-gender ml-1" type="radio" id="male" v-model="gender" value="male" name="male" />
-          <label for="male">남성</label>
-          <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
-          <label for="female">여성</label>
-          <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
-          <label for="empty">선택안함</label>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
-        </div>
-      </div>
     </div>
+    <p class="warning-msg">{{ this.EmailMessage }}</p>
+
+    <div>
+      <input
+          type="password"
+          @change="validationPassword"
+          v-model="password"
+          placeholder="비밀번호" />
+    </div>
+    <p class="warning-msg">{{ this.PasswordMessage }}</p>
+
+    <div>
+      <input
+          type="password"
+          @change="validationPassword"
+          v-model="passwordCheck"
+          placeholder="비밀번호 확인" />
+    </div>
+    <p class="warning-msg">{{ this.PasswordCheckMessage }}</p>
+
+    <div>
+      <input
+          type="text"
+          @focus="msgClear"
+          v-model="nickName"
+          placeholder="닉네임" />
+      <button @click="nickNameCheck" class="register-btn" type="button">중복확인</button>
+    </div>
+    <p class="warning-msg">{{ this.NickNameMessage }}</p>
+
+    <div>
+      <input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
+      <button class="register-btn">인증번호받기</button>
+    </div>
+
+    <div>
+      <input type="text" placeholder="인증번호 입력" />
+      <button class="register-btn">인증하기</button>
+    </div>
+
+    <div class="col-12 mt-2">
+      <input class="selected-gender ml-1" type="radio" id="male" v-model="gender" value="male" name="male" />
+      <label for="male">남성</label>
+      <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
+      <label for="female">여성</label>
+      <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
+      <label for="empty">선택안함</label>
+    </div>
+
+
+
+    <div>
+      <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
+    </div>
+
+
+
+    <div>
+      <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
+    </div>
+
+
   </section>
 </template>
 
