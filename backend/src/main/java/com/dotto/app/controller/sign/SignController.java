@@ -21,14 +21,14 @@ public class SignController {
 
     @PostMapping("/api/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response SignUp( @Valid @RequestBody SignUpRequest req){
+    public Response SignUp( @RequestBody SignUpRequest req){
         signService.SignUp(req);
         return success();
     }
 
     @PostMapping("/api/sign-in")
     @ResponseStatus(HttpStatus.OK)
-    public Response SignIn( @Valid @RequestBody SignInRequest req){
+    public Response SignIn(@RequestBody SignInRequest req){
         return success(signService.SignIn(req));
     }
 
