@@ -1,25 +1,48 @@
 <template>
   <footer id="footer-container">
     <section id="footer-top">
-
-      <article id="footer-top-items">
-        <div id="footer-top-icons">
-          <img class="footer-icons" src="@/assets/icons/instagram.png" alt="instagram" />
-        </div>
-        <div class="footer-top-information">
-          <span>INFO</span>
-          <span>ABOUT</span>
-          <span>TEAM</span>
-          <span>COMMUNITY</span>
-        </div>
-      </article>
-
-      <article>
-        <div class="footer-top-information">
-          <span>email : dotto.02@gmail.com</span>
-          <span> ph : 010 - 1234 -1234</span>
-        </div>
-      </article>
+      <div class="footer-items">
+        <ul>
+          <li><h5>고객센터</h5></li>
+          <li>운영시간 AM 10:00 - PM 06:00</li>
+          <li>점심시간 PM 12:00 - PM 01:00</li>
+          <li>주말,공휴일 휴무 입니다.</li>
+        </ul>
+      </div>
+      <div class="footer-items">
+        <ul>
+          <li><h5>마이피드</h5></li>
+          <li>로그인</li>
+          <li>예약내역조회</li>
+          <li>피드로 이동</li>
+        </ul>
+      </div>
+      <div class="footer-items">
+        <ul>
+          <li><h5>서비스</h5></li>
+          <li>FAQ</li>
+          <li>공지사항</li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="footer-items">
+        <ul>
+          <li><h5>파트너쉽</h5></li>
+          <li>파트너쉽 타투이스트 투자 모집</li>
+        </ul>
+      </div>
+      <div class="footer-items">
+        <ul>
+          <li>
+            <div id="footer-top-icons">
+              <img class="footer-icons" src="@/assets/icons/instagram.png" alt="instagram" />
+            </div>
+          </li>
+          <li>개인정보처리방침</li>
+          <li>이용약관</li>
+          <li>사업자정보확인</li>
+        </ul>
+      </div>
     </section>
 
     <hr/>
@@ -28,7 +51,7 @@
       <span class="footer-bottom-dottoo">2022 Dotto, All rights reserved.</span>
     </section>
 
-    </footer>
+  </footer>
 </template>
 
 <script lang="ts">
@@ -51,27 +74,23 @@ export default class FooterComponent extends Vue {
 
 #footer-top {
   display: flex;
-  justify-content: flex-end;
-  height: 15em;
-  flex-direction: column;
+  justify-content: space-around;
+  height: 16em;
+  flex-direction: row;
   align-items: center;
+  color: #9E9E9E;
+  font-size: 0.9em;
 }
 
-#footer-top-items {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.footer-items {
+  height: 10em;
 }
 
 #footer-top-icons {
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.footer-top-information {
-  margin-top: 2.45em;
-  color: #9E9E9E;
+  margin-bottom: 1em;
 }
 
 .footer-top-information > span {
@@ -100,7 +119,7 @@ export default class FooterComponent extends Vue {
 }
 
 .footer-icons {
-  width: 35px;
+  width: 25px;
 }
 
 
