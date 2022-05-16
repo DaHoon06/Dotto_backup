@@ -1,11 +1,11 @@
 <template>
   <main id="register-container">
     <section id="tab-wrapper">
-      <span @click="changeTab = 0" :class="{ 'active': actV === 0 }">일반 회원</span>
-      <span @click="changeTab = 1" :class="{ 'active': actV === 1 }">타투이스트 회원</span>
+      <span @click="changeTab = 0" >일반 회원</span>
+      <span @click="changeTab = 1" >타투이스트 회원</span>
     </section>
-    <member-register-component v-if="this.changeTab === 0" v-bind:actV = '0' />
-    <tattooist-register-component v-if="this.changeTab === 1" v-bind:actV = '1' />
+    <member-register-component v-if="this.changeTab === 0" />
+    <tattooist-register-component v-if="this.changeTab === 1"  />
   </main>
 </template>
 

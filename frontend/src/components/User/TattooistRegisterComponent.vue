@@ -1,101 +1,104 @@
 <template>
   <section>
 
-    <div>
-      <input
-          @blur="validationEmail"
-          type="text"
-          v-model="email"
-          placeholder="이메일" />
-      <b-form-select
-          v-model="domain"
-          :options="emailList"
-          size="sm" />
-      <button class="register-btn" @click="emailCheck" type="button">중복확인</button>
-    </div>
-    <p class="warning-msg">{{ this.EmailMessage }}</p>
+    <form @click.prevent="register">
+      <div>
+        <input
+            @blur="validationEmail"
+            type="text"
+            v-model="email"
+            placeholder="이메일" />
+        <b-form-select
+            v-model="domain"
+            :options="emailList"
+            size="sm" />
+        <button class="register-btn" @click="emailCheck" type="button">중복확인</button>
+      </div>
+      <p class="warning-msg">{{ this.EmailMessage }}</p>
 
-    <div>
-      <input
-          type="password"
-          @change="validationPassword"
-          v-model="password"
-          placeholder="비밀번호" />
-    </div>
-    <p class="warning-msg">{{ this.PasswordMessage }}</p>
+      <div>
+        <input
+            type="password" autocomplete="off"
+            @change="validationPassword"
+            v-model="password"
+            placeholder="비밀번호" />
+      </div>
+      <p class="warning-msg">{{ this.PasswordMessage }}</p>
 
-    <div>
-      <input
-          type="password"
-          @change="validationPassword"
-          v-model="passwordCheck"
-          placeholder="비밀번호 확인" />
-    </div>
-    <p class="warning-msg">{{ this.PasswordCheckMessage }}</p>
+      <div>
+        <input
+            type="password" autocomplete="off"
+            @change="validationPassword"
+            v-model="passwordCheck"
+            placeholder="비밀번호 확인" />
+      </div>
+      <p class="warning-msg">{{ this.PasswordCheckMessage }}</p>
 
-    <div>
-      <input
-          type="text"
-          @focus="msgClear"
-          v-model="nickName"
-          placeholder="닉네임" />
-      <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
-    </div>
-    <p class="warning-msg">{{ this.NickNameMessage }}</p>
+      <div>
+        <input
+            type="text"
+            @focus="msgClear"
+            v-model="nickName"
+            placeholder="닉네임" />
+        <b-button @click="nickNameCheck" class="register-btn" type="button">중복확인</b-button>
+      </div>
+      <p class="warning-msg">{{ this.NickNameMessage }}</p>
 
-    <div>
-      <input v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
-      <b-button v-b-modal.modal-1 class="mt-2 register-btn">주소찾기</b-button>
-    </div>
+      <div>
+        <input v-model="address" readonly placeholder="작업실 주소를 검색해주세요." />
+        <b-button v-b-modal.modal-1 class="mt-2 register-btn">주소찾기</b-button>
+      </div>
 
-    <b-modal id="modal-1" hide-footer>
-      <template #modal-title>
-        주소 검색
-      </template>
-      <vue-daum-postcode @complete="oncomplete" />
-    </b-modal>
+      <b-modal id="modal-1" hide-footer>
+        <template #modal-title>
+          주소 검색
+        </template>
+        <vue-daum-postcode @complete="oncomplete" />
+      </b-modal>
 
-    <div>
-      <input v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
-    </div>
+      <div>
+        <input v-model="detail_address" placeholder="작업실 상세주소를 입력해주세요." />
+      </div>
 
-    <div>
-      <button class="register-btn">작업실 및 소개 이미지 등록</button>
-    </div>
-    <div>
-      <b-form-file id="file-small" placeholder="TEST" v-model="tattooSpot" size="sm"></b-form-file>
-    </div>
+      <div>
+        <button class="register-btn">작업실 및 소개 이미지 등록</button>
+      </div>
+      <div>
+        <b-form-file id="file-small" placeholder="TEST" v-model="tattooSpot" size="sm"></b-form-file>
+      </div>
 
-    <div>
-      <input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
-      <button class="register-btn">인증번호받기</button>
-    </div>
-    <div>
-      <input type="text" placeholder="인증번호입력" />
-      <button class="register-btn">인증하기</button>
-    </div>
+      <div>
+        <input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
+        <button class="register-btn">인증번호받기</button>
+      </div>
+      <div>
+        <input type="text" placeholder="인증번호입력" />
+        <button class="register-btn">인증하기</button>
+      </div>
 
 
-    <div>
-      <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />
-      <label for="male">남성</label>
-      <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
-      <label for="female">여성</label>
-      <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
-      <label for="empty">선택안함</label>
-    </div>
+      <div>
+        <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />
+        <label for="male">남성</label>
+        <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
+        <label for="female">여성</label>
+        <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
+        <label for="empty">선택안함</label>
+      </div>
 
-    <div>
-      <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
-    </div>
-    <div>
-      <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
-    </div>
+      <div>
+        <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
+      </div>
+      <div>
+        <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
+      </div>
+    </form>
+
   </section>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
 import { VueDaumPostcode } from "vue-daum-postcode";
 
@@ -105,8 +108,6 @@ import { VueDaumPostcode } from "vue-daum-postcode";
   }
 })
 export default class TattooistRegisterComponent extends Vue {
-  @Prop() type?: string;
-
   email: string;
   password: string;
   passwordCheck: string;
@@ -123,7 +124,7 @@ export default class TattooistRegisterComponent extends Vue {
   address: string;
   detail_address:string;
   gender: string;
-  tattooSpot: string;
+  tattooSpot: Array;
 
   constructor() {
     super();
@@ -132,7 +133,7 @@ export default class TattooistRegisterComponent extends Vue {
     this.passwordCheck = '';
     this.nickName = '';
     this.phone = '';
-    this.tattooSpot = '';
+    this.tattooSpot = [];
     this.emailList = [
       { value: 'gmail.com', text: 'gmail.com', },
       { value: 'naver.com', text: 'naver.com', },
@@ -260,6 +261,7 @@ export default class TattooistRegisterComponent extends Vue {
       this.nickName = '';
     }
   }
+
   private set NickNameMessage(msg: string) {
     this.nickNameMessage = msg
   }
