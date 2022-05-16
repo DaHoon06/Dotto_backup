@@ -7,13 +7,13 @@
     <section id="modal-body">
       <component
           :is="dynamicView"
-          @modalType="changeModalType" />
+          @modalTypeRegister="changeModalType" />
     </section>
   </main>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import {Component, Emit, Prop, Vue} from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 
@@ -34,32 +34,45 @@ export default class ModalComponent extends Vue {
     super();
   }
 
+  private created() {
+    console.log(this.modalType);
+    this.init();
+  }
+
+  private init(){
+    if (this.modalType === 'Register') {
+      this.modalTypeComputed = 'Register';
+    } else {
+      this.modalTypeComputed = 'Login';
+    }
+  }
+
+
   private closeModalOuter() {
     window.addEventListener('click', this.resetModal);
   }
 
   private resetModal(e: any) {
     if (e.target.parentNode === this.$refs.modalContainer) {
+      this.modalTypeComputed = 'Login';
       this.$emit('closeModal');
     }
   }
 
-  private changeModalType(type: string) {
-    this.modalType = type;
+  private changeModalType(modalTypeRegister: string) {
+    this.modalTypeComputed = modalTypeRegister;
   }
 
-  set modalTypeComputed(type: string) {
+  private set modalTypeComputed(type: string) {
     this.type = type;
   }
 
-  get modalTypeComputed() {
+  private get modalTypeComputed() {
     return this.type;
   }
 
-  get dynamicView() {
-    // if (this.modalType) this.modalTypeComputed(this.modalType);
-
-    switch (this.modalType) {
+  private get dynamicView() {
+    switch (this.modalTypeComputed) {
       case 'Register':
         return RegisterView;
       case 'Login':

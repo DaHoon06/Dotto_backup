@@ -63,7 +63,6 @@
           @closeModal="closeModal" />
     </transition>
 
-
   </header>
 </template>
 

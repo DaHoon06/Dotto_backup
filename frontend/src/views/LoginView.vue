@@ -9,7 +9,7 @@
           <input @focus="clearMsg" class="login-info" type="text" v-model="email" placeholder="아이디" />
         </p>
         <p>
-          <input @focus="clearMsg" class="login-info" type="password" v-model="password" placeholder="비밀번호" />
+          <input @focus="clearMsg" class="login-info" autocomplete="off" type="password" v-model="password" placeholder="비밀번호" />
         </p>
         <p style="color: red; font-size: 6px;" class="text-center">{{ this.loginFailed }}</p>
         <p>
@@ -33,16 +33,6 @@
       <p id="simple-login" class="login-router">간편 회원가입</p>
       <article id="simple-login-icons">
         <ul id="login-btn-img">
-<!--          <li>-->
-<!--            <button>-->
-<!--              <img src="@/assets/login/naver.png" alt="naver" />-->
-<!--            </button>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <button>-->
-<!--              <img src="@/assets/login/facebook.png" alt="facebook" />-->
-<!--            </button>-->
-<!--          </li>-->
           <li>
             <GoogleLogin :params="params" :onSuccess="googleLogin">
               <img src="@/assets/login/Google.png" alt="google" />
@@ -77,11 +67,10 @@ export default class LoginView extends Vue {
   password = '';
   save = false;
   loginFailedMsg = '';
-  modalType = '';
+  modalTypeRegister = '';
   $gAuth: any;
   params = {
-    // client_id: process.env.GOOGLE_KEY
-    client_id: '77854822346-ogb042ak8gh3246d736e1lfj7hmdpjhk.apps.googleusercontent.com'
+    client_id: process.env.GOOGLE_KEY
   }
 
   constructor() {
@@ -176,9 +165,9 @@ export default class LoginView extends Vue {
     }
   }
 
-  @Emit('modalType')
+  @Emit('modalTypeRegister')
   private showRegisterView() {
-    return this.modalType = 'Register';
+    return this.modalTypeRegister = 'Register';
   }
 
   private set loginFailed(msg) {
