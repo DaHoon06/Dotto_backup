@@ -3,8 +3,11 @@
       id="modal"
       v-if="showModal"
       ref="modalContainer"
-      @click="closeModalOuter">
-    <section id="modal-body">
+      @click="closeModalOuter"
+  >
+    <section
+        class="modal-body"
+        :class="this.modalTypeComputed === 'Register' ? 'modal-body-register' : ''">
       <component
           :is="dynamicView"
           @modalTypeRegister="changeModalType" />
@@ -30,12 +33,13 @@ export default class ModalComponent extends Vue {
   @Prop()
   showModal?: boolean;
 
+
+
   constructor() {
     super();
   }
 
   private created() {
-    console.log(this.modalType);
     this.init();
   }
 
@@ -93,7 +97,7 @@ export default class ModalComponent extends Vue {
   z-index: 20;
 }
 
-#modal-body {
+.modal-body {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -105,5 +109,11 @@ export default class ModalComponent extends Vue {
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
+}
+
+.modal-body-register {
+  width: 520px;
+  height: 650px;
+  top: 46%;
 }
 </style>

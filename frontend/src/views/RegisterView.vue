@@ -1,8 +1,11 @@
 <template>
   <main id="register-container">
     <section id="tab-wrapper">
-      <span @click="changeTab = 0" >일반 회원</span>
-      <span @click="changeTab = 1" >타투이스트 회원</span>
+      <span id="modal-register-close-btn">X</span>
+      <div class="register-tabs">
+        <span @click="changeTab = 0" >일반 회원</span>
+        <span @click="changeTab = 1" >타투이스트 회원</span>
+      </div>
     </section>
     <member-register-component v-if="this.changeTab === 0" />
     <tattooist-register-component v-if="this.changeTab === 1"  />
@@ -51,25 +54,31 @@ export default class RegisterView extends Vue {
 </script>
 
 <style scoped>
+
 #register-container {
   margin:auto;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
 
 }
 #tab-wrapper {
-
+  display: flex;
 }
 #tab-wrapper span {
   margin-left: 0.5em;
 }
-#tab-wrapper span:first-child::after {
+#tab-wrapper div span:nth-child(1)::after {
   content: '|';
   font-weight: 500;
 }
 #tab-wrapper span:hover {
   color: #E2E2E2;
   cursor: pointer;
+}
+#modal-register-close-btn {
+
+}
+.register-tabs {
+  margin-left: 7em;
 }
 
 </style>
