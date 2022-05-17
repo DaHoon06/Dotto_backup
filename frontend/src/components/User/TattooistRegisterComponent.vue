@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section id="tattooist-register-wrapper" >
 
-    <form @click.prevent="register">
+    <form id="tattooist-register-from" @click.prevent="register">
       <div>
         <input
             @blur="validationEmail"
@@ -64,7 +64,7 @@
         <button class="register-btn">작업실 및 소개 이미지 등록</button>
       </div>
       <div>
-        <b-form-file id="file-small" placeholder="TEST" v-model="tattooSpot" size="sm"></b-form-file>
+        <b-form-file id="file-small" v-model="tattooSpot" size="sm"></b-form-file>
       </div>
 
       <div>
@@ -90,7 +90,7 @@
         <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
       </div>
       <div>
-        <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
+        <button class="register-btn" id="register-submit" type="submit">가입하기</button>
       </div>
     </form>
 
@@ -292,6 +292,17 @@ export default class TattooistRegisterComponent extends Vue {
 </script>
 
 <style scoped>
+#tattooist-register-wrapper {
+  height: 90%;
+}
+#tattooist-register-from {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 4em;
+}
 #register-submit {
   width: 100%;
 }

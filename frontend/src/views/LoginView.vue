@@ -34,7 +34,9 @@
       <article id="simple-login-icons">
         <ul id="login-btn-img">
           <li>
-            <GoogleLogin :params="params" :onSuccess="googleLogin">
+            <GoogleLogin :params="params"
+                         :onSuccess="googleLoginSuccess"
+            :onFailure="googleLoginFailure">
               <img src="@/assets/login/Google.png" alt="google" />
             </GoogleLogin>
             <button>
@@ -55,7 +57,7 @@
 <script lang="ts">
 import { Vue, Component, Emit } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
-import GoogleLogin from 'vue-google-login';
+import { GoogleLogin } from 'vue-google-login';
 
 @Component({
   components: {
@@ -69,8 +71,10 @@ export default class LoginView extends Vue {
   loginFailedMsg = '';
   modalTypeRegister = '';
   $gAuth: any;
+
   params = {
-    client_id: process.env.GOOGLE_KEY
+    // client_id: process.env.GOOGLE_KEY
+    client_id: '77854822346-ogb042ak8gh3246d736e1lfj7hmdpjhk.apps.googleusercontent.com'
   }
 
   constructor() {
@@ -122,15 +126,18 @@ export default class LoginView extends Vue {
     this.loginFailed = '';
   }
 
-  private async googleLogin(googleUser: any): Promise<void> {
-    try {
-      console.log(googleUser);
-    } catch (e) {
-      console.error(e);
-    }
+  private googleLoginSuccess(googleUser: any): void {
+    console.log('TEST')
+    console.log(googleUser);
+    console.log(googleUser)
+    console.log('-----------')
+    console.log(googleUser.getBasicProfile());
+  }
+  private googleLoginFailure(test: any) {
+    console.log(test,'실패')
   }
 
-  private async kakaoLogin(): Promise<void> {
+  private kakaoLogin(): void {
     window.Kakao.init(process.env.KAKAO_KEY);
 
     if (window.Kakao.Auth.getAccessToken()) {

@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <form @click.prevent="register">
+  <section id="member-register-wrapper" >
+    <form id="member-register-form" @click.prevent="register">
       <div>
         <input
             @blur="validationEmail"
@@ -67,7 +67,7 @@
         <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
       </div>
       <div>
-        <button class="register-btn" id="register-submit" type="button" @click="register">가입하기</button>
+        <button class="register-btn" id="register-submit" type="submit">가입하기</button>
       </div>
    </form>
   </section>
@@ -249,7 +249,23 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
+input {
+  border: none;
+  background: none;
+  border-bottom: 1px solid gray;
+}
 
+#member-register-wrapper {
+  height: 90%;
+}
+#member-register-form {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 4em;
+}
 #register-submit {
   width: 100%;
 }
