@@ -7,16 +7,17 @@
   >
     <section
         class="modal-body"
-        :class="this.modalTypeComputed === 'Register' ? 'modal-body-register' : ''">
+        :class="this.modalTypeComputed === 'Login' ? '' : 'modal-body-register'">
       <component
           :is="dynamicView"
+          @closeModal="closeModal"
           @modalTypeRegister="changeModalType" />
     </section>
   </main>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import TermsComponent from "@/components/User/TermsComponent.vue";
@@ -58,6 +59,10 @@ export default class ModalComponent extends Vue {
 
   private closeModalOuter() {
     window.addEventListener('click', this.resetModal);
+  }
+  private closeModal() {
+    this.modalTypeComputed = 'Login';
+    this.$emit('closeModal');
   }
 
   private resetModal(e: any) {

@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Emit, Vue} from "vue-property-decorator";
 
 @Component
 export default class TermsComponent extends Vue {
@@ -76,9 +76,14 @@ export default class TermsComponent extends Vue {
   }
 
   private redirectRegisterForm(): void {
-    if (!this.checkList1 || !this.checkList2) alert('필수 선택사항을 체크해 주세요.');
-    else console.log('선택값 저장 후 회원가입 폼으로 이동');
+    if (!this.checkList1 || !this.checkList2) {
+      alert('필수 선택사항을 체크해 주세요.');
+      return false;
+    } else {
+      this.$emit('modalTypeRegister', 'RegisterForm')
+    }
   }
+
   private checkBox() {
     this.checkItem1Computed = this.checkList1;
     this.checkItem2Computed = this.checkList2;
@@ -197,20 +202,28 @@ input + label {
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 1px solid #bcbcbc;
+  border: 2px solid #dedede;
   cursor: pointer;
   border-radius: 45px;
 }
-
-input:checked + label::after {
+input + label::after {
   content: '✓';
   font-weight: 600;
-  color: #229d17;
-  font-size: 14px;
+  color: #dedede;
+  font-size: 12px;
+  position: relative;
+  left: 1px;
+  bottom: 5px;
+}
+input:checked + label::after {
+  content: '✓';
+  font-weight: 1000;
+  color: #1dbe0f;
+  font-size: 13px;
   position: relative;
   bottom: 5px;
 }
 input:checked + label {
-  border: 2px solid #229d17;
+  border: 2px solid #1dbe0f;
 }
 </style>
