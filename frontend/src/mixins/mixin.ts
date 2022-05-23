@@ -6,15 +6,19 @@ import store from '@/store';
 export class Mixin extends Vue {
     public $store = store;
 
-    get userId() {
+    get userId(): string {
         return '';
     }
 
-    get token() {
+    get token(): string {
         return '';
     }
 
-    get isLogin() {
+    get isLogin(): boolean {
         return false;
+    }
+
+    cancel(): void {
+        return this.$router.go(-1);
     }
 }

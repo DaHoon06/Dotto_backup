@@ -16,14 +16,16 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from "vue-property-decorator";
+import {Component, Prop, Vue} from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
+import TermsComponent from "@/components/User/TermsComponent.vue";
 
 @Component({
   components: {
     LoginView,
-    RegisterView
+    RegisterView,
+    TermsComponent
   }
 })
 export default class ModalComponent extends Vue {
@@ -46,6 +48,8 @@ export default class ModalComponent extends Vue {
   private init(){
     if (this.modalType === 'Register') {
       this.modalTypeComputed = 'Register';
+    } else if(this.modalType === 'RegisterForm') {
+      this.modalTypeComputed = 'RegisterForm';
     } else {
       this.modalTypeComputed = 'Login';
     }
@@ -78,7 +82,9 @@ export default class ModalComponent extends Vue {
   private get dynamicView() {
     switch (this.modalTypeComputed) {
       case 'Register':
-        return RegisterView;
+        return TermsComponent;
+      case 'RegisterForm':
+          return RegisterView;
       case 'Login':
         return LoginView
     }
@@ -113,7 +119,7 @@ export default class ModalComponent extends Vue {
 
 .modal-body-register {
   width: 520px;
-  height: 650px;
+  height: 800px;
   top: 46%;
 }
 </style>
