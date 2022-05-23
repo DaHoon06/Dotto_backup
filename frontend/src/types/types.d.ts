@@ -1,7 +1,7 @@
 import Vue from "vue";
 
 declare module 'vue-google-oauth2' {}
-declare module 'vue-google-login' {}s
+declare module 'vue-google-login' {}
 
 declare global {
     interface Window {

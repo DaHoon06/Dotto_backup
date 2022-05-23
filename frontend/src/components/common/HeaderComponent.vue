@@ -45,7 +45,7 @@
           <button id="show-btn" @click="showLoginView" >
             <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
           </button>
-          <span class="nav-icon-label">LOGIN</span>
+          <span class="nav-icon-label login-label" @click="showLoginView">LOGIN</span>
         </li>
         <li v-else>
           <div id="my-page">
@@ -213,7 +213,10 @@ ul li {
   width: 24px;
   margin-top: 0.4em;
 }
-
+.login-label:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
 #menu-button-container {
   display: none;
 }

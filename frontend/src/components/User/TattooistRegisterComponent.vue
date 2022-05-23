@@ -124,7 +124,7 @@ export default class TattooistRegisterComponent extends Vue {
   address: string;
   detail_address:string;
   gender: string;
-  tattooSpot: Array;
+  tattooSpot: string[];
 
   constructor() {
     super();
