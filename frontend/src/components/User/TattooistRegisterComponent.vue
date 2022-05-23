@@ -1,7 +1,7 @@
 <template>
   <section id="tattooist-register-wrapper" >
 
-    <form id="tattooist-register-from" @click.prevent="register">
+    <form id="tattooist-register-from" @submit.prevent="register">
       <div>
         <input
             @blur="validationEmail"

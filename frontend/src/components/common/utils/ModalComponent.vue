@@ -124,7 +124,8 @@ export default class ModalComponent extends Vue {
 
 .modal-body-register {
   width: 520px;
-  height: 800px;
-  top: 46%;
+  height: 700px;
+  top: 50%;
+  padding: 50px 30px;
 }
 </style>

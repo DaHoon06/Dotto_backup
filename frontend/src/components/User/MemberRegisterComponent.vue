@@ -1,6 +1,6 @@
 <template>
   <section id="member-register-wrapper" >
-    <form id="member-register-form" @click.prevent="register">
+    <form id="member-register-form" @submit.prevent="register">
       <div>
         <input
             @blur="validationEmail"

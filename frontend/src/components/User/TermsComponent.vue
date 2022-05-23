@@ -134,7 +134,8 @@ export default class TermsComponent extends Vue {
 <style scoped>
 #terms-container {
   display: flex;
-  justify-content: space-around;
+  overflow-y: auto;
+  justify-content: space-between;
   flex-direction: column;
   height: 100%;
 }
