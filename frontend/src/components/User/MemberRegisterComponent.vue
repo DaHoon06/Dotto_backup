@@ -171,28 +171,25 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   async register(): Promise<void> {
-    if (this.agree){
-      const sendData: IUser.IRegisterProp = {
-        nickname: this.nickName,
-        password: this.password,
-        id: this.id,
-        phone: this.phone,
-        gender: this.gender,
-      };
+    const sendData: IUser.IRegisterProp = {
+      nickname: this.nickName,
+      password: this.password,
+      id: this.id,
+      phone: this.phone,
+      gender: this.gender,
+    };
 
-      //TODO: 반환 data에 대한 타입 정의
-      const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
-      const { success } = data;
-      if (success) {
-        await this.$router.push({
-          path: '/login'
-        })
-      } else {
-        alert('ERROR');
-      }
+    //TODO: 반환 data에 대한 타입 정의
+    const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
+    const { success } = data;
+    if (success) {
+      await this.$router.push({
+        path: '/login'
+      })
     } else {
-      alert('약관에 동의해주세요.');
+      alert('ERROR');
     }
+
   }
 
   msgClear(): void{

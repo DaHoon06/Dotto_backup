@@ -92,7 +92,7 @@ export default class TermsComponent extends Vue {
   }
 
   @Emit('closeModal')
-  private cancelRegistration(): void | boolean {
+  private cancelRegistration(): boolean {
     return confirm('가입을 취소하시겠습니까?');
   }
 
