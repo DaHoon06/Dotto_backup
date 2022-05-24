@@ -14,7 +14,7 @@ import { Mixin } from "@/mixins/mixin";
 import dotenv from 'dotenv';
 import { LoaderPlugin } from 'vue-google-login';
 
-import '@/assets/styles/registerForm.css';
+import '@/assets/styles/index.css';
 
 
 dotenv.config();

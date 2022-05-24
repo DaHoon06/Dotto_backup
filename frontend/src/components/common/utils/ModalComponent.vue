@@ -4,7 +4,6 @@
       v-if="showModal"
       ref="modalContainer"
       @click="closeModalOuter"
-
   >
     <section
         class="modal-body"
