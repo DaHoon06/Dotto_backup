@@ -269,13 +269,7 @@ export default class TattooistRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-.input-text {
-  border: 1px solid #eeeeee;
-  background: #f5f5f5;
-  height: 40px;
-  width: 75%;
-  padding-left: 10px;
-}
+@import "./assets/styles/registerForm.css";
 
 .input-wrapper {
   display: flex;
@@ -305,49 +299,11 @@ export default class TattooistRegisterComponent extends Vue {
   justify-content: center;
   margin: 0 2em;
 }
-.register-submit {
-  width: 100%;
-}
-#register-submit-btn {
-  width: 100%;
-  height: 35px;
-}
 
-.register-btn {
-  border: 1px solid #b2b2b2;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px #b2b2b2;
-  color: #eeeeee;
-  background: #222222;
-  font-size: 8px;
-  height: 30px;
-  width: 90px;
-  padding: 6px 6px 6px 6px;
-}
-.register-btn:hover {
-  cursor: pointer;
-  background: #797979;
-}
 #first-phone-wrapper {
   margin-top: 20px;
 }
-.phone-wrapper {
-  margin-top: 5px;
-}
 
-#gender-wrapper {
-  margin: 10px 0;
-}
-.warning-msg {
-  padding: 5px 0;
-  display: block;
-  font-size: 7px;
-  color: red;
-  min-height: 23px;
-  max-height: 23px;
-  width: 51.2em;
-  text-align: left;
-}
 
 #img-registration-btn {
   width: 100%;

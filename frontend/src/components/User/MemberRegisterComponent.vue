@@ -231,24 +231,12 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-.input-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.input-text {
-  border: 1px solid #eeeeee;
-  background: #f5f5f5;
-  height: 40px;
-  width: 75%;
-  padding-left: 10px;
-}
+@import "./assets/styles/registerForm.css";
 
 #member-register-wrapper {
   height: 90%;
 }
+
 #member-register-form {
   height: 95%;
   display: flex;
@@ -256,48 +244,5 @@ export default class MemberRegisterComponent extends Vue {
   align-items: flex-start;
   justify-content: flex-start;
   margin: 0 2em;
-}
-
-.register-btn {
-  border: 1px solid #b2b2b2;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px #b2b2b2;
-  color: #eeeeee;
-  background: #222222;
-  font-size: 8px;
-  height: 30px;
-  width: 90px;
-  padding: 6px 6px 6px 6px;
-}
-
-.register-submit {
-  width: 100%;
-}
-#register-submit-btn {
-  width: 100%;
-  height: 35px;
-}
-
-.register-btn:hover {
-  cursor: pointer;
-  background: #05152f;
-}
-
-.warning-msg {
-  padding: 5px 0;
-  display: block;
-  font-size: 7px;
-  color: red;
-  min-height: 23px;
-  max-height: 23px;
-  width: 51.2em;
-  text-align: left;
-}
-
-.phone-wrapper {
-  margin-top: 5px;
-}
-#gender-wrapper {
-  margin: 10px 0;
 }
 </style>

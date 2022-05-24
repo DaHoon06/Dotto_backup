@@ -1,5 +1,5 @@
 <template>
-  <header id="navBar-container">
+  <header id="navBar-container" >
 
     <section>
       <ul>
@@ -60,7 +60,8 @@
           :modalType="modalType"
           :showModal="showModal"
           @modalType="modalType"
-          @closeModal="closeModal" />
+          @closeModal="closeModal"
+          />
     </transition>
 
   </header>
@@ -241,6 +242,13 @@ ul li {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.notScroll {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1260px) {

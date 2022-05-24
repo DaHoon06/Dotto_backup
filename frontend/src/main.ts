@@ -14,6 +14,8 @@ import { Mixin } from "@/mixins/mixin";
 import dotenv from 'dotenv';
 import { LoaderPlugin } from 'vue-google-login';
 
+import '@/assets/styles/registerForm.css';
+
 dotenv.config();
 
 Vue.config.productionTip = false
