@@ -6,7 +6,7 @@
     <section class="login-info-section">
       <form @submit.prevent="login">
         <p>
-          <input @focus="clearMsg" class="login-info" type="text" v-model="email" placeholder="아이디" />
+          <input @focus="clearMsg" class="login-info" type="text" v-model="id" placeholder="아이디" />
         </p>
         <p>
           <input @focus="clearMsg" class="login-info" autocomplete="off" type="password" v-model="password" placeholder="비밀번호" />
@@ -65,7 +65,7 @@ import { GoogleLogin } from 'vue-google-login';
   }
 })
 export default class LoginView extends Vue {
-  email = '';
+  id = '';
   password = '';
   save = false;
   loginFailedMsg = '';
@@ -73,8 +73,7 @@ export default class LoginView extends Vue {
   $gAuth: any;
 
   params = {
-    // client_id: process.env.GOOGLE_KEY
-    client_id: '77854822346-ogb042ak8gh3246d736e1lfj7hmdpjhk.apps.googleusercontent.com'
+    client_id: process.env.GOOGLE_KEY
   }
 
   constructor() {
@@ -87,7 +86,7 @@ export default class LoginView extends Vue {
 
   async login(): Promise<void> {
     const sendData: IUser.ILoginProp = {
-      email: this.email,
+      id: this.id,
       password: this.password
     };
     const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
@@ -104,16 +103,16 @@ export default class LoginView extends Vue {
 
   saveId(): void{
     if(this.save) {
-      this.$cookies.set('emailCookie',this.email,'1d');
+      this.$cookies.set('idCookie',this.id,'30d');
     } else {
-      this.$cookies.remove('emailCookie');
-      this.email = '';
+      this.$cookies.remove('idCookie');
+      this.id = '';
     }
   }
 
   getCookie(): void {
-    if(this.$cookies.isKey('emailCookie')){
-      this.email = this.$cookies.get('emailCookie');
+    if(this.$cookies.isKey('idCookie')){
+      this.id = this.$cookies.get('idCookie');
       this.save = true;
     }
   }

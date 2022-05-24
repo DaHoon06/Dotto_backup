@@ -2,7 +2,7 @@ export namespace IUser {
     export interface IRegisterProp{
         nickname: string,
         password: string,
-        email: string;
+        id: string;
         phone: string;
         gender: string;
     }
@@ -13,7 +13,7 @@ export namespace IUser {
     }
 
     export interface ILoginProp {
-        email: string,
+        id: string,
         password: string
     }
 
@@ -21,7 +21,7 @@ export namespace IUser {
         result: boolean,
         token: string,
         nickname: string,
-        email: string,
+        id: string,
         loginType: string,
     }
 

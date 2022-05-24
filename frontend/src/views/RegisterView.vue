@@ -3,12 +3,13 @@
     <section id="tab-wrapper">
       <span id="modal-register-close-btn" @click="closeForm">X</span>
       <div class="register-tabs">
-        <span @click="changeTab = 0" >일반 회원</span>
-        <span @click="changeTab = 1" >타투이스트 회원</span>
+        <span @click="changeTab = 0" :class="{ 'currentPage' : changeTab === 0 }" >일반 회원</span>
+        <span @click="changeTab = 1" :class="{ 'currentPage' : changeTab === 1 }" >타투이스트 회원</span>
       </div>
     </section>
-    <member-register-component v-if="this.changeTab === 0" />
-    <tattooist-register-component v-if="this.changeTab === 1"  />
+
+    <member-register-component v-if="changeTab === 0" />
+    <tattooist-register-component v-if="changeTab === 1" />
   </main>
 </template>
 
@@ -39,6 +40,7 @@ export default class RegisterView extends Vue {
   constructor() {
     super();
     this.type = 0;
+
   }
 
   private get changeTab() {
@@ -67,23 +69,34 @@ export default class RegisterView extends Vue {
 }
 #tab-wrapper {
   display: flex;
+  margin-bottom: 3em;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 10px;
 }
 #tab-wrapper span {
   margin-left: 0.5em;
+  text-shadow: 1px 1px 1px #c9c9c9;
 }
-#tab-wrapper div span:nth-child(1)::after {
-  content: '|';
-  font-weight: 500;
-}
+
 #tab-wrapper span:hover {
-  color: #E2E2E2;
+  color: #888888;
   cursor: pointer;
 }
 #modal-register-close-btn {
-
+  width: 5%;
 }
 .register-tabs {
-  margin-left: 7em;
+  width: 95%;
+}
+.register-tabs span {
+  color: #eeeeee;
+}
+.register-tabs span:nth-child(1) {
+  margin-right: 1.3em;
+}
+.currentPage {
+  font-weight: 700;
+  color: #606060 !important;
 }
 
 </style>
