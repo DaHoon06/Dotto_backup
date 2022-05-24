@@ -16,6 +16,7 @@ import { LoaderPlugin } from 'vue-google-login';
 
 import '@/assets/styles/registerForm.css';
 
+
 dotenv.config();
 
 Vue.config.productionTip = false

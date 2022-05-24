@@ -269,8 +269,6 @@ export default class TattooistRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-@import "./assets/styles/registerForm.css";
-
 .input-wrapper {
   display: flex;
   flex-direction: row;

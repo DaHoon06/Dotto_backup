@@ -231,8 +231,6 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-@import "./assets/styles/registerForm.css";
-
 #member-register-wrapper {
   height: 90%;
 }
