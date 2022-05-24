@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Vue} from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 
 @Component
 export default class TermsComponent extends Vue {
@@ -75,7 +75,7 @@ export default class TermsComponent extends Vue {
 
   }
 
-  private redirectRegisterForm(): void {
+  private redirectRegisterForm(): boolean | void {
     if (!this.checkList1 || !this.checkList2) {
       alert('필수 선택사항을 체크해 주세요.');
       return false;
@@ -134,7 +134,8 @@ export default class TermsComponent extends Vue {
 <style scoped>
 #terms-container {
   display: flex;
-  justify-content: space-around;
+  overflow-y: auto;
+  justify-content: space-between;
   flex-direction: column;
   height: 100%;
 }

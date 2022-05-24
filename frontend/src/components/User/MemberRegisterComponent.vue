@@ -1,61 +1,61 @@
 <template>
   <section id="member-register-wrapper" >
-    <form id="member-register-form" @click.prevent="register">
-      <div>
+    <form id="member-register-form" @submit.prevent="register">
+      <div class="input-wrapper">
         <input
-            @blur="validationEmail"
+            @blur="validationId"
             type="text"
-            v-model="email"
-            placeholder="이메일" />
-        <b-form-select
-            v-model="domain"
-            :options="emailList"
-            size="sm" />
-        <button class="register-btn" @click="emailCheck" type="button">중복확인</button>
+            v-model="id"
+            placeholder="아이디"
+            class="input-text" />
+        <button class="register-btn" @click="idCheck" type="button">중복확인</button>
       </div>
 
-      <p class="warning-msg">{{ this.EmailMessage }}</p>
+      <div class="warning-msg">{{ IdMessage }}</div>
 
-      <div>
+      <div class="input-wrapper">
         <input
             type="password" autocomplete="off"
             @change="validationPassword"
             v-model="password"
-            placeholder="비밀번호" />
+            placeholder="비밀번호"
+            class="input-text" />
       </div>
-      <p class="warning-msg">{{ this.PasswordMessage }}</p>
+      <div class="warning-msg">{{ PasswordMessage }}</div>
 
-      <div>
+      <div class="input-wrapper">
         <input
             type="password" autocomplete="off"
             @change="validationPassword"
             v-model="passwordCheck"
-            placeholder="비밀번호 확인" />
+            placeholder="비밀번호 확인"
+            class="input-text" />
       </div>
-      <p class="warning-msg">{{ this.PasswordCheckMessage }}</p>
+      <div class="warning-msg">{{ PasswordCheckMessage }}</div>
 
-      <div>
+      <div class="input-wrapper">
         <input
             type="text"
             @focus="msgClear"
             v-model="nickName"
-            placeholder="닉네임" />
+            placeholder="닉네임"
+            class="input-text" />
         <button @click="nickNameCheck" class="register-btn" type="button">중복확인</button>
       </div>
-      <p class="warning-msg">{{ this.NickNameMessage }}</p>
+      <div class="warning-msg">{{ NickNameMessage }}</div>
 
-      <div>
-        <input type="text" v-model="phone" placeholder="휴대폰번호 입력" />
+      <div class="input-wrapper" >
+        <input type="text" class="input-text" v-model="phone" placeholder="휴대폰번호 입력" />
         <button class="register-btn">인증번호받기</button>
       </div>
 
-      <div>
-        <input type="text" placeholder="인증번호 입력" />
+      <div class="input-wrapper  phone-wrapper">
+        <input type="text" class="input-text" placeholder="인증번호 입력" />
         <button class="register-btn">인증하기</button>
       </div>
 
-      <div class="col-12 mt-2">
-        <input class="selected-gender ml-1" type="radio" id="male" v-model="gender" value="male" name="male" />
+      <div id="gender-wrapper">
+        <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />
         <label for="male">남성</label>
         <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
         <label for="female">여성</label>
@@ -63,11 +63,9 @@
         <label for="empty">선택안함</label>
       </div>
 
-      <div>
-        <input type="checkbox" v-model="agree"> 이용약관 및 개인정보 처리 방침에 동의합니다.
-      </div>
-      <div>
-        <button class="register-btn" id="register-submit" type="submit">가입하기</button>
+
+      <div class="register-submit">
+        <button class="register-btn" id="register-submit-btn" type="submit">가입하기</button>
       </div>
    </form>
   </section>
@@ -81,71 +79,56 @@ import { IUser } from "@/interfaces/IUser";
 export default class MemberRegisterComponent extends Vue {
   @Prop() type?: string;
 
-  email: string;
+  id: string;
   password: string;
   passwordCheck: string;
   nickName: string;
   phone: string;
-  emailList: IUser.SelectedOptions[];
-  domain: string;
   agree: boolean;
-  concatEmail: string;
   nickNameMessage: string;
   passwordMessage: string;
   passwordCheckMessage: string;
-  emailMessage: string;
+  idMessage: string;
   gender: string;
 
   constructor() {
     super();
-    this.email = '';
+    this.id = '';
     this.password = '';
     this.passwordCheck = '';
     this.nickName = '';
     this.phone = '';
-    this.emailList = [
-      { value: 'gmail.com', text: 'gmail.com', },
-      { value: 'naver.com', text: 'naver.com', },
-      { value: 'daum.net', text: 'daum.net', },
-      { value: 'nate.com', text: 'nate.com', },
-    ];
-    this.domain = '';
     this.agree = false;
-    this.concatEmail = '';
     this.nickNameMessage = '';
     this.passwordMessage = '';
     this.passwordCheckMessage = '';
-    this.emailMessage = '';
+    this.idMessage = '';
     this.gender = '';
   }
 
-  private validationEmail(): void {
+  private validationId(): void {
     // 이메일 풀 주소 정규식 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
     const reg = /^[a-zA-Z0-9]*$/;
     let msg = '';
-    if (!reg.test(this.email)) {
+    if (!reg.test(this.id)) {
       msg = '이메일 주소를 정확히 입력해주세요.'
-      this.EmailMessage = msg;
-      this.email = '';
+      this.IdMessage = msg;
+      this.id = '';
     } else {
       msg = '';
-      this.EmailMessage = msg;
+      this.IdMessage = msg;
     }
   }
 
-  async emailCheck(): Promise<void> {
-    this.email = this.joinEmail();
-    const { data } = await this.axios.get('/members/readEmail', {
+  async idCheck(): Promise<void> {
+
+    const { data } = await this.axios.get('/members/readId', {
       params: {
-        email: this.email,
+        id: this.id,
       }
     })
     const { result } = data;
     console.log(result);
-  }
-
-  private joinEmail(): string{
-    return this.concatEmail = this.email.concat('@').concat(this.domain);
   }
 
   async nickNameCheck(): Promise<void> {
@@ -170,7 +153,7 @@ export default class MemberRegisterComponent extends Vue {
     let msg = '';
     const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
-    if(!reg.test(this.password)) {
+    if(!reg.test(this.password) && this.password.length) {
       msg = '하나 이상의 문자, 하나의 숫자 및 특수문자를 조합하여 8자 이상 입력해주세요.';
       this.PasswordMessage = msg;
     } else {
@@ -189,11 +172,10 @@ export default class MemberRegisterComponent extends Vue {
 
   async register(): Promise<void> {
     if (this.agree){
-      this.joinEmail()
       const sendData: IUser.IRegisterProp = {
         nickname: this.nickName,
         password: this.password,
-        email: this.concatEmail,
+        id: this.id,
         phone: this.phone,
         gender: this.gender,
       };
@@ -237,11 +219,11 @@ export default class MemberRegisterComponent extends Vue {
   private get PasswordCheckMessage() {
     return this.passwordCheckMessage;
   }
-  private set EmailMessage(msg: string) {
-    this.emailMessage = msg;
+  private set IdMessage(msg: string) {
+    this.idMessage = msg;
   }
-  private get EmailMessage() {
-    return this.emailMessage;
+  private get IdMessage() {
+    return this.idMessage;
   }
 
 
@@ -249,47 +231,16 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-input {
-  border: none;
-  background: none;
-  border-bottom: 1px solid gray;
-}
-
 #member-register-wrapper {
   height: 90%;
 }
+
 #member-register-form {
   height: 95%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  margin-left: 4em;
+  justify-content: flex-start;
+  margin: 0 2em;
 }
-#register-submit {
-  width: 100%;
-}
-
-.register-btn {
-  border: 1px solid #858585;
-  border-radius: 7px;
-  box-shadow: 1px 1px 1px #a6a6a6;
-  color: white;
-  background: #072350;
-  font-size: 11px;
-  height: 25px;
-  padding: 4px 12px 6px 12px;
-}
-
-.register-btn:hover {
-  cursor: pointer;
-  background: #05152f;
-}
-
-.warning-msg {
-  font-size: 7px;
-  color: red;
-  padding-left: 10px;
-}
-
 </style>

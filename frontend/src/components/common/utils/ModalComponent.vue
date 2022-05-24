@@ -4,10 +4,11 @@
       v-if="showModal"
       ref="modalContainer"
       @click="closeModalOuter"
+
   >
     <section
         class="modal-body"
-        :class="this.modalTypeComputed === 'Login' ? '' : 'modal-body-register'">
+        :class="modalTypeComputed === 'Login' ? '' : 'modal-body-register'">
       <component
           :is="dynamicView"
           @closeModal="closeModal"
@@ -124,7 +125,9 @@ export default class ModalComponent extends Vue {
 
 .modal-body-register {
   width: 520px;
-  height: 800px;
-  top: 46%;
+  height: 710px;
+  top: 50%;
+  padding: 25px 30px;
 }
+
 </style>
