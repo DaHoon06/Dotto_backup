@@ -67,8 +67,7 @@ export default class ModalComponent extends Vue {
 
   private resetModal(e: any) {
     if (e.target.parentNode === this.$refs.modalContainer) {
-      this.modalTypeComputed = 'Login';
-      this.$emit('closeModal');
+      this.closeModal();
     }
   }
 

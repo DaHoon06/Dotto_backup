@@ -118,7 +118,7 @@ export default class TattooistRegisterComponent extends Vue {
   address: string;
   detail_address:string;
   gender: string;
-  tattooSpot: string[];
+  tattooSpot: File;
 
   constructor() {
     super();
@@ -127,7 +127,7 @@ export default class TattooistRegisterComponent extends Vue {
     this.passwordCheck = '';
     this.nickName = '';
     this.phone = '';
-    this.tattooSpot = [];
+    this.tattooSpot = new File([''], '');
     this.nickNameMessage = '';
     this.passwordMessage = '';
     this.passwordCheckMessage = '';
@@ -220,6 +220,10 @@ export default class TattooistRegisterComponent extends Vue {
       addr: this.address,
       subAddr: this.detail_address,
     }
+    if (this.tattooSpot) {
+      this.makeFileList(this.tattooSpot);
+    }
+
     const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
     const { success } = data;
 
@@ -231,6 +235,11 @@ export default class TattooistRegisterComponent extends Vue {
       alert('ERROR');
     }
   }
+
+  makeFileList(fileData: File): void {
+    console.log(fileData)
+  }
+
 
   msgClear(): void{
     if(this.NickNameMessage !== '사용가능한 닉네임 입니다.') {
