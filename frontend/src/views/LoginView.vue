@@ -3,53 +3,68 @@
     <section id="logo-img" class="login-info-section">
       <span class="logo"><img src="@/assets/dotto.jpg" alt="logo" /></span>
     </section>
+
     <section class="login-info-section">
       <form @submit.prevent="login">
-        <p>
+        <div>
           <input @focus="clearMsg" class="login-info" type="text" v-model="id" placeholder="아이디" />
-        </p>
-        <p>
+        </div>
+        <div>
           <input @focus="clearMsg" class="login-info" autocomplete="off" type="password" v-model="password" placeholder="비밀번호" />
-        </p>
-        <p style="color: red; font-size: 6px;" class="text-center">{{ this.loginFailed }}</p>
-        <p>
-          <input type="checkbox" id="auto" @change="saveId" v-model="save"> <label for="auto"></label> <span id="auto-login">자동로그인</span>
-        </p>
-        <p>
-          <button id="login-btn" type="submit">LOGIN</button>
-        </p>
+        </div>
+        <div id="warning-msg" class="text-center">{{ loginFailed }}</div>
+        <div id="auto-login-wrapper">
+          <input type="checkbox" id="auto" @change="saveId" v-model="save">
+          <label for="auto"></label> <span id="auto-login">자동 로그인</span>
+        </div>
+        <div>
+          <button id="login-btn" type="submit">로그인</button>
+        </div>
       </form>
-      <div id="register-box">
-        <div id="register">
-          <button class="login-router" @click="showRegisterView">회원가입</button>
-        </div>
-        <div id="lost-identify">
-          <router-link class="login-router forgot-user-info" to="#">아이디</router-link>
-          <router-link class="login-router forgot-user-info" to="#">비밀번호 찾기</router-link>
-        </div>
-      </div>
     </section>
+
+    <hr />
+
     <section class="login-info-section">
-      <p id="simple-login" class="login-router">간편 회원가입</p>
+      <div id="social-login">소셜 계정으로 로그인하기</div>
       <article id="simple-login-icons">
-        <ul id="login-btn-img">
-          <li>
-            <GoogleLogin :params="params"
-                         :onSuccess="googleLoginSuccess"
-            :onFailure="googleLoginFailure">
+        <div id="login-btn-img">
+          <div>
+            <GoogleLogin
+                id="google-btn"
+                class="social-btn"
+                :params="params"
+                :onSuccess="googleLoginSuccess"
+                :onFailure="googleLoginFailure">
               <img src="@/assets/login/Google.png" alt="google" />
             </GoogleLogin>
-            <button>
-
-            </button>
-          </li>
-          <li>
-            <button>
+          </div>
+          <div>
+            <button id="kakao-btn" class="social-btn">
               <img src="@/assets/login/kakao.png" @click="kakaoLogin" alt="kakao" />
             </button>
-          </li>
-        </ul>
+          </div>
+        </div>
       </article>
+    </section>
+
+    <hr />
+
+    <section>
+      <div id="register-box">
+        <div id="lost-identify">
+          <div id="lost-password">
+            <span>비밀번호를 잊어버리셨나요?</span>
+            <router-link class="login-router forgot-user-info" to="#"><small>비밀번호 찾기</small></router-link>
+          </div>
+          <div id="join">
+            <span><small>계정이 없다면 바로 가입하세요!</small></span>
+            <div id="register">
+              <button class="login-router" @click="showRegisterView"><small>회원가입 하기</small></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </template>
@@ -187,6 +202,10 @@ export default class LoginView extends Vue {
 </script>
 
 <style scoped>
+hr {
+  width: 80%;
+}
+
 #loginPage-container {
   display: flex;
   max-width: 400px;
@@ -196,19 +215,20 @@ export default class LoginView extends Vue {
 }
 
 .login-info {
+  background: #fafafa;
   width: 100%;
-  border: none;
-  font-size: 13px;
-  padding-bottom: 3px;
-  border-bottom: 1px solid gray;
+  border: 1px solid #eeeeee;
+  height: 30px;
+  font-size: 11px;
+  padding-left: 5px;
+  margin-bottom: 10px;
+  border-radius: 2px;
 }
 
 .login-info-section {
-  width: 60%;
+  width: 75%;
   margin: auto;
 }
-
-
 
 #logo-img {
   margin-bottom: 30px;
@@ -233,18 +253,27 @@ input[type="checkbox"] + label{
 }
 
 input[id="auto"]:checked + label::after{
-  content:'✔';
-  font-size: 10px;
+  content: '✓';
+  color: #05152f;
+  font-weight: 800;
+  font-size: 12px;
   padding-bottom: 3px;
   width: 10px;
   text-align: center;
   position: absolute;
-  left: 0;
-  top: -2px;
+  left: 1px;
+  top: -3px;
 }
 
 #auto-login {
   font-size: 9px;
+  margin-left: 5px;
+}
+#auto-login-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 #login-btn {
@@ -259,14 +288,18 @@ input[id="auto"]:checked + label::after{
 }
 
 #login-btn-img {
-  padding: 0;
+  display: flex;
+  position: relative;
+  left: -10px;
 }
 
 #login-btn:hover{
   background: #464646;
   color: #ffffff;
 }
-
+#login-btn-img > div {
+  margin-left: 20px;
+}
 #register-box {
   display: flex;
   justify-content: space-evenly;
@@ -277,24 +310,25 @@ input[id="auto"]:checked + label::after{
 
 }
 
-.login-router {
+.login-router, #social-login {
   color: #919191;
-  font-size: 8px;
+  font-size: 12px;
   text-decoration: none;
+
 }
 .login-router:hover {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: bold;
   cursor: pointer;
   color: #565656;
 }
 .forgot-user-info {
-  margin-right: 7px;
+
 }
 
-#simple-login {
-  margin-top: 5px;
+#social-login {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 #simple-login-icons {
@@ -304,10 +338,56 @@ input[id="auto"]:checked + label::after{
 
 #login-btn-img > li {
   float: left;
+
 }
 
-#login-btn-img > li > button > img {
-  width: 35px;
-  margin-right: 12px;
+.social-btn {
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+  width: 110px;
+  height: 30px;
+  padding: 1px 0;
+}
+#google-btn {
+  background: #F5F5F5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#google-btn::after {
+  content: '구글 로그인';
+  font-size: 5px;
+  color: #888888;
+  font-weight: 600;
+}
+#kakao-btn {
+  background: #fddc3f;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#kakao-btn::after {
+  content: '카카오 로그인';
+  font-size: 5px;
+  color: #595959;
+  font-weight: 600;
+}
+#login-btn-img > div > button > img {
+  width: 25px;
+  position: relative;
+}
+#lost-password, #join {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  width: 15em;
+}
+#lost-password > span,  #join > span {
+  font-size: 12px;
+}
+#warning-msg {
+  color: red;
+  font-size: 6px;
 }
 </style>
