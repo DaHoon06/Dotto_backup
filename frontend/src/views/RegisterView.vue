@@ -56,7 +56,6 @@ export default class RegisterView extends Vue {
     return true
   }
 
-
 }
 </script>
 
@@ -82,18 +81,22 @@ export default class RegisterView extends Vue {
   color: #888888;
   cursor: pointer;
 }
+
 #modal-register-close-btn {
   width: 5%;
 }
 .register-tabs {
   width: 95%;
 }
+
 .register-tabs span {
   color: #eeeeee;
 }
+
 .register-tabs span:nth-child(1) {
   margin-right: 1.3em;
 }
+
 .currentPage {
   font-weight: 700;
   color: #606060 !important;

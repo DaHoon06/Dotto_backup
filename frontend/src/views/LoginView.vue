@@ -15,7 +15,7 @@
         <div id="warning-msg" class="text-center">{{ loginFailed }}</div>
         <div id="auto-login-wrapper">
           <input type="checkbox" id="auto" @change="saveId" v-model="save">
-          <label for="auto"></label> <span id="auto-login">자동 로그인</span>
+          <label for="auto"></label> <span id="auto-login">아이디 저장</span>
         </div>
         <div>
           <button id="login-btn" type="submit">로그인</button>
@@ -107,6 +107,7 @@ export default class LoginView extends Vue {
     const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
     const { result } = data;
     if (result) {
+      if (this.save) this.saveId();
       this.saveState(data);
       await this.$router.push({
         path: '/dotto'
@@ -118,7 +119,7 @@ export default class LoginView extends Vue {
 
   saveId(): void{
     if(this.save) {
-      this.$cookies.set('idCookie',this.id,'30d');
+      this.$cookies.set('idCookie', this.id,'30d');
     } else {
       this.$cookies.remove('idCookie');
       this.id = '';
@@ -126,7 +127,7 @@ export default class LoginView extends Vue {
   }
 
   getCookie(): void {
-    if(this.$cookies.isKey('idCookie')){
+    if (this.$cookies.isKey('idCookie')){
       this.id = this.$cookies.get('idCookie');
       this.save = true;
     }
@@ -279,7 +280,6 @@ input[id="auto"]:checked + label::after{
 #login-btn {
   border: 1px solid gray;
   border-radius: 3px;
-  box-shadow: 0 1px 1px 1px #adadad;
   color: white;
   font-size: 12px;
   padding: 5px;

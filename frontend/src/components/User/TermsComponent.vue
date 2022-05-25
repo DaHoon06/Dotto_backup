@@ -4,7 +4,7 @@
     <section>
       <div class="terms-items">
         <div id="terms-title">이용약관, 개인정보 수집 및 이용,<br/> 위치정보 이용약관(선택), 프로모션 안내,<br/> 메일 수신(선택)에 모두 동의 합니다.</div>
-        <div><input type="checkbox" id="check1" @click="handleClickAllCheckBox" v-model="allCheckItems" /><label for="check1"></label></div>
+        <div><input type="checkbox" id="check" @change="handleClickAllCheckBox" v-model="allCheckItems" /><label for="check"></label></div>
       </div>
       <hr/>
     </section>
@@ -12,7 +12,7 @@
     <section >
       <div class="terms-items">
         <div>닷투 이용약관 동의<span class="necessary">(필수)</span></div>
-        <div><input type="checkbox" id="check2" v-model="checkList1" /><label for="check2"></label></div>
+        <div><input type="checkbox" id="check1" @change="handleClickEachCheckBox" v-model="checkList1" /><label for="check1"></label></div>
       </div>
       <div class="terms-text">제 1조 (목적)개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내</div>
     </section>
@@ -20,7 +20,7 @@
     <section >
       <div class="terms-items">
         <div>개인정보 수집 및 이용에 대한 안내<span class="necessary">(필수)</span></div>
-        <div><input type="checkbox" id="check3" v-model="checkList2" /><label for="check3"></label></div>
+        <div><input type="checkbox" id="check2" @change="handleClickEachCheckBox" v-model="checkList2" /><label for="check2"></label></div>
       </div>
       <div class="terms-text">제 1조 (목적)</div>
     </section>
@@ -28,7 +28,7 @@
     <section>
       <div class="terms-items">
         <div>위치 정보 이용약관 동의<span class="choice">(선택)</span></div>
-        <div><input type="checkbox" id="check4" v-model="checkList3" /><label for="check4"></label></div>
+        <div><input type="checkbox" id="check3" @change="handleClickEachCheckBox" v-model="checkList3" /><label for="check3"></label></div>
       </div>
       <div class="terms-text">제 1조 (목적)</div>
     </section>
@@ -36,7 +36,7 @@
     <section >
       <div class="terms-items">
         <div>이벤트 등 프로모션 알람 메일 수신<span class="choice">(선택)</span></div>
-        <div><input type="checkbox" id="check5" v-model="checkList4" /><label for="check5"></label></div>
+        <div><input type="checkbox" id="check4" @change="handleClickEachCheckBox" v-model="checkList4" /><label for="check4"></label></div>
       </div>
       <div class="terms-text">제 1조 (목적)</div>
     </section>
@@ -60,8 +60,12 @@ export default class TermsComponent extends Vue {
   checkList3 = false;
   checkList4 = false;
 
+  created() {
+    this.handleClickAllCheckBox();
+  }
+
   private handleClickAllCheckBox() {
-    if (!this.allCheckItems) {
+    if (this.allCheckItems) {
       this.checkList1 = true;
       this.checkList2 = true;
       this.checkList3 = true;
@@ -72,7 +76,10 @@ export default class TermsComponent extends Vue {
       this.checkList3 = false;
       this.checkList4 = false;
     }
+  }
 
+  private handleClickEachCheckBox() {
+    this.allCheckItems = this.checkList1 && this.checkList2 && this.checkList3 && this.checkList4;
   }
 
   private redirectRegisterForm(): boolean | void {
@@ -84,50 +91,11 @@ export default class TermsComponent extends Vue {
     }
   }
 
-  private checkBox() {
-    this.checkItem1Computed = this.checkList1;
-    this.checkItem2Computed = this.checkList2;
-    this.checkItem3Computed = this.checkList3;
-    this.checkItem4Computed = this.checkList4;
+  @Emit('closeModal')
+  private cancelRegistration(): boolean {
+    return confirm('가입을 취소하시겠습니까?');
   }
 
-  mounted(): void {
-    this.checkBox();
-  }
-
-  private cancelRegistration(): void {
-    const result = confirm('가입을 취소하시겠습니까?');
-    console.log(result);
-    // if (result)
-  }
-
-  private set checkItem1Computed(check: boolean) {
-    this.checkList1 = check;
-  }
-  private get checkItem1Computed(): boolean {
-    return this.checkList1;
-  }
-
-  private set checkItem2Computed(check: boolean) {
-    this.checkList2 = check;
-  }
-  private get checkItem2Computed(): boolean {
-    return this.checkList2;
-  }
-
-  private set checkItem3Computed(check: boolean) {
-    this.checkList3 = check;
-  }
-  private get checkItem3Computed(): boolean {
-    return this.checkList3;
-  }
-
-  private set checkItem4Computed(check: boolean) {
-    this.checkList4 = check;
-  }
-  private get checkItem4Computed(): boolean {
-    return this.checkList4;
-  }
 }
 </script>
 

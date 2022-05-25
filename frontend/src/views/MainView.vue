@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div :class='`${scrollPrevent}`'>
     <header id="header">
-      <header-component @blurBackground="blurBackground" />
+      <header-component
+          @blurBackground="blurBackground"
+          @notScroll="notScrollBody" />
       <navigation-component  />
       <menu-button />
     </header>
@@ -23,20 +25,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Vue} from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
 import {
-  SideButtonComponent,
-  SideMenuComponent,
-  HeaderComponent,
   FooterComponent,
+  HeaderComponent,
+  MenuButton,
   NavigationComponent,
-  MenuButton
+  SideButtonComponent,
+  SideMenuComponent
 } from "@/components/common";
-import { BLUR } from "@/interfaces/common/ICommon";
+import {BLUR, SCROLL} from "@/interfaces/common/ICommon";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
-
 
 @Component({
   components: {
@@ -54,10 +55,12 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 export default class MainView extends Vue {
   showSideComponent = true;
   blurCss: BLUR;
+  scrollPrevent: SCROLL;
 
   constructor() {
     super();
     this.blurCss = BLUR.OFF;
+    this.scrollPrevent = SCROLL.ON;
   }
 
   private showFilter(showFilter: boolean) {
@@ -66,6 +69,10 @@ export default class MainView extends Vue {
 
   private blurBackground(isBlur: boolean) {
     isBlur ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
+  }
+
+  private notScrollBody(scrollEvent: boolean) {
+    scrollEvent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
   }
 
 }
@@ -84,6 +91,16 @@ export default class MainView extends Vue {
   filter: blur(4px)
 }
 
+.notScroll {
+  position: fixed;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.notScroll::-webkit-scrollbar {
+  position: fixed;
+  display: none;
+  width: 0 !important;
+}
 .fade-enter-active {
   transition: all .4s ease;
 }

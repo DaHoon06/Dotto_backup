@@ -63,6 +63,15 @@
         <label for="empty">선택안함</label>
       </div>
 
+      <div class="input-wrapper">
+        <select class="select">
+          <option disabled selected>추가 연락 수단</option>
+          <option value="1">카카오</option>
+          <option value="2">인스타그램</option>
+        </select>
+        <input type="text" placeholder="계정명" class="input-text" />
+      </div>
+
 
       <div class="register-submit">
         <button class="register-btn" id="register-submit-btn" type="submit">가입하기</button>
@@ -171,28 +180,25 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   async register(): Promise<void> {
-    if (this.agree){
-      const sendData: IUser.IRegisterProp = {
-        nickname: this.nickName,
-        password: this.password,
-        id: this.id,
-        phone: this.phone,
-        gender: this.gender,
-      };
+    const sendData: IUser.IRegisterProp = {
+      nickname: this.nickName,
+      password: this.password,
+      id: this.id,
+      phone: this.phone,
+      gender: this.gender,
+    };
 
-      //TODO: 반환 data에 대한 타입 정의
-      const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
-      const { success } = data;
-      if (success) {
-        await this.$router.push({
-          path: '/login'
-        })
-      } else {
-        alert('ERROR');
-      }
+    //TODO: 반환 data에 대한 타입 정의
+    const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
+    const { success } = data;
+    if (success) {
+      await this.$router.push({
+        path: '/login'
+      })
     } else {
-      alert('약관에 동의해주세요.');
+      alert('ERROR');
     }
+
   }
 
   msgClear(): void{
@@ -242,5 +248,32 @@ export default class MemberRegisterComponent extends Vue {
   align-items: flex-start;
   justify-content: flex-start;
   margin: 0 2em;
+}
+
+.register-submit {
+  margin-top: 20px;
+  width: 100%;
+}
+
+select::-ms-expand {
+  display: none;
+}
+.select {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 150px;
+  height: 35px;
+  background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+  background-size: 20px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 4px;
+  outline: 0 none;
+}
+.select option {
+  background: black;
+  color: #fff;
+  padding: 3px 0;
 }
 </style>
