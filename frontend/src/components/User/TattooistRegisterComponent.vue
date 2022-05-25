@@ -311,6 +311,9 @@ export default class TattooistRegisterComponent extends Vue {
   margin-top: 20px;
 }
 
+.register-submit {
+  width: 100%;
+}
 
 #img-registration-btn {
   width: 100%;
