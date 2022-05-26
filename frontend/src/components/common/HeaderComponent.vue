@@ -82,12 +82,28 @@ import ModalComponent from "@/components/common/utils/ModalComponent.vue";
 })
 export default class HeaderComponent extends Vue {
   showSearchList = false;
-  scrollPrevent = true;
-  modalType = '';
   showModal = false;
+  modalType = '';
 
   constructor() {
     super();
+  }
+
+  private closeModal() {
+    this.showModal = false;
+    this.$emit('notScroll', false);
+    this.modalType = '';
+  }
+
+  private showLoginView() {
+    this.modalType = 'Login';
+    this.showModal = true;
+    this.notScrollBody();
+  }
+
+  private closeSearchList() {
+    this.showSearchList = !this.showSearchList;
+    this.$emit('blurBackground', false);
   }
 
   @Emit('blurBackground')
@@ -96,27 +112,9 @@ export default class HeaderComponent extends Vue {
     return this.showSearchList
   }
 
-  private closeModal() {
-    this.showModal = false;
-    this.scrollPrevent = !this.scrollPrevent;
-    this.$emit('notScroll', false);
-    this.modalType = '';
-  }
-
-  private showLoginView() {
-    this.notScrollBody();
-    this.modalType = 'Login';
-    this.showModal = true;
-  }
-
   @Emit('notScroll')
   private notScrollBody() {
-    return this.scrollPrevent;
-  }
-
-  private closeSearchList() {
-    this.showSearchList = !this.showSearchList;
-    this.$emit('blurBackground', false);
+    return true;
   }
 
 }
