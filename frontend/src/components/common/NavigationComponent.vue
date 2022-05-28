@@ -6,19 +6,7 @@
           <ul>
             <li>
               <button
-                  class="nav-button" :class="menu_home ? active : ''"
-                  @mousemove="showHome('show')"
-                  @mouseleave="showHome('hide')">HOME</button>
-            </li>
-            <li v-show="menu_home">
-              <div class="nav-menu-list"
-                   @mouseover="showHome('show')"
-                   @mouseleave="showHome('hide')">
-                <router-link to="/" class="sub-nav-items">menu1</router-link>
-                <router-link to="/" class="sub-nav-items">menu2</router-link>
-                <router-link to="/" class="sub-nav-items">menu3</router-link>
-                <router-link to="/" class="sub-nav-items">menu4</router-link>
-              </div>
+                  class="nav-button" :class="menu_home ? active : ''">HOME</button>
             </li>
           </ul>
         </article>
@@ -98,7 +86,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class NavigationComponent extends Vue {
-  menu_home = false;
+  menu_home = true;
   menu_artist = false;
   menu_tattoo = false;
   menu_community = false;
@@ -106,10 +94,6 @@ export default class NavigationComponent extends Vue {
 
   constructor() {
     super();
-  }
-
-  private showHome(event: string) {
-    this.menu_home = event === 'show';
   }
 
   private showArtist(event: string) {
@@ -170,6 +154,7 @@ export default class NavigationComponent extends Vue {
 .active {
   color: #222222;
   font-weight: bold;
+  text-shadow: 1px 1px #a9a9a9;
 }
 
 .nav-button:hover {

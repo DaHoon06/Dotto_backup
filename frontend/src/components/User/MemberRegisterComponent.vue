@@ -59,19 +59,19 @@
         <label for="male">남성</label>
         <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
         <label for="female">여성</label>
-        <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />
-        <label for="empty">선택안함</label>
+<!--        <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />-->
+<!--        <label for="empty">선택안함</label>-->
       </div>
 
       <div class="input-wrapper">
         <select class="select">
           <option disabled selected>추가 연락 수단</option>
+          <option value="0">선택 안함</option>
           <option value="1">카카오</option>
           <option value="2">인스타그램</option>
         </select>
         <input type="text" placeholder="계정명" class="input-text" />
       </div>
-
 
       <div class="register-submit">
         <button class="register-btn" id="register-submit-btn" type="submit">가입하기</button>
@@ -271,6 +271,7 @@ select::-ms-expand {
   border-radius: 4px;
   outline: 0 none;
 }
+
 .select option {
   background: black;
   color: #fff;

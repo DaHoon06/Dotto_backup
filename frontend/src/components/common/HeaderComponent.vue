@@ -61,7 +61,7 @@
           :showModal="showModal"
           @modalType="modalType"
           @closeModal="closeModal"
-          />
+      />
     </transition>
 
   </header>
@@ -251,12 +251,7 @@ ul li {
   opacity: 0;
 }
 
-.notScroll {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
+
 
 @media screen and (max-width: 1260px) {
   #menu-button-container {

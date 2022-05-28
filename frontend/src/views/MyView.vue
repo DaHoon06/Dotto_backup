@@ -1,16 +1,10 @@
 <template>
   <div>
-    <header id="header">
-      <header-component @blurBackground="blurBackground" />
-      <navigation-component  />
-      <menu-button />
-    </header>
-
-    <section id="my-information-wrapper" :class='blurCss'>
+    <section id="my-information-wrapper" >
       <my-information-component />
     </section>
 
-    <section id="my-follow-wrapper" :class='blurCss'>
+    <section id="my-follow-wrapper" >
       <my-follow-component />
     </section>
 
@@ -23,8 +17,6 @@
       </ul>
     </section>
     <hr/>
-
-    <footer-component :class='`${blurCss}`' />
   </div>
 </template>
 
@@ -61,16 +53,8 @@ import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
   }
 })
 export default class MyView extends Vue {
-  blurCss: BLUR;
 
-  constructor() {
-    super();
-    this.blurCss = BLUR.OFF;
-  }
 
-  private blurBackground(isBlur: boolean) {
-    isBlur ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
-  }
 }
 </script>
 
@@ -102,7 +86,5 @@ export default class MyView extends Vue {
   cursor: pointer;
   border-bottom: 2px solid gray;
 }
-.setBlur {
-  filter: blur(4px)
-}
+
 </style>

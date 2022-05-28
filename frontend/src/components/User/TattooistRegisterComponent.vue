@@ -49,7 +49,7 @@
         <b-button v-b-modal.modal-1 class="register-btn input-text">주소찾기</b-button>
       </div>
 
-      <b-modal id="modal-1" hide-footer>
+      <b-modal id="modal-1" class="address_modal" hide-footer>
         <template #modal-title>
           주소 검색
         </template>
@@ -63,8 +63,8 @@
       <div class="input-wrapper register-submit">
         <button type="button" class="register-btn" id="img-registration-btn">작업실 및 소개 이미지 등록</button>
       </div>
-      <div>
-        <b-form-file id="file-small" v-model="tattooSpot" size="sm"></b-form-file>
+      <div id="file">
+        <input type="file" class="file-input" @change="uploadFiles" />
       </div>
 
       <div class="input-wrapper phone-wrapper" id="first-phone-wrapper">
@@ -220,9 +220,9 @@ export default class TattooistRegisterComponent extends Vue {
       addr: this.address,
       subAddr: this.detail_address,
     }
-    if (this.tattooSpot) {
-      this.makeFileList(this.tattooSpot);
-    }
+    // if (this.tattooSpot) {
+    //   this.makeFileList(this.tattooSpot);
+    // }
 
     const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
     const { success } = data;
@@ -236,16 +236,15 @@ export default class TattooistRegisterComponent extends Vue {
     }
   }
 
-  makeFileList(fileData: File): void {
-    console.log(fileData)
-  }
-
-
   msgClear(): void{
     if(this.NickNameMessage !== '사용가능한 닉네임 입니다.') {
       this.NickNameMessage = '';
       this.nickName = '';
     }
+  }
+
+  private uploadFiles(e: any) {
+    this.tattooSpot = e.target.file;
   }
 
   private set NickNameMessage(msg: string) {
@@ -318,4 +317,13 @@ export default class TattooistRegisterComponent extends Vue {
 #img-registration-btn {
   width: 100%;
 }
+
+#file {
+  display: block;
+  width: 100%;
+}
+#file > .file-input {
+  overflow: auto;
+}
+
 </style>

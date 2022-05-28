@@ -1,10 +1,16 @@
 <template>
+  <div>
 
+  </div>
 </template>
 
-<script>
-export default {
-  name: "MyCommentComponents"
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class MyCommentComponent extends Vue {
+
 }
 </script>
 
