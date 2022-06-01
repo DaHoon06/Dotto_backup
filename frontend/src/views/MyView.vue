@@ -31,7 +31,6 @@ import {
   NavigationComponent,
   MenuButton
 } from "@/components/common";
-import { BLUR } from "@/interfaces/common/ICommon";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 import MyInformationComponent from "@/components/my/MyInformationComponent.vue";

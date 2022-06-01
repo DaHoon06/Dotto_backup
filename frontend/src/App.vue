@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
-import HeaderView from "@/views/HeaderView";
-import {FooterComponent} from "@/components/common";
-import {BLUR, SCROLL} from "@/interfaces/common/ICommon";
+import { Component, Vue } from "vue-property-decorator";
+import HeaderView from "@/views/HeaderView.vue";
+import { FooterComponent } from "@/components/common";
+import { BLUR, SCROLL } from "@/interfaces/common/ICommon";
 
 
 @Component({

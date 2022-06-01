@@ -64,7 +64,13 @@
         <button type="button" class="register-btn" id="img-registration-btn">작업실 및 소개 이미지 등록</button>
       </div>
       <div id="file">
-        <input type="file" class="file-input" @change="uploadFiles" />
+        <input
+            type="file"
+            class="file-input"
+            @change="uploadFiles"
+            multiple
+            accept=".jpg, .jpeg, .png"
+        />
       </div>
 
       <div class="input-wrapper phone-wrapper" id="first-phone-wrapper">
@@ -106,35 +112,22 @@ import { VueDaumPostcode } from "vue-daum-postcode";
   }
 })
 export default class TattooistRegisterComponent extends Vue {
-  id: string;
-  password: string;
-  passwordCheck: string;
-  nickName: string;
-  phone: string;
-  nickNameMessage: string;
-  passwordMessage: string;
-  passwordCheckMessage: string;
-  idMessage: string;
-  address: string;
-  detail_address:string;
-  gender: string;
-  tattooSpot: File;
+  id = '';
+  password = '';
+  passwordCheck = '';
+  nickName = '';
+  phone = '';
+  nickNameMessage = '';
+  passwordMessage = '';
+  passwordCheckMessage = '';
+  idMessage = '';
+  address = '';
+  detail_address = '';
+  gender = '';
+  image = '';
 
   constructor() {
     super();
-    this.id = '';
-    this.password = '';
-    this.passwordCheck = '';
-    this.nickName = '';
-    this.phone = '';
-    this.tattooSpot = new File([''], '');
-    this.nickNameMessage = '';
-    this.passwordMessage = '';
-    this.passwordCheckMessage = '';
-    this.idMessage = '';
-    this.address = '';
-    this.detail_address = '';
-    this.gender = '';
   }
 
   private oncomplete(result: any) {
@@ -220,9 +213,6 @@ export default class TattooistRegisterComponent extends Vue {
       addr: this.address,
       subAddr: this.detail_address,
     }
-    // if (this.tattooSpot) {
-    //   this.makeFileList(this.tattooSpot);
-    // }
 
     const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
     const { success } = data;
@@ -244,7 +234,20 @@ export default class TattooistRegisterComponent extends Vue {
   }
 
   private uploadFiles(e: any) {
-    this.tattooSpot = e.target.file;
+    this.image = e.target.files;
+    this.addFiles(this.image);
+  }
+  private async addFiles(files: any): Promise<any> {
+    const fileList = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      fileList.append('files', this.image[i]);
+    }
+
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+    }
+    await this.axios.post('/test',fileList, { headers });
+
   }
 
   private set NickNameMessage(msg: string) {
