@@ -1,0 +1,193 @@
+#alarm-wrapper:hover {
+    cursor: pointer;
+}
+
+#alarm-container {
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    background: white;
+    overflow-y: auto;
+    z-index: 10;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 6em;
+}
+/* My menu List CSS */
+#my-page-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+#my-menu-list {
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    background: white;
+    z-index: 10;
+    width: 190px;
+    height: 250px;
+    position: absolute;
+    right: 3em;
+}
+
+#my-menu-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1em 0 0 1.25em;
+}
+
+#my-menu-items > div > span {
+    margin-right: 15px;
+}
+#my-menu-items > div:hover {
+    cursor: pointer;
+}
+
+.my-menu-icons {
+    width: 30px;
+}
+#drop-down-btn {
+    width: 0.7rem;
+}
+#drop-down-btn:hover {
+    font-size: 1em;
+    cursor: pointer;
+}
+#drop-down-btn-container {
+    margin-left: 15px;
+}
+#navBar-container {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* 1980px */
+    height: 60px;
+    left: 0;
+    top: 0;
+    background: #FFFFFF;
+    z-index: 10;
+}
+
+.nav-menu-icon {
+    width: 25px;
+}
+
+.nav-menu-icon:nth-child(1) {
+    margin-right: 30px;
+}
+
+.nav-icon-label {
+    font-size: 11px;
+    color: #919191;
+    margin-right: 15px;
+}
+
+#logo {
+    margin-left: 25px;
+    margin-bottom: 10px;
+    width: 80px;
+    height: 35px;
+    left: 4px;
+    top: 0;
+}
+
+#navigation-search-bar {
+    width: 200px;
+    height: 25px;
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    background: #F5F5F5;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 10px;
+}
+
+#search-btn {
+    position: relative;
+    right: 24px;
+    width: 15px;
+}
+
+#search-list {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    max-width: 1980px;
+    text-align: center;
+}
+
+#search-list-wrapper {
+    display: inline-block;
+    width: 100vw;
+    height: 30vh;
+    background: #FFFFFF;
+}
+
+#outer {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3)
+}
+
+#menu-button-container > button > img {
+    width: 24px;
+    margin-top: 0.4em;
+}
+.login-label:hover {
+    cursor: pointer;
+    font-weight: 600;
+}
+#menu-button-container {
+    display: none;
+}
+
+#empty-search-lists {
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+/* 로그인 시 생성되는 nav icons*/
+#isLoginTrue {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 3em;
+}
+#my {
+    width: 30px;
+}
+#my:hover {
+    cursor: pointer;
+}
+#my-page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 14px;
+}
+#my_name {
+    font-size: 5px;
+}
+#alarm {
+    width: 30px;
+    margin-right: 1em;
+}
+
+.close-search-list {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 3rem;
+    margin-right: 3rem;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
