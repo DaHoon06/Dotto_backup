@@ -1,5 +1,7 @@
 <template>
-
+  <div>
+    like
+  </div>
 </template>
 
 <script lang="ts">

@@ -88,7 +88,7 @@ export default class ModalComponent extends Vue {
       case 'Register':
         return TermsComponent;
       case 'RegisterForm':
-          return RegisterView;
+        return RegisterView;
       case 'Login':
         return LoginView
     }

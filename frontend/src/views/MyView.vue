@@ -10,13 +10,15 @@
 
     <section id="my-category">
       <ul>
-        <li>마이피드</li>
-        <li>좋아요</li>
-        <li>내 댓글</li>
-        <li>내 리뷰</li>
+        <li @click="changeType('MyFeed')" :class="{ 'currentPage' : myTabsComputed === 'MyFeed' }">마이피드</li>
+        <li @click="changeType('MyLikes')" :class="{ 'currentPage' : myTabsComputed === 'MyLikes' }">좋아요</li>
       </ul>
     </section>
-    <hr/>
+
+    <section id="my-tabs-area">
+      <component
+          :is="dynamicView" />
+    </section>
   </div>
 </template>
 
@@ -35,6 +37,8 @@ import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 import MyInformationComponent from "@/components/my/MyInformationComponent.vue";
 import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
+import MyFeedComponent from "@/components/my/tabs/MyFeedComponent.vue";
+import MyLikeListsComponent from "@/components/my/tabs/MyLikeListsComponent.vue";
 
 @Component({
   components: {
@@ -52,6 +56,28 @@ import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
   }
 })
 export default class MyView extends Vue {
+  type = 'MyFeed';
+
+  private changeType(type: string) {
+    this.myTabsComputed = type;
+  }
+
+  private set myTabsComputed(type: string) {
+    this.type = type;
+  }
+
+  private get myTabsComputed() {
+    return this.type;
+  }
+
+  private get dynamicView() {
+    switch (this.myTabsComputed) {
+      case 'MyFeed':
+        return MyFeedComponent;
+      case 'MyLikes':
+        return MyLikeListsComponent;
+    }
+  }
 
 
 }
@@ -71,6 +97,7 @@ export default class MyView extends Vue {
 #my-category {
   display: flex;
   justify-content: center;
+  margin-bottom: 1.3rem;
 }
 #my-category > ul {
   margin: 0;
@@ -84,6 +111,17 @@ export default class MyView extends Vue {
 #my-category > ul > li:hover {
   cursor: pointer;
   border-bottom: 2px solid gray;
+}
+#my-tabs-area {
+  border-top: 1px solid #E2E2E2;
+  background: #f6f6f6;
+}
+
+.currentPage {
+  font-weight: 700;
+  color: #d5d5d5 !important;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E2E2E2;
 }
 
 </style>

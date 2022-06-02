@@ -35,13 +35,7 @@ import {
   }
 })
 export default class RegisterView extends Vue {
-  type: number;
-
-  constructor() {
-    super();
-    this.type = 0;
-
-  }
+  type = 0;
 
   private get changeTab() {
     return this.type;
