@@ -66,7 +66,7 @@ export default class TermsComponent extends Vue {
     }
   }
 
-  created() {
+  created(): void {
     this.handleClickAllCheckBox();
   }
 

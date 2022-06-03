@@ -5,12 +5,12 @@
       <ul>
         <li id="menu-button-container">
           <button>
-            <img class="menu-icon" src="@/assets/nav/menu.png" alt="menu"  />
+            <img class="menu-icon" src="@/assets/img/nav/menu.png" alt="menu"  />
           </button>
         </li>
         <li>
           <span>
-            <a href="/"><img id="logo" src="@/assets/dotto.jpg" alt="logo" /></a>
+            <a href="/"><img id="logo" src="@/assets/img/dotto.jpg" alt="logo" /></a>
           </span>
         </li>
       </ul>
@@ -19,7 +19,7 @@
     <section id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
       <button>
-        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
+        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/img/nav/search.png" alt="search" />
       </button>
 
       <transition name="fade">
@@ -40,9 +40,9 @@
     </section>
 
     <section>
-      <div v-if="!isLogin">
+      <div v-if="isLogin">
         <button id="show-btn" @click="showLoginView" >
-          <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
+          <img class="nav-menu-icon" src="@/assets/img/nav/information.png" alt="info" />
         </button>
         <span class="nav-icon-label login-label" @click="showLoginView">LOGIN</span>
       </div>
@@ -63,7 +63,7 @@
             </div>
             <div id="drop-down-btn-container">
               <span @click="showMenu">
-                <img src="@/assets/nav/filter-btn.png" id="drop-down-btn" alt="dropdown" />
+                <img src="@/assets/img/nav/filter-btn.png" id="drop-down-btn" alt="dropdown" />
               </span>
             </div>
           </div>

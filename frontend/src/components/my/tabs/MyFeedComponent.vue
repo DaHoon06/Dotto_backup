@@ -3,10 +3,10 @@
 
     <div id="my-feed-icons-wrapper">
       <span>
-        <img src="@/assets/myfeed/collapse.png" id="colspan" class="myfeed-sort-icons" alt="colspan" />
+        <img src="@/assets/img/myfeed/collapse.png" id="colspan" class="myfeed-sort-icons" alt="colspan" />
       </span>
       <span>
-        <img src="@/assets/myfeed/grid.png" class="myfeed-sort-icons" alt="colspan" />
+        <img src="@/assets/img/myfeed/grid.png" class="myfeed-sort-icons" alt="colspan" />
       </span>
     </div>
 
@@ -28,10 +28,10 @@
       </div>
       <div class="my-feed-items">
         <span>
-          <img class="my-feed-icons" src="@/assets/myfeed/like-icons.png" alt="like-icons" />
+          <img class="my-feed-icons" src="@/assets/img/myfeed/like-icons.png" alt="like-icons" />
         </span>
         <span>
-          <img class="my-feed-icons my-feed-message" src="@/assets/myfeed/message.png" alt="message" />
+          <img class="my-feed-icons my-feed-message" src="@/assets/img/myfeed/message.png" alt="message" />
         </span>
       </div>
       <div class="like-count-wrapper my-feed-items">

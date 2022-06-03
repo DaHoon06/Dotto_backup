@@ -13,6 +13,7 @@
     position: absolute;
     right: 6em;
 }
+
 /* My menu List CSS */
 #my-page-container {
     display: flex;
@@ -47,6 +48,8 @@
 .my-menu-icons {
     width: 30px;
 }
+
+/* DROP DOWN ITEMS */
 #drop-down-btn {
     width: 0.7rem;
 }
@@ -57,6 +60,7 @@
 #drop-down-btn-container {
     margin-left: 15px;
 }
+
 #navBar-container {
     position: fixed;
     display: flex;
