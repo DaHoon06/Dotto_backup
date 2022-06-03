@@ -11,7 +11,6 @@ body {
     height: 100vh;
 }
 
-
 ul {
     list-style: none;
 }
@@ -21,7 +20,17 @@ button {
     border: none;
     outline: none;
 }
-
 button:hover {
     cursor: pointer;
+}
+
+/* input number 화살표 제거 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

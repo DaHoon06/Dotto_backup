@@ -98,7 +98,7 @@ export default class NavigationComponent extends Vue {
   background: #FFFFFF;
   top: 60px;
   height: 40px;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid #F5F5F5;
   padding-left: 20px;
   font-size: 13px;
   color: #919191;

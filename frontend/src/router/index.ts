@@ -40,7 +40,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/dotto/board',
     name: 'board',
-    component: () => import('@/views/Dotto/DottoBoardView.vue'),
+    component: () => import('@/views/dotto/DottoBoardView.vue'),
     children: [
       { path: 'index', name: 'dottoBoard', component: () => import('@/components/dotto/DottoComponent.vue') },
       { path: 'post', name: 'dottoPosting', component: () => import('@/components/dotto/DottoPostingComponent.vue') }

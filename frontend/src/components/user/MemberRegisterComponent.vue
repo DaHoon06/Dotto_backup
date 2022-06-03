@@ -57,7 +57,7 @@
         <input
             @keyup="validationPhoneNumber"
             maxlength="11"
-            type="text"
+            type="number"
             class="input-text"
             v-model="phone"
             placeholder="휴대폰번호 입력"
