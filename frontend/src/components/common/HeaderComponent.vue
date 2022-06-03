@@ -5,12 +5,12 @@
       <ul>
         <li id="menu-button-container">
           <button>
-            <img class="menu-icon" src="@/assets/nav/menu.png" alt="menu"  />
+            <img class="menu-icon" src="@/assets/img/nav/menu.png" alt="menu"  />
           </button>
         </li>
         <li>
           <span>
-            <a href="/"><img id="logo" src="@/assets/dotto.jpg" alt="logo" /></a>
+            <a href="/"><img id="logo" src="@/assets/img/dotto.jpg" alt="logo" /></a>
           </span>
         </li>
       </ul>
@@ -19,7 +19,7 @@
     <section id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
       <button>
-        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/nav/search.png" alt="search" />
+        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/img/nav/search.png" alt="search" />
       </button>
 
       <transition name="fade">
@@ -40,28 +40,87 @@
     </section>
 
     <section>
-      <ul>
-        <li v-if="!this.isLogin">
-          <button id="show-btn" @click="showLoginView" >
-            <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
-          </button>
-          <span class="nav-icon-label login-label" @click="showLoginView">LOGIN</span>
-        </li>
-        <li v-else>
-          <div id="my-page">
-            <img src="@/assets/nav/vector.png" alt="my" />
+      <div v-if="isLogin">
+        <button id="show-btn" @click="showLoginView" >
+          <img class="nav-menu-icon" src="@/assets/img/nav/information.png" alt="info" />
+        </button>
+        <span class="nav-icon-label login-label" @click="showLoginView">LOGIN</span>
+      </div>
+      <div id="isLoginTrue" v-else>
+
+        <div id="alarm-wrapper">
+          <img id="alarm" src="@/assets/icons/default_alarm.png" alt="alarm" @click="showAlarm" />
+          <div v-if="showMessage" id="alarm-container">
+            메세지 영역
           </div>
-          <span><small>NAME</small></span>
-        </li>
-      </ul>
+        </div>
+
+        <div >
+          <div id="my-page-container" >
+            <div id="my-page" @click="goMyPage">
+              <img src="@/assets/icons/default.png" id="my" alt="my" />
+              <span id="my_name">NAME</span>
+            </div>
+            <div id="drop-down-btn-container">
+              <span @click="showMenu">
+                <img src="@/assets/img/nav/filter-btn.png" id="drop-down-btn" alt="dropdown" />
+              </span>
+            </div>
+          </div>
+          <div v-if="showMyMenu" id="my-menu-list">
+            <div id="my-menu-items">
+              <div>
+                <span>
+                  <img src="@/assets/icons/mymenu/dottoDesign.png" alt="design" class="my-menu-icons" />
+                </span>
+                <router-link to="t">타투도안</router-link>
+              </div>
+              <div>
+                <span>
+                  <img src="@/assets/icons/mymenu/reservationList.png" alt="reservation" class="my-menu-icons" />
+                </span>
+                <router-link to="t">내 예약목록</router-link>
+              </div>
+              <div>
+                <span>
+                  <img src="@/assets/icons/mymenu/myReview.png" alt="review" class="my-menu-icons" />
+                </span>
+                <router-link to="t">내 댓글 / 리뷰</router-link>
+              </div>
+              <div>
+                <span>
+                  <img src="@/assets/icons/mymenu/favorites.png" alt="favorites" class="my-menu-icons" />
+                </span>
+                <router-link to="t">찜한 목록</router-link>
+              </div>
+
+              <hr />
+
+              <div>
+                <span>
+                  <img src="@/assets/icons/mymenu/security.png" alt="security" class="my-menu-icons"/>
+                </span>
+                <router-link to="t">보안 / 계정</router-link>
+              </div>
+              <div id="logout" @click="logout">
+                <span>
+                  <img src="@/assets/icons/mymenu/logout.png" alt="logout" class="my-menu-icons" />
+                </span>
+                <span>로그아웃</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
     <transition name="fade">
       <ModalComponent
           :modalType="modalType"
           :showModal="showModal"
           @modalType="modalType"
           @closeModal="closeModal"
-          />
+      />
     </transition>
 
   </header>
@@ -84,6 +143,8 @@ export default class HeaderComponent extends Vue {
   showSearchList = false;
   showModal = false;
   modalType = '';
+  showMessage = false;
+  showMyMenu = false;
 
   constructor() {
     super();
@@ -106,6 +167,24 @@ export default class HeaderComponent extends Vue {
     this.$emit('blurBackground', false);
   }
 
+  private logout(): void {
+    console.log('logout')
+  }
+  private showAlarm(): boolean {
+    this.showMessage = !this.showMessage;
+    this.showMyMenu = false;
+    return this.showMessage
+  }
+  private showMenu(): boolean {
+    this.showMyMenu = !this.showMyMenu;
+    this.showMessage = false;
+    return this.showMyMenu
+  }
+
+  private goMyPage() {
+    this.$router.push('/my');
+  }
+
   @Emit('blurBackground')
   private searchLists() {
     this.showSearchList = !this.showSearchList;
@@ -121,6 +200,11 @@ export default class HeaderComponent extends Vue {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+  color: #222222;
+}
+
 ul li {
   float: left;
   display: flex;
@@ -128,135 +212,17 @@ ul li {
   align-items: center;
 }
 
-#navBar-container {
-  position: fixed;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; /* 1980px */
-  height: 60px;
-  left: 0;
-  top: 0;
-  background: #FFFFFF;
-  z-index: 10;
+hr {
+  width: 14vw;
+  margin: 1rem -1.5em;
 }
 
-.nav-menu-icon {
-  width: 25px;
+a:hover, #logout:hover {
+  color: #8d8d8d;
+  font-weight: 700;
+
 }
 
-.nav-menu-icon:nth-child(1) {
-  margin-right: 30px;
-}
-
-.nav-icon-label {
-  font-size: 11px;
-  color: #919191;
-  margin-right: 15px;
-}
-
-#my-page {
-  border-radius: 45px;
-  background: #F5F5F5;
-  width: 45px;
-  height: 45px;
-  margin: 20px 20px 0 0;
-}
-#my-page > img {
-  display: block;
-  width: 20px;
-  margin: 12px auto;
-  text-align: center;
-}
-
-#logo {
-  margin-left: 25px;
-  margin-bottom: 10px;
-  width: 80px;
-  height: 35px;
-  left: 4px;
-  top: 0;
-}
-
-#navigation-search-bar {
-  width: 200px;
-  height: 25px;
-  border: 1px solid #ececec;
-  border-radius: 4px;
-  background: #F5F5F5;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 10px;
-}
-
-#search-btn {
-  position: relative;
-  right: 24px;
-  width: 15px;
-}
-
-#search-list {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  max-width: 1980px;
-  text-align: center;
-}
-
-#search-list-wrapper {
-  display: inline-block;
-  width: 100vw;
-  height: 30vh;
-  background: #FFFFFF;
-}
-
-#outer {
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3)
-}
-
-#menu-button-container > button > img {
-  width: 24px;
-  margin-top: 0.4em;
-}
-.login-label:hover {
-  cursor: pointer;
-  font-weight: 600;
-}
-#menu-button-container {
-  display: none;
-}
-
-#empty-search-lists {
-  margin-top: 1rem;
-  font-weight: 600;
-}
-
-.close-search-list {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 3rem;
-  margin-right: 3rem;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
-.notScroll {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
 
 @media screen and (max-width: 1260px) {
   #menu-button-container {

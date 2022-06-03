@@ -6,7 +6,7 @@
       <span class="filter-section">
         <button @click="showSort" >
           <span class="filter-text">{{ sendSortType }}</span>
-          <img class="side-menu-drop-btn filter-text" src="@/assets/nav/filter-btn.png" alt="sort" />
+          <img class="side-menu-drop-btn filter-text" src="@/assets/img/nav/filter-btn.png" alt="sort" />
         </button>
         <sort-component
             @typeName="typeName"

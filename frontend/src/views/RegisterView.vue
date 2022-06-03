@@ -2,21 +2,20 @@
   <main id="register-container">
     <section id="tab-wrapper">
       <span id="modal-register-close-btn" @click="closeForm">X</span>
-      <div class="register-tabs">
-        <span @click="changeTab = 0" :class="{ 'currentPage' : changeTab === 0 }" >일반 회원</span>
-        <span @click="changeTab = 1" :class="{ 'currentPage' : changeTab === 1 }" >타투이스트 회원</span>
-      </div>
+<!--      <div class="register-tabs">-->
+<!--        <span @click="changeTab = 0" :class="{ 'currentPage' : changeTab === 0 }" >일반 회원</span>-->
+<!--        <span @click="changeTab = 1" :class="{ 'currentPage' : changeTab === 1 }" >타투이스트 회원</span>-->
+<!--      </div>-->
     </section>
 
-    <member-register-component v-if="changeTab === 0" />
-    <tattooist-register-component v-if="changeTab === 1" />
+    <member-register-component />
+<!--    <tattooist-register-component v-if="changeTab === 1" />-->
   </main>
 </template>
 
 <script lang="ts">
-import {Component, Emit, Vue} from "vue-property-decorator";
-import MemberRegisterComponent from "@/components/User/MemberRegisterComponent.vue";
-import TattooistRegisterComponent from "@/components/User/TattooistRegisterComponent.vue";
+import { Component, Emit, Vue } from "vue-property-decorator";
+import MemberRegisterComponent from "@/components/user/MemberRegisterComponent.vue";
 import {
   HeaderComponent,
   FooterComponent,
@@ -27,7 +26,6 @@ import {
 @Component({
   components: {
     MemberRegisterComponent,
-    TattooistRegisterComponent,
     FooterComponent,
     NavigationComponent,
     HeaderComponent,
@@ -35,21 +33,15 @@ import {
   }
 })
 export default class RegisterView extends Vue {
-  type: number;
+  // type = 0;
 
-  constructor() {
-    super();
-    this.type = 0;
-
-  }
-
-  private get changeTab() {
-    return this.type;
-  }
-
-  private set changeTab(type: number) {
-    this.type = type;
-  }
+  // private get changeTab() {
+  //   return this.type;
+  // }
+  //
+  // private set changeTab(type: number) {
+  //   this.type = type;
+  // }
 
   @Emit('closeModal')
   private closeForm() {
@@ -71,6 +63,7 @@ export default class RegisterView extends Vue {
   margin-bottom: 3em;
   border-bottom: 1px solid #eeeeee;
   padding-bottom: 10px;
+  justify-content: flex-end;
 }
 #tab-wrapper span {
   margin-left: 0.5em;

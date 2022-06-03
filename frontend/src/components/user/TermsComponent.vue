@@ -14,7 +14,7 @@
         <div>닷투 이용약관 동의<span class="necessary">(필수)</span></div>
         <div><input type="checkbox" id="check1" @change="handleClickEachCheckBox" v-model="checkList1" /><label for="check1"></label></div>
       </div>
-      <div class="terms-text">제 1조 (목적)개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내개인정보 수집 및 이용에 대한 안내</div>
+      <div class="terms-text" v-html="terms.dottoPolicyContent"></div>
     </section>
 
     <section >
@@ -22,25 +22,16 @@
         <div>개인정보 수집 및 이용에 대한 안내<span class="necessary">(필수)</span></div>
         <div><input type="checkbox" id="check2" @change="handleClickEachCheckBox" v-model="checkList2" /><label for="check2"></label></div>
       </div>
-      <div class="terms-text">제 1조 (목적)</div>
-    </section>
-
-    <section>
-      <div class="terms-items">
-        <div>위치 정보 이용약관 동의<span class="choice">(선택)</span></div>
-        <div><input type="checkbox" id="check3" @change="handleClickEachCheckBox" v-model="checkList3" /><label for="check3"></label></div>
-      </div>
-      <div class="terms-text">제 1조 (목적)</div>
+      <div class="terms-text" v-html="terms.privatePolicyContent"></div>
     </section>
 
     <section >
       <div class="terms-items">
         <div>이벤트 등 프로모션 알람 메일 수신<span class="choice">(선택)</span></div>
-        <div><input type="checkbox" id="check4" @change="handleClickEachCheckBox" v-model="checkList4" /><label for="check4"></label></div>
+        <div><input type="checkbox" id="check4" @change="handleClickEachCheckBox" v-model="checkList3" /><label for="check4"></label></div>
       </div>
-      <div class="terms-text">제 1조 (목적)</div>
+      <div class="terms-text" v-html="terms.marketingPolicyContent"></div>
     </section>
-
     <section id="terms-btn-wrapper" >
       <button class="terms-btn" type="button" @click="cancelRegistration">비동의</button>
       <button class="terms-btn" type="button" @click="redirectRegisterForm">동의</button>
@@ -51,6 +42,7 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
+import termsContent from '@/assets/dummy/terms.ts';
 
 @Component
 export default class TermsComponent extends Vue {
@@ -58,9 +50,23 @@ export default class TermsComponent extends Vue {
   checkList1 = false;
   checkList2 = false;
   checkList3 = false;
-  checkList4 = false;
 
-  created() {
+  terms = {
+    dottoPolicyContent: '',
+    privatePolicyContent: '',
+    marketingPolicyContent: '',
+  }
+
+  constructor() {
+    super();
+    this.terms = {
+      dottoPolicyContent: termsContent[0].dottoPolicyContent,
+      privatePolicyContent: termsContent[0].privatePolicyContent,
+      marketingPolicyContent: termsContent[0].marketingPolicyContent
+    }
+  }
+
+  created(): void {
     this.handleClickAllCheckBox();
   }
 
@@ -69,17 +75,15 @@ export default class TermsComponent extends Vue {
       this.checkList1 = true;
       this.checkList2 = true;
       this.checkList3 = true;
-      this.checkList4 = true;
     } else {
       this.checkList1 = false;
       this.checkList2 = false;
       this.checkList3 = false;
-      this.checkList4 = false;
     }
   }
 
   private handleClickEachCheckBox() {
-    this.allCheckItems = this.checkList1 && this.checkList2 && this.checkList3 && this.checkList4;
+    this.allCheckItems = this.checkList1 && this.checkList2 && this.checkList3;
   }
 
   private redirectRegisterForm(): boolean | void {

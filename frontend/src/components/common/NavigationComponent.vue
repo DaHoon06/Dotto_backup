@@ -6,19 +6,7 @@
           <ul>
             <li>
               <button
-                  class="nav-button" :class="menu_home ? active : ''"
-                  @mousemove="showHome('show')"
-                  @mouseleave="showHome('hide')">HOME</button>
-            </li>
-            <li v-show="menu_home">
-              <div class="nav-menu-list"
-                   @mouseover="showHome('show')"
-                   @mouseleave="showHome('hide')">
-                <router-link to="/" class="sub-nav-items">menu1</router-link>
-                <router-link to="/" class="sub-nav-items">menu2</router-link>
-                <router-link to="/" class="sub-nav-items">menu3</router-link>
-                <router-link to="/" class="sub-nav-items">menu4</router-link>
-              </div>
+                  class="nav-button" :class="menu_home ? currentPage : ''">HOME</button>
             </li>
           </ul>
         </article>
@@ -28,19 +16,7 @@
           <ul>
             <li>
               <button
-                  class="nav-button" :class="menu_artist ? active : ''"
-                  @mouseover="showArtist('show')"
-                  @mouseleave="showArtist('hide')">ARTIST</button>
-            </li>
-            <li v-show="menu_artist">
-              <div class="nav-menu-list"
-                   @mouseover="showArtist('show')"
-                   @mouseleave="showArtist('hide')">
-                <router-link to="/" class="sub-nav-items">menu1</router-link>
-                <router-link to="/" class="sub-nav-items">menu2</router-link>
-                <router-link to="/" class="sub-nav-items">menu3</router-link>
-                <router-link to="/" class="sub-nav-items">menu4</router-link>
-              </div>
+                  class="nav-button" :class="menu_tattoo ? currentPage : ''">try DOTTO</button>
             </li>
           </ul>
         </article>
@@ -50,29 +26,7 @@
           <ul>
             <li>
               <button
-                  class="nav-button" :class="menu_tattoo ? active : ''"
-                  @mouseover="showTattoo('show')"
-                  @mouseleave="showTattoo('hide')">try DOTTO</button>
-            </li>
-            <li v-show="menu_tattoo">
-              <div class="nav-menu-list"
-                   @mouseover="showTattoo('show')"
-                   @mouseleave="showTattoo('hide')" >
-                <router-link to="/" class="sub-nav-items">menu1</router-link>
-                <router-link to="/" class="sub-nav-items">menu2</router-link>
-                <router-link to="/" class="sub-nav-items">menu3</router-link>
-                <router-link to="/" class="sub-nav-items">menu4</router-link>
-              </div>
-            </li>
-          </ul>
-        </article>
-      </li>
-      <li>
-        <article class="menu">
-          <ul>
-            <li>
-              <button
-                  class="nav-button" :class="menu_community ? active : ''"
+                  class="nav-button" :class="menu_community ? currentPage : ''"
                   @mouseover="showCommunity('show')"
                   @mouseleave="showCommunity('hide')">COMMUNITY</button>
             </li>
@@ -80,10 +34,28 @@
               <div class="nav-menu-list"
                    @mouseover="showCommunity('show')"
                    @mouseleave="showCommunity('hide')">
-                <router-link to="/" class="sub-nav-items">menu1</router-link>
-                <router-link to="/" class="sub-nav-items">menu2</router-link>
-                <router-link to="/" class="sub-nav-items">menu3</router-link>
-                <router-link to="/" class="sub-nav-items">menu4</router-link>
+                <router-link to="/dotto/board/index" class="sub-nav-items">닷투 게시판</router-link>
+                <router-link to="/" class="sub-nav-items">닷찾사 게시판</router-link>
+              </div>
+            </li>
+          </ul>
+        </article>
+      </li>
+      <li>
+        <article class="menu">
+          <ul>
+            <li>
+              <button
+                  class="nav-button" :class="menu_information ? currentPage : ''"
+                  @mouseover="showInformation('show')"
+                  @mouseleave="showInformation('hide')">고객지원</button>
+            </li>
+            <li v-show="menu_information">
+              <div class="nav-menu-list"
+                   @mouseover="showInformation('show')"
+                   @mouseleave="showInformation('hide')">
+                <router-link to="/" class="sub-nav-items">FAQ</router-link>
+                <router-link to="/" class="sub-nav-items">공지사항</router-link>
               </div>
             </li>
           </ul>
@@ -98,27 +70,18 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class NavigationComponent extends Vue {
-  menu_home = false;
-  menu_artist = false;
+  menu_home = true;
+  menu_information = false;
   menu_tattoo = false;
   menu_community = false;
-  active = 'active';
+  currentPage = 'current-page';
 
   constructor() {
     super();
   }
 
-  private showHome(event: string) {
-    this.menu_home = event === 'show';
-  }
-
-  private showArtist(event: string) {
-    this.menu_artist = event === 'show';
-  }
-
-  private showTattoo(event: string) {
-    this.menu_tattoo = event === 'show';
-
+  private showInformation(event: string) {
+    this.menu_information = event === 'show';
   }
 
   private showCommunity(event: string) {
@@ -135,7 +98,7 @@ export default class NavigationComponent extends Vue {
   background: #FFFFFF;
   top: 60px;
   height: 40px;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid #F5F5F5;
   padding-left: 20px;
   font-size: 13px;
   color: #919191;
@@ -152,24 +115,37 @@ export default class NavigationComponent extends Vue {
 }
 
 .nav-menu-list {
-  background: rgba(189, 187, 187, 0.9);
-  width: 100px;
+  background: rgba(255, 255, 255, 0.9);
+  width: 130px;
+  height: 80px;
   position: absolute;
-  margin-left: -1.5rem;
+  margin-left: -1.3rem;
   color: #ffffff;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 2px;
   z-index: 10;
+  font-size: 12px;
 }
+
+.sub-nav-items:hover {
+  cursor: pointer;
+  font-size: 12px;
+  background: rgba(250, 250, 250, 0.7);
+  border-radius: 2px;
+  padding: 3px 10% 3px 10%;
+  color: #222222;
+}
+
 
 .nav-button {
   color: #919191;
   padding-left: 5px;
 }
 
-.active {
+.current-page {
   color: #222222;
   font-weight: bold;
+  text-shadow: 1px 1px #a9a9a9;
 }
 
 .nav-button:hover {
@@ -189,13 +165,5 @@ export default class NavigationComponent extends Vue {
   margin-bottom: 10px;
 }
 
-.sub-nav-items:hover {
-  cursor: pointer;
-  font-size: 14px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 2px;
-  padding: 3px 30% 3px 30%;
-  color: #222222;
-}
 
 </style>

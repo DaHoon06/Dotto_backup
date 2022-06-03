@@ -1,7 +1,7 @@
 <template>
   <main id="loginPage-container">
     <section id="logo-img" class="login-info-section">
-      <span class="logo"><img src="@/assets/dotto.jpg" alt="logo" /></span>
+      <span class="logo"><img src="@/assets/img/dotto.jpg" alt="logo" /></span>
     </section>
 
     <section class="login-info-section">
@@ -30,18 +30,16 @@
       <article id="simple-login-icons">
         <div id="login-btn-img">
           <div>
-            <GoogleLogin
-                id="google-btn"
-                class="social-btn"
-                :params="params"
+            <!-- :params="params"
                 :onSuccess="googleLoginSuccess"
-                :onFailure="googleLoginFailure">
-              <img src="@/assets/login/Google.png" alt="google" />
-            </GoogleLogin>
+                :onFailure="googleLoginFailure"-->
+            <button id="google-btn" class="social-btn">
+              <img src="@/assets/img/login/Google.png" alt="google" />
+            </button>
           </div>
           <div>
             <button id="kakao-btn" class="social-btn">
-              <img src="@/assets/login/kakao.png" @click="kakaoLogin" alt="kakao" />
+              <img src="@/assets/img/login/kakao.png" @click="kakaoLogin" alt="kakao" />
             </button>
           </div>
         </div>
@@ -72,11 +70,11 @@
 <script lang="ts">
 import { Vue, Component, Emit } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
-import { GoogleLogin } from 'vue-google-login';
+// import { GoogleLogin } from 'vue-google-login';
 
 @Component({
   components: {
-    GoogleLogin
+    // GoogleLogin
   }
 })
 export default class LoginView extends Vue {
@@ -88,7 +86,7 @@ export default class LoginView extends Vue {
   $gAuth: any;
 
   params = {
-    client_id: process.env.GOOGLE_KEY
+    client_id: process.env.VUE_APP_GOOGLE_KEY
   }
 
   constructor() {
@@ -153,7 +151,7 @@ export default class LoginView extends Vue {
   }
 
   private kakaoLogin(): void {
-    window.Kakao.init(process.env.KAKAO_KEY);
+    window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
 
     if (window.Kakao.Auth.getAccessToken()) {
       window.Kakao.API.request({
@@ -217,6 +215,7 @@ hr {
 
 .login-info {
   background: #fafafa;
+  outline: none;
   width: 100%;
   border: 1px solid #eeeeee;
   height: 30px;

@@ -1,30 +1,24 @@
 <template>
-  <div>
-    <header id="header">
-      <header-component @blurBackground="blurBackground" />
-      <navigation-component  />
-      <menu-button />
-    </header>
-
-    <section id="my-information-wrapper" :class='blurCss'>
+  <div id="my-feed-view-container">
+    <section id="my-information-wrapper" >
       <my-information-component />
     </section>
 
-    <section id="my-follow-wrapper" :class='blurCss'>
+    <section id="my-follow-wrapper" >
       <my-follow-component />
     </section>
 
     <section id="my-category">
       <ul>
-        <li>마이피드</li>
-        <li>좋아요</li>
-        <li>내 댓글</li>
-        <li>내 리뷰</li>
+        <li @click="changeType('MyFeed')" :class="{ 'currentPage' : myTabsComputed === 'MyFeed' }">마이피드</li>
+        <li @click="changeType('MyLikes')" :class="{ 'currentPage' : myTabsComputed === 'MyLikes' }">좋아요</li>
       </ul>
     </section>
-    <hr/>
 
-    <footer-component :class='`${blurCss}`' />
+    <section id="my-tabs-area">
+      <component
+          :is="dynamicView" />
+    </section>
   </div>
 </template>
 
@@ -39,11 +33,12 @@ import {
   NavigationComponent,
   MenuButton
 } from "@/components/common";
-import { BLUR } from "@/interfaces/common/ICommon";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 import MyInformationComponent from "@/components/my/MyInformationComponent.vue";
 import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
+import MyFeedComponent from "@/components/my/tabs/MyFeedComponent.vue";
+import MyLikeListsComponent from "@/components/my/tabs/MyLikeListsComponent.vue";
 
 @Component({
   components: {
@@ -61,21 +56,38 @@ import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
   }
 })
 export default class MyView extends Vue {
-  blurCss: BLUR;
+  type = 'MyFeed';
 
-  constructor() {
-    super();
-    this.blurCss = BLUR.OFF;
+  private changeType(type: string) {
+    this.myTabsComputed = type;
   }
 
-  private blurBackground(isBlur: boolean) {
-    isBlur ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
+  private set myTabsComputed(type: string) {
+    this.type = type;
   }
+
+  private get myTabsComputed() {
+    return this.type;
+  }
+
+  private get dynamicView() {
+    switch (this.myTabsComputed) {
+      case 'MyFeed':
+        return MyFeedComponent;
+      case 'MyLikes':
+        return MyLikeListsComponent;
+    }
+  }
+
+
 }
 </script>
 
 <style scoped>
-
+#my-feed-view-container {
+  width: 100vw;
+  height: 100%;
+}
 #my-information-wrapper {
   margin: 10em auto 4em auto;
   width: 50vw;
@@ -88,6 +100,7 @@ export default class MyView extends Vue {
 #my-category {
   display: flex;
   justify-content: center;
+  margin-bottom: 1.3rem;
 }
 #my-category > ul {
   margin: 0;
@@ -102,7 +115,16 @@ export default class MyView extends Vue {
   cursor: pointer;
   border-bottom: 2px solid gray;
 }
-.setBlur {
-  filter: blur(4px)
+#my-tabs-area {
+  border-top: 1px solid #E2E2E2;
+  background: #f6f6f6;
 }
+
+.currentPage {
+  font-weight: 700;
+  color: #d5d5d5 !important;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E2E2E2;
+}
+
 </style>

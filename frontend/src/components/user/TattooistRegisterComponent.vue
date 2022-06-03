@@ -49,7 +49,7 @@
         <b-button v-b-modal.modal-1 class="register-btn input-text">주소찾기</b-button>
       </div>
 
-      <b-modal id="modal-1" hide-footer>
+      <b-modal id="modal-1" class="address_modal" hide-footer>
         <template #modal-title>
           주소 검색
         </template>
@@ -63,8 +63,14 @@
       <div class="input-wrapper register-submit">
         <button type="button" class="register-btn" id="img-registration-btn">작업실 및 소개 이미지 등록</button>
       </div>
-      <div>
-        <b-form-file id="file-small" v-model="tattooSpot" size="sm"></b-form-file>
+      <div id="file">
+        <input
+            type="file"
+            class="file-input"
+            @change="uploadFiles"
+            multiple
+            accept=".jpg, .jpeg, .png"
+        />
       </div>
 
       <div class="input-wrapper phone-wrapper" id="first-phone-wrapper">
@@ -106,35 +112,22 @@ import { VueDaumPostcode } from "vue-daum-postcode";
   }
 })
 export default class TattooistRegisterComponent extends Vue {
-  id: string;
-  password: string;
-  passwordCheck: string;
-  nickName: string;
-  phone: string;
-  nickNameMessage: string;
-  passwordMessage: string;
-  passwordCheckMessage: string;
-  idMessage: string;
-  address: string;
-  detail_address:string;
-  gender: string;
-  tattooSpot: File;
+  id = '';
+  password = '';
+  passwordCheck = '';
+  nickName = '';
+  phone = '';
+  nickNameMessage = '';
+  passwordMessage = '';
+  passwordCheckMessage = '';
+  idMessage = '';
+  address = '';
+  detail_address = '';
+  gender = '';
+  image = '';
 
   constructor() {
     super();
-    this.id = '';
-    this.password = '';
-    this.passwordCheck = '';
-    this.nickName = '';
-    this.phone = '';
-    this.tattooSpot = new File([''], '');
-    this.nickNameMessage = '';
-    this.passwordMessage = '';
-    this.passwordCheckMessage = '';
-    this.idMessage = '';
-    this.address = '';
-    this.detail_address = '';
-    this.gender = '';
   }
 
   private oncomplete(result: any) {
@@ -216,12 +209,8 @@ export default class TattooistRegisterComponent extends Vue {
       password: this.password,
       id: this.id,
       phone: this.phone,
-      gender: this.gender,
       addr: this.address,
       subAddr: this.detail_address,
-    }
-    if (this.tattooSpot) {
-      this.makeFileList(this.tattooSpot);
     }
 
     const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
@@ -236,16 +225,28 @@ export default class TattooistRegisterComponent extends Vue {
     }
   }
 
-  makeFileList(fileData: File): void {
-    console.log(fileData)
-  }
-
-
   msgClear(): void{
     if(this.NickNameMessage !== '사용가능한 닉네임 입니다.') {
       this.NickNameMessage = '';
       this.nickName = '';
     }
+  }
+
+  private uploadFiles(e: any) {
+    this.image = e.target.files;
+    this.addFiles(this.image);
+  }
+  private async addFiles(files: any): Promise<any> {
+    const fileList = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      fileList.append('files', this.image[i]);
+    }
+
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+    }
+    await this.axios.post('/test',fileList, { headers });
+
   }
 
   private set NickNameMessage(msg: string) {
@@ -318,4 +319,13 @@ export default class TattooistRegisterComponent extends Vue {
 #img-registration-btn {
   width: 100%;
 }
+
+#file {
+  display: block;
+  width: 100%;
+}
+#file > .file-input {
+  overflow: auto;
+}
+
 </style>
