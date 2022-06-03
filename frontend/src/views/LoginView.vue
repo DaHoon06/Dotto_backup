@@ -217,6 +217,7 @@ hr {
 
 .login-info {
   background: #fafafa;
+  outline: none;
   width: 100%;
   border: 1px solid #eeeeee;
   height: 30px;

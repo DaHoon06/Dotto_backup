@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="my-feed-view-container">
     <section id="my-information-wrapper" >
       <my-information-component />
     </section>
@@ -84,7 +84,10 @@ export default class MyView extends Vue {
 </script>
 
 <style scoped>
-
+#my-feed-view-container {
+  width: 100vw;
+  height: 100%;
+}
 #my-information-wrapper {
   margin: 10em auto 4em auto;
   width: 50vw;

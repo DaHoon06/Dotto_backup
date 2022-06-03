@@ -40,7 +40,7 @@
     </section>
 
     <section>
-      <div v-if="isLogin">
+      <div v-if="!isLogin">
         <button id="show-btn" @click="showLoginView" >
           <img class="nav-menu-icon" src="@/assets/nav/information.png" alt="info" />
         </button>

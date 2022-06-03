@@ -54,19 +54,9 @@
         <button class="register-btn">인증하기</button>
       </div>
 
-      <div id="gender-wrapper">
-        <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />
-        <label for="male">남성</label>
-        <input class="selected-gender" type="radio" id="female" v-model="gender" value="female" name="female" />
-        <label for="female">여성</label>
-<!--        <input class="selected-gender" type="radio" id="empty" v-model="gender" value="empty" name="empty" />-->
-<!--        <label for="empty">선택안함</label>-->
-      </div>
-
       <div class="input-wrapper">
         <select class="select">
           <option disabled selected>추가 연락 수단</option>
-          <option value="0">선택 안함</option>
           <option value="1">카카오</option>
           <option value="2">인스타그램</option>
         </select>
@@ -98,7 +88,6 @@ export default class MemberRegisterComponent extends Vue {
   passwordMessage: string;
   passwordCheckMessage: string;
   idMessage: string;
-  gender: string;
 
   constructor() {
     super();
@@ -112,7 +101,6 @@ export default class MemberRegisterComponent extends Vue {
     this.passwordMessage = '';
     this.passwordCheckMessage = '';
     this.idMessage = '';
-    this.gender = '';
   }
 
   private validationId(): void {
@@ -185,7 +173,6 @@ export default class MemberRegisterComponent extends Vue {
       password: this.password,
       id: this.id,
       phone: this.phone,
-      gender: this.gender,
     };
 
     //TODO: 반환 data에 대한 타입 정의
@@ -198,7 +185,6 @@ export default class MemberRegisterComponent extends Vue {
     } else {
       alert('ERROR');
     }
-
   }
 
   msgClear(): void{
@@ -207,6 +193,7 @@ export default class MemberRegisterComponent extends Vue {
       this.nickName = '';
     }
   }
+
   private set NickNameMessage(msg: string) {
     this.nickNameMessage = msg
   }

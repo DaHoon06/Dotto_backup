@@ -97,6 +97,7 @@
     width: 200px;
     height: 25px;
     border: 1px solid #ececec;
+    outline: none;
     border-radius: 4px;
     background: #F5F5F5;
     padding-left: 10px;
