@@ -7,7 +7,9 @@
             type="text"
             v-model="id"
             placeholder="아이디"
-            class="input-text" />
+            class="input-text"
+            ref="refId"
+        />
         <button class="register-btn" @click="idCheck" type="button">중복확인</button>
       </div>
 
@@ -19,7 +21,9 @@
             @change="validationPassword"
             v-model="password"
             placeholder="비밀번호"
-            class="input-text" />
+            class="input-text"
+            ref="refPassword"
+        />
       </div>
       <div class="warning-msg">{{ PasswordMessage }}</div>
 
@@ -37,19 +41,33 @@
         <input
             type="text"
             @focus="msgClear"
-            v-model="nickName"
+            v-model="nickname"
             placeholder="닉네임"
-            class="input-text" />
-        <button @click="nickNameCheck" class="register-btn" type="button">중복확인</button>
+            class="input-text"
+            ref="refNickName"
+        />
+        <button
+            @click="validationNickName"
+            class="register-btn"
+            type="button">중복확인</button>
       </div>
       <div class="warning-msg">{{ NickNameMessage }}</div>
 
       <div class="input-wrapper" >
-        <input type="text" class="input-text" v-model="phone" placeholder="휴대폰번호 입력" />
+        <input
+            @keyup="validationPhoneNumber"
+            maxlength="11"
+            type="text"
+            class="input-text"
+            v-model="phone"
+            placeholder="휴대폰번호 입력"
+            ref="refPhone"
+        />
         <button class="register-btn">인증번호받기</button>
       </div>
+      <div class="warning-msg">{{ PhoneMessage }}</div>
 
-      <div class="input-wrapper  phone-wrapper">
+      <div class="input-wrapper">
         <input type="text" class="input-text" placeholder="인증번호 입력" />
         <button class="register-btn">인증하기</button>
       </div>
@@ -71,126 +89,153 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Ref, Vue } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
+import { EMessageRegister } from "@/interfaces/common/EMessageType";
 
 @Component
 export default class MemberRegisterComponent extends Vue {
   @Prop() type?: string;
 
-  id: string;
-  password: string;
-  passwordCheck: string;
-  nickName: string;
-  phone: string;
-  agree: boolean;
-  nickNameMessage: string;
-  passwordMessage: string;
-  passwordCheckMessage: string;
-  idMessage: string;
+  @Ref() readonly refId!: HTMLElement
+  @Ref() readonly refPassword!: HTMLElement
+  @Ref() readonly refNickName!: HTMLElement
+  @Ref() readonly refPhone!: HTMLElement
+
+  id = '';
+  password = '';
+  passwordCheck = '';
+  nickname = '';
+  phone = '';
+  authentication = false;
+  // ERROR MSG
+  nickNameMessage = '';
+  passwordMessage = '';
+  passwordCheckMessage = '';
+  idMessage = '';
+  phoneMessage = '';
 
   constructor() {
     super();
-    this.id = '';
-    this.password = '';
-    this.passwordCheck = '';
-    this.nickName = '';
-    this.phone = '';
-    this.agree = false;
-    this.nickNameMessage = '';
-    this.passwordMessage = '';
-    this.passwordCheckMessage = '';
-    this.idMessage = '';
   }
 
   private validationId(): void {
-    // 이메일 풀 주소 정규식 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
-    const reg = /^[a-zA-Z0-9]*$/;
-    let msg = '';
+    const reg =  /^[a-z0-9_]{4,20}$/;
+
     if (!reg.test(this.id)) {
-      msg = '이메일 주소를 정확히 입력해주세요.'
-      this.IdMessage = msg;
+      this.IdMessage = EMessageRegister.ID_NOT_ENTERED;
       this.id = '';
     } else {
-      msg = '';
-      this.IdMessage = msg;
+      this.IdMessage =  EMessageRegister.BLANK;
     }
   }
 
   async idCheck(): Promise<void> {
-
     const { data } = await this.axios.get('/members/readId', {
       params: {
         id: this.id,
       }
     })
     const { result } = data;
+    if (result) {
+      this.IdMessage =  EMessageRegister.AVAILABLE_ID;
+    } else {
+      this.IdMessage = EMessageRegister.EXIST_ID;
+    }
     console.log(result);
   }
 
   async nickNameCheck(): Promise<void> {
     const { data } = await this.axios.get('/members/readNickName',{
       params: {
-        nickName: this.nickName,
+        nickname: this.nickname,
       }
     });
     const { result } = data;
-    let msg = '';
-
     if (result) {
-      msg = '';
-      this.NickNameMessage = msg;
+      this.NickNameMessage = EMessageRegister.BLANK;
     } else {
-      msg = '이미 사용중인 닉네임입니다.';
-      this.NickNameMessage = msg;
+      this.NickNameMessage = EMessageRegister.EXIST_NICKNAME;
+    }
+  }
+  validationNickName(): void {
+    const reg = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+    if (reg.test(this.nickname)) {
+      this.NickNameMessage = EMessageRegister.SPECIAL_CHARACTERS_NOT_ALLOWED;
+    } else {
+      this.NickNameMessage = EMessageRegister.BLANK;
+      this.nickNameCheck();
+    }
+  }
+
+  validationPhoneNumber(): void {
+    const reg = /^01([016789])-?([0-9]{4})-?([0-9]{4})$/;
+    if (reg.test(this.phone)) {
+      this.PhoneMessage = EMessageRegister.BLANK;
+    } else {
+      if (this.phone.length === 11) {
+        this.PhoneMessage = EMessageRegister.BLANK;
+        this.phone = '';
+      } else {
+        this.PhoneMessage = EMessageRegister.PHONE_NOT_ENTERED;
+      }
     }
   }
 
   validationPassword(): void {
-    let msg = '';
     const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if(!reg.test(this.password) && this.password.length) this.PasswordMessage = EMessageRegister.PASSWORD_NOT_ENTERED;
+    else this.PasswordMessage = EMessageRegister.BLANK;
 
-    if(!reg.test(this.password) && this.password.length) {
-      msg = '하나 이상의 문자, 하나의 숫자 및 특수문자를 조합하여 8자 이상 입력해주세요.';
-      this.PasswordMessage = msg;
-    } else {
-      msg = '';
-      this.PasswordMessage = msg;
-    }
-
-    if (this.password !== this.passwordCheck) {
-      msg = '비밀번호를 다시 한 번 확인해주세요.';
-      this.PasswordCheckMessage = msg;
-    } else {
-      msg = '';
-      this.PasswordCheckMessage = msg;
-    }
+    if (this.password !== this.passwordCheck) this.PasswordCheckMessage = EMessageRegister.PASSWORD_RECHECK;
+    else this.PasswordCheckMessage = EMessageRegister.BLANK;
   }
 
-  async register(): Promise<void> {
-    const sendData: IUser.IRegisterProp = {
-      nickname: this.nickName,
-      password: this.password,
-      id: this.id,
-      phone: this.phone,
-    };
-
-    //TODO: 반환 data에 대한 타입 정의
-    const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
-    const { success } = data;
-    if (success) {
-      await this.$router.push({
-        path: '/login'
-      })
+  private blankCheck(): boolean {
+    let result = false
+    if (!this.id.length) {
+      this.$nextTick(() => this.refId.focus());
+    } else if (!this.password.length) {
+      this.$nextTick(() => this.refPassword.focus());
+    } else if (!this.nickname.length) {
+      this.$nextTick(() => this.refNickName.focus()); return false;
+    } else if (!this.phone.length) {
+      this.$nextTick(() => this.refPhone.focus()); return false;
     } else {
-      alert('ERROR');
+      result = true;
+    }
+    return result
+  }
+  async register(): Promise<void> {
+    const result = this.blankCheck();
+    //TODO: 휴대폰 인증에 관한 처리
+    if (result && this.authentication) {
+      const sendData: IUser.IRegisterProp = {
+        nickname: this.nickname,
+        password: this.password,
+        id: this.id,
+        phone: this.phone,
+      };
+
+      //TODO: 반환 data에 대한 타입 정의
+      const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
+      const { success } = data;
+      if (success) {
+        await this.$router.push({
+          path: '/login'
+        })
+      } else {
+        alert('ERROR');
+      }
+    } else {
+      alert('공백이 존재');
     }
   }
 
   msgClear(): void{
-    if(this.NickNameMessage !== '사용가능한 닉네임 입니다.') {
-      this.NickNameMessage = '';
-      this.nickName = '';
+    if(this.NickNameMessage !== EMessageRegister.AVAILABLE_NICKNAME) {
+      this.NickNameMessage = EMessageRegister.BLANK;
+      this.nickname = '';
     }
   }
 
@@ -217,6 +262,12 @@ export default class MemberRegisterComponent extends Vue {
   }
   private get IdMessage() {
     return this.idMessage;
+  }
+  private set PhoneMessage(msg: string) {
+    this.phoneMessage = msg;
+  }
+  private get PhoneMessage() {
+    return this.phoneMessage;
   }
 
 

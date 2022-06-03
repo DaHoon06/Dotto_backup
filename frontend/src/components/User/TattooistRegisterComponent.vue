@@ -209,7 +209,6 @@ export default class TattooistRegisterComponent extends Vue {
       password: this.password,
       id: this.id,
       phone: this.phone,
-      gender: this.gender,
       addr: this.address,
       subAddr: this.detail_address,
     }

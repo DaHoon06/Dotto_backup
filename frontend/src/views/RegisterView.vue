@@ -16,7 +16,6 @@
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
 import MemberRegisterComponent from "@/components/User/MemberRegisterComponent.vue";
-import TattooistRegisterComponent from "@/components/User/TattooistRegisterComponent.vue";
 import {
   HeaderComponent,
   FooterComponent,
@@ -27,7 +26,6 @@ import {
 @Component({
   components: {
     MemberRegisterComponent,
-    TattooistRegisterComponent,
     FooterComponent,
     NavigationComponent,
     HeaderComponent,
@@ -65,6 +63,7 @@ export default class RegisterView extends Vue {
   margin-bottom: 3em;
   border-bottom: 1px solid #eeeeee;
   padding-bottom: 10px;
+  justify-content: flex-end;
 }
 #tab-wrapper span {
   margin-left: 0.5em;
