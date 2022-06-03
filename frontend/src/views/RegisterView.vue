@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import MemberRegisterComponent from "@/components/User/MemberRegisterComponent.vue";
+import MemberRegisterComponent from "@/components/user/MemberRegisterComponent.vue";
 import {
   HeaderComponent,
   FooterComponent,

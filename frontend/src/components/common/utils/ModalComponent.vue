@@ -20,7 +20,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
-import TermsComponent from "@/components/User/TermsComponent.vue";
+import TermsComponent from "@/components/user/TermsComponent.vue";
 
 @Component({
   components: {

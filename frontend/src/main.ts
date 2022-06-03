@@ -29,7 +29,7 @@ Vue.use(VueMoment);
 Vue.use(VueDaumPostcode);
 
 // Vue.use(LoaderPlugin, {
-//   client_id: process.env.GOOGLE_KEY
+//   client_id: process.env.VUE_APP_GOOGLE_KEY
 // });
 
 Vue.mixin(Mixin);

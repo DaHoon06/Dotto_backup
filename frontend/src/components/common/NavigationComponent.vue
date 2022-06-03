@@ -34,7 +34,7 @@
               <div class="nav-menu-list"
                    @mouseover="showCommunity('show')"
                    @mouseleave="showCommunity('hide')">
-                <router-link to="/" class="sub-nav-items">닷투 게시판</router-link>
+                <router-link to="/dotto/board/index" class="sub-nav-items">닷투 게시판</router-link>
                 <router-link to="/" class="sub-nav-items">닷찾사 게시판</router-link>
               </div>
             </li>

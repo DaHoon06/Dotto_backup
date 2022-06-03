@@ -86,7 +86,7 @@ export default class LoginView extends Vue {
   $gAuth: any;
 
   params = {
-    client_id: process.env.GOOGLE_KEY
+    client_id: process.env.VUE_APP_GOOGLE_KEY
   }
 
   constructor() {
@@ -151,7 +151,7 @@ export default class LoginView extends Vue {
   }
 
   private kakaoLogin(): void {
-    window.Kakao.init(process.env.KAKAO_KEY);
+    window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
 
     if (window.Kakao.Auth.getAccessToken()) {
       window.Kakao.API.request({
