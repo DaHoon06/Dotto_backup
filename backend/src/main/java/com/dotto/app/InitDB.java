@@ -65,11 +65,11 @@ public class InitDB {
 
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
-                                "title1","content1",10000,9000,"N","블랙엔그레이",30,'N'),
+                                "title1","content1",10000,9000,'N',"블랙엔그레이",30,'N',List.of()),
                         new DottoPost(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new),
-                                "title2","content2",20000, 18000, "N","올드스쿨",180,'N'),
+                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,'N',List.of()),
                         new DottoPost(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new),
-                                "title3","content3",30000,27000,"N","이레즈미",270,'N')
+                                "title3","content3",30000,27000,'N',"이레즈미",270,'N',List.of())
 
                         )
                 );

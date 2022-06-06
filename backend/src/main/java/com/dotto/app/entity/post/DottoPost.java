@@ -9,6 +9,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,7 +39,7 @@ public class DottoPost extends EntityDate {
     private int salesPrice;
 
     @Column
-    private String salesYn;
+    private char salesYn;
 
     @Column
     private String genre;
@@ -45,7 +47,13 @@ public class DottoPost extends EntityDate {
     @Column
     private int totalTime;
 
-    public DottoPost(Member member, String title, String content, int price, int salesPrice, String salesYn, String genre, int totalTime ){
+    @Column
+    private char deletedYn;
+
+    @OneToMany(mappedBy = "dottoPost",cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<Image> images;
+
+    public DottoPost(Member member, String title, String content, int price, int salesPrice, char salesYn, String genre, int totalTime, char deletedYn, List<Image> images ){
         this.member = member;
         this.title = title;
         this.content = content;
@@ -54,7 +62,14 @@ public class DottoPost extends EntityDate {
         this.salesYn = salesYn;
         this.genre = genre;
         this.totalTime = totalTime;
+        this.deletedYn = deletedYn;
+        this.images = new ArrayList<>();
     }
 
+    private void addImage(List<Image> added){
+        added.stream().forEach(i -> {images.add(i);
+        i.initDottoPost(this);
+        });
+    }
 
 }
