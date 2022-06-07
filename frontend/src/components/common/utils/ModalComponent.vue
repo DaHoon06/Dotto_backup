@@ -65,8 +65,9 @@ export default class ModalComponent extends Vue {
     this.$emit('closeModal');
   }
 
-  private resetModal(e: any) {
-    if (e.target.parentNode === this.$refs.modalContainer) {
+  private resetModal(e: Event) {
+    const target = e.target as HTMLInputElement;
+    if (target.parentNode === this.$refs.modalContainer) {
       this.closeModal();
     }
   }

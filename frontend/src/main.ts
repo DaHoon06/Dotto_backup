@@ -12,7 +12,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueDaumPostcode from "vue-daum-postcode"
 import { Mixin } from "@/mixins/mixin";
 import dotenv from 'dotenv';
-// import { LoaderPlugin } from 'vue-google-login';
 
 import '@/assets/styles/index.css';
 
@@ -27,10 +26,6 @@ Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.use(VueMoment);
 Vue.use(VueDaumPostcode);
-
-// Vue.use(LoaderPlugin, {
-//   client_id: process.env.VUE_APP_GOOGLE_KEY
-// });
 
 Vue.mixin(Mixin);
 

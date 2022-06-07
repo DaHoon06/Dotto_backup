@@ -2,14 +2,10 @@
   <main id="register-container">
     <section id="tab-wrapper">
       <span id="modal-register-close-btn" @click="closeForm">X</span>
-<!--      <div class="register-tabs">-->
-<!--        <span @click="changeTab = 0" :class="{ 'currentPage' : changeTab === 0 }" >일반 회원</span>-->
-<!--        <span @click="changeTab = 1" :class="{ 'currentPage' : changeTab === 1 }" >타투이스트 회원</span>-->
-<!--      </div>-->
     </section>
 
     <member-register-component />
-<!--    <tattooist-register-component v-if="changeTab === 1" />-->
+
   </main>
 </template>
 
@@ -33,15 +29,7 @@ import {
   }
 })
 export default class RegisterView extends Vue {
-  // type = 0;
 
-  // private get changeTab() {
-  //   return this.type;
-  // }
-  //
-  // private set changeTab(type: number) {
-  //   this.type = type;
-  // }
 
   @Emit('closeModal')
   private closeForm() {

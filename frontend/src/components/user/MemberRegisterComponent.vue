@@ -97,10 +97,10 @@ import { EMessageRegister } from "@/interfaces/common/EMessageType";
 export default class MemberRegisterComponent extends Vue {
   @Prop() type?: string;
 
-  @Ref() readonly refId!: HTMLElement
-  @Ref() readonly refPassword!: HTMLElement
-  @Ref() readonly refNickName!: HTMLElement
-  @Ref() readonly refPhone!: HTMLElement
+  @Ref() readonly refId!: HTMLElement;
+  @Ref() readonly refPassword!: HTMLElement;
+  @Ref() readonly refNickName!: HTMLElement;
+  @Ref() readonly refPhone!: HTMLElement;
 
   id = '';
   password = '';

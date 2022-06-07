@@ -21,10 +21,7 @@ export default class DottoBoardView extends Vue {
 <style scoped>
 #dotto-board-container {
   margin-top: 100px;
-  width: 100%;
-  height: 100%;
-  max-height: 1325px;
-  min-height: 1325px;
+  height: 100vh;
   background: #f6f6f6;
 
 }

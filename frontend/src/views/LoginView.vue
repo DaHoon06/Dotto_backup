@@ -30,9 +30,6 @@
       <article id="simple-login-icons">
         <div id="login-btn-img">
           <div>
-            <!-- :params="params"
-                :onSuccess="googleLoginSuccess"
-                :onFailure="googleLoginFailure"-->
             <button id="google-btn" class="social-btn">
               <img src="@/assets/img/login/Google.png" alt="google" />
             </button>
@@ -70,11 +67,10 @@
 <script lang="ts">
 import { Vue, Component, Emit } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
-// import { GoogleLogin } from 'vue-google-login';
+
 
 @Component({
   components: {
-    // GoogleLogin
   }
 })
 export default class LoginView extends Vue {
@@ -83,7 +79,7 @@ export default class LoginView extends Vue {
   save = false;
   loginFailedMsg = '';
   modalTypeRegister = '';
-  $gAuth: any;
+  // $gAuth: any;
 
   params = {
     client_id: process.env.VUE_APP_GOOGLE_KEY
@@ -139,16 +135,6 @@ export default class LoginView extends Vue {
     this.loginFailed = '';
   }
 
-  private googleLoginSuccess(googleUser: any): void {
-    console.log('TEST')
-    console.log(googleUser);
-    console.log(googleUser)
-    console.log('-----------')
-    console.log(googleUser.getBasicProfile());
-  }
-  private googleLoginFailure(test: any) {
-    console.log(test,'실패')
-  }
 
   private kakaoLogin(): void {
     window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
@@ -156,10 +142,10 @@ export default class LoginView extends Vue {
     if (window.Kakao.Auth.getAccessToken()) {
       window.Kakao.API.request({
         url: '/v1/user/unlink',
-        success: function (response: any) {
+        success: function (response: Response) {
           console.log(response)
         },
-        fail: function (error: any) {
+        fail: function (error: Error) {
           console.log(error)
         },
       })
@@ -171,14 +157,14 @@ export default class LoginView extends Vue {
             data: {
               property_keys: ["kakao_account.email"]
             },
-            success: async (response: any) => {
+            success: async (response: Response) => {
               console.log(response);
             },
-            fail: (error: any) => {
+            fail: (error: Error) => {
               console.log(error)
             },
           })
-        },fail: (error: any) => {
+        },fail: (error: Error) => {
           console.log(error)
         }
       })
