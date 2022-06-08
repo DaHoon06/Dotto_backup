@@ -12,7 +12,8 @@ const routes: Array<RouteConfig> = [
   {
     name: 'index',
     path: '/dotto',
-    component: () => import('@/views/MainView.vue')
+    component: () => import('@/views/MainView.vue'),
+    meta: { unauthorized: true }
   },
   {
     name: 'login',
@@ -36,14 +37,15 @@ const routes: Array<RouteConfig> = [
     path: '/my',
     name: 'my',
     component: () => import('@/views/MyView.vue'),
+    meta: { unauthorized: false },
   },
   {
     path: '/dotto/board',
     name: 'board',
     component: () => import('@/views/dotto/DottoBoardView.vue'),
     children: [
-      { path: 'index', name: 'dottoBoard', component: () => import('@/components/dotto/DottoComponent.vue') },
-      { path: 'post', name: 'dottoPosting', component: () => import('@/components/dotto/DottoPostingComponent.vue') }
+      { path: 'index', name: 'dottoBoard', component: () => import('@/components/dotto/DottoComponent.vue'), meta: { unauthorized: true } },
+      { path: 'post', name: 'dottoPosting', component: () => import('@/components/dotto/DottoPostingComponent.vue'), meta: { unauthorized: true }, }
     ]
   }
 ]
@@ -58,15 +60,12 @@ router.beforeEach(async (to, from, next) => {
   try {
     const { meta } = to;
     const { unauthorized } = meta || { unauthorized: true };
-
     if (unauthorized) return next();
 
     const token = store.getters['userStore/login'];
-    const verified = await store.dispatch('userStore/verify', { token })
+    const verified = await store.dispatch('userStore/verify', { token });
+    if (verified) return next();
 
-    if (verified) {
-    return next();
-    }
   } catch (e) {
     return next('/401');
   }

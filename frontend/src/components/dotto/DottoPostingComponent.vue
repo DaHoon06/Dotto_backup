@@ -1,68 +1,88 @@
 <template>
   <div id="dotto-post-wrapper">
+
     <div id="dotto-post-btn-area">
       <button type="button" id="dotto-post-btn" @click="posting" :disabled="openBtn" :class="openBtn ? '' : activeBtn">등록하기</button>
     </div>
-
     <div id="dotto-post-body">
-      <div id="dotto-post-title" class="dotto-post-side-div">
-        <h4>닷투 게시글 작성</h4>
-      </div>
-
-      <div class="dotto-post-side-div">
-        <input @change="validation" v-model="title" class="dotto-post-input" type="text" placeholder="ex) 블랙워크 꽃과 나비" />
-      </div>
-
-      <div class="dotto-post-side-div">
-        <select @change="validation" v-model="genreDefault">
-          <option disabled value="none">장르</option>
-          <option v-for="(value, index) in genre" :value="value.value" :key="index">{{ value.text }}</option>
-        </select>
-        <select @change="validation" v-model="totalTimeDefault">
-          <option disabled value="none">소요시간</option>
-          <option v-for="(value, index) in totalTime" :value="value.value" :key="index">{{ value.text }}</option>
-        </select>
-      </div>
-
-      <div class="event-price-wrapper dotto-post-side-div">
-        <div>
-          <input @change="validation" class="dotto-post-input won" type="number" placeholder="가격" />
+      <div id="dotto-post-items-wrapper">
+        <div id="dotto-post-title" class="dotto-post-side-div">
+          <h4>닷투 게시글 작성</h4>
         </div>
-        <div id="event-price-radio-area">
-          <input v-model="salesYn" type="checkbox" id="event-price" />
-          <label for="event-price">할인이벤트</label>
-        </div>
-      </div>
 
-      <div class="event-price-wrapper dotto-post-side-div">
-        <div>
-          <label>정상가격</label>
-          <input v-model="price" class="dotto-post-input won" type="number" placeholder="0" />
+        <div class="dotto-post-side-div">
+          <input @change="validation" v-model="title" class="dotto-post-input" type="text" placeholder="ex) 블랙워크 꽃과 나비" />
         </div>
-        <div>
-          <label>할인가격</label>
-          <input v-model="salesPrice" class="dotto-post-input won" type="number" placeholder="0" />
-        </div>
-      </div>
 
-      <div id="textarea-wrapper" class="dotto-post-side-div">
-        <div id="dotto-post-tags-wrapper">
-          <div v-for="(tags, index) in tag" :key="index">
+        <div class="dotto-post-side-div">
+          <select @change="validation" v-model="genreDefault">
+            <option disabled value="none">장르</option>
+            <option v-for="(value, index) in genre" :value="value.value" :key="index">{{ value.text }}</option>
+          </select>
+          <select @change="validation" v-model="totalTimeDefault">
+            <option disabled value="none">소요시간</option>
+            <option v-for="(value, index) in totalTime" :value="value.value" :key="index">{{ value.text }}</option>
+          </select>
+        </div>
+
+        <hr />
+
+        <div class="event-price-wrapper dotto-post-side-div">
+          <div class="won">
+            <input
+                @change="validation"
+                v-model="originalPrice"
+                id="original-price"
+                class="dotto-post-input"
+                type="number"
+                placeholder="가격" /> <span>원</span>
+            <div id="event-price-radio-area">
+              <input v-model="salesYn" type="checkbox" id="event-price" />
+              <label for="event-price">할인이벤트</label>
+            </div>
+          </div>
+
+        </div>
+
+        <transition name="fade">
+          <div class="event-price-wrapper dotto-post-side-div" v-show="salesYn">
+            <div>
+              <label>정상가격</label>
+              <div class="won">
+                <input v-model="price" class="dotto-post-input" type="number" placeholder="0" /> <span>원</span>
+              </div>
+            </div>
+            <div>
+              <label>할인가격</label>
+              <div class="won">
+                <input v-model="salesPrice" class="dotto-post-input" type="number" placeholder="0" /> <span>원</span>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+
+        <hr />
+
+        <div id="textarea-wrapper" class="dotto-post-side-div">
+          <div id="dotto-post-tags-wrapper">
+            <div v-for="(tags, index) in tag" :key="index">
             <span class="dotto-post-tags" >
               {{ tags }}
               <button @click="deleteTag(index)">X</button>
             </span>
+            </div>
+            <input @change="validation" v-model="addTag" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
           </div>
-          <input @change="validation" v-model="addTag" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
+          <div>
+            <textarea v-model="content" placeholder="내용을 입력 해주세요.."></textarea>
+          </div>
         </div>
-        <div>
-          <textarea v-model="content" >텍스트 입력~~</textarea>
-        </div>
-      </div>
 
-      <div class="dotto-post-side-div">
-        <div>여기 이미지 미리보기</div>
-        <input @change="uploadFiles" type="file" />
+        <div class="dotto-post-side-div">
+          <div>여기 이미지 미리보기</div>
+          <input @change="uploadFiles" type="file" />
+        </div>
       </div>
     </div>
   </div>
@@ -77,12 +97,13 @@ export default class DottoPostingComponent extends Vue {
 
   title = '';
   content = '';
+  originalPrice = 0;
   price = 0;
   salesPrice = 0;
   salesYn = false;
   genreDefault = 'none';
   totalTimeDefault = 'none';
-  postPhoto: File[] = [];
+  postPhoto: any = [];
 
   tag: string[] = [];
   addTag = '';
@@ -157,8 +178,12 @@ export default class DottoPostingComponent extends Vue {
 </script>
 
 <style scoped>
+hr {
+  width: 100%;
+  margin: 2rem auto
+}
 textarea {
-  width: 95%;
+  width: 90%;
   padding: 1rem;
   height: 400px;
   border: none;
@@ -166,6 +191,10 @@ textarea {
   resize: none;
   font-size: 14px;
   margin-left: 1.5rem;
+}
+#dotto-post-items-wrapper {
+  margin: auto;
+  width: 90%;
 }
 #dotto-post-title {
   margin: 3em 0;
@@ -205,23 +234,24 @@ textarea {
   max-height: 1325px;
   min-height: 600px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  /*flex-direction: column;*/
+  /*justify-content: space-evenly;*/
   background: white;
 }
 
 .dotto-post-side-div {
   width: 100%;
-  margin-left: 3.5rem;
+  /*margin-left: 2.5em;*/
 }
 
 #event-price-radio-area {
-  display: flex;
-  align-items: center;
+  margin-left: 2rem;
+  /*display: flex;*/
+  /*align-items: center;*/
 }
 #textarea-wrapper {
   border: 1px solid #BDBDBD;
-  width: 90%;
+  width: 100%;
   margin-top: 3rem;
 }
 #dotto-post-tags {
@@ -234,6 +264,10 @@ textarea {
   padding: 1rem;
   font-size: 13px;
 }
+/* 가격 관련 태그  */
+#original-price {
+  width: 25%;
+}
 
 .event-price-wrapper {
   display: flex;
@@ -245,15 +279,13 @@ textarea {
   height: 40px;
   color: #BDBDBD;
   outline: none;
-  width: 90%;
+  width: 100%;
   padding: 3px;
 }
 .won {
-  width: 100%;
-}
-.won::after {
-  content: '원';
-  margin-left: 5px;
+  display: flex;
+  width: 90%;
+  align-items: center;
 }
 
 .dotto-post-tags {
@@ -278,5 +310,17 @@ textarea {
   background: #1c1b1b !important;
   color: white;
   font-weight: 700;
+}
+
+.fade-enter-active {
+  transition: all .4s ease;
+}
+
+.fade-leave-active {
+  transition: all 0s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

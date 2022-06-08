@@ -65,6 +65,8 @@ export default class FooterComponent extends Vue {
 
 <style scoped>
 #footer-container {
+  position: relative;
+  bottom: 0;
   background: #222222;
   color: #FFFFFF;
   width: 100%;

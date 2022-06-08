@@ -75,8 +75,10 @@ const userStore: Module<User, State> = {
                         userName,
                         token: newToken,
                     });
+                    return true;
+                } else {
+                    return false;
                 }
-                return true;
             } catch (e) {
                 console.log(e);
                 return false;
