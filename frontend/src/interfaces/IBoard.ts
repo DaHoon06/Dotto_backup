@@ -13,8 +13,8 @@ export namespace IBoard {
     price: number;
     salesPrice: number;
     salesYn: boolean;
-    genre: Categories[];
-    totalTime: Categories[];
+    genre: string;
+    totalTime: string;
     tag: string[];
     postPhoto?: File[];
   }

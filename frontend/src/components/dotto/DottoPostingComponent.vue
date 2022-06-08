@@ -15,18 +15,17 @@
         </div>
 
         <div class="dotto-post-side-div">
-          <select @change="validation" v-model="genreDefault">
+          <select @change="validation" v-model="genreDefault" class="select">
             <option disabled value="none">장르</option>
             <option v-for="(value, index) in genre" :value="value.value" :key="index">{{ value.text }}</option>
           </select>
-          <select @change="validation" v-model="totalTimeDefault">
+          <select @change="validation" v-model="totalTimeDefault" class="select">
             <option disabled value="none">소요시간</option>
             <option v-for="(value, index) in totalTime" :value="value.value" :key="index">{{ value.text }}</option>
           </select>
         </div>
 
         <hr />
-
         <div class="event-price-wrapper dotto-post-side-div">
           <div class="won">
             <input
@@ -41,7 +40,6 @@
               <label for="event-price">할인이벤트</label>
             </div>
           </div>
-
         </div>
 
         <transition name="fade">
@@ -61,16 +59,15 @@
           </div>
         </transition>
 
-
         <hr />
 
         <div id="textarea-wrapper" class="dotto-post-side-div">
           <div id="dotto-post-tags-wrapper">
             <div v-for="(tags, index) in tag" :key="index">
-            <span class="dotto-post-tags" >
-              {{ tags }}
-              <button @click="deleteTag(index)">X</button>
-            </span>
+              <span class="dotto-post-tags" >
+                {{ tags }}
+                <button @click="deleteTag(index)">X</button>
+              </span>
             </div>
             <input @change="validation" v-model="addTag" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
           </div>
@@ -79,10 +76,8 @@
           </div>
         </div>
 
-        <div class="dotto-post-side-div">
-          <div>여기 이미지 미리보기</div>
-          <input @change="uploadFiles" type="file" />
-        </div>
+        <file-upload-component />
+
       </div>
     </div>
   </div>
@@ -91,8 +86,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
+import FileUploadComponent from "@/components/common/utils/FileUploadComponent.vue";
 
-@Component
+@Component({
+  components: {
+    FileUploadComponent
+  }
+})
 export default class DottoPostingComponent extends Vue {
 
   title = '';
@@ -126,8 +126,8 @@ export default class DottoPostingComponent extends Vue {
   activeBtn = 'active-post-btn'
 
   private validation(): void {
-    this.openBtn = !!(this.title && this.genre && this.totalTime && this.content && this.price);
-    console.log(this.content.length)
+    this.openBtn = !!(this.title && this.genreDefault && this.totalTimeDefault && this.content && this.price);
+    console.log(this.title, this.genre, this.totalTime, this.content , this.price)
   }
 
   async posting():Promise<void> {
@@ -139,12 +139,12 @@ export default class DottoPostingComponent extends Vue {
       price: this.price,
       salesPrice: this.salesPrice,
       salesYn: this.salesYn,
-      genre: this.genre,
-      totalTime: this.totalTime,
+      genre: this.genreDefault,
+      totalTime: this.totalTimeDefault,
       tag: this.tag,
       postPhoto: this.postPhoto
     }
-
+    console.log(sendData)
     const headers = {
       'Content-Type': 'multipart/form-data',
     }
@@ -180,8 +180,10 @@ export default class DottoPostingComponent extends Vue {
 <style scoped>
 hr {
   width: 100%;
-  margin: 2rem auto
+  margin: 2rem auto;
+  z-index: 0;
 }
+
 textarea {
   width: 90%;
   padding: 1rem;
@@ -192,12 +194,29 @@ textarea {
   font-size: 14px;
   margin-left: 1.5rem;
 }
+
+.select {
+  border: 1px solid #E2E2E2;
+  width: 30%;
+  height: 35px;
+  padding: 5px 30px 5px 5px;
+  border-radius: 4px;
+  outline: none;
+  margin: 20px 20px 0 0;
+  color: #BDBDBD;
+}
+.select option {
+  background: #ffffff;
+  color: #000000;
+  padding: 3px 0;
+}
+
 #dotto-post-items-wrapper {
   margin: auto;
   width: 90%;
 }
 #dotto-post-title {
-  margin: 3em 0;
+  margin: 5em 0 2em 0;
 }
 #dotto-post-wrapper {
   height: 100%;
@@ -212,6 +231,7 @@ textarea {
   height: 50px;
   border-bottom: 1px solid #BDBDBD;
   background: white;
+  z-index: 1;
 }
 
 #dotto-post-btn {
@@ -234,25 +254,22 @@ textarea {
   max-height: 1325px;
   min-height: 600px;
   display: flex;
-  /*flex-direction: column;*/
-  /*justify-content: space-evenly;*/
   background: white;
 }
 
 .dotto-post-side-div {
   width: 100%;
-  /*margin-left: 2.5em;*/
 }
 
 #event-price-radio-area {
   margin-left: 2rem;
-  /*display: flex;*/
-  /*align-items: center;*/
 }
+
 #textarea-wrapper {
-  border: 1px solid #BDBDBD;
+  border: 1px solid #E2E2E2;
   width: 100%;
   margin-top: 3rem;
+  border-radius: 3px;
 }
 #dotto-post-tags {
   width: 95%;
@@ -264,6 +281,7 @@ textarea {
   padding: 1rem;
   font-size: 13px;
 }
+
 /* 가격 관련 태그  */
 #original-price {
   width: 25%;
@@ -306,6 +324,7 @@ textarea {
   overflow: auto;
   display: flex;
 }
+
 .active-post-btn {
   background: #1c1b1b !important;
   color: white;
