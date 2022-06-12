@@ -22,4 +22,8 @@ public class DottoPostFactory {
     public static DottoPost createDottoPostWithImages(Member member, List<Image> images){
         return new DottoPost(member, "title","content",10000,9000,'N',"레터링",3,'N',images);
     }
+
+    public static DottoPost createDottoPostWithImages(List<Image> images){
+        return new DottoPost(createMember(),"title","content",1000,900,'N',"genre",3,'N',images);
+    }
 }

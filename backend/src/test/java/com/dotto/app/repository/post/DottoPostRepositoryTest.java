@@ -59,12 +59,8 @@ class DottoPostRepositoryTest {
 
         //then
         assertThat(post.getPostNo()).isEqualTo(foundPost.getPostNo());
+        assertThat(post.getTitle()).isEqualTo(foundPost.getTitle());
 
-    }
-
-    void clear(){
-        em.flush();
-        em.clear();
     }
 
     @Test
@@ -80,6 +76,8 @@ class DottoPostRepositoryTest {
         DottoPost deletePost = dottoPostRepository.findByIdWithMemberAndDeletedY(post.getPostNo()).orElseThrow(PostNotFoundException::new);
         assertThat(post.getPostNo()).isEqualTo(deletePost.getPostNo());
         assertThat(post.getDeletedYn()).isNotEqualTo(deletePost.getDeletedYn());
+        assertThat(post.getDeletedYn()).isEqualTo('N');
+        assertThat(deletePost.getDeletedYn()).isEqualTo('Y');
     }
 
     @Test
@@ -111,9 +109,23 @@ class DottoPostRepositoryTest {
         assertThat(foundMember.getId()).isEqualTo(member.getId());
     }
 
-    //cascade 실제 삭제 확인
     @Test
     void createCascadeImageTest(){
+        //given
+        DottoPost post = dottoPostRepository.save(createDottoPostWithImages(member,List.of(createImage(),createImage())));
+        clear();
+
+        //when
+        DottoPost foundPost = dottoPostRepository.findById(post.getPostNo()).orElseThrow(PostNotFoundException::new);
+
+        //then
+        List<Image> images = foundPost.getImages();
+        assertThat(images.size()).isEqualTo(2);
+    }
+
+    //cascade 실제 삭제 확인
+    @Test
+    void deletedCascadeImageTest(){
         //given
         DottoPost post = dottoPostRepository.save(createDottoPostWithImages(member,List.of(createImage(),createImage())));
         clear();
@@ -125,7 +137,12 @@ class DottoPostRepositoryTest {
         //then
         List<Image> images = imageRepository.findAll();
         assertThat(images.size()).isZero();
+    }
 
+
+    void clear(){
+        em.flush();
+        em.clear();
     }
 
 }
