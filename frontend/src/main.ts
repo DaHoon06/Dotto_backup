@@ -11,12 +11,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueDaumPostcode from "vue-daum-postcode"
 import { Mixin } from "@/mixins/mixin";
-import dotenv from 'dotenv';
+import { io } from 'socket.io-client';
 
 import '@/assets/styles/index.css';
 
+const socket = io('http://localhost:9001');
 
-dotenv.config();
+Vue.prototype.$socket = socket;
 
 Vue.config.productionTip = false
 
