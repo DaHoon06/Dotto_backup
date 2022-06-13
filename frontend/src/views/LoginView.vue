@@ -173,7 +173,7 @@ export default class LoginView extends Vue {
 
   @Emit('modalTypeRegister')
   private showRegisterView() {
-    return this.modalTypeRegister = 'Register';
+    return this.modalTypeRegister = 'RegisterView';
   }
 
   private set loginFailed(msg) {
