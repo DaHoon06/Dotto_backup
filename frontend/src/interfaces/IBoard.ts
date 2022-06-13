@@ -10,8 +10,8 @@ export namespace IBoard {
   export interface Dotto {
     title: string;
     content: string;
-    price: number;
-    salesPrice: number;
+    price: string;
+    salesPrice: string;
     salesYn: boolean;
     genre: string;
     totalTime: string;
