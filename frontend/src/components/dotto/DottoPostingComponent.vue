@@ -2,7 +2,12 @@
   <div id="dotto-post-wrapper">
 
     <div id="dotto-post-btn-area">
-      <button type="button" id="dotto-post-btn" @click="posting" :disabled="openBtn" :class="openBtn ? '' : activeBtn">등록하기</button>
+      <button
+          type="button"
+          id="dotto-post-btn"
+          @click="posting"
+          :disabled="openBtn"
+          :class="openBtn ? '' : activeBtn">등록하기</button>
     </div>
     <div id="dotto-post-body">
       <div id="dotto-post-items-wrapper">
@@ -11,16 +16,16 @@
         </div>
 
         <div class="dotto-post-side-div">
-          <input @change="validation" v-model="title" class="dotto-post-input" type="text" placeholder="ex) 블랙워크 꽃과 나비" />
+          <input @keyup="validation" v-model="title" class="dotto-post-input" type="text" placeholder="ex) 블랙워크 꽃과 나비" />
         </div>
 
         <div class="dotto-post-side-div">
-          <select @change="validation" v-model="genreDefault" class="select">
-            <option disabled value="none">장르</option>
+          <select @keyup="validation" v-model="genreDefault" class="select">
+            <option disabled value="">장르</option>
             <option v-for="(value, index) in genre" :value="value.value" :key="index">{{ value.text }}</option>
           </select>
-          <select @change="validation" v-model="totalTimeDefault" class="select">
-            <option disabled value="none">소요시간</option>
+          <select @keyup="validation" v-model="totalTimeDefault" class="select">
+            <option disabled value="">소요시간</option>
             <option v-for="(value, index) in totalTime" :value="value.value" :key="index">{{ value.text }}</option>
           </select>
         </div>
@@ -29,7 +34,7 @@
         <div class="event-price-wrapper dotto-post-side-div">
           <div class="won">
             <input
-                @change="validation"
+                @keyup="validation"
                 v-model="originalPrice"
                 id="original-price"
                 class="dotto-post-input"
@@ -69,10 +74,10 @@
                 <button @click="deleteTag(index)">X</button>
               </span>
             </div>
-            <input @change="validation" v-model="addTag" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
+            <input v-model="addTag" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
           </div>
           <div>
-            <textarea v-model="content" placeholder="내용을 입력 해주세요.."></textarea>
+            <textarea @keyup="validation"  v-model="content" placeholder="내용을 입력 해주세요.."></textarea>
           </div>
         </div>
 
@@ -97,12 +102,12 @@ export default class DottoPostingComponent extends Vue {
 
   title = '';
   content = '';
-  originalPrice = 0;
-  price = 0;
-  salesPrice = 0;
+  originalPrice = '';
+  price = '';
+  salesPrice = '';
   salesYn = false;
-  genreDefault = 'none';
-  totalTimeDefault = 'none';
+  genreDefault = '';
+  totalTimeDefault = '';
   postPhoto: any = [];
 
   tag: string[] = [];
@@ -126,8 +131,7 @@ export default class DottoPostingComponent extends Vue {
   activeBtn = 'active-post-btn'
 
   private validation(): void {
-    this.openBtn = !!(this.title && this.genreDefault && this.totalTimeDefault && this.content && this.price);
-    console.log(this.title, this.genre, this.totalTime, this.content , this.price)
+    this.openBtn = !(this.title.length && this.genreDefault.length && this.totalTimeDefault.length && this.content.length && this.originalPrice.length);
   }
 
   async posting():Promise<void> {
