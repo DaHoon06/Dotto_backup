@@ -1,6 +1,6 @@
 <template>
-  <div id="dotto-board-container">
-    <router-view></router-view>
+  <div id="dotto-board-container" :class="dottoBoardBackground">
+    <router-view />
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import { DottoComponent } from "@/components/dotto";
   }
 })
 export default class DottoBoardView extends Vue {
-
+  dottoBoardBackground = '';
 }
 </script>
 

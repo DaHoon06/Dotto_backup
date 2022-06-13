@@ -74,7 +74,7 @@
                 <button @click="deleteTag(index)">X</button>
               </span>
             </div>
-            <input v-model="addTag" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
+            <input v-model="addTag" maxlength="10" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
           </div>
           <div>
             <textarea @keyup="validation"  v-model="content" placeholder="내용을 입력 해주세요.."></textarea>

@@ -6,7 +6,7 @@
       <span class="filter-section">
         <button @click="showSort" >
           <span class="filter-text">{{ sendSortType }}</span>
-          <img class="side-menu-drop-btn filter-text" src="@/assets/img/nav/filter-btn.png" alt="sort" />
+          <img class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
         </button>
         <sort-component
             @typeName="typeName"
@@ -17,7 +17,7 @@
       <span id="filter" class="filter-section">
         <button @click="showFilter">
           <span class="filter-text">FILTER</span>
-          <img class="filter-text filter-toggle-img" src="@/assets/main/filter.png" alt="filter" />
+          <img class="filter-text filter-toggle-img" src="@/assets/icons/main/filter.png" alt="filter" />
         </button>
       </span>
     </section>
@@ -25,7 +25,7 @@
     <section id="tattoo-container">
       <article class="tattoo-board-list">
         <div>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img01.png" alt="sample01" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
         </div>
         <div class="tattoo-board-list-info user-name">tattooist_id</div>
         <div class="tattoo-board-list-info title">글 제목</div>
@@ -40,7 +40,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img02.png" alt="sample02" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img02.png" alt="sample02" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
@@ -49,7 +49,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img03.png" alt="sample03" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img03.png" alt="sample03" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
@@ -58,7 +58,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img04.png" alt="sample04" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img04.png" alt="sample04" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
@@ -67,7 +67,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img05.png" alt="sample05" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img05.png" alt="sample05" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
@@ -76,7 +76,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img06.png" alt="sample06" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img06.png" alt="sample06" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
@@ -85,7 +85,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img07.png" alt="sample07" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img07.png" alt="sample07" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>
@@ -94,7 +94,7 @@
 
       <article class="tattoo-board-list">
         <figure>
-          <img class="tattoo-img" src="@/assets/main/sample/sample_img08.png" alt="sample08" />
+          <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img08.png" alt="sample08" />
         </figure>
         <p>글 제목</p>
         <p>50% 5만원 10만원</p>

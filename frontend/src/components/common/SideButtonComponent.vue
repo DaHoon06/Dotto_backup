@@ -2,12 +2,12 @@
   <aside id="side-button-container">
     <section class="right-side">
       <button class="right-side-btn">
-        <img id="chat-icon" src="@/assets/main/chat_icon.png" alt="chat" />
+        <img id="chat-icon" src="@/assets/icons/main/chat_icon.png" alt="chat" />
       </button>
     </section>
     <section class="right-side">
       <button id="go-top" class="right-side-btn">
-        <img id="top" src="@/assets/main/go-top.png" alt="top" />
+        <img id="top" src="@/assets/icons/main/go-top.png" alt="top" />
         <span>TOP</span>
       </button>
     </section>
@@ -50,20 +50,14 @@ export default class SideButtonComponent extends Vue {}
   width: 10px;
 }
 .right-side-btn {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border: 1px solid #b9b9b9;
   border-radius: 45px;
   background: #FFFFFF;
 }
 .right-side {
   margin-top: 10px;
-}
-
-@media screen and (max-width: 1600px) {
-  #side-button-container {
-    display: none;
-  }
 }
 
 </style>

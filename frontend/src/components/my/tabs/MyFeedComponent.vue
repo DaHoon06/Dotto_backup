@@ -3,10 +3,10 @@
 
     <div id="my-feed-icons-wrapper">
       <span>
-        <img src="@/assets/img/myfeed/collapse.png" id="colspan" class="myfeed-sort-icons" alt="colspan" />
+        <img src="@/assets/icons/myfeed/collapse.png" id="colspan" class="myfeed-sort-icons" alt="colspan" />
       </span>
       <span>
-        <img src="@/assets/img/myfeed/grid.png" class="myfeed-sort-icons" alt="colspan" />
+        <img src="@/assets/icons/myfeed/grid.png" class="myfeed-sort-icons" alt="colspan" />
       </span>
     </div>
 
@@ -22,16 +22,16 @@
       </div>
       <div>
         <div>
-          <img class="my-feed-img" src="@/assets/main/sample/sample_img07.png" alt="sample07" />
+          <img class="my-feed-img" src="@/assets/icons/main/sample/sample_img07.png" alt="sample07" />
         </div>
         <div style="text-align: center">여러장일 경우 슬라이드</div>
       </div>
       <div class="my-feed-items">
         <span>
-          <img class="my-feed-icons" src="@/assets/img/myfeed/like-icons.png" alt="like-icons" />
+          <img class="my-feed-icons" src="@/assets/icons/myfeed/like-icons.png" alt="like-icons" />
         </span>
         <span>
-          <img class="my-feed-icons my-feed-message" src="@/assets/img/myfeed/message.png" alt="message" />
+          <img class="my-feed-icons my-feed-message" src="@/assets/icons/myfeed/message.png" alt="message" />
         </span>
       </div>
       <div class="like-count-wrapper my-feed-items">

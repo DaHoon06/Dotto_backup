@@ -6,7 +6,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class MyFeedComponent extends Vue {
+export default class CompletedComponent extends Vue {
 
 }
 </script>

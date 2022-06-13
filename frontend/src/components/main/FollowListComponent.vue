@@ -6,43 +6,43 @@
       </article>
       <article id="follow-artist-area">
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
