@@ -1,51 +1,61 @@
 <template>
   <main id="register-container">
     <section id="tab-wrapper">
-      <span id="modal-register-close-btn" @click="closeForm">X</span>
-<!--      <div class="register-tabs">-->
-<!--        <span @click="changeTab = 0" :class="{ 'currentPage' : changeTab === 0 }" >일반 회원</span>-->
-<!--        <span @click="changeTab = 1" :class="{ 'currentPage' : changeTab === 1 }" >타투이스트 회원</span>-->
-<!--      </div>-->
+      <span>회원 가입</span>
     </section>
 
-    <member-register-component />
-<!--    <tattooist-register-component v-if="changeTab === 1" />-->
+    <section>
+        <progress-component />
+    </section>
+
+    <section>
+      <component
+          :is="dynamicComponent"/>
+    </section>
+
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import MemberRegisterComponent from "@/components/user/MemberRegisterComponent.vue";
+import RegisterComponent from "@/components/user/RegisterComponent.vue";
+import CompletedComponent from "@/components/user/CompletedComponent.vue";
+import PolicyComponent from "@/components/user/PolicyComponent.vue";
 import {
   HeaderComponent,
   FooterComponent,
   NavigationComponent,
   MenuButton
 } from "@/components/common";
+import ProgressComponent from "@/components/user/ProgressComponent.vue";
 
 @Component({
   components: {
-    MemberRegisterComponent,
+    RegisterComponent,
     FooterComponent,
     NavigationComponent,
     HeaderComponent,
-    MenuButton
+    MenuButton,
+    ProgressComponent
   }
 })
 export default class RegisterView extends Vue {
-  // type = 0;
-
-  // private get changeTab() {
-  //   return this.type;
-  // }
-  //
-  // private set changeTab(type: number) {
-  //   this.type = type;
-  // }
+  type = 'PolicyComponent';
 
   @Emit('closeModal')
   private closeForm() {
     return true
+  }
+
+  private get dynamicComponent() {
+    switch (this.type) {
+      case 'PolicyComponent':
+        return PolicyComponent;
+      case 'RegisterComponent':
+        return RegisterComponent;
+      case 'CompletedComponent':
+        return CompletedComponent;
+    }
   }
 
 }
@@ -61,25 +71,12 @@ export default class RegisterView extends Vue {
 #tab-wrapper {
   display: flex;
   margin-bottom: 3em;
-  border-bottom: 1px solid #eeeeee;
   padding-bottom: 10px;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 #tab-wrapper span {
   margin-left: 0.5em;
   text-shadow: 1px 1px 1px #c9c9c9;
-}
-
-#tab-wrapper span:hover {
-  color: #888888;
-  cursor: pointer;
-}
-
-#modal-register-close-btn {
-  width: 5%;
-}
-.register-tabs {
-  width: 95%;
 }
 
 .register-tabs span {

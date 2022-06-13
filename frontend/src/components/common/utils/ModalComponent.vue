@@ -20,7 +20,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
-import TermsComponent from "@/components/user/TermsComponent.vue";
+import TermsComponent from "@/components/user/PolicyComponent.vue";
 
 @Component({
   components: {
@@ -47,10 +47,8 @@ export default class ModalComponent extends Vue {
   }
 
   private init(){
-    if (this.modalType === 'Register') {
-      this.modalTypeComputed = 'Register';
-    } else if(this.modalType === 'RegisterForm') {
-      this.modalTypeComputed = 'RegisterForm';
+    if (this.modalType === 'RegisterView') {
+      this.modalTypeComputed = 'RegisterView';
     } else {
       this.modalTypeComputed = 'Login';
     }
@@ -65,8 +63,9 @@ export default class ModalComponent extends Vue {
     this.$emit('closeModal');
   }
 
-  private resetModal(e: any) {
-    if (e.target.parentNode === this.$refs.modalContainer) {
+  private resetModal(e: Event) {
+    const target = e.target as HTMLInputElement;
+    if (target.parentNode === this.$refs.modalContainer) {
       this.closeModal();
     }
   }
@@ -85,9 +84,7 @@ export default class ModalComponent extends Vue {
 
   private get dynamicView() {
     switch (this.modalTypeComputed) {
-      case 'Register':
-        return TermsComponent;
-      case 'RegisterForm':
+      case 'RegisterView':
         return RegisterView;
       case 'Login':
         return LoginView
@@ -125,7 +122,7 @@ export default class ModalComponent extends Vue {
   width: 520px;
   height: 710px;
   top: 50%;
-  padding: 25px 30px;
+  padding: 15px;
 }
 
 </style>

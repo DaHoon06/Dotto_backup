@@ -4,34 +4,34 @@
       <span> < </span>
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
     </div>
     <div>
       <span> > </span>

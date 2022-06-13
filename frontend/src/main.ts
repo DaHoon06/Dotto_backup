@@ -11,13 +11,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueDaumPostcode from "vue-daum-postcode"
 import { Mixin } from "@/mixins/mixin";
-import dotenv from 'dotenv';
-// import { LoaderPlugin } from 'vue-google-login';
+import { io } from 'socket.io-client';
 
 import '@/assets/styles/index.css';
 
+const socket = io('http://localhost:9001');
 
-dotenv.config();
+Vue.prototype.$socket = socket;
 
 Vue.config.productionTip = false
 
@@ -27,10 +27,6 @@ Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.use(VueMoment);
 Vue.use(VueDaumPostcode);
-
-// Vue.use(LoaderPlugin, {
-//   client_id: process.env.VUE_APP_GOOGLE_KEY
-// });
 
 Vue.mixin(Mixin);
 

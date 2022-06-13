@@ -10,7 +10,7 @@
         </article>
         <article id="tag-area">
           <span id="tag-title">#태그</span>
-          <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/img/nav/filter-btn.png" alt="filter" /></button>
+          <button @click="showTags"><img class="side-menu-drop-btn" src="@/assets/icons/nav/filter-btn.png" alt="filter" /></button>
         </article>
         <article id="tag-list" v-if="showTagArea">
           # 태그
@@ -23,13 +23,13 @@
         <article id="location-area">
           <span>지역</span>
           <button class="side-menu-drop-btn" @click="showLocation">
-            <img class="side-menu-drop-btn" src="@/assets/img/nav/filter-btn.png" alt="filter" />
+            <img class="side-menu-drop-btn" src="@/assets/icons/nav/filter-btn.png" alt="filter" />
           </button>
         </article>
         <article v-if="showLocationArea">
           <input type="text" id="side-menu-search-bar" />
           <button class="side-menu-drop-btn">
-            <img class="side-menu-drop-btn" id="search-btn" src="@/assets/img/nav/search.png" alt="search" />
+            <img class="side-menu-drop-btn" id="search-btn" src="@/assets/icons/nav/search.png" alt="search" />
           </button>
         </article>
       </section>
