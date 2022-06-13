@@ -7,7 +7,14 @@
           <div class="image-box">
             <img class="upload" src="@/assets/icons/common/upload.png" alt="upload" />
             <label for="file">이미지 첨부</label>
-            <input type="file" id="file" ref="files" @change="imageUpload" multiple />
+            <input
+                type="file"
+                id="file"
+                ref="fileRef"
+                @change="imageUpload"
+                multiple
+                accept=".jpg, .jpeg, .png"
+            />
           </div>
         </div>
       </div>
@@ -15,7 +22,7 @@
     <div v-else class="file-preview-content-container">
       <div class="file-preview-container">
         <div v-for="(file, index) in files" :key="index" class="file-preview-wrapper">
-          <div class="file-close-button" @click="fileDeleteButton" :name="file.number">
+          <div class="file-close-button" @click="fileDeleteButton" :id="file.number" >
             x
           </div>
           <img :src="file.preview" />
@@ -25,7 +32,14 @@
         <div class="image-box">
           <img class="upload" src="@/assets/icons/common/upload.png" alt="upload" />
           <label for="file">이미지 첨부</label>
-          <input type="file" id="file" ref="fileRef" @change="imageAddUpload" multiple />
+          <input
+              type="file"
+              id="file"
+              ref="fileRef"
+              @change="imageAddUpload"
+              multiple
+              accept=".jpg, .jpeg, .png"
+          />
         </div>
       </div>
     </div>
@@ -38,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Ref, Vue} from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 
 export interface IFileUpload {
   file: any;
@@ -59,61 +73,44 @@ export default class FileUploadComponent extends Vue {
     for (let i = 0; i < this.fileRef.files.length; i++) {
       this.files = [
         ...this.files,
-        //이미지 업로드
         {
-          //실제 파일
           file: this.fileRef.files[i],
-          //이미지 프리뷰
           preview: URL.createObjectURL(this.fileRef.files[i]),
-          //삭제및 관리를 위한 number
           number: i
         }
       ];
       num = i;
     }
-    this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
     console.log(this.files);
+    this.uploadImageIndex = num + 1;
   }
 
   private imageAddUpload() {
     let num = -1;
     for (let i = 0; i < this.fileRef.length; i++) {
-      console.log(this.uploadImageIndex);
       this.files = [
         ...this.files,
-        //이미지 업로드
         {
-          //실제 파일
           file: this.fileRef.files[i],
-          //이미지 프리뷰
           preview: URL.createObjectURL(this.fileRef.files[i]),
-          //삭제및 관리를 위한 number
           number: i + this.uploadImageIndex
         }
       ];
       num = i;
     }
     this.uploadImageIndex = this.uploadImageIndex + num + 1;
-
-    console.log(this.files);
   }
 
   private fileDeleteButton(e: Event) {
     const target = e.target as HTMLInputElement;
-    const name = target.getAttribute('name');
-    this.files = this.files.filter(data => data.number !== Number(name));
+    const id = target.getAttribute('id');
+    this.files = this.files.filter((data) => data.number !== Number(id));
   }
 
 }
 </script>
 
 <style scoped>
-/*.main-container {*/
-/*  width: 100%;*/
-/*  height: 400px;*/
-/*  margin: 0 auto;*/
-/*}*/
-
 /* 라벨 폰트 사이즈와 동일 크기 */
 .upload {
   width: 13px;
