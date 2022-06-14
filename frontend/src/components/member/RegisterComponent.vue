@@ -2,11 +2,13 @@
   <section id="member-register-wrapper" >
     <form id="member-register-form" @submit.prevent="register">
       <div class="input-wrapper">
+        <label>아이디</label>
         <input
+            @keydown.enter.prevent
             @blur="validationId"
+            @change="btnActive"
             type="text"
             v-model="id"
-            placeholder="아이디"
             class="input-text"
             ref="refId"
         />
@@ -16,11 +18,12 @@
       <div class="warning-msg">{{ IdMessage }}</div>
 
       <div class="input-wrapper">
+        <label>비밀번호</label>
         <input
+            @keydown.enter.prevent
             type="password" autocomplete="off"
-            @change="validationPassword"
+            @change="[validationPassword(), btnActive()]"
             v-model="password"
-            placeholder="비밀번호"
             class="input-text"
             ref="refPassword"
         />
@@ -28,21 +31,24 @@
       <div class="warning-msg">{{ PasswordMessage }}</div>
 
       <div class="input-wrapper">
+        <label>비밀번호 확인</label>
         <input
+            @keydown.enter.prevent
             type="password" autocomplete="off"
-            @change="validationPassword"
+            @change="[validationPassword(), btnActive()]"
             v-model="passwordCheck"
-            placeholder="비밀번호 확인"
             class="input-text" />
       </div>
       <div class="warning-msg">{{ PasswordCheckMessage }}</div>
 
       <div class="input-wrapper">
+        <label>닉네임</label>
         <input
+            @keydown.enter.prevent
             type="text"
             @focus="msgClear"
+            @change="btnActive"
             v-model="nickname"
-            placeholder="닉네임"
             class="input-text"
             ref="refNickName"
         />
@@ -55,9 +61,11 @@
 
       <div class="input-wrapper" >
         <input
-            @keyup="validationPhoneNumber"
-            maxlength="11"
+            @keydown.enter.prevent
+            @keydown="validationPhoneNumber"
+            @change="btnActive"
             type="number"
+            maxlength="11"
             class="input-text"
             v-model="phone"
             placeholder="휴대폰번호 입력"
@@ -68,28 +76,36 @@
       <div class="warning-msg">{{ PhoneMessage }}</div>
 
       <div class="input-wrapper">
-        <input type="text" class="input-text" placeholder="인증번호 입력" />
+        <input
+            @keydown.enter.prevent
+            type="text"
+            class="input-text"
+            placeholder="인증번호 입력" />
         <button class="register-btn">인증하기</button>
       </div>
 
-      <div class="input-wrapper">
-        <select class="select">
-          <option disabled selected>추가 연락 수단</option>
-          <option value="1">카카오</option>
-          <option value="2">인스타그램</option>
-        </select>
-        <input type="text" placeholder="계정명" class="input-text" />
+      <div id="gender-wrapper">
+        <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="male" v-model="gender" value="male" name="male" />
+        <label for="male">남성</label>
+        <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="female" v-model="gender" value="female" name="female" />
+        <label for="female">여성</label>
       </div>
 
       <div class="register-submit">
-        <button class="register-btn" id="register-submit-btn" type="submit">가입하기</button>
+        <button class="register-common-btn" type="button" @click="prev">이전</button>
+        <button
+            class="register-common-btn"
+            type="submit"
+            :disabled="openBtn"
+            :class="openBtn ? '' : activeBtn"
+        >다음</button>
       </div>
-   </form>
+    </form>
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Ref, Vue } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
 import { EMessageRegister } from "@/interfaces/common/EMessageType";
 
@@ -107,16 +123,24 @@ export default class MemberRegisterComponent extends Vue {
   passwordCheck = '';
   nickname = '';
   phone = '';
-  authentication = false;
+  //TODO: 인증 후 true로
+  authentication = true;
   // ERROR MSG
   nickNameMessage = '';
   passwordMessage = '';
   passwordCheckMessage = '';
   idMessage = '';
   phoneMessage = '';
+  gender = '';
+  openBtn = true;
+  activeBtn = 'register-common-btn-active';
 
   constructor() {
     super();
+  }
+
+  private btnActive() {
+    this.openBtn = !(this.id.length && ( this.phone.length === 11 ) && (this.password === this.passwordCheck) && this.nickname.length && this.authentication && this.gender.length);
   }
 
   private validationId(): void {
@@ -161,6 +185,7 @@ export default class MemberRegisterComponent extends Vue {
   validationNickName(): void {
     const reg = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
     if (reg.test(this.nickname)) {
+
       this.NickNameMessage = EMessageRegister.SPECIAL_CHARACTERS_NOT_ALLOWED;
     } else {
       this.NickNameMessage = EMessageRegister.BLANK;
@@ -169,7 +194,7 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   validationPhoneNumber(): void {
-    const reg = /^01([016789])-?([0-9]{4})-?([0-9]{4})$/;
+    const reg = /^01([016789])-?([0-9]{3})-?([0-9]{4})$/;
     if (reg.test(this.phone)) {
       this.PhoneMessage = EMessageRegister.BLANK;
     } else {
@@ -206,6 +231,7 @@ export default class MemberRegisterComponent extends Vue {
     }
     return result
   }
+
   async register(): Promise<void> {
     const result = this.blankCheck();
     //TODO: 휴대폰 인증에 관한 처리
@@ -221,15 +247,29 @@ export default class MemberRegisterComponent extends Vue {
       const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
       const { success } = data;
       if (success) {
-        await this.$router.push({
-          path: '/login'
-        })
+        this.changeComponent(success);
       } else {
-        alert('ERROR');
+        this.changeComponent(success);
       }
     } else {
-      alert('공백이 존재');
+      //TODO : 추후 수정
+      alert('빈 곳이 있다는 모달 ');
     }
+  }
+
+  //TODO : 추후 수정 !success -> success 로 변경 예정
+  @Emit('changeComponent')
+  private changeComponent(success: boolean): string {
+    if (!success) {
+      return 'CompletedComponent';
+    } else {
+      return 'RegisterComponent';
+    }
+  }
+
+  @Emit('prev')
+  private prev(): string {
+    return 'PolicyComponent';
   }
 
   msgClear(): void{

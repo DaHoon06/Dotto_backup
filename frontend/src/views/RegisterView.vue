@@ -4,30 +4,33 @@
       <span>회원 가입</span>
     </section>
 
-    <section>
-        <progress-component />
-    </section>
-
-    <section>
-      <component
-          :is="dynamicComponent"/>
-    </section>
+    <progress-component
+        :progress="progress"
+    />
+    <component
+        :is="dynamicComponent"
+        @changeComponent="changeComponent"
+        @redirectLoginView="redirectLoginView"
+        @prev="prev"
+        @closeModal="closeForm"
+        @redirectHome="redirectHome"
+    />
 
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import RegisterComponent from "@/components/user/RegisterComponent.vue";
-import CompletedComponent from "@/components/user/CompletedComponent.vue";
-import PolicyComponent from "@/components/user/PolicyComponent.vue";
+import RegisterComponent from "@/components/member/RegisterComponent.vue";
+import CompletedComponent from "@/components/member/CompletedComponent.vue";
+import PolicyComponent from "@/components/member/PolicyComponent.vue";
 import {
   HeaderComponent,
   FooterComponent,
   NavigationComponent,
   MenuButton
 } from "@/components/common";
-import ProgressComponent from "@/components/user/ProgressComponent.vue";
+import ProgressComponent from "@/components/member/ProgressComponent.vue";
 
 @Component({
   components: {
@@ -41,19 +44,40 @@ import ProgressComponent from "@/components/user/ProgressComponent.vue";
 })
 export default class RegisterView extends Vue {
   type = 'PolicyComponent';
+  progress = 1;
+
+  private changeComponent(componentType: string): void {
+    this.type = componentType;
+  }
+  private prev(componentType: string): void {
+    this.type = componentType;
+  }
+
 
   @Emit('closeModal')
   private closeForm() {
     return true
   }
 
+  @Emit('redirectLoginView')
+  private redirectLoginView(LOGIN: string): string {
+    return LOGIN;
+  }
+  @Emit('redirectHome')
+  private redirectHome(HOME: string): string {
+    return HOME;
+  }
+
   private get dynamicComponent() {
     switch (this.type) {
       case 'PolicyComponent':
+        this.progress = 1;
         return PolicyComponent;
       case 'RegisterComponent':
+        this.progress = 2;
         return RegisterComponent;
       case 'CompletedComponent':
+        this.progress = 3;
         return CompletedComponent;
     }
   }

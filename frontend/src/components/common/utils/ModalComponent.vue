@@ -11,6 +11,8 @@
       <component
           :is="dynamicView"
           @closeModal="closeModal"
+          @redirectLoginView="redirectLoginView"
+          @redirectHome="redirectHome"
           @modalTypeRegister="changeModalType" />
     </section>
   </main>
@@ -20,7 +22,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
-import TermsComponent from "@/components/user/PolicyComponent.vue";
+import TermsComponent from "@/components/member/PolicyComponent.vue";
 
 @Component({
   components: {
@@ -46,6 +48,17 @@ export default class ModalComponent extends Vue {
     this.init();
   }
 
+  private redirectLoginView(LOGIN: string): void {
+    this.modalTypeComputed = LOGIN;
+  }
+  private redirectHome(HOME: string): void {
+    const { path } = this.$router.currentRoute;
+    if (path !== HOME) {
+      this.$router.push({ path: HOME });
+    }
+    this.closeModal();
+  }
+
   private init(){
     if (this.modalType === 'RegisterView') {
       this.modalTypeComputed = 'RegisterView';
@@ -69,6 +82,10 @@ export default class ModalComponent extends Vue {
       this.closeModal();
     }
   }
+
+  // private redirectLoginForm(): void {
+  //   console.log('?')
+  // }
 
   private changeModalType(modalTypeRegister: string) {
     this.modalTypeComputed = modalTypeRegister;

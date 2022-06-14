@@ -21,9 +21,6 @@ button {
     border: none;
     outline: none;
 }
-button:hover {
-    cursor: pointer;
-}
 
 /* input number 화살표 제거 */
 /* Chrome, Safari, Edge, Opera */
