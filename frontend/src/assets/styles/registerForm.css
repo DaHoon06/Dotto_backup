@@ -1,3 +1,4 @@
+/* 초기 기획에서 회원가입 양식이 2개 였기 때문에 공통으로 사용될 CSS를 분리 하였습니다. */
 .input-text {
     border: 1px solid #eeeeee;
     outline: none;
@@ -6,22 +7,6 @@
     width: 75%;
     padding-left: 10px;
 }
-
-/*.register-btn {*/
-/*    border: 1px solid #b2b2b2;*/
-/*    border-radius: 3px;*/
-/*    box-shadow: 1px 1px 1px #b2b2b2;*/
-/*    color: #eeeeee;*/
-/*    background: #222222;*/
-/*    font-size: 8px;*/
-/*    height: 30px;*/
-/*    width: 90px;*/
-/*    padding: 6px 6px 6px 6px;*/
-/*}*/
-/*.register-btn:hover {*/
-/*    cursor: pointer;*/
-/*    background: #05152f;*/
-/*}*/
 
 #register-submit-btn {
     width: 100%;
@@ -50,7 +35,7 @@
     width: 100%;
 }
 
-/* 공통 CSS로 분리 - 회원가입 전체에서 사용될 CSS*/
+
 .register-btn {
     border: 1px solid #eeeeee;
     width: 160px;
