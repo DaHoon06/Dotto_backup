@@ -107,12 +107,11 @@
 
 <script lang="ts">
 import {Component, Emit, Vue} from "vue-property-decorator";
-import { SortComponent, SideButtonComponent } from "@/components/common";
+import { SortComponent,  } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 
 @Component({
   components: {
-    SideButtonComponent,
     SortComponent,
     FollowListComponent
   }

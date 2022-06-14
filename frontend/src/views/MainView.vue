@@ -9,7 +9,7 @@
         <side-menu-component v-show="showSideComponent"  />
       </transition>
       <main-component @showFilter="showFilter" />
-      <side-button-component />
+      <top-scroll-button />
     </main>
 
   </div>
@@ -23,7 +23,7 @@ import {
   HeaderComponent,
   MenuButton,
   NavigationComponent,
-  SideButtonComponent,
+  TopScrollButton,
   SideMenuComponent
 } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
@@ -33,7 +33,7 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
   components: {
     MainBannerComponent,
     FollowListComponent,
-    SideButtonComponent,
+    TopScrollButton,
     NavigationComponent,
     FooterComponent,
     HeaderComponent,

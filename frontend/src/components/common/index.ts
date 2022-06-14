@@ -3,7 +3,7 @@ import NavigationComponent from "@/components/common/NavigationComponent.vue";
 import SideMenuComponent from "@/components/common/SideMenuComponent.vue";
 import SortComponent from "@/components/common/SortComponent.vue";
 import FooterComponent from "@/components/common/FooterComponent.vue";
-import SideButtonComponent from "@/components/common/SideButtonComponent.vue";
+import TopScrollButton from "@/components/common/TopScrollButton.vue";
 import MenuButton from "@/components/common/MenuButton.vue";
 
 export {
@@ -12,6 +12,6 @@ export {
     SideMenuComponent,
     SortComponent,
     FooterComponent,
-    SideButtonComponent,
+    TopScrollButton,
     MenuButton
 }

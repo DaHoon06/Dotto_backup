@@ -103,21 +103,23 @@
 
     </section>
 
-    <section>
-      <side-button-component />
-    </section>
-    <router-link to="/dotto/board/post">게시글 작성</router-link>
+    <aside id="side-button-container">
+      <dotto-posting-button />
+      <top-scroll-button />
+    </aside>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import { SideButtonComponent, SortComponent } from "@/components/common";
+import { TopScrollButton, SortComponent } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
+import DottoPostingButton from "@/components/dotto/DottoPostingButton.vue";
 
 @Component({
   components: {
-    SideButtonComponent,
+    DottoPostingButton,
+    TopScrollButton,
     SortComponent,
     FollowListComponent
   }
@@ -155,11 +157,10 @@ export default class DottoComponent extends Vue {
 
 <style scoped>
 #main-container {
+  max-width: 1200px;
   width: 100%;
   margin: 100px auto 10em auto;
-  max-width: 1260px;
   min-height: 100vh;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -283,6 +284,18 @@ export default class DottoComponent extends Vue {
   font-weight: 400;
   text-decoration-line: line-through;
 }
+
+/* side button */
+#side-button-container {
+  position: fixed;
+  top: 50%;
+  right: 48px;
+}
+
+#chat-icon {
+  width: 25px;
+}
+
 
 @media screen and (max-width: 1719px){
 
