@@ -1,20 +1,34 @@
 <template>
-  <div id="dotto-board-container" :class="dottoBoardBackground">
-    <router-view />
+  <div id="dotto-board-container"
+       :class="dottoBoardBackground">
+    <div id="side-search-filter-wrapper">
+      <transition name="fade">
+        <search-filter-component v-show="showSearchFilter" />
+      </transition>
+    </div>
+    <router-view
+        @showFilter="showFilter" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { DottoComponent } from "@/components/dotto";
+import { SearchFilterComponent } from "@/components/common";
 
 @Component({
   components: {
-    DottoComponent
+    DottoComponent,
+    SearchFilterComponent
   }
 })
 export default class DottoBoardView extends Vue {
   dottoBoardBackground = '';
+  showSearchFilter = false;
+
+  private showFilter(show: boolean): void {
+    this.showSearchFilter = show;
+  }
 }
 </script>
 
@@ -24,5 +38,10 @@ export default class DottoBoardView extends Vue {
   height: 100%;
   min-height: 800px;
   background: #f6f6f6;
+}
+
+#side-search-filter-wrapper {
+  position: absolute;
+  top: 0;
 }
 </style>

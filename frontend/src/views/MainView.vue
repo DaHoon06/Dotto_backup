@@ -5,9 +5,6 @@
     </section>
 
     <main id="main-wrapper" >
-      <transition name="fade">
-        <side-menu-component v-show="showSideComponent"  />
-      </transition>
       <main-component @showFilter="showFilter" />
       <top-scroll-button />
     </main>
@@ -16,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
 import {
   FooterComponent,
@@ -24,7 +21,6 @@ import {
   MenuButton,
   NavigationComponent,
   TopScrollButton,
-  SideMenuComponent
 } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
@@ -37,7 +33,6 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
     NavigationComponent,
     FooterComponent,
     HeaderComponent,
-    SideMenuComponent,
     MainComponent,
     MenuButton
   }

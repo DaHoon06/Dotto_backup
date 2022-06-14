@@ -1,7 +1,7 @@
 <template>
-  <section class="right-side">
-    <router-link class="right-side-btn" to="/dotto/board/post">
-      <h5 class="follow-more">+</h5>
+  <section >
+    <router-link to="/dotto/board/post">
+      <img id='posting-btn-img' src="@/assets/icons/board/dotto/plus.png" alt="posting" />
     </router-link>
   </section>
 </template>
@@ -16,16 +16,8 @@ export default class DottoPostingButton extends Vue {
 </script>
 
 <style scoped>
-/* topScrolbutton과 공용 */
-.right-side-btn {
+#posting-btn-img {
   width: 56px;
   height: 56px;
-  border: 1px solid #b9b9b9;
-  border-radius: 45px;
-  background: #FFFFFF;
 }
-.right-side {
-  margin-top: 10px;
-}
-
 </style>

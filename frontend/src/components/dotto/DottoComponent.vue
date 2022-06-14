@@ -1,5 +1,5 @@
 <template>
-  <div id="main-container">
+  <div id="main-container" :class="showFilterComponent ? 'showSearchFilter' : ''" >
     <follow-list-component />
 
     <section id="filter-area">
@@ -128,7 +128,7 @@ export default class DottoComponent extends Vue {
   showSortComponent = false;
   showFilterComponent = false;
   filterType: string;
-
+  showSearchFilter = 'showSearchFilter';
   constructor() {
     super();
     this.filterType = '최신순'
@@ -292,8 +292,8 @@ export default class DottoComponent extends Vue {
   right: 48px;
 }
 
-#chat-icon {
-  width: 25px;
+.showSearchFilter {
+  padding-left: 180px;
 }
 
 
