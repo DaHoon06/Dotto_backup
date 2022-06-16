@@ -1,20 +1,50 @@
 <template>
-  <div id="dotto-board-container" :class="dottoBoardBackground">
-    <router-view />
+  <div id="dotto-board-container"
+       :class="dottoBoardBackground === 'main' ? '' : otherBgColor">
+    <div id="side-search-filter-wrapper">
+      <transition name="fade">
+        <search-filter-component
+            v-show="showSearchFilter" />
+      </transition>
+    </div>
+    <router-view
+        @showFilter="showFilter"
+        @changeBackground="changeBackground"/>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { DottoComponent } from "@/components/dotto";
+import { SearchFilterComponent } from "@/components/common";
 
 @Component({
   components: {
-    DottoComponent
+    DottoComponent,
+    SearchFilterComponent
   }
 })
 export default class DottoBoardView extends Vue {
-  dottoBoardBackground = '';
+  dottoBoardBackground = 'main';
+  showSearchFilter = false;
+  otherBgColor = 'dotto-background-other';
+
+  created() {
+    this.changeNavType();
+  }
+
+  @Emit('changeNavType')
+  private changeNavType(): string {
+    return 'community';
+  }
+
+  private showFilter(show: boolean): void {
+    this.showSearchFilter = show;
+  }
+
+  private changeBackground(type: string) {
+    this.dottoBoardBackground = type;
+  }
 }
 </script>
 
@@ -23,6 +53,16 @@ export default class DottoBoardView extends Vue {
   margin-top: 100px;
   height: 100%;
   min-height: 800px;
-  background: #f6f6f6;
+  background: white;
+
+}
+
+#side-search-filter-wrapper {
+  position: absolute;
+  top: 0;
+}
+
+.dotto-background-other {
+  background: #f6f6f6!important;
 }
 </style>

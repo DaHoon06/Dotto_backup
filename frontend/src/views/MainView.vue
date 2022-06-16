@@ -5,26 +5,22 @@
     </section>
 
     <main id="main-wrapper" >
-      <transition name="fade">
-        <side-menu-component v-show="showSideComponent"  />
-      </transition>
       <main-component @showFilter="showFilter" />
-      <side-button-component />
+      <top-scroll-button />
     </main>
 
   </div>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
 import {
   FooterComponent,
   HeaderComponent,
   MenuButton,
   NavigationComponent,
-  SideButtonComponent,
-  SideMenuComponent
+  TopScrollButton,
 } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
@@ -33,11 +29,10 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
   components: {
     MainBannerComponent,
     FollowListComponent,
-    SideButtonComponent,
+    TopScrollButton,
     NavigationComponent,
     FooterComponent,
     HeaderComponent,
-    SideMenuComponent,
     MainComponent,
     MenuButton
   }
@@ -45,8 +40,17 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 export default class MainView extends Vue {
   showSideComponent = true;
 
+  created() {
+    this.changeNavType();
+  }
+
   private showFilter(showFilter: boolean) {
     this.showSideComponent = showFilter;
+  }
+
+  @Emit('changeNavType')
+  private changeNavType(): string {
+    return 'home';
   }
 
 

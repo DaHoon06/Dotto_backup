@@ -5,8 +5,10 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_home ? currentPage : ''">HOME</button>
+              <router-link to="/"
+                           class="nav-button"
+                           :class="navigationType === 'home' ? currentPage : ''" >
+                HOME</router-link>
             </li>
           </ul>
         </article>
@@ -15,8 +17,11 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_tattoo ? currentPage : ''">try DOTTO</button>
+              <router-link
+                  to="/"
+                  class="nav-button"
+                  :class="navigationType === 'try' ? currentPage : ''">
+                try DOTTO</router-link>
             </li>
           </ul>
         </article>
@@ -25,17 +30,24 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_community ? currentPage : ''"
+              <span
+                  class="nav-button"
+                  :class="navigationType === 'community' ? currentPage : ''"
                   @mouseover="showCommunity('show')"
-                  @mouseleave="showCommunity('hide')">COMMUNITY</button>
+                  @mouseleave="showCommunity('hide')">COMMUNITY</span>
             </li>
             <li v-show="menu_community">
               <div class="nav-menu-list"
                    @mouseover="showCommunity('show')"
                    @mouseleave="showCommunity('hide')">
-                <router-link to="/dotto/board/index" class="sub-nav-items">닷투 게시판</router-link>
-                <router-link to="/" class="sub-nav-items">닷찾사 게시판</router-link>
+                <router-link
+                    to="/dotto/board/index"
+                    class="sub-nav-items"
+                >닷투 게시판</router-link>
+                <router-link
+                    to="/"
+                    class="sub-nav-items"
+                >닷찾사 게시판</router-link>
               </div>
             </li>
           </ul>
@@ -45,17 +57,24 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_information ? currentPage : ''"
+              <span
+                  class="nav-button"
+                  :class="navigationType === 'support' ? currentPage : ''"
                   @mouseover="showInformation('show')"
-                  @mouseleave="showInformation('hide')">고객지원</button>
+                  @mouseleave="showInformation('hide')">고객지원</span>
             </li>
             <li v-show="menu_information">
               <div class="nav-menu-list"
                    @mouseover="showInformation('show')"
                    @mouseleave="showInformation('hide')">
-                <router-link to="/" class="sub-nav-items">FAQ</router-link>
-                <router-link to="/" class="sub-nav-items">공지사항</router-link>
+                <router-link
+                    to="/"
+                    class="sub-nav-items"
+                >FAQ</router-link>
+                <router-link
+                    to="/"
+                    class="sub-nav-items"
+                >공지사항</router-link>
               </div>
             </li>
           </ul>
@@ -66,15 +85,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class NavigationComponent extends Vue {
-  menu_home = true;
+  @Prop() navigationType?: string;
+
   menu_information = false;
-  menu_tattoo = false;
   menu_community = false;
   currentPage = 'current-page';
+
+  navType = '';
 
   constructor() {
     super();
@@ -92,6 +113,14 @@ export default class NavigationComponent extends Vue {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+  color: #919191;
+}
+
+a:hover {
+  color: #222222;
+}
 #navigation-container {
   width: 100%;
   position: fixed;
@@ -136,16 +165,14 @@ export default class NavigationComponent extends Vue {
   color: #222222;
 }
 
-
 .nav-button {
   color: #919191;
   padding-left: 5px;
 }
 
-.current-page {
-  color: #222222;
-  font-weight: bold;
-  text-shadow: 1px 1px #a9a9a9;
+.nav-button:hover {
+  cursor: pointer;
+  color: #919191;
 }
 
 .nav-button:hover {
@@ -165,5 +192,10 @@ export default class NavigationComponent extends Vue {
   margin-bottom: 10px;
 }
 
-
+/* 아래 항목 : 이벤트에 따른 CSS 적용 */
+.current-page {
+  color: #222222;
+  font-weight: bold;
+  text-shadow: 1px 1px #a9a9a9;
+}
 </style>

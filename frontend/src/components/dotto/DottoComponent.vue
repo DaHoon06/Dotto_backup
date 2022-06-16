@@ -1,5 +1,5 @@
 <template>
-  <div id="main-container">
+  <div id="main-container" :class="showFilterComponent ? 'showSearchFilter' : ''" >
     <follow-list-component />
 
     <section id="filter-area">
@@ -103,21 +103,23 @@
 
     </section>
 
-    <section>
-      <side-button-component />
-    </section>
-    <router-link to="/dotto/board/post">게시글 작성</router-link>
+    <aside id="side-button-container">
+      <dotto-posting-button />
+      <top-scroll-button />
+    </aside>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import { SideButtonComponent, SortComponent } from "@/components/common";
+import { TopScrollButton, SortComponent } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
+import DottoPostingButton from "@/components/dotto/DottoPostingButton.vue";
 
 @Component({
   components: {
-    SideButtonComponent,
+    DottoPostingButton,
+    TopScrollButton,
     SortComponent,
     FollowListComponent
   }
@@ -126,10 +128,14 @@ export default class DottoComponent extends Vue {
   showSortComponent = false;
   showFilterComponent = false;
   filterType: string;
-
+  showSearchFilter = 'showSearchFilter';
   constructor() {
     super();
     this.filterType = '최신순'
+  }
+
+  created() {
+    this.changeBackground();
   }
 
   private showSort() {
@@ -140,14 +146,19 @@ export default class DottoComponent extends Vue {
     this.filterType = type;
   }
 
+  private get sendSortType() {
+    return this.filterType;
+  }
+
   @Emit('showFilter')
   private showFilter() {
     this.showFilterComponent = !this.showFilterComponent;
     return this.showFilterComponent;
   }
 
-  private get sendSortType() {
-    return this.filterType;
+  @Emit('changeBackground')
+  private changeBackground() {
+    return 'main';
   }
 
 }
@@ -155,11 +166,10 @@ export default class DottoComponent extends Vue {
 
 <style scoped>
 #main-container {
+  max-width: 1200px;
   width: 100%;
   margin: 100px auto 10em auto;
-  max-width: 1260px;
   min-height: 100vh;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -283,6 +293,18 @@ export default class DottoComponent extends Vue {
   font-weight: 400;
   text-decoration-line: line-through;
 }
+
+/* side button */
+#side-button-container {
+  position: fixed;
+  top: 50%;
+  right: 48px;
+}
+
+.showSearchFilter {
+  padding-left: 180px;
+}
+
 
 @media screen and (max-width: 1719px){
 

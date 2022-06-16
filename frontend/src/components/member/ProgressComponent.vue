@@ -1,5 +1,5 @@
 <template>
-  <div id="progress-container">
+  <section id="progress-container">
     <div class="progress-items-wrapper">
       <span
           class="progress-items"
@@ -37,17 +37,19 @@
       <span
           class="progress-items-title"
           :class="progress === 3 ? 'active-progress-title' : ''"
-      >가입완료</span>
+      >가입완료
+      </span>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class ProgressComponent extends Vue {
-  progress = 1;
+  @Prop() private progress?: number;
+
 }
 </script>
 

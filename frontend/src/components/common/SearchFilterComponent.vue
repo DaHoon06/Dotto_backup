@@ -48,7 +48,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class SideMenuComponent extends Vue {
+export default class SearchFilterComponent extends Vue {
 
   filterType: string;
   showSortArea: boolean;
@@ -87,10 +87,9 @@ export default class SideMenuComponent extends Vue {
 }
 
 #side-menu-flex {
-  width: 20em;
+  width: 30em;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   height: 100%;
   align-items: stretch;
 }
@@ -132,6 +131,8 @@ export default class SideMenuComponent extends Vue {
 
 #side-menu-search-bar {
   border: none;
+  outline: none;
+  padding: 4px;
   border-bottom: 2px solid black;
 }
 
@@ -174,7 +175,7 @@ export default class SideMenuComponent extends Vue {
     margin-left: 2em;
   }
   #sideMenu-container {
-    margin-left: 1em;
+    margin-left: 0;
   }
 
   #sideMenu-title {
@@ -187,7 +188,8 @@ export default class SideMenuComponent extends Vue {
   }
 
   #tag-area, #location-area {
-    justify-content: space-around;
+    width: 70%;
+    margin-left: 2em;
   }
 
   #side-menu-search-bar {

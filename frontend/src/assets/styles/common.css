@@ -1,3 +1,4 @@
+/* 공통 HTML 태그 default CSS */
 * {
     margin: 0;
     padding: 0;
@@ -19,9 +20,6 @@ button {
     background: none;
     border: none;
     outline: none;
-}
-button:hover {
-    cursor: pointer;
 }
 
 /* input number 화살표 제거 */
