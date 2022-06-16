@@ -1,6 +1,6 @@
 <template>
   <article id="banner-container">
-
+    <img src="@/assets/icons/main/sample/sample_banner.png" alt="banner" />
   </article>
 </template>
 
@@ -18,6 +18,10 @@ export default class MainBannerComponent extends Vue {
   margin-top: 100px;
   background: #222222;
   width: 100%;
-  height: 10em;
+}
+
+#banner-container > img {
+  width: 100%;
+  height: 100%;
 }
 </style>
