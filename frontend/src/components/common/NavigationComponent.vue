@@ -5,12 +5,10 @@
         <article class="menu">
           <ul>
             <li>
-              <span
-                  class="nav-button"
-                  :class="navigationType === 'home' ? currentPage : ''"
-                  @click="changeNavigationType('home')">
-                <router-link to="/" v-bind:activeNav="navigationType">HOME</router-link>
-              </span>
+              <router-link to="/"
+                           class="nav-button"
+                           :class="navigationType === 'home' ? currentPage : ''" >
+                HOME</router-link>
             </li>
           </ul>
         </article>
@@ -19,13 +17,11 @@
         <article class="menu">
           <ul>
             <li>
-              <span
+              <router-link
+                  to="/"
                   class="nav-button"
-                  :class="navigationType === 'try' ? currentPage : ''"
-                  @click="changeNavigationType('try')"
-              >
-                <router-link to="/" v-bind:activeNav="navigationType">try DOTTO</router-link>
-              </span>
+                  :class="navigationType === 'try' ? currentPage : ''">
+                try DOTTO</router-link>
             </li>
           </ul>
         </article>
@@ -47,13 +43,10 @@
                 <router-link
                     to="/dotto/board/index"
                     class="sub-nav-items"
-                    @changeNavType="changeNavType"
-                    @click="changeNavigationType('community')"
                 >닷투 게시판</router-link>
                 <router-link
                     to="/"
                     class="sub-nav-items"
-                    v-bind:activeNav="navigationType"
                 >닷찾사 게시판</router-link>
               </div>
             </li>
@@ -77,12 +70,10 @@
                 <router-link
                     to="/"
                     class="sub-nav-items"
-                    @click="changeNavigationType('support')"
                 >FAQ</router-link>
                 <router-link
                     to="/"
                     class="sub-nav-items"
-                    @click="changeNavigationType('support')"
                 >공지사항</router-link>
               </div>
             </li>
@@ -104,6 +95,8 @@ export default class NavigationComponent extends Vue {
   menu_community = false;
   currentPage = 'current-page';
 
+  navType = '';
+
   constructor() {
     super();
   }
@@ -116,21 +109,18 @@ export default class NavigationComponent extends Vue {
     this.menu_community = event === 'show';
   }
 
-  private changeNavigationType(navType: string) {
-    this.navigationType = navType;
-  }
-
-  private changeNavType(type: string) {
-    console.log('??')
-    console.log(type)
-  }
-
-
-
 }
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+  color: #919191;
+}
+
+a:hover {
+  color: #222222;
+}
 #navigation-container {
   width: 100%;
   position: fixed;
@@ -175,16 +165,14 @@ export default class NavigationComponent extends Vue {
   color: #222222;
 }
 
-
 .nav-button {
   color: #919191;
   padding-left: 5px;
 }
 
-.current-page {
-  color: #222222;
-  font-weight: bold;
-  text-shadow: 1px 1px #a9a9a9;
+.nav-button:hover {
+  cursor: pointer;
+  color: #919191;
 }
 
 .nav-button:hover {
@@ -204,5 +192,10 @@ export default class NavigationComponent extends Vue {
   margin-bottom: 10px;
 }
 
-
+/* 아래 항목 : 이벤트에 따른 CSS 적용 */
+.current-page {
+  color: #222222;
+  font-weight: bold;
+  text-shadow: 1px 1px #a9a9a9;
+}
 </style>

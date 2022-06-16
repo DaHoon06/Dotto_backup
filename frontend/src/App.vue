@@ -5,7 +5,9 @@
         @notScrollBody="notScrollBody"
         :navigationType="navigationTypeComputed"
     />
-    <router-view :class='`${blurCss}`' @changeNavType="changeNavType" />
+    <router-view
+        :class='`${blurCss}`'
+        @changeNavType="changeNavType" />
     <footer-component :class='`${blurCss}`' />
   </div>
 </template>
@@ -28,7 +30,6 @@ export default class App extends Vue {
   scrollPrevent: SCROLL = SCROLL.ON;
   navigationType = '';
 
-
   private blurBackground(isBlur: boolean) {
     isBlur ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF;
     isBlur ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
@@ -38,6 +39,7 @@ export default class App extends Vue {
     scrollEvent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
   }
   private changeNavType(type: string): string {
+    console.log(type)
     this.navigationTypeComputed = type;
   }
 
@@ -52,10 +54,11 @@ export default class App extends Vue {
 </script>
 
 <style>
+
+/* 아래 항목 : 이벤트에 따른 CSS 적용 */
 .setBlur {
   filter: blur(4px);
 }
-
 .notScroll {
   position: fixed;
   -ms-overflow-style: none;

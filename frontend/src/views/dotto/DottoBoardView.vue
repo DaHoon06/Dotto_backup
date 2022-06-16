@@ -3,11 +3,13 @@
        :class="dottoBoardBackground">
     <div id="side-search-filter-wrapper">
       <transition name="fade">
-        <search-filter-component v-show="showSearchFilter" />
+        <search-filter-component
+            v-show="showSearchFilter" />
       </transition>
     </div>
     <router-view
-        @showFilter="showFilter" />
+        @showFilter="showFilter"
+        @changeBackground="changeBackground"/>
   </div>
 </template>
 
@@ -37,6 +39,11 @@ export default class DottoBoardView extends Vue {
 
   private showFilter(show: boolean): void {
     this.showSearchFilter = show;
+  }
+
+  private changeBackground(type: string) {
+    //TODO: TYPE => main, posting
+    this.dottoBoardBackground = type;
   }
 }
 </script>

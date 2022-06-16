@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
 import {
   FooterComponent,
@@ -40,8 +40,17 @@ import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
 export default class MainView extends Vue {
   showSideComponent = true;
 
+  created() {
+    this.changeNavType();
+  }
+
   private showFilter(showFilter: boolean) {
     this.showSideComponent = showFilter;
+  }
+
+  @Emit('changeNavType')
+  private changeNavType(): string {
+    return 'home';
   }
 
 
