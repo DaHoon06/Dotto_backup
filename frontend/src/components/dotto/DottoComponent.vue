@@ -134,6 +134,10 @@ export default class DottoComponent extends Vue {
     this.filterType = '최신순'
   }
 
+  created() {
+    this.changeBackground();
+  }
+
   private showSort() {
     this.showSortComponent = !this.showSortComponent;
   }
@@ -142,14 +146,19 @@ export default class DottoComponent extends Vue {
     this.filterType = type;
   }
 
+  private get sendSortType() {
+    return this.filterType;
+  }
+
   @Emit('showFilter')
   private showFilter() {
     this.showFilterComponent = !this.showFilterComponent;
     return this.showFilterComponent;
   }
 
-  private get sendSortType() {
-    return this.filterType;
+  @Emit('changeBackground')
+  private changeBackground() {
+    return 'main';
   }
 
 }

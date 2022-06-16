@@ -33,7 +33,6 @@ width: 10px;
 .right-side-btn {
 width: 56px;
 height: 56px;
-border: 1px solid #b9b9b9;
 border-radius: 45px;
 background: #FFFFFF;
 }

@@ -89,7 +89,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Emit, Vue} from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
 import FileUploadComponent from "@/components/common/utils/FileUploadComponent.vue";
 
@@ -128,7 +128,11 @@ export default class DottoPostingComponent extends Vue {
     { text: '5', value: '5' },
   ];
   openBtn = true;
-  activeBtn = 'active-post-btn'
+  activeBtn = 'active-post-btn';
+
+  created() {
+    this.changeBackground();
+  }
 
   private validation(): void {
     this.openBtn = !(this.title.length && this.genreDefault.length && this.totalTimeDefault.length && this.content.length && this.originalPrice.length);
@@ -170,12 +174,19 @@ export default class DottoPostingComponent extends Vue {
   }
 
   private addTags(): void {
-    this.tag.push(this.addTag);
+    if (this.tag.length < 5) this.tag.push(this.addTag);
+    else alert('모달 새로만들어서 최대 태그 문구 화면에 출력');
+
     this.addTag = '';
   }
 
   private deleteTag(index: number): void {
     this.tag.splice(index, 1);
+  }
+
+  @Emit('changeBackground')
+  private changeBackground() {
+    return 'posting';
   }
 
 }
