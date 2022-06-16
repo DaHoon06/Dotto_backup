@@ -5,8 +5,12 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_home ? currentPage : ''">HOME</button>
+              <span
+                  class="nav-button"
+                  :class="navigationType === 'home' ? currentPage : ''"
+                  @click="changeNavigationType('home')">
+                <router-link to="/" v-bind:activeNav="navigationType">HOME</router-link>
+              </span>
             </li>
           </ul>
         </article>
@@ -15,8 +19,13 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_tattoo ? currentPage : ''">try DOTTO</button>
+              <span
+                  class="nav-button"
+                  :class="navigationType === 'try' ? currentPage : ''"
+                  @click="changeNavigationType('try')"
+              >
+                <router-link to="/" v-bind:activeNav="navigationType">try DOTTO</router-link>
+              </span>
             </li>
           </ul>
         </article>
@@ -25,17 +34,27 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_community ? currentPage : ''"
+              <span
+                  class="nav-button"
+                  :class="navigationType === 'community' ? currentPage : ''"
                   @mouseover="showCommunity('show')"
-                  @mouseleave="showCommunity('hide')">COMMUNITY</button>
+                  @mouseleave="showCommunity('hide')">COMMUNITY</span>
             </li>
             <li v-show="menu_community">
               <div class="nav-menu-list"
                    @mouseover="showCommunity('show')"
                    @mouseleave="showCommunity('hide')">
-                <router-link to="/dotto/board/index" class="sub-nav-items">닷투 게시판</router-link>
-                <router-link to="/" class="sub-nav-items">닷찾사 게시판</router-link>
+                <router-link
+                    to="/dotto/board/index"
+                    class="sub-nav-items"
+                    @changeNavType="changeNavType"
+                    @click="changeNavigationType('community')"
+                >닷투 게시판</router-link>
+                <router-link
+                    to="/"
+                    class="sub-nav-items"
+                    v-bind:activeNav="navigationType"
+                >닷찾사 게시판</router-link>
               </div>
             </li>
           </ul>
@@ -45,17 +64,26 @@
         <article class="menu">
           <ul>
             <li>
-              <button
-                  class="nav-button" :class="menu_information ? currentPage : ''"
+              <span
+                  class="nav-button"
+                  :class="navigationType === 'support' ? currentPage : ''"
                   @mouseover="showInformation('show')"
-                  @mouseleave="showInformation('hide')">고객지원</button>
+                  @mouseleave="showInformation('hide')">고객지원</span>
             </li>
             <li v-show="menu_information">
               <div class="nav-menu-list"
                    @mouseover="showInformation('show')"
                    @mouseleave="showInformation('hide')">
-                <router-link to="/" class="sub-nav-items">FAQ</router-link>
-                <router-link to="/" class="sub-nav-items">공지사항</router-link>
+                <router-link
+                    to="/"
+                    class="sub-nav-items"
+                    @click="changeNavigationType('support')"
+                >FAQ</router-link>
+                <router-link
+                    to="/"
+                    class="sub-nav-items"
+                    @click="changeNavigationType('support')"
+                >공지사항</router-link>
               </div>
             </li>
           </ul>
@@ -66,13 +94,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class NavigationComponent extends Vue {
-  menu_home = true;
+  @Prop() navigationType?: string;
+
   menu_information = false;
-  menu_tattoo = false;
   menu_community = false;
   currentPage = 'current-page';
 
@@ -87,6 +115,17 @@ export default class NavigationComponent extends Vue {
   private showCommunity(event: string) {
     this.menu_community = event === 'show';
   }
+
+  private changeNavigationType(navType: string) {
+    this.navigationType = navType;
+  }
+
+  private changeNavType(type: string) {
+    console.log('??')
+    console.log(type)
+  }
+
+
 
 }
 </script>

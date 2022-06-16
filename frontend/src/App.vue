@@ -3,8 +3,9 @@
     <header-view
         @blurBackground="blurBackground"
         @notScrollBody="notScrollBody"
+        :navigationType="navigationTypeComputed"
     />
-    <router-view :class='`${blurCss}`' />
+    <router-view :class='`${blurCss}`' @changeNavType="changeNavType" />
     <footer-component :class='`${blurCss}`' />
   </div>
 </template>
@@ -25,6 +26,7 @@ import { BLUR, SCROLL } from "@/interfaces/common/ICommon";
 export default class App extends Vue {
   blurCss: BLUR = BLUR.OFF;
   scrollPrevent: SCROLL = SCROLL.ON;
+  navigationType = '';
 
 
   private blurBackground(isBlur: boolean) {
@@ -34,6 +36,16 @@ export default class App extends Vue {
 
   private notScrollBody(scrollEvent: boolean) {
     scrollEvent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
+  }
+  private changeNavType(type: string): string {
+    this.navigationTypeComputed = type;
+  }
+
+  private set navigationTypeComputed(type: string) {
+    this.navigationType = type;
+  }
+  private get navigationTypeComputed() {
+    return this.navigationType;
   }
 
 }

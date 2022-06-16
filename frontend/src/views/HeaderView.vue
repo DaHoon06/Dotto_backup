@@ -3,13 +3,13 @@
     <header-component
         @blurBackground="blurBackground"
         @notScroll="notScrollBody" />
-    <navigation-component />
+    <navigation-component :navigationType="navigationType" />
     <menu-button />
   </header>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Prop, Vue} from "vue-property-decorator";
 import {
   HeaderComponent,
   MenuButton,
@@ -23,6 +23,7 @@ import {
   }
 })
 export default class HeaderView extends Vue {
+  @Prop({ default: 'home' }) navigationType?: string;
 
   private blurBackground(isBlur: boolean) {
     this.$emit('blurBackground', isBlur);

@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { DottoComponent } from "@/components/dotto";
 import { SearchFilterComponent } from "@/components/common";
 
@@ -25,6 +25,15 @@ import { SearchFilterComponent } from "@/components/common";
 export default class DottoBoardView extends Vue {
   dottoBoardBackground = '';
   showSearchFilter = false;
+
+  created() {
+    this.changeNavType();
+  }
+
+  @Emit('changeNavType')
+  private changeNavType(): string {
+    return 'community';
+  }
 
   private showFilter(show: boolean): void {
     this.showSearchFilter = show;
