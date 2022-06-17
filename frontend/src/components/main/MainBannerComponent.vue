@@ -9,7 +9,10 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class MainBannerComponent extends Vue {
-
+  /*TODO:
+     1. 배너 슬라이드 기능 구현
+     2.
+  */
 }
 </script>
 
