@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueDaumPostcode from "vue-daum-postcode"
 import { Mixin } from "@/mixins/mixin";
+import InfiniteLoading from 'vue-infinite-loading';
+
 // import { io } from 'socket.io-client';
 
 import '@/assets/styles/index.css';
@@ -26,6 +28,7 @@ Vue.use(VueAxios, axios);
 Vue.use(VueCookies);
 Vue.use(VueMoment);
 Vue.use(VueDaumPostcode);
+Vue.use(InfiniteLoading, { /* options */ });
 
 Vue.mixin(Mixin);
 

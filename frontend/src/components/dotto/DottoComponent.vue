@@ -120,7 +120,7 @@
 
       <div class="tag-area tattoo-board-list-info location">홍대</div>
     </article>
-
+    <infinite-loading></infinite-loading>
   </section>
 </template>
 
@@ -128,25 +128,65 @@
 import { Component, Emit, Vue } from "vue-property-decorator";
 import { TopScrollButton, SortComponent } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
-import DottoPostingButton from "@/components/dotto/DottoPostingButton.vue";
+import { DottoPostingButton } from "@/components/dotto";
+import InfiniteLoading from 'vue-infinite-loading';
 
+export interface IDottoBoard {
+  postNo: number,
+  memberNo: number,
+  title: string,
+  content: string,
+  price: number,
+  salesPrice: number,
+  genre: string,
+  totalTime: number,
+  postPhoto: string,
+  tags: string[],
+  createdAt: Date,
+  modifiedAt: Date,
+  deletedAt: Date,
+  deletedYn: string,
+}
 @Component({
   components: {
     DottoPostingButton,
     TopScrollButton,
     SortComponent,
-    FollowListComponent
+    FollowListComponent,
+    InfiniteLoading
   }
 })
 export default class DottoComponent extends Vue {
+  /*TODO:
+      1. 닷투 게시판 인터페이스 정의
+      2. 리스트 호출 -> limit 8, limit 16  2Type
+      3. 무한 스크롤 기능 구현
+  */
   showSortComponent = false;
   showFilterComponent = false;
-  filterType: string;
+  filterType= '최신순';
   showSearchFilter = 'showSearchFilter';
+  page = 1;
+  dottoData:IDottoBoard;
 
   constructor() {
     super();
-    this.filterType = '최신순'
+    this.dottoData = {
+      postNo: 0,
+      memberNo: 0,
+      title: '',
+      content: '',
+      price: 0,
+      salesPrice: 0,
+      genre: '',
+      totalTime: 0,
+      postPhoto: '',
+      tags: [],
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      deletedAt: new Date(),
+      deletedYn: '',
+    }
   }
 
   created() {
