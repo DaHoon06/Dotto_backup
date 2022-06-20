@@ -40,3 +40,6 @@ out/
 
 ### ignore Files ###
 application-secret.yml
+application.yml
+application-local.yml
+application-test.yml
