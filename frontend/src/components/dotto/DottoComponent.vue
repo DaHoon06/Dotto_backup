@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <section id="tattoo-container">
+  <section>
+
+    <div id="tattoo-container">
       <article v-if="!existData">
         <h5>임시 적용</h5>
         <small>게시글이 존재하지 않습니다.</small>
@@ -22,14 +23,15 @@
           {{ dottoTags.tags }}
         </div>
       </article>
-    </section>
+    </div>
     <infinite-loading
         @infinite="getDottoBoardList"
         :infiniteId="infiniteId"
         spinner="waveDots"
         ref="InfiniteLoading"
     />
-  </div>
+
+  </section>
 </template>
 
 <script lang="ts">
@@ -79,10 +81,10 @@ export default class DottoComponent extends Vue {
   filterType= '최신순';
   showSearchFilter = 'showSearchFilter';
   page = 1;
-  lists = [];
+  lists: IDottoBoard[] = [];
   dottoData:IDottoBoard;
   infiniteId = +new Date();
-  tags = [];
+  tags: string[] = [];
 
   constructor() {
     super();
@@ -107,20 +109,21 @@ export default class DottoComponent extends Vue {
   created() {
     this.changeBackground();
   }
-  private getDottoBoardList($state: any): void {
+
+  private async getDottoBoardList($state: any): Promise<void> {
     this.existData = false;
     try {
-      const { data } = this.axios.get('/api', {
+      const { data } = await this.axios.get('/api', {
         params: {
           limit: this.limit,
           page: this.page
         }
       });
-      const { lists, result } = data;
+      const { lists, result } = data as { lists: IDottoBoard, result: boolean };
       if (result) {
-        setTimeout(() => {
+        setTimeout(async () => {
           this.page += 1;
-          this.lists.push(...lists);
+          this.lists.push(lists);
           this.tags = lists.tags;
           $state.loaded();
         }, 1000);
@@ -137,11 +140,9 @@ export default class DottoComponent extends Vue {
   private showSort() {
     this.showSortComponent = !this.showSortComponent;
   }
-
   private typeName(type: string) {
     this.filterType = type;
   }
-
   private get sendSortType() {
     return this.filterType;
   }
@@ -151,7 +152,6 @@ export default class DottoComponent extends Vue {
     this.showFilterComponent = !this.showFilterComponent;
     return this.showFilterComponent;
   }
-
   @Emit('changeBackground')
   private changeBackground() {
     return 'main';
