@@ -67,7 +67,6 @@ export default class ModalComponent extends Vue {
     }
   }
 
-
   private closeModalOuter() {
     window.addEventListener('click', this.resetModal);
   }
@@ -82,10 +81,6 @@ export default class ModalComponent extends Vue {
       this.closeModal();
     }
   }
-
-  // private redirectLoginForm(): void {
-  //   console.log('?')
-  // }
 
   private changeModalType(modalTypeRegister: string) {
     this.modalTypeComputed = modalTypeRegister;
