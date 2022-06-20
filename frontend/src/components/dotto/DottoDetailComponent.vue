@@ -184,6 +184,7 @@ hr {
   width: 288px;
   height: 288px;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 #dotto-detail-information {
