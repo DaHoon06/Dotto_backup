@@ -2,8 +2,12 @@
   <section>
 
     <div id="tattoo-container">
+
       <article v-if="!existData">
-        <h5>임시 적용</h5>
+        <h5>
+          <router-link to="/dotto/board/view">임시 상세보기</router-link>
+        </h5>
+        <h5>API 연동 해야함</h5>
         <small>게시글이 존재하지 않습니다.</small>
       </article>
       <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
@@ -163,32 +167,12 @@ export default class DottoComponent extends Vue {
 </script>
 
 <style scoped>
-/*#main-container {*/
-/*  max-width: 1200px;*/
-/*  width: 100%;*/
-/*  margin: 100px auto 10em auto;*/
-/*  min-height: 100vh;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*}*/
-
-/*#filter-area {*/
-/*  height: 30px;*/
-/*  display: inline-block;*/
-/*  text-align: right;*/
-/*  padding-right: 5em;*/
-/*}*/
-
 #tattoo-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
-
-/*.side-menu-drop-btn {*/
-/*  width: 12px;*/
-/*}*/
 
 .tattoo-board-list {
   box-shadow: 0 1px 2px 1px #adadad;
@@ -198,20 +182,6 @@ export default class DottoComponent extends Vue {
   margin-top: 1em;
   margin-left: 1em;
 }
-
-/*.filter-text {*/
-/*  font-size: 14px;*/
-/*  margin-left: 5px;*/
-/*  font-weight: 600;*/
-/*}*/
-
-/*.filter-toggle-img {*/
-/*  width: 18px;*/
-/*}*/
-
-/*.filter-section {*/
-/*  margin-left: 20px;*/
-/*}*/
 
 .tattoo-img {
   width: 240px;
@@ -263,33 +233,15 @@ export default class DottoComponent extends Vue {
   text-decoration-line: line-through;
 }
 
-/*!* side button *!*/
-/*#side-button-container {*/
-/*  position: fixed;*/
-/*  top: 50%;*/
-/*  right: 48px;*/
-/*}*/
-
-/*.showSearchFilter {*/
-/*  padding-left: 180px;*/
-/*}*/
-
-
 @media screen and (max-width: 1719px){
 
 }
 
 @media screen and (max-width: 1440px){
-  /*#filter-area {*/
-  /*  padding-right: 5em;*/
-  /*}*/
-
 }
 
 @media screen and (max-width: 1260px) {
-  /*#filter {*/
-  /*  display: none;*/
-  /*}*/
+
 }
 
 @media screen and (max-width: 869px){
