@@ -37,7 +37,7 @@ public class SignService {
         List<Role> roles = List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new));
         memberRepository.save(
                 new Member(
-                        req.getEmail(),
+                        req.getId(),
                         encodedPwd,
                         req.getNickname(),
                         req.getGender(),
@@ -49,7 +49,7 @@ public class SignService {
 
     @Transactional(readOnly = true)
     public SignInResponse SignIn(SignInRequest req){
-        Member member = memberRepository.findWithRolesByEmail(req.getEmail()).orElseThrow(MemberNotFoundException::new);
+        Member member = memberRepository.findWithRolesById(req.getId()).orElseThrow(MemberNotFoundException::new);
         validPwd(req, member);
         TokenHelper.PrivateClaims privateClaims = createPrivateClaims(member);
         String accessToken = accessTokenHelper.createToken(privateClaims);
@@ -61,7 +61,7 @@ public class SignService {
 
     private TokenHelper.PrivateClaims createPrivateClaims(Member member){
         return new TokenHelper.PrivateClaims(
-                String.valueOf(member.getMemNo()),
+                String.valueOf(member.getMemberNo()),
                 member.getRoles().stream()
                 .map(memberRole -> memberRole.getRole())
                 .map(role -> role.getRoleType())
@@ -84,8 +84,8 @@ public class SignService {
     }
 
     private void validSignUpInfo(SignUpRequest req){
-        if(memberRepository.existsByEmail(req.getEmail())){
-            throw new MemberEmailAlreadyExistsException(req.getEmail());
+        if(memberRepository.existsById(req.getId())){
+            throw new MemberEmailAlreadyExistsException(req.getId());
         }
         if(memberRepository.existsByNickname(req.getNickname())){
             throw new MemberNicknameAlreadyExistsException(req.getNickname());
