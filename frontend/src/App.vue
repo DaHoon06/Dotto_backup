@@ -38,8 +38,7 @@ export default class App extends Vue {
   private notScrollBody(scrollEvent: boolean) {
     scrollEvent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
   }
-  private changeNavType(type: string): string {
-    console.log(type)
+  private changeNavType(type: string): void {
     this.navigationTypeComputed = type;
   }
 

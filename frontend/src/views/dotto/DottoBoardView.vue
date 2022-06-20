@@ -50,11 +50,11 @@ export default class DottoBoardView extends Vue {
 
 <style scoped>
 #dotto-board-container {
-  margin-top: 100px;
+  width: 100vw;
   height: 100%;
   min-height: 800px;
   background: white;
-
+  margin-top: 100px;
 }
 
 #side-search-filter-wrapper {

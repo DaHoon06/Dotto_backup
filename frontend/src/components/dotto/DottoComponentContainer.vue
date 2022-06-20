@@ -1,148 +1,76 @@
 <template>
-  <section>
+  <div id="main-container" :class="showFilterComponent ? 'showSearchFilter' : ''" >
+    <follow-list-component />
 
-    <div id="tattoo-container">
-      <article v-if="!existData">
-        <h5>임시 적용</h5>
-        <small>게시글이 존재하지 않습니다.</small>
-      </article>
-      <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
-        <!--TODO: 실제 변수 체크 -->
-        <div>
-          <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />
-        </div>
-        <div class="tattoo-board-list-info user-name">tattooist_id</div>
-        <div class="tattoo-board-list-info title">{ dotto.title }}</div>
-        <div class="tattoo-board-list-info">
-          <span class="event-price price">{{ dotto.salesPrice }}</span>
-          <span class="original-price price">{{ dotto.price }}</span>
-          <span class="discount-rate price">할인율???</span>
-        </div>
-        <!-- span 태그로 해야하려나 -->
-        <div class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
-          {{ dottoTags.tags }}
-        </div>
-      </article>
-    </div>
-    <infinite-loading
-        @infinite="getDottoBoardList"
-        :infiniteId="infiniteId"
-        spinner="waveDots"
-        ref="InfiniteLoading"
+    <section id="filter-area">
+      <span class="filter-section">
+        <button @click="showSort" >
+          <span class="filter-text">{{ sendSortType }}</span>
+          <img class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+        </button>
+        <sort-component
+            @typeName="typeName"
+            :selectedType="filterType"
+            :showSortComponent="showSortComponent" />
+      </span>
+
+      <span id="filter" class="filter-section">
+        <button @click="showFilter">
+          <span class="filter-text">FILTER</span>
+          <img class="filter-text filter-toggle-img" src="@/assets/icons/main/filter.png" alt="filter" />
+        </button>
+      </span>
+    </section>
+
+    <dotto-component
+        :limit="limit"
     />
 
-  </section>
+    <aside id="side-button-container">
+      <dotto-posting-button />
+      <top-scroll-button />
+    </aside>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { TopScrollButton, SortComponent } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
-import { DottoPostingButton } from "@/components/dotto";
-import InfiniteLoading from 'vue-infinite-loading';
+import { DottoComponent, DottoPostingButton } from "@/components/dotto/index";
 
-export interface IDottoBoard {
-  postNo: number,
-  memberNo: number,
-  title: string,
-  content: string,
-  price: number,
-  salesPrice: number,
-  genre: string,
-  totalTime: number,
-  postPhoto: string,
-  tags: string[],
-  createdAt: Date,
-  modifiedAt: Date,
-  deletedAt: Date,
-  deletedYn: string,
-}
 @Component({
   components: {
     DottoPostingButton,
     TopScrollButton,
     SortComponent,
     FollowListComponent,
-    InfiniteLoading
+    DottoComponent
   }
 })
-export default class DottoComponent extends Vue {
-  @Prop() limit?: number;
-
-  existData = false;
-
-  /*TODO:
-      1. 닷투 게시판 인터페이스 정의
-      2. 리스트 호출 -> limit 8, limit 16  2Type
-      3. 무한 스크롤 기능 구현
-  */
+export default class DottoComponentContainer extends Vue {
   showSortComponent = false;
   showFilterComponent = false;
-  filterType= '최신순';
+  filterType: string;
   showSearchFilter = 'showSearchFilter';
-  page = 1;
-  lists: IDottoBoard[] = [];
-  dottoData:IDottoBoard;
-  infiniteId = +new Date();
-  tags: string[] = [];
-
+  limit = 16;
   constructor() {
     super();
-    this.dottoData = {
-      postNo: 0,
-      memberNo: 0,
-      title: '',
-      content: '',
-      price: 0,
-      salesPrice: 0,
-      genre: '',
-      totalTime: 0,
-      postPhoto: '',
-      tags: [],
-      createdAt: new Date(),
-      modifiedAt: new Date(),
-      deletedAt: new Date(),
-      deletedYn: '',
-    }
+    this.filterType = '최신순'
   }
 
   created() {
     this.changeBackground();
   }
 
-  private async getDottoBoardList($state: any): Promise<void> {
-    this.existData = false;
-    try {
-      const { data } = await this.axios.get('/api', {
-        params: {
-          limit: this.limit,
-          page: this.page
-        }
-      });
-      const { lists, result } = data as { lists: IDottoBoard, result: boolean };
-      if (result) {
-        setTimeout(async () => {
-          this.page += 1;
-          this.lists.push(lists);
-          this.tags = lists.tags;
-          $state.loaded();
-        }, 1000);
-        this.existData = true;
-      } else {
-        $state.complete();
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  //- OPTIONS
   private showSort() {
     this.showSortComponent = !this.showSortComponent;
   }
+
   private typeName(type: string) {
     this.filterType = type;
   }
+
   private get sendSortType() {
     return this.filterType;
   }
@@ -152,6 +80,7 @@ export default class DottoComponent extends Vue {
     this.showFilterComponent = !this.showFilterComponent;
     return this.showFilterComponent;
   }
+
   @Emit('changeBackground')
   private changeBackground() {
     return 'main';

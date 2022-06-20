@@ -17,6 +17,7 @@ declare module 'vue/types/vue' {
     interface Vue {
         $gAuth: any;
         $socket: Socket;
+
         userId: string;
         token: string;
         isLogin: boolean;

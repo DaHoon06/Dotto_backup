@@ -113,14 +113,6 @@ export default class NavigationComponent extends Vue {
 </script>
 
 <style scoped>
-a {
-  text-decoration: none;
-  color: #919191;
-}
-
-a:hover {
-  color: #222222;
-}
 #navigation-container {
   width: 100%;
   position: fixed;
