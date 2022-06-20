@@ -1,5 +1,6 @@
 <template>
   <section >
+    <router-link to="/dotto/board/view">임시 상세보기</router-link>
     <router-link to="/dotto/board/post">
       <img id='posting-btn-img' src="@/assets/icons/board/dotto/plus.png" alt="posting" />
     </router-link>

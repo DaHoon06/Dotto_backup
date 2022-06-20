@@ -8,20 +8,22 @@
       </article>
       <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
         <!--TODO: 실제 변수 체크 -->
-        <div>
-          <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />
-        </div>
-        <div class="tattoo-board-list-info user-name">tattooist_id</div>
-        <div class="tattoo-board-list-info title">{ dotto.title }}</div>
-        <div class="tattoo-board-list-info">
-          <span class="event-price price">{{ dotto.salesPrice }}</span>
-          <span class="original-price price">{{ dotto.price }}</span>
-          <span class="discount-rate price">할인율???</span>
-        </div>
-        <!-- span 태그로 해야하려나 -->
-        <div class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
-          {{ dottoTags.tags }}
-        </div>
+        <router-link :to=`/dotto/board/view/${dotto.postNo}`>
+          <div>
+            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />
+          </div>
+          <div class="tattoo-board-list-info user-name">tattooist_id</div>
+          <div class="tattoo-board-list-info title">{ dotto.title }}</div>
+          <div class="tattoo-board-list-info">
+            <span class="event-price price">{{ dotto.salesPrice }}</span>
+            <span class="original-price price">{{ dotto.price }}</span>
+            <span class="discount-rate price">할인율???</span>
+          </div>
+          <!-- span 태그로 해야하려나 -->
+          <div class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
+            {{ dottoTags }}
+          </div>
+        </router-link>
       </article>
     </div>
     <infinite-loading
@@ -161,21 +163,21 @@ export default class DottoComponent extends Vue {
 </script>
 
 <style scoped>
-#main-container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 100px auto 10em auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+/*#main-container {*/
+/*  max-width: 1200px;*/
+/*  width: 100%;*/
+/*  margin: 100px auto 10em auto;*/
+/*  min-height: 100vh;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
 
-#filter-area {
-  height: 30px;
-  display: inline-block;
-  text-align: right;
-  padding-right: 5em;
-}
+/*#filter-area {*/
+/*  height: 30px;*/
+/*  display: inline-block;*/
+/*  text-align: right;*/
+/*  padding-right: 5em;*/
+/*}*/
 
 #tattoo-container {
   display: flex;
@@ -184,9 +186,9 @@ export default class DottoComponent extends Vue {
   justify-content: center;
 }
 
-.side-menu-drop-btn {
-  width: 12px;
-}
+/*.side-menu-drop-btn {*/
+/*  width: 12px;*/
+/*}*/
 
 .tattoo-board-list {
   box-shadow: 0 1px 2px 1px #adadad;
@@ -197,53 +199,24 @@ export default class DottoComponent extends Vue {
   margin-left: 1em;
 }
 
-.filter-text {
-  font-size: 14px;
-  margin-left: 5px;
-  font-weight: 600;
-}
+/*.filter-text {*/
+/*  font-size: 14px;*/
+/*  margin-left: 5px;*/
+/*  font-weight: 600;*/
+/*}*/
 
-.filter-toggle-img {
-  width: 18px;
-}
+/*.filter-toggle-img {*/
+/*  width: 18px;*/
+/*}*/
 
-.filter-section {
-  margin-left: 20px;
-}
+/*.filter-section {*/
+/*  margin-left: 20px;*/
+/*}*/
 
 .tattoo-img {
   width: 240px;
   margin-left: 10px;
   margin-top: 8px;
-}
-
-.tag-area {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 5px 8px;
-  background: #F5F5F5;
-
-
-  /* 서울 홍대 */
-  position: static;
-  width: 40px;
-  height: 23px;
-  left: 8px;
-  top: 4px;
-
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  color: #696969;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  margin: 0px 0px;
 }
 
 .tattoo-board-list-info {
@@ -290,16 +263,16 @@ export default class DottoComponent extends Vue {
   text-decoration-line: line-through;
 }
 
-/* side button */
-#side-button-container {
-  position: fixed;
-  top: 50%;
-  right: 48px;
-}
+/*!* side button *!*/
+/*#side-button-container {*/
+/*  position: fixed;*/
+/*  top: 50%;*/
+/*  right: 48px;*/
+/*}*/
 
-.showSearchFilter {
-  padding-left: 180px;
-}
+/*.showSearchFilter {*/
+/*  padding-left: 180px;*/
+/*}*/
 
 
 @media screen and (max-width: 1719px){
@@ -307,16 +280,16 @@ export default class DottoComponent extends Vue {
 }
 
 @media screen and (max-width: 1440px){
-  #filter-area {
-    padding-right: 5em;
-  }
+  /*#filter-area {*/
+  /*  padding-right: 5em;*/
+  /*}*/
 
 }
 
 @media screen and (max-width: 1260px) {
-  #filter {
-    display: none;
-  }
+  /*#filter {*/
+  /*  display: none;*/
+  /*}*/
 }
 
 @media screen and (max-width: 869px){
