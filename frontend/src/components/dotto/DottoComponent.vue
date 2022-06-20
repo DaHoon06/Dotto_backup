@@ -1,152 +1,35 @@
 <template>
-  <section id="tattoo-container">
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-
-    <article class="tattoo-board-list">
-      <div>
-        <img class="tattoo-img" src="@/assets/icons/main/sample/sample_img01.png" alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">글 제목</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">5만원</span>
-        <span class="original-price price">10만원</span>
-        <span class="discount-rate price">50%</span>
-      </div>
-
-      <div class="tag-area tattoo-board-list-info location">홍대</div>
-    </article>
-<!--TODO: 실제 변수 체크 -->
-
-
-
-    <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index">
-      <div>
-        <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />
-      </div>
-      <div class="tattoo-board-list-info user-name">tattooist_id</div>
-      <div class="tattoo-board-list-info title">{ dotto.title }}</div>
-      <div class="tattoo-board-list-info">
-        <span class="event-price price">{{ dotto.salesPrice }}</span>
-        <span class="original-price price">{{ dotto.price }}</span>
-        <span class="discount-rate price">할인율???</span>
-      </div>
-      <!-- span 태그로 해야하려나 -->
-      <div class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
-        {{ dottoTags.tags }}
-      </div>
-    </article>
-
+  <div>
+    <section id="tattoo-container">
+      <article v-if="!existData">
+        <h5>임시 적용</h5>
+        <small>게시글이 존재하지 않습니다.</small>
+      </article>
+      <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
+        <!--TODO: 실제 변수 체크 -->
+        <div>
+          <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />
+        </div>
+        <div class="tattoo-board-list-info user-name">tattooist_id</div>
+        <div class="tattoo-board-list-info title">{ dotto.title }}</div>
+        <div class="tattoo-board-list-info">
+          <span class="event-price price">{{ dotto.salesPrice }}</span>
+          <span class="original-price price">{{ dotto.price }}</span>
+          <span class="discount-rate price">할인율???</span>
+        </div>
+        <!-- span 태그로 해야하려나 -->
+        <div class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
+          {{ dottoTags.tags }}
+        </div>
+      </article>
+    </section>
     <infinite-loading
         @infinite="getDottoBoardList"
         :infiniteId="infiniteId"
+        spinner="waveDots"
         ref="InfiniteLoading"
     />
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -183,6 +66,9 @@ export interface IDottoBoard {
 })
 export default class DottoComponent extends Vue {
   @Prop() limit?: number;
+
+  existData = false;
+
   /*TODO:
       1. 닷투 게시판 인터페이스 정의
       2. 리스트 호출 -> limit 8, limit 16  2Type
@@ -222,7 +108,7 @@ export default class DottoComponent extends Vue {
     this.changeBackground();
   }
   private getDottoBoardList($state: any): void {
-    console.log('getBoard')
+    this.existData = false;
     try {
       const { data } = this.axios.get('/api', {
         params: {
@@ -231,12 +117,14 @@ export default class DottoComponent extends Vue {
         }
       });
       const { lists, result } = data;
-
       if (result) {
-        this.page += 1;
-        this.lists.push(...lists);
-        this.tags = lists.tags;
-        $state.loaded();
+        setTimeout(() => {
+          this.page += 1;
+          this.lists.push(...lists);
+          this.tags = lists.tags;
+          $state.loaded();
+        }, 1000);
+        this.existData = true;
       } else {
         $state.complete();
       }
@@ -244,10 +132,6 @@ export default class DottoComponent extends Vue {
       console.error(e);
     }
   }
-
-
-
-
 
   //- OPTIONS
   private showSort() {
