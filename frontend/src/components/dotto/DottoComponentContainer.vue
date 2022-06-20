@@ -22,7 +22,9 @@
       </span>
     </section>
 
-    <dotto-component />
+    <dotto-component
+        :limit="limit"
+    />
 
     <aside id="side-button-container">
       <dotto-posting-button />
@@ -51,7 +53,7 @@ export default class DottoComponentContainer extends Vue {
   showFilterComponent = false;
   filterType: string;
   showSearchFilter = 'showSearchFilter';
-
+  limit = 16;
   constructor() {
     super();
     this.filterType = '최신순'

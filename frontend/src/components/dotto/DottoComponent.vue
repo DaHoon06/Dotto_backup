@@ -120,12 +120,37 @@
 
       <div class="tag-area tattoo-board-list-info location">홍대</div>
     </article>
-    <infinite-loading></infinite-loading>
+<!--TODO: 실제 변수 체크 -->
+
+
+
+    <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index">
+      <div>
+        <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />
+      </div>
+      <div class="tattoo-board-list-info user-name">tattooist_id</div>
+      <div class="tattoo-board-list-info title">{ dotto.title }}</div>
+      <div class="tattoo-board-list-info">
+        <span class="event-price price">{{ dotto.salesPrice }}</span>
+        <span class="original-price price">{{ dotto.price }}</span>
+        <span class="discount-rate price">할인율???</span>
+      </div>
+      <!-- span 태그로 해야하려나 -->
+      <div class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
+        {{ dottoTags.tags }}
+      </div>
+    </article>
+
+    <infinite-loading
+        @infinite="getDottoBoardList"
+        :infiniteId="infiniteId"
+        ref="InfiniteLoading"
+    />
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import { TopScrollButton, SortComponent } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import { DottoPostingButton } from "@/components/dotto";
@@ -157,6 +182,7 @@ export interface IDottoBoard {
   }
 })
 export default class DottoComponent extends Vue {
+  @Prop() limit?: number;
   /*TODO:
       1. 닷투 게시판 인터페이스 정의
       2. 리스트 호출 -> limit 8, limit 16  2Type
@@ -167,7 +193,10 @@ export default class DottoComponent extends Vue {
   filterType= '최신순';
   showSearchFilter = 'showSearchFilter';
   page = 1;
+  lists = [];
   dottoData:IDottoBoard;
+  infiniteId = +new Date();
+  tags = [];
 
   constructor() {
     super();
@@ -192,7 +221,35 @@ export default class DottoComponent extends Vue {
   created() {
     this.changeBackground();
   }
+  private getDottoBoardList($state: any): void {
+    console.log('getBoard')
+    try {
+      const { data } = this.axios.get('/api', {
+        params: {
+          limit: this.limit,
+          page: this.page
+        }
+      });
+      const { lists, result } = data;
 
+      if (result) {
+        this.page += 1;
+        this.lists.push(...lists);
+        this.tags = lists.tags;
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+
+
+
+
+  //- OPTIONS
   private showSort() {
     this.showSortComponent = !this.showSortComponent;
   }

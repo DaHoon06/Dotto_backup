@@ -21,7 +21,9 @@
             </router-link>
           </div>
         </div>
-        <dotto-component />
+        <dotto-component
+            :limit="limit"
+        />
       </section>
 
       <section id="home-seekers-wrapper" >
@@ -80,7 +82,7 @@ import {
 } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
-import { DottoComponent, DottoComponentContainer } from "@/components/dotto";
+import { DottoComponent } from "@/components/dotto";
 
 @Component({
   components: {
@@ -95,6 +97,7 @@ import { DottoComponent, DottoComponentContainer } from "@/components/dotto";
   }
 })
 export default class MainView extends Vue {
+  limit = 8;
   //TODO: 3가지 항목 변수 및 인터페이스 정의
 
 
