@@ -6,7 +6,7 @@
       <span class="filter-section">
         <button @click="showSort" >
           <span class="filter-text">{{ sendSortType }}</span>
-          <img class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+          <img class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
         </button>
         <sort-component
             @typeName="typeName"
@@ -17,7 +17,7 @@
       <span id="filter" class="filter-section">
         <button @click="showFilter">
           <span class="filter-text">FILTER</span>
-          <img class="filter-text filter-toggle-img" src="@/assets/icons/main/filter.png" alt="filter" />
+          <img class="filter-text filter-toggle-img" src="@/assets/icons/main/filter.svg" alt="filter" />
         </button>
       </span>
     </section>

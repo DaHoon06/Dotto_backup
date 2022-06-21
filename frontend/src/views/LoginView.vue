@@ -1,7 +1,7 @@
 <template>
   <main id="loginPage-container">
     <section id="logo-img" class="login-info-section">
-      <span class="logo"><img src="@/assets/img/dotto.jpg" alt="logo" /></span>
+      <span class="logo"><img src="@/assets/img/dotto.svg" alt="logo" /></span>
     </section>
 
     <section class="login-info-section">

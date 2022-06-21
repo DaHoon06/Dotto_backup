@@ -1,7 +1,7 @@
 <template>
   <section id="complete_container">
     <article>
-      <img id="complete_img" src="@/assets/icons/regist_complete.png" alt="congratulation">
+      <img id="complete_img" src="@/assets/icons/regist_complete.svg" alt="congratulation">
       <h5>회원가입이 완료되었습니다.!</h5>
     </article>
 
