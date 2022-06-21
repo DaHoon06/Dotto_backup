@@ -112,7 +112,7 @@ export default class DottoComponent extends Vue {
     }
   }
 
-  created() {
+  created(): void {
     this.changeBackground();
   }
 
