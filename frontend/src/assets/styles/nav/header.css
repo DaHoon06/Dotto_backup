@@ -92,33 +92,6 @@
     margin-right: 15px;
 }
 
-#logo {
-    margin-left: 25px;
-    margin-bottom: 10px;
-    width: 80px;
-    height: 35px;
-    left: 4px;
-    top: 0;
-}
-
-#navigation-search-bar {
-    width: 200px;
-    height: 25px;
-    border: 1px solid #ececec;
-    outline: none;
-    border-radius: 4px;
-    background: #F5F5F5;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 10px;
-}
-
-#search-btn {
-    position: relative;
-    right: 24px;
-    width: 15px;
-}
-
 #search-list {
     position: absolute;
     top: 60px;
@@ -185,12 +158,16 @@
 }
 
 .close-search-list {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 3rem;
-    margin-right: 3rem;
+    margin-right: 40px;
     font-size: 20px;
     font-weight: 600;
+    background: #F5F5F5;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    text-align: center;
+    padding-top: 3px;
+    color: #696969;
 }
 
 .active-post-btn {
