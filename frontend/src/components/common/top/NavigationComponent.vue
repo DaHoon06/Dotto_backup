@@ -113,21 +113,8 @@ export default class NavigationComponent extends Vue {
 </script>
 
 <style scoped>
-#navigation-container {
-  width: 100%;
-  position: fixed;
-  background: #FFFFFF;
-  top: 60px;
-  height: 40px;
-  border-bottom: 2px solid #F5F5F5;
-  padding-left: 20px;
-  font-size: 13px;
-  color: #919191;
-  z-index: 5;
-}
-
 #navigation-container > ul {
-  padding-left: 0;
+  padding-left: 17px;
 }
 
 #navigation-container > ul > li {
@@ -190,4 +177,5 @@ export default class NavigationComponent extends Vue {
   font-weight: bold;
   text-shadow: 1px 1px #a9a9a9;
 }
+
 </style>
