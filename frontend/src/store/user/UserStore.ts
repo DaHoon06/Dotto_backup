@@ -1,61 +1,42 @@
 import { Module } from 'vuex';
 import { State } from '@/store';
 import { ins as axios } from "@/lib/axios";
+import { IUser } from "@/interfaces/IUser";
 
-interface User {
-    isLogin: boolean,
-    userId: string,
-    userRole: string,
-    userName: string,
-    token: string,
-}
-
-interface LoginResponse {
-    result?: boolean,
-    token: string,
-    role?: string,
-    userId?: string,
-    userRole?: string,
-    userName?: string,
-}
-
-const userStore: Module<User, State> = {
+const userStore: Module<IUser.UserStore, State> = {
     namespaced: true,
     state: {
         isLogin: false,
-        userId: '',
-        userRole: '',
-        userName: '',
-        token: '',
+        accessToken: '',
+        refreshToken: '',
+        nickname: '',
     },
     mutations: {
         login(state, payload){
-            const { userId, userRole, userName, token } = payload;
+            const { accessToken, refreshToken, nickname } = payload;
             state.isLogin = true;
-            state.userId = userId;
-            state.userRole = userRole;
-            state.userName = userName;
-            state.token = token;
+            state.accessToken = accessToken;
+            state.refreshToken = refreshToken;
+            state.nickname = nickname;
         },
         logout(state){
             state.isLogin = false;
-            state.userId = '';
-            state.userRole = '';
-            state.userName = '';
-            state.token = '';
+            state.accessToken = '';
+            state.refreshToken = '';
+            state.nickname = '';
         },
     },
     actions: {
         async login(context, { token }){
             try {
-                const { data } = await axios.post<LoginResponse>(`/user/auth/${token}`);
-                const { result, token: newToken, userId, userRole, userName } = data;
-                if (result) {
+                const { data } = await axios.post<IUser.AxiosLoginResponse>(`/user/auth/${token}`);
+                const { success, result } = data;
+                const { accessToken, refreshToken, nickname } = result;
+                if (success) {
                     context.commit('login', {
-                        userId,
-                        userRole,
-                        userName,
-                        token: newToken,
+                        nickname,
+                        accessToken,
+                        refreshToken,
                     });
                 }
                 return true;
@@ -66,14 +47,14 @@ const userStore: Module<User, State> = {
         },
         async verify(context, { token }) {
             try {
-                const { data } = await axios.post<LoginResponse>(`/user/verify`, { token });
-                const { result, token: newToken, userId, userRole, userName } = data;
-                if (result) {
+                const { data } = await axios.post<IUser.AxiosLoginResponse>(`/user/verify`, token);
+                const { success, result } = data;
+                const { accessToken, refreshToken, nickname } = result;
+                if (success) {
                     context.commit('login', {
-                        userId,
-                        userRole,
-                        userName,
-                        token: newToken,
+                        nickname,
+                        accessToken,
+                        refreshToken,
                     });
                     return true;
                 } else {
@@ -90,10 +71,9 @@ const userStore: Module<User, State> = {
     },
     getters: {
         isLogin: state => state.isLogin,
-        userId: state => state.userId,
-        userRole: state => state.userRole,
-        userName: state => state.userName,
-        token: state => state.token,
+        nickname: state => state.nickname,
+        accessToken: state => state.accessToken,
+        refreshToken: state => state.refreshToken,
     },
 }
 export default userStore;
