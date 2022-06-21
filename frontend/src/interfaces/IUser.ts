@@ -4,6 +4,7 @@ export namespace IUser {
         password: string,
         id: string;
         phone: string;
+        gender: string;
     }
 
     export interface ITattoist extends IRegisterProp{
