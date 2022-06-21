@@ -29,7 +29,7 @@ export default class DottoBoardView extends Vue {
   showSearchFilter = false;
   otherBgColor = 'dotto-background-other';
 
-  created() {
+  created(): void {
     this.changeNavType();
   }
 

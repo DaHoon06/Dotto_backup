@@ -160,7 +160,6 @@ export default class PolicyComponent extends Vue {
 #policy-container {
   display: flex;
   overflow-y: auto;
-  justify-content: space-between;
   flex-direction: column;
   height: 100%;
 }

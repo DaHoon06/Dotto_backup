@@ -59,7 +59,7 @@ export default class DottoComponentContainer extends Vue {
     this.filterType = '최신순'
   }
 
-  created() {
+  created(): void {
     this.changeBackground();
   }
 
