@@ -63,8 +63,8 @@
       </article>
     </section>
 
-    <section class="dotto-detail-wrapper">
-      <div>이 아티스트의 다른 작품 보기</div>
+    <section id="other-works-list">
+      <h3 id="other-works-list-title">이 아티스트의 다른 작품 보기</h3>
       <div class="dotto-detail-flex-row">
         <button class="slide-btn" id="slide-left-btn"><</button>
         <div class="dotto-detail-other-design"></div>
@@ -75,63 +75,24 @@
       </div>
     </section>
 
-    <section class="dotto-detail-wrapper dotto-detail-flex-row">
-      <div class="dotto-detail-tabs-wrapper activeTabs">
-        <div>리뷰</div>
-        <div>1,200</div>
-      </div>
-      <div class="dotto-detail-tabs-wrapper">
-        <div>댓글</div>
-        <div>1,200</div>
-      </div>
-
-    </section>
-
-    <hr />
-
-    <section >
-      <article class="dotto-detail-comment-wrapper">
-        <div class="dotto-detail-comment-wrapper">
-          <div class="dotto-detail-flex-row">
-            <div>프로필사진</div>
-            <div class="dotto-detail-comment-user">
-              <div>닉네임</div>
-              <div>등록 날짜</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <button type="button" @click="showCommentOptions">버튼 구현</button>
-          <div class="dotto-detail-comment-options" v-if="showMenuList">
-            <ul>
-              <li>수정</li>
-              <li>삭제</li>
-              <li>신고</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="dotto-detail-comment-content">
-          본문 내용~~~~~~
-        </div>
-      </article>
-    </section>
-
-
-    <button id="dotto-detail-more-review">리뷰 더보기</button>
+    <dotto-tabs-container id="dotto-tab" />
 
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import DottoTabsContainer from "@/components/dotto/tab/DottoTabsContainer.vue";
+
 
 //TODO: 테스트 종료 후 class dotto-detail-comment-content height 수정
 
-@Component
+@Component({
+  components: {
+    DottoTabsContainer
+  }
+})
 export default class DottoDetailComponent extends Vue {
-  showMenuList = false;
   /*
     TODO:
       1. 게시글 상세 조회
@@ -140,9 +101,7 @@ export default class DottoDetailComponent extends Vue {
       3 - 2. 게시글에 있는 리뷰 조회
   * */
 
-  private showCommentOptions() {
-    this.showMenuList = !this.showMenuList;
-  }
+
 }
 </script>
 
@@ -151,6 +110,9 @@ hr {
   color: #E2E2E2;
   height: 2px;
   margin: 0;
+}
+#dotto-tab {
+  margin-top: 160px;
 }
 /* 아웃라인 영역 */
 #dotto-detail-container {
@@ -162,6 +124,18 @@ hr {
   width: 100%;
   margin: auto;
 }
+
+/*다른 아티스트 작품 보기*/
+#other-works-list {
+  margin-top: 175px;
+}
+#other-works-list-title {
+  font-size: 24px;
+  color: #222222;
+  margin-bottom: 19px;
+  font-weight: 600;
+}
+
 .dotto-detail-wrapper {
   margin-top: 10px;
 }
@@ -228,17 +202,20 @@ hr {
   font-size: 16px;
 }
 #slide-left-btn {
-  left: 18%;
+  left: 9%;
+  top: 65rem;
+  z-index: 10;
 }
 #slide-right-btn {
-  right: 18%;
+  right: 9%;
+  top: 65rem;
+  z-index: 10;
 }
 
 /* layout */
 .dotto-detail-flex-row {
   display: flex;
   margin-top: 10px;
-
 }
 
 .dotto-detail-section {
@@ -246,65 +223,7 @@ hr {
   justify-content: space-between;
 }
 
-/* 선택된 탭 */
-.activeTabs {
-  width: 200px;
-  height: 80px;
-  font-weight: bold;
-  color: black;
-  border-bottom: 4px solid black;
-}
-
-.dotto-detail-tabs-wrapper {
-  display: flex;
-  margin-top: 10px;
-  margin-right: 10px;
-  align-items: center;
-}
-
-/* 댓글 */
-.dotto-detail-comment-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
-  min-height: 112px;
-}
 .dotto-detail-other-design {
   display: flex;
-}
-
-.dotto-detail-comment-user {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.dotto-detail-comment-options {
-  border: 1px solid #E2E2E2;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px 1px #e2e2e2;
-  width: 144px;
-  height: 116px;
-  background: white;
-  z-index: 12;
-  position: absolute;
-}
-/* height 수정  */
-.dotto-detail-comment-content {
-  max-width: 1200px;
-  width: 100%;
-  max-height: 300px;
-  height: 400px;
-}
-#dotto-detail-more-review {
-  max-width: 1200px;
-  width: 100%;
-  height: 64px;
-  text-align: center;
-  border: 1px solid #E2E2E2;
-  border-radius: 2px;
-  margin-bottom: 100px;
 }
 </style>

@@ -89,7 +89,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Vue} from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
 import FileUploadComponent from "@/components/common/utils/FileUploadComponent.vue";
 
@@ -130,7 +130,7 @@ export default class DottoPostingComponent extends Vue {
   openBtn = true;
   activeBtn = 'active-post-btn';
 
-  created() {
+  created(): void {
     this.changeBackground();
   }
 
