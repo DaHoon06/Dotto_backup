@@ -6,6 +6,7 @@ import com.dotto.app.dto.sign.SignInRequest;
 import com.dotto.app.dto.sign.SignInResponse;
 import com.dotto.app.dto.sign.SignUpRequest;
 import com.dotto.app.entity.member.Member;
+import com.dotto.app.entity.member.MemberRole;
 import com.dotto.app.entity.member.Role;
 import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.exception.*;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,8 +56,12 @@ public class SignService {
         TokenHelper.PrivateClaims privateClaims = createPrivateClaims(member);
         String accessToken = accessTokenHelper.createToken(privateClaims);
         String refreshToken = refreshTokenHelper.createToken(privateClaims);
-
-        return new SignInResponse(accessToken, refreshToken);
+        String roles = String.valueOf(member.getRoles().stream()
+                .map(memberRole -> memberRole.getRole())
+                .map(role -> role.getRoleType())
+                .map(roleType -> roleType.toString())
+                .collect(Collectors.toList()));
+        return new SignInResponse(accessToken, refreshToken, member.getNickname(),roles);
     }
 
 
