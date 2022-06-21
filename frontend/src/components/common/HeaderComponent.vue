@@ -10,7 +10,7 @@
         </li>
         <li>
           <span>
-            <a href="/"><img id="logo" src="@/assets/img/dotto.jpg" alt="logo" /></a>
+            <a href="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></a>
           </span>
         </li>
       </ul>
@@ -19,7 +19,7 @@
     <section id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
       <button>
-        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/icons/nav/search.png" alt="search" />
+        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/icons/nav/search.svg" alt="search" />
       </button>
 
       <transition name="fade">
@@ -49,7 +49,7 @@
       <div id="isLoginTrue" v-else>
 
         <div id="alarm-wrapper">
-          <img id="alarm" src="@/assets/icons/default_alarm.png" alt="alarm" @click="showAlarm" />
+          <img id="alarm" src="@/assets/icons/default_alarm.svg" alt="alarm" @click="showAlarm" />
           <div v-if="showMessage" id="alarm-container">
             메세지 영역
           </div>
@@ -58,12 +58,12 @@
         <div >
           <div id="my-page-container" >
             <div id="my-page" @click="goMyPage">
-              <img src="@/assets/icons/default.png" id="my" alt="my" />
+              <img src="@/assets/icons/default.svg" id="my" alt="my" />
               <span id="my_name">NAME</span>
             </div>
             <div id="drop-down-btn-container">
               <span @click="showMenu">
-                <img src="@/assets/icons/nav/filter-btn.png" id="drop-down-btn" alt="dropdown" />
+                <img src="@/assets/icons/nav/filter-btn.svg" id="drop-down-btn" alt="dropdown" />
               </span>
             </div>
           </div>
@@ -71,25 +71,25 @@
             <div id="my-menu-items">
               <div>
                 <span>
-                  <img src="@/assets/icons/mymenu/dottoDesign.png" alt="design" class="my-menu-icons" />
+                  <img src="@/assets/icons/mymenu/dottoDesign.svg" alt="design" class="my-menu-icons" />
                 </span>
                 <router-link to="t">타투도안</router-link>
               </div>
               <div>
                 <span>
-                  <img src="@/assets/icons/mymenu/reservationList.png" alt="reservation" class="my-menu-icons" />
+                  <img src="@/assets/icons/mymenu/reservationList.svg" alt="reservation" class="my-menu-icons" />
                 </span>
                 <router-link to="t">내 예약목록</router-link>
               </div>
               <div>
                 <span>
-                  <img src="@/assets/icons/mymenu/myReview.png" alt="review" class="my-menu-icons" />
+                  <img src="@/assets/icons/mymenu/myReview.svg" alt="review" class="my-menu-icons" />
                 </span>
                 <router-link to="t">내 댓글 / 리뷰</router-link>
               </div>
               <div>
                 <span>
-                  <img src="@/assets/icons/mymenu/favorites.png" alt="favorites" class="my-menu-icons" />
+                  <img src="@/assets/icons/mymenu/favorites.svg" alt="favorites" class="my-menu-icons" />
                 </span>
                 <router-link to="t">찜한 목록</router-link>
               </div>
@@ -104,7 +104,7 @@
               </div>
               <div id="logout" @click="logout">
                 <span>
-                  <img src="@/assets/icons/mymenu/logout.png" alt="logout" class="my-menu-icons" />
+                  <img src="@/assets/icons/mymenu/logout.svg" alt="logout" class="my-menu-icons" />
                 </span>
                 <span>로그아웃</span>
               </div>

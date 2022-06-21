@@ -20,7 +20,7 @@
         </div>
         <div>이용약관 동의<span class="necessary">(필수)</span></div>
         <div>
-          <img @click="showDottoPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+          <img @click="showDottoPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
         </div>
       </div>
       <hr />
@@ -35,7 +35,7 @@
         </div>
         <div>개인정보 수집 . 이용동<span class="necessary">(필수)</span></div>
         <div>
-          <img @click="showPrivatePolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+          <img @click="showPrivatePolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
         </div>
       </div>
       <hr />
@@ -50,7 +50,7 @@
         </div>
         <div>이벤트 등 프로모션 알람 메일 수신<span class="choice">(선택)</span></div>
         <div>
-          <img @click="showMarketingPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+          <img @click="showMarketingPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
         </div>
       </div>
       <hr />

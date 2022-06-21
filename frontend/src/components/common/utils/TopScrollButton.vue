@@ -1,7 +1,7 @@
 <template>
   <section class="right-side">
     <button id="go-top" class="right-side-btn" @click="scrollHandler">
-      <img id="top" src="@/assets/icons/main/go-top.png" alt="top" />
+      <img id="top" src="@/assets/icons/main/go-top.svg" alt="top" />
       <span>TOP</span>
     </button>
   </section>
