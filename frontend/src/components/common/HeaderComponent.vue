@@ -16,10 +16,23 @@
       </ul>
     </section>
 
+<!--    <section>-->
+<!--      <div id="menu-button-container">-->
+<!--        <button>-->
+<!--          <img class="menu-icon" src="@/assets/icons/nav/menu.png" alt="menu"  />-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <span>-->
+<!--          <a href="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></a>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </section>-->
+
     <section id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
-      <button>
-        <img class="side-menu-drop-btn" id="search-btn" src="@/assets/icons/nav/search.svg" alt="search" />
+      <button id="search-btn" >
+        <img class="side-menu-drop-btn" src="@/assets/icons/nav/search.svg" alt="search" />
       </button>
 
       <transition name="fade">
@@ -43,76 +56,77 @@
         </button>
       </div>
       <div v-else>
-        <div v-if="!isLogin">
-          <button id="show-btn" @click="showLoginView" >
-            <img class="nav-menu-icon" src="@/assets/icons/nav/information.png" alt="info" />
-          </button>
-          <span class="nav-icon-label login-label" @click="showLoginView">LOGIN</span>
-        </div>
-        <div id="isLoginTrue" v-else>
-          <div id="alarm-wrapper">
-            <img id="alarm" src="@/assets/icons/default_alarm.svg" alt="alarm" @click="showAlarm" />
-            <div v-if="showMessage" id="alarm-container">
-              메세지 영역
-            </div>
+        <div>
+          <div v-if="!isLogin">
+            <button id="show-btn" @click="showLoginView" >
+              <img class="nav-menu-icon" src="@/assets/icons/nav/information.png" alt="info" />
+            </button>
+            <span class="nav-icon-label login-label" @click="showLoginView">LOGIN</span>
           </div>
-        </div>
-        <div id="my-page-container" >
-          <div id="my-page" @click="goMyPage">
-            <img src="@/assets/icons/default.svg" id="my" alt="my" />
-            <span id="my_name">NAME</span>
-          </div>
-          <div id="drop-down-btn-container">
-            <span @click="showMenu">
-              <img src="@/assets/icons/nav/filter-btn.svg" id="drop-down-btn" alt="dropdown" />
-            </span>
-          </div>
-        </div>
-        <div v-if="showMyMenu" id="my-menu-list">
-          <div id="my-menu-items">
-            <div>
-              <span>
-                <img src="@/assets/icons/mymenu/dottoDesign.svg" alt="design" class="my-menu-icons" />
-              </span>
-              <router-link to="t">타투도안</router-link>
+          <div id="isLoginTrue" v-else>
+            <div id="alarm-wrapper">
+              <img id="alarm" src="@/assets/icons/default_alarm.svg" alt="alarm" @click="showAlarm" />
+              <div v-if="showMessage" id="alarm-container">
+                메세지 영역
+              </div>
             </div>
-            <div>
-              <span>
-                <img src="@/assets/icons/mymenu/reservationList.svg" alt="reservation" class="my-menu-icons" />
-              </span>
-              <router-link to="t">내 예약목록</router-link>
+            <div id="my-page-container" >
+              <div id="my-page" @click="goMyPage">
+                <img src="@/assets/icons/default.svg" id="my" alt="my" />
+                <span id="my_name">NAME</span>
+              </div>
+              <div id="drop-down-btn-container">
+                <span @click="showMenu">
+                  <img src="@/assets/icons/nav/filter-btn.svg" id="drop-down-btn" alt="dropdown" />
+                </span>
+              </div>
             </div>
-            <div>
-              <span>
-                <img src="@/assets/icons/mymenu/myReview.svg" alt="review" class="my-menu-icons" />
-              </span>
-              <router-link to="t">내 댓글 / 리뷰</router-link>
-            </div>
-            <div>
-              <span>
-                <img src="@/assets/icons/mymenu/favorites.svg" alt="favorites" class="my-menu-icons" />
-              </span>
-              <router-link to="t">찜한 목록</router-link>
-            </div>
+            <div v-if="showMyMenu" id="my-menu-list">
+              <div id="my-menu-items">
+                <div>
+                  <span>
+                    <img src="@/assets/icons/mymenu/dottoDesign.svg" alt="design" class="my-menu-icons" />
+                  </span>
+                  <router-link to="t">타투도안</router-link>
+                </div>
+                <div>
+                  <span>
+                    <img src="@/assets/icons/mymenu/reservationList.svg" alt="reservation" class="my-menu-icons" />
+                  </span>
+                  <router-link to="t">내 예약목록</router-link>
+                </div>
+                <div>
+                  <span>
+                    <img src="@/assets/icons/mymenu/myReview.svg" alt="review" class="my-menu-icons" />
+                  </span>
+                  <router-link to="t">내 댓글 / 리뷰</router-link>
+                </div>
+                <div>
+                  <span>
+                    <img src="@/assets/icons/mymenu/favorites.svg" alt="favorites" class="my-menu-icons" />
+                  </span>
+                  <router-link to="t">찜한 목록</router-link>
+                </div>
 
-            <hr />
+                <hr />
 
-            <div>
-              <span>
-                <img src="@/assets/icons/mymenu/security.png" alt="security" class="my-menu-icons"/>
-              </span>
-              <router-link to="t">보안 / 계정</router-link>
-            </div>
-            <div id="logout" @click="logout">
-              <span>
-                <img src="@/assets/icons/mymenu/logout.svg" alt="logout" class="my-menu-icons" />
-              </span>
-              <span>로그아웃</span>
+                <div>
+                  <span>
+                    <img src="@/assets/icons/mymenu/security.png" alt="security" class="my-menu-icons"/>
+                  </span>
+                  <router-link to="t">보안 / 계정</router-link>
+                </div>
+                <div id="logout" @click="logout">
+                  <span>
+                    <img src="@/assets/icons/mymenu/logout.svg" alt="logout" class="my-menu-icons" />
+                  </span>
+                  <span>로그아웃</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </section>
 
     <transition name="fade">
@@ -233,7 +247,7 @@ export default class HeaderComponent extends Vue {
 }
 #search-btn {
   position: relative;
-  right: 50px;
+  right: 35px;
   bottom: 5px;
   width: 24px;
   height: 24px;
