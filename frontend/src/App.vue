@@ -57,9 +57,11 @@ export default class App extends Vue {
 /* 아래 항목 : 이벤트에 따른 CSS 적용 */
 .setBlur {
   filter: blur(4px);
+  width: 100%;
 }
 .notScroll {
   position: fixed;
+  width: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

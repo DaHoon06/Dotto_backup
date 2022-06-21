@@ -239,6 +239,7 @@ textarea {
 
 #dotto-post-btn-area {
   position: fixed;
+  top: 144px;
   display: flex;
   align-items: center;
   justify-content: flex-end;

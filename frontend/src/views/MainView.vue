@@ -75,9 +75,7 @@
 import { Component, Emit, Vue } from "vue-property-decorator";
 import {
   FooterComponent,
-  HeaderComponent,
   MenuButton,
-  NavigationComponent,
   TopScrollButton,
 } from "@/components/common";
 import FollowListComponent from "@/components/main/FollowListComponent.vue";
@@ -89,9 +87,7 @@ import { DottoComponent } from "@/components/dotto";
     MainBannerComponent,
     FollowListComponent,
     TopScrollButton,
-    NavigationComponent,
     FooterComponent,
-    HeaderComponent,
     MenuButton,
     DottoComponent
   }
@@ -147,11 +143,11 @@ small {
 }
 
 #main-home-container {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   min-height: 800px;
   background: white;
-  margin-top: 100px;
+  margin-top: 170px;
 }
 
 #main-wrapper {
