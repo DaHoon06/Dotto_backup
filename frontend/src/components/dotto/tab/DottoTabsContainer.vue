@@ -9,8 +9,10 @@ import { Component, Vue } from "vue-property-decorator";
 import { DottoCommentComponent, DottoReviewComponent } from "@/components/dotto";
 
 @Component({
-  DottoCommentComponent,
-  DottoReviewComponent
+  components: {
+    DottoCommentComponent,
+    DottoReviewComponent
+  }
 })
 export default class DottoTabsContainer extends Vue {
 

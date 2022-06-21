@@ -99,13 +99,13 @@ export default class LoginView extends Vue {
       password: this.password
     };
     const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
-    const { result } = data;
-    if (result) {
+    const { success } = data;
+    if (success) {
       if (this.save) this.saveId();
       this.saveState(data);
       await this.$router.push({
         path: '/dotto'
-      })
+      });
     } else {
       this.loginFailed = '이메일 및 패스워드를 확인해주세요.';
     }
@@ -128,7 +128,7 @@ export default class LoginView extends Vue {
   }
 
   saveState(userData: IUser.ILoginSuccess): void {
-    this.$store.commit('userStore/setUserState', userData);
+    this.$store.commit('userStore/login', userData);
   }
 
   clearMsg(): void {

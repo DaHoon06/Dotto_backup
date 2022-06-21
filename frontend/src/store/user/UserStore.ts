@@ -27,7 +27,7 @@ const userStore: Module<IUser.UserStore, State> = {
         },
     },
     actions: {
-        async login(context, { token }){
+        async login(context, { token }): Promise<boolean>{
             try {
                 const { data } = await axios.post<IUser.AxiosLoginResponse>(`/user/auth/${token}`);
                 const { success, result } = data;
@@ -38,8 +38,10 @@ const userStore: Module<IUser.UserStore, State> = {
                         accessToken,
                         refreshToken,
                     });
+                    return true;
+                } else {
+                    return false
                 }
-                return true;
             } catch (e) {
                 console.log(e);
                 return false;
