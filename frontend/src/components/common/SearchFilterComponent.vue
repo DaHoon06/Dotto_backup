@@ -42,7 +42,9 @@
               <article v-if="showLocationArea" id="filter-search-items">
                 <input
                     type="text"
-                    ref="refKeyword" v-model="keyword" id="filter-search-bar" />
+                    ref="refKeyword"
+                    v-model="keyword"
+                    id="filter-search-bar" />
                 <button class="filter-drop-btn filter-search-btn" id="search-btn">
                   <img id="search-icon"  src="@/assets/icons/nav/search.svg" alt="search" />
                 </button>
@@ -98,8 +100,9 @@ export default class SearchFilterComponent extends Vue {
   }
 
   private showLocation() {
-    this.showLocationArea = !this.showLocationArea;
     if (this.showLocationArea) this.$nextTick(() => this.refKeyword.focus());
+    if (this.showLocationArea) this.keyword = '';
+    this.showLocationArea = !this.showLocationArea;
   }
 
 
@@ -229,7 +232,7 @@ hr {
 
 /* perfect-scroll */
 .ps {
-  height: 100%;
+  height: 937px;
   width: 310px;
 }
 
