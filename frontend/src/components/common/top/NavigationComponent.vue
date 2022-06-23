@@ -113,6 +113,13 @@ export default class NavigationComponent extends Vue {
 </script>
 
 <style scoped>
+#navigation-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  margin-bottom: 15px;
+}
 #navigation-container > ul {
   padding-left: 17px;
 }

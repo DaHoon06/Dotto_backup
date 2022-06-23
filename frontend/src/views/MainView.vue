@@ -147,7 +147,7 @@ small {
   height: 100%;
   min-height: 800px;
   background: white;
-  margin-top: 170px;
+  margin-top: 144px;
 }
 
 #main-wrapper {
