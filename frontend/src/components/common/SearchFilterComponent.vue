@@ -40,7 +40,9 @@
 
             <transition name="fade">
               <article v-if="showLocationArea" id="filter-search-items">
-                <input type="text" id="filter-search-bar" />
+                <input
+                    type="text"
+                    ref="refKeyword" v-model="keyword" id="filter-search-bar" />
                 <button class="filter-drop-btn filter-search-btn" id="search-btn">
                   <img id="search-icon"  src="@/assets/icons/nav/search.svg" alt="search" />
                 </button>
@@ -51,8 +53,17 @@
 
         <section>
           <article>
-            <button class="filter-menu-button" id="reset">초기화</button>
-            <button class="filter-menu-button" id="show-result">결과보기</button>
+            <button
+                class="filter-menu-button"
+                id="reset"
+                @click="reset"
+                type="button"
+            >초기화</button>
+            <button
+                class="filter-menu-button"
+                id="show-result"
+                type="button"
+            >결과보기</button>
           </article>
         </section>
       </div>
@@ -61,22 +72,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 
 @Component
 export default class SearchFilterComponent extends Vue {
 
-  filterType: string;
-  showSortArea: boolean;
-  showTagArea: boolean;
-  showLocationArea: boolean;
+  showSortArea= false;
+  showTagArea = false;
+  showLocationArea = false;
+  keyword = '';
+  @Ref() readonly refKeyword!: HTMLElement;
 
   constructor() {
     super();
-    this.filterType = '';
-    this.showSortArea = false;
-    this.showTagArea = false;
-    this.showLocationArea = false;
+  }
+
+  private reset() {
+    this.keyword = '';
+    this.$nextTick(() => this.refKeyword.focus());
   }
 
 
@@ -86,6 +99,7 @@ export default class SearchFilterComponent extends Vue {
 
   private showLocation() {
     this.showLocationArea = !this.showLocationArea;
+    if (this.showLocationArea) this.$nextTick(() => this.refKeyword.focus());
   }
 
 
@@ -215,7 +229,7 @@ hr {
 
 /* perfect-scroll */
 .ps {
-  height: 937px;
+  height: 100%;
   width: 310px;
 }
 
