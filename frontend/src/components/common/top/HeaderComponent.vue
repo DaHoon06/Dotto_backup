@@ -16,19 +16,6 @@
       </ul>
     </article>
 
-<!--    <section>-->
-<!--      <div id="menu-button-container">-->
-<!--        <button>-->
-<!--          <img class="menu-icon" src="@/assets/icons/nav/menu.png" alt="menu"  />-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <span>-->
-<!--          <a href="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></a>-->
-<!--        </span>-->
-<!--      </div>-->
-<!--    </section>-->
-
     <article id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
       <button id="search-btn" >
