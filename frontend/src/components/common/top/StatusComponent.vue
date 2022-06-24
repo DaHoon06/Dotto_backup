@@ -83,7 +83,7 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import ModalComponent from "@/components/common/utils/ModalComponent.vue";
+import ModalComponent from "@/components/common/utils/modal/ModalComponent.vue";
 
 @Component({
   components: {

@@ -1,5 +1,5 @@
 <template>
-  <div id="my-feed-container">
+  <div id="my-feed-container" :class="fixed ? backgroundFixedCss : ''">
 
     <div id="my-feed-list-container">
       <div class="my-feed-user-info-wrapper my-feed-items">
@@ -42,20 +42,49 @@
         <button class="my-feed-comment-postingBtn">게시</button>
       </div>
     </div>
+    <button @click="test">TEST</button>
+
+    <transition name="fade">
+      <FullScreenModalComponent
+          :showModal="showModal"
+          @modalClose="modalClose"
+          @backgroundFixed="backgroundFixed"
+      />
+    </transition>
 
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
-@Component
+import FullScreenModalComponent from "@/components/common/utils/modal/FullScreenModalComponent.vue";
+@Component({
+  components: {FullScreenModalComponent}
+})
 export default class FeedComponent extends Vue {
+  backgroundFixedCss = 'backgroundFixed';
+  fixed = false;
+  showModal = false;
+
+  test() {
+    this.showModal = true;
+  }
+
+  modalClose(type: boolean) {
+    this.showModal = type;
+  }
+
+  private backgroundFixed(type: boolean) {
+    this.fixed = type;
+  }
 
 }
 </script>
 
 <style scoped>
+.backgroundFixed {
+  position: fixed;
+}
 /* MyFeedComponent 랑 중복 -> 아이콘 사용 안됨 */
 #my-feed-container {
   width: 60%;
