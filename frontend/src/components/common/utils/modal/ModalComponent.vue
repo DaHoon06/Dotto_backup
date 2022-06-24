@@ -38,8 +38,6 @@ export default class ModalComponent extends Vue {
   @Prop()
   showModal?: boolean;
 
-
-
   constructor() {
     super();
   }

@@ -57,6 +57,19 @@
         <article class="menu">
           <ul>
             <li>
+              <router-link
+                  class="nav-button"
+                  :class="navigationType === 'feed' ? currentPage : ''"
+                  to="/dotto/feed/index"
+              >FEED</router-link>
+            </li>
+          </ul>
+        </article>
+      </li>
+      <li>
+        <article class="menu">
+          <ul>
+            <li>
               <span
                   class="nav-button"
                   :class="navigationType === 'support' ? currentPage : ''"
@@ -113,6 +126,13 @@ export default class NavigationComponent extends Vue {
 </script>
 
 <style scoped>
+#navigation-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  margin-bottom: 15px;
+}
 #navigation-container > ul {
   padding-left: 17px;
 }

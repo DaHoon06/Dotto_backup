@@ -1,7 +1,7 @@
 <template>
-  <header id="navBar-container" >
+  <section id="navBar-container" >
 
-    <section>
+    <article>
       <ul>
         <li id="menu-button-container">
           <button>
@@ -14,22 +14,9 @@
           </span>
         </li>
       </ul>
-    </section>
+    </article>
 
-<!--    <section>-->
-<!--      <div id="menu-button-container">-->
-<!--        <button>-->
-<!--          <img class="menu-icon" src="@/assets/icons/nav/menu.png" alt="menu"  />-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <span>-->
-<!--          <a href="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></a>-->
-<!--        </span>-->
-<!--      </div>-->
-<!--    </section>-->
-
-    <section id="search-container">
+    <article id="search-container">
       <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
       <button id="search-btn" >
         <img class="side-menu-drop-btn" src="@/assets/icons/nav/search.svg" alt="search" />
@@ -47,24 +34,24 @@
           <div id="outer" @click="closeSearchList"/>
         </article>
       </transition>
-    </section>
+    </article>
 
-    <section class="close-search-list-none" v-if="!showSearchList"></section>
-    <section v-else>
+    <article class="close-search-list-none" v-if="!showSearchList"></article>
+    <article v-else>
       <div class="close-search-list" >
         <button @click="closeSearchList">
           <img src="@/assets/icons/nav/close.png" id="close-img" alt="close" />
         </button>
       </div>
-    </section>
+    </article>
 
-  </header>
+  </section>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
-import ModalComponent from "@/components/common/utils/ModalComponent.vue";
+import ModalComponent from "@/components/common/utils/modal/ModalComponent.vue";
 
 @Component({
   components: {
@@ -123,7 +110,6 @@ export default class HeaderComponent extends Vue {
 /* 로고 */
 #logo {
   margin-left: 25px;
-  margin-bottom: 10px;
   width: 103px;
   height: 40px;
   left: 4px;

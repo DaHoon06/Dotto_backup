@@ -55,5 +55,6 @@ export default class HeaderView extends Vue {
   background: #FFFFFF;
   z-index: 10;
   flex-direction: column;
+  border-bottom: 1px solid #E2E2E2;
 }
 </style>

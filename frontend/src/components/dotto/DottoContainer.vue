@@ -94,7 +94,8 @@ export default class DottoComponentContainer extends Vue {
   max-width: 1200px;
   width: 100%;
   margin: 100px auto 10em auto;
-  min-height: 100vh;
+  min-height: 1200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
