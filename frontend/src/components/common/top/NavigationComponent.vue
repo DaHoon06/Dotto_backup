@@ -57,6 +57,19 @@
         <article class="menu">
           <ul>
             <li>
+              <router-link
+                  class="nav-button"
+                  :class="navigationType === 'feed' ? currentPage : ''"
+                  to="/dotto/feed/index"
+              >FEED</router-link>
+            </li>
+          </ul>
+        </article>
+      </li>
+      <li>
+        <article class="menu">
+          <ul>
+            <li>
               <span
                   class="nav-button"
                   :class="navigationType === 'support' ? currentPage : ''"
