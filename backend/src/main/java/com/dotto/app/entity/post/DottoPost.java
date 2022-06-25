@@ -53,7 +53,7 @@ public class DottoPost extends EntityDate {
     @OneToMany(mappedBy = "dottoPost",cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Image> images;
 
-    public DottoPost(Member member, String title, String content, int price, int salesPrice, char salesYn, String genre, int totalTime, char deletedYn, List<Image> images ){
+    public DottoPost(Member member, String title, String content, int price, int salesPrice, char salesYn, String genre, int totalTime, List<Image> images ){
         this.member = member;
         this.title = title;
         this.content = content;
@@ -62,7 +62,6 @@ public class DottoPost extends EntityDate {
         this.salesYn = salesYn;
         this.genre = genre;
         this.totalTime = totalTime;
-        this.deletedYn = deletedYn;
         this.images = new ArrayList<>();
     }
 

@@ -18,4 +18,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @EntityGraph("Member.roles")
     Optional<Member>findWithRolesById(String id);
 
+
+    @EntityGraph("Member.roles")
+    Optional<Member>findWithRolesByMemberNo(Long memberNo);
+
 }
