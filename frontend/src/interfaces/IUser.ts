@@ -20,13 +20,15 @@ export namespace IUser {
     export interface ILoginSuccess {
         success: boolean,
         code: number,
-        result: DataProperty
+        result: DataProperty,
+        roles: string[]
     }
 
     export interface DataProperty {
         accessToken: string,
         refreshToken: string,
         nickname: string,
+        roles: string[]
     }
 
     export interface UserStore {
@@ -34,12 +36,13 @@ export namespace IUser {
         accessToken: string,
         refreshToken: string,
         nickname: string,
+        roles: string,
     }
 
     export interface AxiosLoginResponse {
         success: boolean,
         result: IUser.DataProperty,
-        code: number
+        code: number,
     }
 
 
