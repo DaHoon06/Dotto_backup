@@ -31,6 +31,7 @@ export namespace IUser {
         roles: string[]
     }
 
+
     export interface UserStore {
         isLogin: boolean,
         accessToken: string,

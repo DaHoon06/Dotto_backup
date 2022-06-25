@@ -376,4 +376,5 @@ input[id="auto"]:checked + label::after{
   color: red;
   font-size: 6px;
 }
+
 </style>

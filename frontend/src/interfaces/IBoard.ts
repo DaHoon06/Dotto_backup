@@ -6,7 +6,6 @@ export namespace IBoard {
     deletedYn: string;
   }
 
-
   export interface Dotto {
     title: string;
     content: string;

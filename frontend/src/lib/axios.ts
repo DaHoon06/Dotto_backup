@@ -14,6 +14,7 @@ const instance :AxiosInstance = axios.create({
 
 instance.interceptors.request.use(config  => {
 
+
     const token = store.getters["userStore/accessToken"];
     if (token.length) {
         config.headers!.Authorization = `Bearer ${token}`;

@@ -139,6 +139,7 @@ export default class DottoPostingComponent extends Vue {
     this.openBtn = !(this.title.length && this.genreDefault.length && this.totalTimeDefault.length && this.content.length && this.originalPrice);
   }
 
+
   async posting(): Promise<void> {
     console.log(this.originalPrice)
     const sendData: any = {
