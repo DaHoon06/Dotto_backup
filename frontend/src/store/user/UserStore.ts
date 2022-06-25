@@ -15,10 +15,7 @@ const userStore: Module<IUser.UserStore, State> = {
     },
     mutations: {
         login(state, payload){
-            const { result } = payload;
-            const { data } = result;
-            const { accessToken, refreshToken, nickname, roles } = data;
-            console.log(data);
+            const { accessToken, refreshToken, nickname, roles } = payload;
             state.isLogin = true;
             state.accessToken = accessToken;
             state.refreshToken = refreshToken;
