@@ -10,20 +10,23 @@ const userStore: Module<IUser.UserStore, State> = {
         accessToken: '',
         refreshToken: '',
         nickname: '',
+        roles: '',
     },
     mutations: {
         login(state, payload){
-            const { accessToken, refreshToken, nickname } = payload;
+            const { accessToken, refreshToken, nickname, roles } = payload;
             state.isLogin = true;
             state.accessToken = accessToken;
             state.refreshToken = refreshToken;
             state.nickname = nickname;
+            state.roles = roles;
         },
         logout(state){
             state.isLogin = false;
             state.accessToken = '';
             state.refreshToken = '';
             state.nickname = '';
+            state.roles = '';
         },
     },
     actions: {
@@ -31,12 +34,14 @@ const userStore: Module<IUser.UserStore, State> = {
             try {
                 const { data } = await axios.post<IUser.AxiosLoginResponse>(`/user/auth/${token}`);
                 const { success, result } = data;
-                const { accessToken, refreshToken, nickname } = result;
+                const { accessToken, refreshToken, nickname, roles } = result;
+                const role = roles[0];
                 if (success) {
                     context.commit('login', {
                         nickname,
                         accessToken,
                         refreshToken,
+                        roles: role
                     });
                     return true;
                 } else {
@@ -76,6 +81,7 @@ const userStore: Module<IUser.UserStore, State> = {
         nickname: state => state.nickname,
         accessToken: state => state.accessToken,
         refreshToken: state => state.refreshToken,
+        roles: state => state.roles,
     },
 }
 export default userStore;
