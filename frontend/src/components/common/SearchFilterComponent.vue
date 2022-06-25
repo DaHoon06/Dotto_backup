@@ -238,25 +238,7 @@ hr {
 
 /*------ 반응형 -----*/
 @media screen and (max-width: 1440px){
-  hr {
-    width: 70%;
-    margin-left: 2em;
-  }
 
-  #tag-area, #location-area {
-    width: 70%;
-    margin-left: 2em;
-  }
-
-  #side-menu-search-bar {
-    width: 70%;
-    margin-left: 2em;
-  }
-
-  #tag-list {
-    padding-left: 4em;
-    height: 100%;
-  }
 }
 
 @media screen and (max-width: 1260px) {

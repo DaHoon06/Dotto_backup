@@ -39,7 +39,6 @@ export default class HeaderView extends Vue {
   private notScrollBody(scrollEvent: boolean) {
     this.$emit('notScrollBody', scrollEvent);
   }
-
 }
 </script>
 
