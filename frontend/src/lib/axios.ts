@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import store from "@/store";
 
 //const baseURL = window.location.hostname === 'localhost' ? 'http://localhost:3000/api' : 'https://back.ap.ngrok.io/api'
 const baseURL = process.env.NODE_ENV === 'development' ? '/api' : '/api'
@@ -13,14 +12,11 @@ const instance :AxiosInstance = axios.create({
 });
 
 instance.interceptors.request.use(config  => {
-
-    const token = store.getters["userStore/accessToken"];
-    if (token.length) {
-        config.headers!.Authorization = `Bearer ${token}`;
-        return config;
-    }
-    console.log(token);
-
+    // if (Vue.$cookies) {
+    //     const token = Vuex.getters.token;
+    //         config.headers.Authorization = `Bearer ${token}`;
+    // }
+    return config;
 });
 
 instance.interceptors.response.use(response => {

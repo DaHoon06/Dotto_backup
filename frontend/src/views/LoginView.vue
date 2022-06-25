@@ -100,7 +100,6 @@ export default class LoginView extends Vue {
     };
     const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
     const { success } = data;
-    console.log(data);
     if (success) {
       if (this.save) this.saveId();
       this.saveState(data);

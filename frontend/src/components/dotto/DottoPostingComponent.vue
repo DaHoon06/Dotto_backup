@@ -77,7 +77,7 @@
             <input v-model="addTag" maxlength="10" id="dotto-post-tags" type="text" @keypress.enter="addTags" placeholder="해쉬 태그 등록" />
           </div>
           <div>
-            <textarea @keyup="validation" v-model="content" placeholder="내용을 입력해 주세요.."></textarea>
+            <textarea @keyup="validation"  v-model="content" placeholder="내용을 입력 해주세요.."></textarea>
           </div>
         </div>
 
@@ -92,8 +92,7 @@
 import { Component, Emit, Vue } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
 import FileUploadComponent from "@/components/common/utils/FileUploadComponent.vue";
-import { ins } from '@/lib/axios';
-import {AxiosInstance} from "axios";
+
 @Component({
   components: {
     FileUploadComponent
@@ -103,9 +102,9 @@ export default class DottoPostingComponent extends Vue {
 
   title = '';
   content = '';
-  originalPrice = 0;
-  price = 0;
-  salesPrice = 0;
+  originalPrice = '';
+  price = '';
+  salesPrice = '';
   salesYn = false;
   genreDefault = '';
   totalTimeDefault = '';
@@ -136,15 +135,16 @@ export default class DottoPostingComponent extends Vue {
   }
 
   private validation(): void {
-    this.openBtn = !(this.title.length && this.genreDefault.length && this.totalTimeDefault.length && this.content.length && this.originalPrice);
+    this.openBtn = !(this.title.length && this.genreDefault.length && this.totalTimeDefault.length && this.content.length && this.originalPrice.length);
   }
 
-  async posting(): Promise<void> {
-    console.log(this.originalPrice)
-    const sendData: any = {
+  async posting():Promise<void> {
+    alert('전송 중')
+
+    const sendData: IBoard.Dotto = {
       title: this.title,
       content: this.content,
-      price: +this.originalPrice,
+      price: this.price,
       salesPrice: this.salesPrice,
       salesYn: this.salesYn,
       genre: this.genreDefault,
@@ -152,18 +152,12 @@ export default class DottoPostingComponent extends Vue {
       tag: this.tag,
       postPhoto: this.postPhoto
     }
-
+    console.log(sendData)
     const headers = {
       'Content-Type': 'multipart/form-data',
     }
-    const test = new FormData();
-    test.append('data', sendData);
-    console.log(sendData)
-    const { data } = await ins.post('/dottopost', test, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      }
-    });
+
+    const { data } = await this.axios.post('/test', sendData, { headers });
     console.log(data);
   }
 
