@@ -63,13 +63,15 @@ public class InitDB {
 
     private void initDottoPost(){
 
+        String tags = "[#멋져, #훈남, #최고]";
+
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
-                                "title1","content1",10000,9000,'N',"블랙엔그레이",30,List.of()),
+                                "title1","content1",10000,9000,'Y',"블랙엔그레이",30,tags,"", List.of()),
                         new DottoPost(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new),
-                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,List.of()),
+                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,tags,"",List.of()),
                         new DottoPost(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new),
-                                "title3","content3",30000,27000,'N',"이레즈미",270,List.of())
+                                "title3","content3",30000,27000,'N',"이레즈미",270,"","",List.of())
 
                         )
                 );

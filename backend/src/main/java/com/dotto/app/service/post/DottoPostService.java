@@ -42,15 +42,22 @@ public class DottoPostService {
              throw new MemberRoleAuthorizationException("권한이 없습니다");
          };
 
+        String salesPct = req.getSalesYn()== 'Y'? salesPctCalc(req): "";
+
         List<Image> images = req.getPostPhoto().stream().map(i -> new Image(i.getOriginalFilename())).collect(Collectors.toList());
         DottoPost dottoPost = dottoPostRepository.save(
-                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(), images)
+                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),req.getTags(),salesPct, images)
         );
         uploadImages(dottoPost.getImages(), req.getPostPhoto());
 
         return new DottoPostCreateResponse(dottoPost.getPostNo());
     }
 
+    private String salesPctCalc(DottoPostCreateRequest req){
+        double salesPrice = req.getSalesPrice();
+        double price = req.getPrice();
+        return Math.round(((1-salesPrice/price))*100)+"%";
+    }
 
     private boolean rolesArtistTF(Member member){
 
