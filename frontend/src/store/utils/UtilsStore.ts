@@ -13,7 +13,8 @@ const utilsStore: Module<IOptions, State> = {
         },
         closeModal(state, payload) {
             state.isModal = payload;
-        }
+        },
+
     },
     actions: {
 
