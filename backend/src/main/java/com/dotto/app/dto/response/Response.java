@@ -25,4 +25,13 @@ public class Response{
     public static Response failure(int code, String msg){
         return new Response(false, code, new Failure(msg));
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "success=" + success +
+                ", code=" + code +
+                ", result=" + result +
+                '}';
+    }
 }

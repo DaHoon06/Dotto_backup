@@ -7,4 +7,11 @@ import lombok.Getter;
 @Getter
 public class Success<T> implements Result{
     private T data;
+
+    @Override
+    public String toString() {
+        return "Success{" +
+                "data=" + data +
+                '}';
+    }
 }
