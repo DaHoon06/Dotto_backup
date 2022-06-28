@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
 @RequiredArgsConstructor
@@ -50,15 +51,18 @@ public class InitDB {
     private void initMember(){
         memberRepository.saveAll(
                 List.of(new Member("member1", passwordEncoder.encode("1234"), "nickname", "male", "01012345678"
-                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new))),
+                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new))
+                        ),
                         new Member("member2", passwordEncoder.encode("1234"), "nickname2", "female", "01012345678"
                                 , List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new))
                         ),
                         new Member("member3", passwordEncoder.encode("1234"), "nickname3", "none", "01012345678"
                                 ,List.of(roleRepository.findByRoleType(RoleType.ROLE_ADMIN).orElseThrow(RoleNotFoundException::new))
                         )
+
                 )
         );
+
     };
 
     private void initDottoPost(){
@@ -75,5 +79,11 @@ public class InitDB {
 
                         )
                 );
+
+        Member member = memberRepository.findAll().get(0);
+
+        //dummy
+        IntStream.range(0, 100)
+                .forEach(i-> dottoPostRepository.save(new DottoPost(member,"title10"+i,"content10"+i, 10000,9000,'N',"더미"+i, i, tags,"", List.of())));
     };
 }
