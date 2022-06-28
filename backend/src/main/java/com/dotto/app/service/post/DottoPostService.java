@@ -2,6 +2,8 @@ package com.dotto.app.service.post;
 
 import com.dotto.app.dto.post.DottoPostCreateRequest;
 import com.dotto.app.dto.post.DottoPostCreateResponse;
+import com.dotto.app.dto.post.DottoPostListDto;
+import com.dotto.app.dto.post.PostReadCondition;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.entity.post.DottoPost;
@@ -51,6 +53,12 @@ public class DottoPostService {
         uploadImages(dottoPost.getImages(), req.getPostPhoto());
 
         return new DottoPostCreateResponse(dottoPost.getPostNo());
+    }
+
+    public DottoPostListDto readAll(PostReadCondition cond){
+        return DottoPostListDto.toDto(
+                dottoPostRepository.findAllCondition(cond)
+        );
     }
 
     private String salesPctCalc(DottoPostCreateRequest req){
