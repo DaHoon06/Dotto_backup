@@ -7,9 +7,9 @@
           <input type="checkbox" id="check" @change="[handleClickAllCheckBox(), btnActive()]" v-model="allCheckItems" />
           <label for="check"></label>
         </div>
-        <div id="policy-title">전체 동의 합니다.</div>
+        <div id="policy-title" class="policy-title-test">전체 동의 합니다.</div>
       </div>
-      <hr/>
+      <hr class="under-line">
     </article>
 
     <article >
@@ -18,12 +18,12 @@
           <input type="checkbox" id="check1" @change="[handleClickEachCheckBox(), btnActive()]" v-model="checkList1" />
           <label for="check1"></label>
         </div>
-        <div>이용약관 동의<span class="necessary">(필수)</span></div>
+        <div class="policy-title-test">이용약관 동의<span class="necessary">(필수)</span></div>
         <div>
-          <img @click="showDottoPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+          <img @click="showDottoPolicyContent" class="side-menu-drop-btn-01 filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
         </div>
       </div>
-      <hr />
+      <hr class="under-line">
       <div v-show="showDottoPolicy" class="policy-text" v-html="terms.dottoPolicyContent"></div>
     </article>
 
@@ -33,29 +33,29 @@
           <input type="checkbox" id="check2" @change="[handleClickEachCheckBox(), btnActive()]" v-model="checkList2" />
           <label for="check2"></label>
         </div>
-        <div>개인정보 수집 . 이용동<span class="necessary">(필수)</span></div>
+        <div class="policy-title-test">개인정보 수집 . 이용동<span class="necessary">(필수)</span></div>
         <div>
-          <img @click="showPrivatePolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
+          <img @click="showPrivatePolicyContent" class="side-menu-drop-btn-02 filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
         </div>
       </div>
-      <hr />
+      <hr class="under-line">
       <div v-show="showPrivatePolicy" class="policy-text" v-html="terms.privatePolicyContent"></div>
     </article>
 
-    <article >
-      <div class="policy-items">
-        <div>
-          <input type="checkbox" id="check4" @change="handleClickEachCheckBox" v-model="checkList3" />
-          <label for="check4"></label>
-        </div>
-        <div>이벤트 등 프로모션 알람 메일 수신<span class="choice">(선택)</span></div>
-        <div>
-          <img @click="showMarketingPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />
-        </div>
-      </div>
-      <hr />
-      <div v-show="showMarketingPolicy" class="policy-text" v-html="terms.marketingPolicyContent"></div>
-    </article>
+<!--    <article >-->
+<!--      <div class="policy-items">-->
+<!--        <div>-->
+<!--          <input type="checkbox" id="check4" @change="handleClickEachCheckBox" v-model="checkList3" />-->
+<!--          <label for="check4"></label>-->
+<!--        </div>-->
+<!--        <div>이벤트 등 프로모션 알람 메일 수신<span class="choice">(선택)</span></div>-->
+<!--        <div>-->
+<!--          <img @click="showMarketingPolicyContent" class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.png" alt="sort" />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <hr class="test01">-->
+<!--      <div v-show="showMarketingPolicy" class="policy-text" v-html="terms.marketingPolicyContent"></div>-->
+<!--    </article>-->
 
     <section id="policy-btn-wrapper" >
       <button class="register-common-btn" type="button" @click="redirectLoginForm">이전</button>
@@ -162,13 +162,14 @@ export default class PolicyComponent extends Vue {
   overflow-y: auto;
   justify-content: space-between;
   flex-direction: column;
-  height: 100%;
+  /*height: 100%;*/
+  margin-top: 100px;
 }
 #policy-container section {
   margin-bottom: 0.6em;
 }
 #policy-btn-wrapper {
-  display: flex;
+  /*display: flex;*/
   justify-content: space-around;
 }
 #policy-title {
@@ -176,10 +177,14 @@ export default class PolicyComponent extends Vue {
   font-size: 15px;
   font-weight: 600;
 }
+.policy-title-test {
+  margin-left: 10px;
+}
 .policy-items {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+  margin-left: 27px;
 }
 .policy-items div:nth-child(1) {
   font-size: 14px;
@@ -233,5 +238,22 @@ input:checked + label::after {
 }
 input:checked + label {
   border: 2px solid #1dbe0f;
+}
+
+.under-line {
+  width: 430px;
+  margin-left: 27px;
+}
+
+.side-menu-drop-btn-01 {
+  width: 18px;
+  height: 10px;
+  margin-left: 250px;
+}
+
+.side-menu-drop-btn-02 {
+  width: 18px;
+  height: 10px;
+  margin-left: 194px;
 }
 </style>
