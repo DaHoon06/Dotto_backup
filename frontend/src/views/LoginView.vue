@@ -23,42 +23,47 @@
       </form>
     </section>
 
-    <hr />
+<!--    <hr />-->
+    <br />
 
     <section class="login-info-section">
-      <div id="social-login">소셜 계정으로 로그인하기</div>
-      <article id="simple-login-icons">
+      <div id="social-login" src="@/assets/icons/board/mymenu/loginSimpleLine.svg">ㅡㅡㅡㅡㅡㅡㅡㅡㅡ간편 로그인ㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
+<!--      <article id="simple-login-icons">-->
         <div id="login-btn-img">
-          <div>
-            <button id="google-btn" class="social-btn">
+
+          <div class="google-btn-section">
+            <button id="google-btn" class="social-btn-01">
               <img src="@/assets/img/login/Google.png" alt="google" />
             </button>
           </div>
-          <div>
-            <button id="kakao-btn" class="social-btn">
+
+          <div class="kakao-btn-section">
+            <button id="kakao-btn" class="social-btn-02">
               <img src="@/assets/img/login/kakao.png" @click="kakaoLogin" alt="kakao" />
             </button>
           </div>
+
         </div>
-      </article>
+<!--      </article>-->
     </section>
 
-    <hr />
+<!--    <hr />-->
+    <br />
 
     <section>
       <div id="register-box">
-        <div id="lost-identify">
-          <div id="lost-password">
-            <span>비밀번호를 잊어버리셨나요?</span>
+<!--        <div id="lost-identify">-->
+          <div id="lost-password" class="password-section">
+<!--            <span>비밀번호를 잊어버리셨나요?</span>-->
             <router-link class="login-router forgot-user-info" to="#"><small>비밀번호 찾기</small></router-link>
           </div>
           <div id="join">
-            <span><small>계정이 없다면 바로 가입하세요!</small></span>
-            <div id="register">
+<!--            <span><small>계정이 없다면 바로 가입하세요!</small></span>-->
+            <div id="register" class="join-section">
               <button class="login-router" @click="showRegisterView"><small>회원가입 하기</small></button>
             </div>
           </div>
-        </div>
+<!--        </div>-->
       </div>
     </section>
   </main>
@@ -274,7 +279,7 @@ input[id="auto"]:checked + label::after{
 
 #login-btn-img {
   display: flex;
-  position: relative;
+  /*position: relative;*/
   left: -10px;
 }
 
@@ -283,7 +288,7 @@ input[id="auto"]:checked + label::after{
   color: #ffffff;
 }
 #login-btn-img > div {
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 #register-box {
   display: flex;
@@ -326,11 +331,19 @@ input[id="auto"]:checked + label::after{
 
 }
 
-.social-btn {
+.social-btn-01 {
   border: 1px solid #eeeeee;
   border-radius: 3px;
-  width: 110px;
+  width: 255px;
   height: 30px;
+  padding: 1px 0;
+}
+.social-btn-02 {
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+  width: 255px;
+  height: 30px;
+  margin-top: 40px;
   padding: 1px 0;
 }
 #google-btn {
@@ -340,8 +353,8 @@ input[id="auto"]:checked + label::after{
   justify-content: space-around;
 }
 #google-btn::after {
-  content: '구글 로그인';
-  font-size: 5px;
+  content: '구글 계정으로 로그인';
+  font-size: 7px;
   color: #888888;
   font-weight: 600;
 }
@@ -352,8 +365,8 @@ input[id="auto"]:checked + label::after{
   justify-content: space-evenly;
 }
 #kakao-btn::after {
-  content: '카카오 로그인';
-  font-size: 5px;
+  content: '카카오 계정으로 로그인';
+  font-size: 7px;
   color: #595959;
   font-weight: 600;
 }
@@ -366,7 +379,7 @@ input[id="auto"]:checked + label::after{
   justify-content: space-between;
   align-items: center;
   height: 25px;
-  width: 15em;
+  width: 5em;
 }
 #lost-password > span,  #join > span {
   font-size: 12px;
@@ -376,4 +389,25 @@ input[id="auto"]:checked + label::after{
   font-size: 6px;
 }
 
+
+.google-btn-section {
+  width: 0px;
+  height: 0px;
+}
+
+.kakao-btn-section {
+  width: 0px;
+  height: 0px;
+}
+
+.password-section {
+  /*!important;*/
+  margin-top: 70px;
+  margin-left: 10px;
+}
+
+.join-section {
+  margin-top: 136px;
+  margin-left: 10px;
+}
 </style>
