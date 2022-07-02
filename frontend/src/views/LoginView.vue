@@ -1,78 +1,77 @@
 <template>
-  <main id="loginPage-container">
+  <article id="loginPage-container">
     <section id="logo-img" class="login-info-section">
       <span class="logo"><img src="@/assets/img/dotto.svg" alt="logo" /></span>
     </section>
 
-    <section class="login-info-section">
+    <article class="login-info-section">
       <form @submit.prevent="login">
-        <div>
+        <section>
           <input @focus="clearMsg" class="login-info" type="text" v-model="id" placeholder="아이디" />
-        </div>
-        <div>
+        </section>
+        <section>
           <input @focus="clearMsg" class="login-info" autocomplete="off" type="password" v-model="password" placeholder="비밀번호" />
-        </div>
-        <div id="warning-msg" class="text-center">{{ loginFailed }}</div>
-        <div id="auto-login-wrapper">
+        </section>
+        <p id="warning-msg" class="text-center">{{ loginFailed }}</p>
+        <section id="auto-login-wrapper">
           <input type="checkbox" id="auto" @change="saveId" v-model="save">
           <label for="auto"></label> <span id="auto-login">아이디 저장</span>
-        </div>
-        <div>
+        </section>
+        <section>
           <button id="login-btn" type="submit">로그인</button>
-        </div>
+        </section>
       </form>
-    </section>
+    </article>
 
-<!--    <hr />-->
     <br />
 
-    <section class="login-info-section">
-      <div id="social-login" src="@/assets/icons/board/mymenu/loginSimpleLine.svg">ㅡㅡㅡㅡㅡㅡㅡㅡㅡ간편 로그인ㅡㅡㅡㅡㅡㅡㅡㅡㅡ</div>
-<!--      <article id="simple-login-icons">-->
-        <div id="login-btn-img">
+    <article class="login-info-section">
+      <img id="social-login-division" src="@/assets/icons/mymenu/login_SimpleLine.svg" alt="간편로그인 /">
+      <article id="login-btn-img">
+        <section class="google-btn-section">
+          <button id="google-btn" class="social-btn-01">
+            <img src="@/assets/img/login/Google.png" alt="google" />
+          </button>
+        </section>
 
-          <div class="google-btn-section">
-            <button id="google-btn" class="social-btn-01">
-              <img src="@/assets/img/login/Google.png" alt="google" />
-            </button>
-          </div>
+        <section class="kakao-btn-section">
+          <button id="kakao-btn" class="social-btn-02" @click="kakaoLogin">
+            <img src="@/assets/img/login/kakao.png" alt="kakao" />
+          </button>
+        </section>
+      </article>
 
-          <div class="kakao-btn-section">
-            <button id="kakao-btn" class="social-btn-02">
-              <img src="@/assets/img/login/kakao.png" @click="kakaoLogin" alt="kakao" />
-            </button>
-          </div>
+    </article>
 
-        </div>
-<!--      </article>-->
-    </section>
-
-<!--    <hr />-->
     <br />
 
-    <section>
-      <div id="register-box">
-<!--        <div id="lost-identify">-->
-          <div id="lost-password" class="password-section">
-<!--            <span>비밀번호를 잊어버리셨나요?</span>-->
-            <router-link class="login-router forgot-user-info" to="#"><small>비밀번호 찾기</small></router-link>
+    <article>
+      <section id="register-box">
+        <section id="lost-password" class="password-section">
+          <router-link class="login-router forgot-user-info" to="#"><small>비밀번호 찾기</small></router-link>
+        </section>
+        <section id="join">
+          <div id="register" class="join-section">
+            <button class="login-router" @click="showRegisterView"><small>회원가입 하기</small></button>
           </div>
-          <div id="join">
-<!--            <span><small>계정이 없다면 바로 가입하세요!</small></span>-->
-            <div id="register" class="join-section">
-              <button class="login-router" @click="showRegisterView"><small>회원가입 하기</small></button>
-            </div>
-          </div>
-<!--        </div>-->
-      </div>
-    </section>
-  </main>
+        </section>
+      </section>
+    </article>
+  </article>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Emit } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
 
+export interface IKakao {
+  access_token: string,
+  expires_in: number,
+  refresh_token: string,
+  refresh_token_expires_in: number,
+  scope: string,
+  token_type: string,
+}
 
 @Component({
   components: {
@@ -84,7 +83,6 @@ export default class LoginView extends Vue {
   save = false;
   loginFailedMsg = '';
   modalTypeRegister = '';
-  // $gAuth: any;
 
   params = {
     client_id: process.env.VUE_APP_GOOGLE_KEY
@@ -141,39 +139,36 @@ export default class LoginView extends Vue {
   }
 
 
+  //------ 간편 로그인 ------
   private kakaoLogin(): void {
     window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
+    const SCOPE = process.env.VUE_APP_SCOPE;
+    window.Kakao.Auth.login({
+      scope: SCOPE,
+      success: this.getKakaoAPI
+    });
+  }
 
-    if (window.Kakao.Auth.getAccessToken()) {
-      window.Kakao.API.request({
-        url: '/v1/user/unlink',
-        success: function (response: Response) {
-          console.log(response)
-        },
-        fail: function (error: Error) {
-          console.log(error)
-        },
-      })
-      window.Kakao.Auth.setAccessToken(undefined)
-      window.Kakao.Auth.login({
-        success: () => {
-          window.Kakao.API.request({
-            url: '/v2/user/me',
-            data: {
-              property_keys: ["kakao_account.email"]
-            },
-            success: async (response: Response) => {
-              console.log(response);
-            },
-            fail: (error: Error) => {
-              console.log(error)
-            },
-          })
-        },fail: (error: Error) => {
-          console.log(error)
-        }
-      })
-    }
+  private getKakaoAPI(userInfo: IKakao): void {
+    console.log(userInfo);
+    window.Kakao.API.request({
+      url: '/v2/user/me',
+      success: (res: any) => {
+        const kakao_account = res.kakao_account;
+        const kakao_info = {
+          email: kakao_account.email,
+          nickname: kakao_account.profile.nickname,
+          birthday: kakao_account.birthday,
+          gender: kakao_account.gender
+        };
+        console.log(kakao_info);
+        //TODO: 정보 조회 후 존재하면 로그인
+        // 존재하지 않으면 회원가입 함수 태우기
+      },
+      fail: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 
   @Emit('modalTypeRegister')
@@ -300,7 +295,7 @@ input[id="auto"]:checked + label::after{
 
 }
 
-.login-router, #social-login {
+.login-router {
   color: #919191;
   font-size: 12px;
   text-decoration: none;
@@ -315,9 +310,10 @@ input[id="auto"]:checked + label::after{
 .forgot-user-info {
 
 }
-
-#social-login {
-  text-align: center;
+/* 소셜 로그인 관련 */
+/* 구분선 */
+#social-login-division {
+  width: 100%;
   margin-bottom: 10px;
 }
 
@@ -365,12 +361,12 @@ input[id="auto"]:checked + label::after{
   justify-content: space-evenly;
 }
 #kakao-btn::after {
-  content: '카카오 계정으로 로그인';
+  content: '';
   font-size: 7px;
   color: #595959;
   font-weight: 600;
 }
-#login-btn-img > div > button > img {
+#login-btn-img > section > button > img {
   width: 25px;
   position: relative;
 }
