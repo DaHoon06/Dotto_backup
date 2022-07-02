@@ -1,5 +1,5 @@
 <template>
-  <main
+  <article
       id="modal"
       v-if="this.isModal"
       ref="modalContainer"
@@ -15,7 +15,7 @@
           @redirectHome="redirectHome"
           @modalTypeRegister="changeModalType" />
     </section>
-  </main>
+  </article>
 </template>
 
 <script lang="ts">
@@ -114,8 +114,8 @@ export default class ModalComponent extends Vue {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400px;
-  height: 550px;
+  width: 600px;
+  height: 756px;
   padding: 30px;
   text-align: center;
   background-color: rgb(255, 255, 255);
