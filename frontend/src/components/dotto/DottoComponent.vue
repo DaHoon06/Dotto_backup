@@ -114,14 +114,24 @@ export default class DottoComponent extends Vue {
 
   created(): void {
     this.changeBackground();
+    this.test();
   }
 
+  private async test() {
+    const { data } = await this.axios.get('/dottopost', {
+      params: {
+        size: this.limit,
+        page: this.page
+      }
+    });
+    console.log(data);
+  }
   private async getDottoBoardList($state: any): Promise<void> {
     this.existData = false;
     try {
-      const { data } = await this.axios.get('/api', {
+      const { data } = await this.axios.get('/dottopost', {
         params: {
-          limit: this.limit,
+          size: this.limit,
           page: this.page
         }
       });

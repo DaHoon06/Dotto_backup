@@ -118,7 +118,7 @@ export default class MainView extends Vue {
   }
 
   private async getDottoBoardData(): Promise<void> {
-    console.log('닷투');
+    console.log('?')
   }
 
   private async getDottoSeekersData(): Promise<void> {

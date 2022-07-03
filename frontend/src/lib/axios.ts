@@ -13,21 +13,19 @@ const instance :AxiosInstance = axios.create({
 });
 
 instance.interceptors.request.use(config  => {
-
-
-    const token = store.getters["userStore/accessToken"];
-    if (token.length) {
-        config.headers!.Authorization = `Bearer ${token}`;
-        return config;
-    }
-    console.log(token);
-
+    // const token = store.getters["userStore/accessToken"];
+    // if (token.length) {
+    //     config.headers!.Authorization = `Bearer ${token}`;
+    //     return config;
+    // }
+    // console.log(token);
+    return config;
 });
 
 instance.interceptors.response.use(response => {
     const { data } = response
     const { result } = data
-    if(result) {
+    if (result) {
         console.log('AXIOS TRUE');
     }
     return response
