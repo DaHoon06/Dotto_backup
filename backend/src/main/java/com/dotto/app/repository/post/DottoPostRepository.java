@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface DottoPostRepository extends JpaRepository<DottoPost,Long> {
+public interface DottoPostRepository extends JpaRepository<DottoPost,Long>, CustomPostRepository {
 
 
     @Query("SELECT p from DottoPost p JOIN fetch p.member WHERE p.postNo = :id ")

@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
 @RequiredArgsConstructor
@@ -50,28 +51,39 @@ public class InitDB {
     private void initMember(){
         memberRepository.saveAll(
                 List.of(new Member("member1", passwordEncoder.encode("1234"), "nickname", "male", "01012345678"
-                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new))),
+                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new))
+                        ),
                         new Member("member2", passwordEncoder.encode("1234"), "nickname2", "female", "01012345678"
                                 , List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new))
                         ),
                         new Member("member3", passwordEncoder.encode("1234"), "nickname3", "none", "01012345678"
                                 ,List.of(roleRepository.findByRoleType(RoleType.ROLE_ADMIN).orElseThrow(RoleNotFoundException::new))
                         )
+
                 )
         );
+
     };
 
     private void initDottoPost(){
 
+        String tags = "[#멋져, #훈남, #최고]";
+
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
-                                "title1","content1",10000,9000,'N',"블랙엔그레이",30,List.of()),
+                                "title1","content1",10000,9000,'Y',"블랙엔그레이",30,tags,"", List.of()),
                         new DottoPost(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new),
-                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,List.of()),
+                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,tags,"",List.of()),
                         new DottoPost(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new),
-                                "title3","content3",30000,27000,'N',"이레즈미",270,List.of())
+                                "title3","content3",30000,27000,'N',"이레즈미",270,"","",List.of())
 
                         )
                 );
+
+        Member member = memberRepository.findAll().get(0);
+
+        //dummy
+        IntStream.range(0, 100)
+                .forEach(i-> dottoPostRepository.save(new DottoPost(member,"title10"+i,"content10"+i, 10000,9000,'N',"더미"+i, i, tags,"", List.of())));
     };
 }

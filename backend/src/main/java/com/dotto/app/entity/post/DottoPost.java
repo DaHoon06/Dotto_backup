@@ -50,10 +50,16 @@ public class DottoPost extends EntityDate {
     @Column
     private char deletedYn;
 
+    @Column
+    private String tags;
+
+    @Column
+    private String salesPct;
+
     @OneToMany(mappedBy = "dottoPost",cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Image> images;
 
-    public DottoPost(Member member, String title, String content, int price, int salesPrice, char salesYn, String genre, int totalTime, List<Image> images ){
+    public DottoPost(Member member, String title, String content, int price, int salesPrice, char salesYn, String genre, int totalTime, String tags, String salesPct, List<Image> images ){
         this.member = member;
         this.title = title;
         this.content = content;
@@ -62,7 +68,10 @@ public class DottoPost extends EntityDate {
         this.salesYn = salesYn;
         this.genre = genre;
         this.totalTime = totalTime;
+        this.tags = tags;
+        this.salesPct = salesPct;
         this.images = new ArrayList<>();
+        addImage(images);
     }
 
     private void addImage(List<Image> added){

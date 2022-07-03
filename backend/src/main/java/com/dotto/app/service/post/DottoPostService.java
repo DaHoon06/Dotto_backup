@@ -2,6 +2,8 @@ package com.dotto.app.service.post;
 
 import com.dotto.app.dto.post.DottoPostCreateRequest;
 import com.dotto.app.dto.post.DottoPostCreateResponse;
+import com.dotto.app.dto.post.DottoPostListDto;
+import com.dotto.app.dto.post.PostReadCondition;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.entity.post.DottoPost;
@@ -42,15 +44,28 @@ public class DottoPostService {
              throw new MemberRoleAuthorizationException("권한이 없습니다");
          };
 
+        String salesPct = req.getSalesYn()== 'Y'? salesPctCalc(req): "";
+
         List<Image> images = req.getPostPhoto().stream().map(i -> new Image(i.getOriginalFilename())).collect(Collectors.toList());
         DottoPost dottoPost = dottoPostRepository.save(
-                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(), images)
+                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),req.getTags(),salesPct, images)
         );
         uploadImages(dottoPost.getImages(), req.getPostPhoto());
 
         return new DottoPostCreateResponse(dottoPost.getPostNo());
     }
 
+    public DottoPostListDto readAll(PostReadCondition cond){
+        return DottoPostListDto.toDto(
+                dottoPostRepository.findAllCondition(cond)
+        );
+    }
+
+    private String salesPctCalc(DottoPostCreateRequest req){
+        double salesPrice = req.getSalesPrice();
+        double price = req.getPrice();
+        return Math.round(((1-salesPrice/price))*100)+"%";
+    }
 
     private boolean rolesArtistTF(Member member){
 

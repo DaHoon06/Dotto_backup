@@ -47,7 +47,7 @@ public class DottoPostCreateRequest {
     private List<MultipartFile> postPhoto = new ArrayList<>();
 
     @ApiModelProperty(value = "태그", notes = "태그를 입력해 주세요", example = "#멋져, #훈남")
-    private String[] tags;
+    private String tags;
 
     @ApiModelProperty(hidden = true)
     @Null
