@@ -9,6 +9,7 @@
 }
 
 body {
+    /* 사용시 스크롤 되지 않음 overflow: hidden;*/
     height: 100vh;
     -ms-overflow-style:none;
 }

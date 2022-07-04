@@ -29,6 +29,7 @@ export namespace IBoard {
     result: dottoListData,
     success: boolean,
   }
+
   // 닷투 게시글 작성
   export interface Dotto {
     title: string;
