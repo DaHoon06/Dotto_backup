@@ -4,4 +4,5 @@ export type IOptions = {
 
 export type CssControl = {
     SCROLL: boolean,
+    BLUR: boolean,
 }

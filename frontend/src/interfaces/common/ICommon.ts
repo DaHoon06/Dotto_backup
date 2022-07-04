@@ -1,6 +1,6 @@
 export const enum BLUR {
+  ON = 'setBlur',
   OFF = '',
-  ON = 'setBlur'
 }
 
 export const enum SCROLL {

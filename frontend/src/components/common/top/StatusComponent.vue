@@ -103,22 +103,18 @@ export default class StatusComponent extends Vue {
     super();
   }
 
-  private closeModal() {
-    this.$store.commit('utilsStore/showModal', false);
-    this.$store.commit('cssStore/scrollEvent', false);
+  private closeModal(payload: boolean) {
+    this.$store.commit('utilsStore/showModal', payload);
+    this.$store.commit('cssStore/scrollOn', payload);
     this.modalType = MODAL.INIT;
   }
 
   private showLoginView() {
     this.modalType = MODAL.LOGIN;
     this.$store.commit('utilsStore/showModal', true);
-    this.$store.commit('cssStore/scrollEvent', true);
+    this.$store.commit('cssStore/scrollOn', true);
   }
 
-  private closeSearchList() {
-    this.showSearchList = !this.showSearchList;
-    this.$emit('blurBackground', false);
-  }
 
   private logout(): void {
     this.$store.commit('userStore/logout');

@@ -6,13 +6,14 @@ const cssStore: Module<CssControl, State> = {
     namespaced: true,
     state: {
         SCROLL: false,
+        BLUR: false,
     },
     mutations: {
         scrollOn(state, payload) {
             state.SCROLL = payload
         },
-        scrollEvent(state, payload) {
-            state.SCROLL = payload
+        backgroundBlur(state, payload) {
+            state.BLUR = payload;
         }
     },
     actions: {
@@ -20,6 +21,7 @@ const cssStore: Module<CssControl, State> = {
     },
     getters: {
         SCROLL: state => state.SCROLL,
+        BLUR: state => state.BLUR,
     }
 }
 export default cssStore;

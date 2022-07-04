@@ -1,10 +1,8 @@
 <template>
   <header id="header">
     <header-component
-         />
+    />
     <status-component
-        @blurBackground="blurBackground"
-        @notScroll="notScrollBody"
     />
     <navigation-component
         :navigationType="navigationType"

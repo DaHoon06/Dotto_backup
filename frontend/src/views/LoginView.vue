@@ -1,8 +1,9 @@
 <template>
   <article id="login-container">
-    <section id="logo-img" class="login-info-section">
-      <span class="logo"><img src="@/assets/img/dotto.svg" alt="logo" /></span>
-    </section>
+
+    <article id="logo-wrapper" class="login-info-section">
+      <img src="@/assets/img/dotto.svg" alt="logo" id="logo" />
+    </article>
 
     <article class="login-info-section">
       <form @submit.prevent="login">
@@ -50,6 +51,7 @@
         <button class="login-router" @click="showRegisterView">회원가입 하기</button>
       </section>
     </article>
+
   </article>
 </template>
 
@@ -167,8 +169,8 @@ export default class LoginView extends Vue {
   }
 
   @Emit('closeModal')
-  private closeModal(): boolean{
-    return true;
+  private closeModal(): boolean {
+    return false;
   }
 
   @Emit('modalTypeRegister')
@@ -215,16 +217,28 @@ hr {
   margin: auto;
 }
 
-#logo-img {
+/* 로고 */
+#logo-wrapper {
   margin-bottom: 30px;
   text-align: center;
 }
-
-#logo-img img {
+#logo {
   width: 120px;
   margin-bottom: 10px;
 }
 
+/* 아이디 기억 */
+#id-save {
+  font-size: 9px;
+  margin-left: 5px;
+}
+#id-save-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-left: 33px;
+}
 input[type="checkbox"] {
   display: none;
 }
@@ -249,18 +263,7 @@ input[id="auto"]:checked + label::after{
   left: 1px;
   top: -3px;
 }
-/* 아이디 기억 */
-#id-save {
-  font-size: 9px;
-  margin-left: 5px;
-}
-#id-save-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 10px;
-  padding-left: 33px;
-}
+
 
 /* 로그인 버튼 */
 /* 버튼 공용 */
@@ -323,7 +326,6 @@ input[id="auto"]:checked + label::after{
   color: #E2E2E2;
 }
 
-
 /* 소셜 로그인 관련 */
 /* 구분선 */
 #social-login-division {
@@ -381,7 +383,6 @@ input[id="auto"]:checked + label::after{
 @media (max-width: 1439px) {
   .login-btn-wrapper {
     width: 70%;
-    height: 70%;
   }
 }
 

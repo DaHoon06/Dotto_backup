@@ -27,7 +27,6 @@ export class Mixin extends Vue {
         return this.$store.getters["utilsStore/SCROLL"];
     }
 
-
     cancel(): void {
         return this.$router.go(-1);
     }

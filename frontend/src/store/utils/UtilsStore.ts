@@ -11,10 +11,6 @@ const utilsStore: Module<IOptions, State> = {
         showModal(state, payload) {
             state.isModal = payload;
         },
-        closeModal(state, payload) {
-            state.isModal = !payload;
-        },
-
     },
     actions: {
 

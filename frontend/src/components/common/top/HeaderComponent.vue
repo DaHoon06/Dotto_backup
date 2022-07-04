@@ -69,17 +69,18 @@ export default class HeaderComponent extends Vue {
 
   private closeSearchList() {
     this.showSearchList = !this.showSearchList;
-    this.$emit('blurBackground', false);
+    this.$store.commit('cssStore/backgroundBlur', this.showSearchList);
+    this.$store.commit('cssStore/scrollOn', this.showSearchList);
   }
 
   private logout(): void {
     console.log('logout')
   }
 
-  @Emit('blurBackground')
-  private searchLists() {
+  private searchLists(): void {
     this.showSearchList = !this.showSearchList;
-    return this.showSearchList
+    this.$store.commit('cssStore/backgroundBlur', this.showSearchList);
+    this.$store.commit('cssStore/scrollOn', this.showSearchList);
   }
 
   @Emit('notScroll')
