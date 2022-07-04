@@ -90,6 +90,7 @@ export default class LoginView extends Vue {
     if (success) {
       if (this.save) this.saveId();
       this.saveState(data);
+      this.$store.commit('utilsStore/closeModal', true);
       await this.$router.push({
         path: '/dotto'
       });
@@ -122,10 +123,8 @@ export default class LoginView extends Vue {
     this.loginFailed = '';
   }
 
-
   //------ 간편 로그인 ------
   private kakaoLogin(): void {
-    window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
     const SCOPE = process.env.VUE_APP_SCOPE;
     window.Kakao.Auth.login({
       scope: SCOPE,
@@ -135,6 +134,7 @@ export default class LoginView extends Vue {
 
   private getKakaoAPI(userInfo: IUser.Kakao): void {
     console.log(userInfo);
+    const { access_token, refresh_token } = userInfo;
     window.Kakao.API.request({
       url: '/v2/user/me',
       success: (res: any) => {
@@ -149,11 +149,26 @@ export default class LoginView extends Vue {
         console.log(kakao_info);
         //TODO: 정보 조회 후 존재하면 로그인
         // 존재하지 않으면 회원가입 함수 태우기
+
+        // store update
+        const payload = {
+          accessToken: access_token,
+          refreshToken: refresh_token,
+          nickname: kakao_info.nickname,
+          roles: 'admin'
+        };
+        this.$store.commit('userStore/login', payload);
+        this.closeModal();
       },
       fail: (error: any) => {
         console.log(error);
       }
     });
+  }
+
+  @Emit('closeModal')
+  private closeModal(): boolean{
+    return true;
   }
 
   @Emit('modalTypeRegister')
@@ -250,7 +265,8 @@ input[id="auto"]:checked + label::after{
 /* 로그인 버튼 */
 /* 버튼 공용 */
 .login-btn-wrapper {
-  width: 336px;
+  max-width: 336px;
+  width: 100%;
   height: 52px;
   margin: auto auto 16px auto;
 }
@@ -267,7 +283,6 @@ input[id="auto"]:checked + label::after{
   font-size: 12px;
   padding: 5px;
   background: #222222;
-  margin-top: 32px;
 }
 
 #login-btn:hover{
@@ -361,6 +376,13 @@ input[id="auto"]:checked + label::after{
 #warning-msg {
   color: red;
   font-size: 6px;
+}
+
+@media (max-width: 1439px) {
+  .login-btn-wrapper {
+    width: 70%;
+    height: 70%;
+  }
 }
 
 </style>

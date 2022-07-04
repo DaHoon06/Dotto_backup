@@ -22,3 +22,4 @@ const cssStore: Module<CssControl, State> = {
         SCROLL: state => state.SCROLL,
     }
 }
+export default cssStore;

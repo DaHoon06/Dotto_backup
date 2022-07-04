@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import {Component, Emit, Prop, Vue} from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import TermsComponent from "@/components/member/PolicyComponent.vue";
@@ -66,9 +66,10 @@ export default class ModalComponent extends Vue {
   private closeModalOuter() {
     window.addEventListener('click', this.resetModal);
   }
+
+  @Emit('closeModal')
   private closeModal() {
     this.modalTypeComputed = MODAL.LOGIN;
-    this.$emit('closeModal');
   }
 
   private resetModal(e: Event) {
@@ -114,8 +115,10 @@ export default class ModalComponent extends Vue {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;
-  height: 756px;
+  max-width: 600px;
+  max-height: 756px;
+  width: 100%;
+  height: 100%;
   padding: 30px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -129,6 +132,12 @@ export default class ModalComponent extends Vue {
   height: 710px;
   top: 50%;
   padding: 15px;
+}
+
+@media (max-width: 1439px) {
+  .modal-body {
+    width: 70%;
+  }
 }
 
 </style>

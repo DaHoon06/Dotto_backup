@@ -59,11 +59,14 @@
             </span>
             <router-link to="t">보안 / 계정</router-link>
           </div>
-          <div id="logout" @click="logout">
-            <span>
-              <img src="@/assets/icons/mymenu/logout.svg" alt="logout" class="my-menu-icons" />
-            </span>
-            <span>로그아웃</span>
+          <div id="logout">
+
+            <button type="button" @click="logout">
+              <span>
+                <img src="@/assets/icons/mymenu/logout.svg" alt="logout" class="my-menu-icons" />
+              </span>
+              로그아웃
+            </button>
           </div>
         </div>
       </div>
@@ -118,8 +121,25 @@ export default class StatusComponent extends Vue {
   }
 
   private logout(): void {
-    console.log('logout')
+    this.$store.commit('userStore/logout');
+
+    // 만약 카카오 로그인일 경우 따로 로그아웃 구현
+    this.kakaoLogout();
+
   }
+
+  private kakaoLogout(): void {
+    window.Kakao.API.request({
+      url: '/v1/user/unlink',
+      success: (res: any) => {
+        console.log(res);
+      },
+      fail: (error: any) => {
+        console.log(error);
+      }
+    })
+  }
+
   private showAlarm(): boolean {
     this.showMessage = !this.showMessage;
     this.showMyMenu = false;

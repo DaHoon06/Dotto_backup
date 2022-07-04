@@ -31,6 +31,14 @@ export default class App extends Vue {
   BLUR = this.scrollPrevent ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
   SCROLL = this.scrollPrevent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
 
+  created(): void {
+    this.kakaoInit();
+  }
+
+  private kakaoInit(): void {
+    window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
+  }
+
   private notScrollBody(scrollEvent: boolean) {
     scrollEvent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
   }

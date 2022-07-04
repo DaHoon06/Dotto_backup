@@ -11,6 +11,7 @@ Vue.use(Vuex)
 
 import userStore from "@/store/user/UserStore";
 import utilsStore from "@/store/utils/UtilsStore";
+import cssStore from '@/store/utils/CssStore';
 
 const store = new Vuex.Store({
   plugins: [createPersistedState({
@@ -19,6 +20,7 @@ const store = new Vuex.Store({
   modules: {
     userStore: userStore,
     utilsStore: utilsStore,
+    cssStore: cssStore
   }
 });
 export default store;
