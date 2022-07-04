@@ -44,6 +44,7 @@
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import { DottoPostingButton } from "@/components/dotto";
 import InfiniteLoading from 'vue-infinite-loading';
+import { IBoard } from "@/interfaces/IBoard";
 
 export interface IDottoBoard {
   postNo: number,
@@ -114,13 +115,19 @@ export default class DottoComponent extends Vue {
   }
 
   private async test() {
-    const { data } = await this.axios.get('/dottopost', {
+    const { data: responseData } = await this.axios.get('/dottopost', {
       params: {
         size: this.limit,
         page: this.page
       }
     });
-    console.log(data);
+    const { code, result, success } = responseData;
+    if (success) {
+      const { data } = result;
+      const { dottoPostDtoList } = data;
+      console.log(dottoPostDtoList)
+    }
+
   }
   private async getDottoBoardList($state: any): Promise<void> {
     this.existData = false;

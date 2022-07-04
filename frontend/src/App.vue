@@ -14,7 +14,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import HeaderView from "@/views/HeaderView.vue";
 import { FooterComponent } from "@/components/common";
-import { BLUR, SCROLL } from "@/interfaces/common/ICommon";
 
 @Component({
   components: {
@@ -64,14 +63,16 @@ export default class App extends Vue {
   filter: blur(4px);
   width: 100%;
 }
+
+/*.notScroll {*/
+/*  position: fixed;*/
+/*  width: 100%;*/
+/*  -ms-overflow-style: none;*/
+/*  scrollbar-width: none;*/
+/*}*/
+
 .notScroll {
-  position: fixed;
-  width: 100%;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  -ms-overflow-style:none;
 }
-.notScroll::-webkit-scrollbar {
-  display: none;
-  width: 0 !important;
-}
+
 </style>

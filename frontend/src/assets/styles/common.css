@@ -10,7 +10,12 @@
 
 body {
     height: 100vh;
+    -ms-overflow-style:none;
 }
+body::-webkit-scrollbar {
+    display:none;
+}
+
 
 ul {
     list-style: none;
