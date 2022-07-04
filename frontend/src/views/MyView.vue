@@ -29,12 +29,12 @@ import {
   FooterComponent,
   MenuButton
 } from "@/components/common";
-import FollowListComponent from "@/components/main/FollowListComponent.vue";
-import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
-import MyInformationComponent from "@/components/my/MyInformationComponent.vue";
-import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
-import MyFeedComponent from "@/components/my/tabs/MyFeedComponent.vue";
-import MyLikeListsComponent from "@/components/my/tabs/MyLikeListsComponent.vue";
+import FollowListComponent from "@/components/main/FollowList.vue";
+import MainBannerComponent from "@/components/main/MainBanner.vue";
+import MyInformationComponent from "@/components/my/MyInformation.vue";
+import MyFollowComponent from "@/components/my/MyFollow.vue";
+import MyFeedComponent from "@/components/my/tabs/MyFeed.vue";
+import MyLikeListsComponent from "@/components/my/tabs/MyLikeLists.vue";
 
 @Component({
   components: {

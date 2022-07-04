@@ -1,13 +1,13 @@
 import DottoComponent from "@/components/dotto/DottoComponent.vue";
-import DottoPostingComponent from "@/components/dotto/DottoPostingComponent.vue";
+import DottoPosting from "@/components/dotto/DottoPosting.vue";
 import DottoPostingButton from "@/components/dotto/DottoPostingButton.vue";
 import DottoContainer from "@/components/dotto/DottoContainer.vue";
-import DottoDetailComponent from "@/components/dotto/DottoDetailComponent.vue";
+import DottoDetail from "@/components/dotto/DottoDetail.vue";
 
 export {
   DottoComponent,
-  DottoPostingComponent,
+  DottoPosting,
   DottoPostingButton,
   DottoContainer,
-  DottoDetailComponent,
+  DottoDetail,
 }

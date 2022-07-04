@@ -73,7 +73,7 @@
     </article>
 
     <transition name="fade">
-      <ModalComponent
+      <main-modal
           :modalType="modalType"
           @modalType="modalType"
           @closeModal="closeModal"
@@ -85,12 +85,12 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import ModalComponent from "@/components/common/utils/modal/ModalComponent.vue";
+import MainModal from "@/components/common/utils/modal/MainModal.vue";
 import { MODAL } from "@/interfaces/common/ICommon";
 
 @Component({
   components: {
-    ModalComponent
+    MainModal
   }
 })
 export default class StatusComponent extends Vue {

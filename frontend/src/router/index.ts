@@ -45,8 +45,8 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/dotto/DottoBoardView.vue'),
     children: [
       { path: 'index', name: 'dottoBoard', component: () => import('@/components/dotto/DottoContainer.vue'), meta: { unauthorized: true } },
-      { path: 'post', name: 'dottoPosting', component: () => import('@/components/dotto/DottoPostingComponent.vue'), meta: { unauthorized: true }, },
-      { path: 'view', name: 'dottoView', component: () => import('@/components/dotto/DottoDetailComponent.vue'), meta: { unauthorized: true }, },
+      { path: 'post', name: 'dottoPosting', component: () => import('@/components/dotto/DottoPosting.vue'), meta: { unauthorized: true }, },
+      { path: 'view', name: 'dottoView', component: () => import('@/components/dotto/DottoDetail.vue'), meta: { unauthorized: true }, },
     ]
   },
   {

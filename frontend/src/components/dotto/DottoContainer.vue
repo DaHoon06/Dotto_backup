@@ -8,7 +8,7 @@
           <span class="filter-text">{{ sendSortType }}</span>
           <img class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
         </button>
-        <sort-component
+        <sort-button
             @typeName="typeName"
             :selectedType="filterType"
             :showSortComponent="showSortComponent" />
@@ -35,15 +35,15 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import { TopScrollButton, SortComponent } from "@/components/common";
-import FollowListComponent from "@/components/main/FollowListComponent.vue";
+import { TopScrollButton, SortButton } from "@/components/common";
+import FollowListComponent from "@/components/main/FollowList.vue";
 import { DottoComponent, DottoPostingButton } from "@/components/dotto/index";
 
 @Component({
   components: {
     DottoPostingButton,
     TopScrollButton,
-    SortComponent,
+    SortButton,
     FollowListComponent,
     DottoComponent
   }

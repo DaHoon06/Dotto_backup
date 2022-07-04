@@ -3,7 +3,7 @@
        :class="dottoBoardBackground === 'main' ? '' : otherBgColor">
     <div id="side-search-filter-wrapper">
       <transition name="fade">
-        <search-filter-component
+        <side-filter
             v-show="showSearchFilter" />
       </transition>
     </div>
@@ -16,12 +16,12 @@
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
 import { DottoComponent } from "@/components/dotto";
-import { SearchFilterComponent } from "@/components/common";
+import { SideFilter } from "@/components/common";
 
 @Component({
   components: {
     DottoComponent,
-    SearchFilterComponent
+    SideFilter
   }
 })
 export default class DottoBoardView extends Vue {

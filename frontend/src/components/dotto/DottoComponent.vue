@@ -42,8 +42,6 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import { TopScrollButton, SortComponent } from "@/components/common";
-import FollowListComponent from "@/components/main/FollowListComponent.vue";
 import { DottoPostingButton } from "@/components/dotto";
 import InfiniteLoading from 'vue-infinite-loading';
 
@@ -63,12 +61,10 @@ export interface IDottoBoard {
   deletedAt: Date,
   deletedYn: string,
 }
+
 @Component({
   components: {
     DottoPostingButton,
-    TopScrollButton,
-    SortComponent,
-    FollowListComponent,
     InfiniteLoading
   }
 })
@@ -84,11 +80,11 @@ export default class DottoComponent extends Vue {
   */
   showSortComponent = false;
   showFilterComponent = false;
-  filterType= '최신순';
+  filterType = '최신순';
   showSearchFilter = 'showSearchFilter';
   page = 1;
   lists: IDottoBoard[] = [];
-  dottoData:IDottoBoard;
+  dottoData: IDottoBoard;
   infiniteId = +new Date();
   tags: string[] = [];
 

@@ -1,5 +1,6 @@
 <template>
-  <div id="feed-detail-container">
+  <article id="feed-detail-container">
+
     <section id="feed-detail-img-list">
 
     </section>
@@ -67,7 +68,7 @@
 
 
 
-  </div>
+  </article>
 </template>
 
 <script lang="ts">

@@ -1,74 +1,73 @@
 <template>
-  <div id="main-home-container">
-    <section>
-      <main-banner-component />
-    </section>
+  <main id="main-home-container">
 
-    <main id="main-wrapper" >
+    <main-banner />
 
-      <section id="home-dotto-wrapper" >
+    <article id="main-wrapper" >
+
+      <article id="home-dotto-container" >
         <div class="main-component-wrapper">
-          <div class="main-items-wrapper">
+          <section class="main-items-wrapper">
             <h5>닷투 게시판</h5>
             <small>타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small>
-          </div>
-          <div>
+          </section>
+          <section>
             <router-link
                 to="/dotto/board/index"
                 class="show-all-lists"
             >전체보기
               <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
             </router-link>
-          </div>
+          </section>
         </div>
         <dotto-component
             :limit="limit"
         />
-      </section>
+      </article>
 
-      <section id="home-seekers-wrapper" >
+      <article id="home-seekers-wrapper" >
         <div class="main-component-wrapper">
-          <div class="main-items-wrapper">
+          <section class="main-items-wrapper">
             <h5>닷찾사 게시판</h5>
             <small>내가 원하는 도안을 제시하고 타투이스트에게 답변 받아보세요!</small>
-          </div>
-          <div>
+          </section>
+          <section>
             <router-link
                 to=""
                 class="show-all-lists"
             >전체보기
               <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
             </router-link>
-          </div>
+          </section>
         </div>
         닷찾사 게시판 컴포넌트 위치 ( limit: 8개 )
-      </section>
+      </article>
 
-      <section id="home-feed-wrapper" >
+      <article id="home-feed-container" >
         <div class="main-component-wrapper">
-          <div class="main-items-wrapper">
+          <section class="main-items-wrapper">
             <h5>FEED</h5>
             <small>자유롭게 이야기를 나눠요!</small>
-          </div>
-          <div>
+          </section>
+          <section>
             <router-link
                 to=""
                 class="show-all-lists"
             >전체보기
               <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
             </router-link>
-          </div>
+          </section>
         </div>
         FEED 게시판 컴포넌트 위치 ( limit: 8개 )
-      </section>
+      </article>
 
-    </main>
+    </article>
 
     <aside id="side-button-container">
       <top-scroll-button />
     </aside>
 
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -78,14 +77,14 @@ import {
   MenuButton,
   TopScrollButton,
 } from "@/components/common";
-import FollowListComponent from "@/components/main/FollowListComponent.vue";
-import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
+import FollowList from "@/components/main/FollowList.vue";
+import MainBanner from "@/components/main/MainBanner.vue";
 import { DottoComponent } from "@/components/dotto";
 
 @Component({
   components: {
-    MainBannerComponent,
-    FollowListComponent,
+    MainBanner,
+    FollowList,
     TopScrollButton,
     FooterComponent,
     MenuButton,
@@ -159,7 +158,7 @@ small {
   flex-direction: column;
   justify-content: space-evenly;
 }
-#home-dotto-wrapper {
+#home-dotto-container {
   max-width: 1200px;
   width: 100%;
 }

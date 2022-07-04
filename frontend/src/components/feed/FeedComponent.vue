@@ -45,7 +45,7 @@
     <button @click="test">TEST</button>
 
     <transition name="fade">
-      <FullScreenModalComponent
+      <feed-modal
           :showModal="showModal"
           @modalClose="modalClose"
           @backgroundFixed="backgroundFixed"
@@ -57,9 +57,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import FullScreenModalComponent from "@/components/common/utils/modal/FullScreenModalComponent.vue";
+import FeedModal from "@/components/common/utils/modal/FeedModal.vue";
+
 @Component({
-  components: {FullScreenModalComponent}
+  components: {
+    FeedModal
+  }
 })
 export default class FeedComponent extends Vue {
   backgroundFixedCss = 'backgroundFixed';

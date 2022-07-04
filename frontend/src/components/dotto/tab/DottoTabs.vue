@@ -36,13 +36,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import DottoCommentComponent from "@/components/dotto/tab/DottoCommentComponent.vue";
-import DottoReviewComponent from "@/components/dotto/tab/DottoReviewComponent.vue";
+import DottoComment from "@/components/dotto/tab/DottoComment.vue";
+import DottoReview from "@/components/dotto/tab/DottoReview.vue";
 
 @Component({
   components: {
-    DottoCommentComponent,
-    DottoReviewComponent
+    DottoComment,
+    DottoReview
   }
 })
 export default class DottoTabsContainer extends Vue {
@@ -62,9 +62,9 @@ export default class DottoTabsContainer extends Vue {
   private get dynamicComponent() {
     switch (this.dottoTabType) {
       case 'Review':
-        return DottoReviewComponent;
+        return DottoComment;
       case 'Comment':
-        return DottoCommentComponent;
+        return DottoReview;
     }
   }
 

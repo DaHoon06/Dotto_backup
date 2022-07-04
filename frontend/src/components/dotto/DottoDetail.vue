@@ -82,7 +82,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import DottoTabsContainer from "@/components/dotto/tab/DottoTabsContainer.vue";
+import DottoTabsContainer from "@/components/dotto/tab/DottoTabs.vue";
 
 
 //TODO: 테스트 종료 후 class dotto-detail-comment-content height 수정

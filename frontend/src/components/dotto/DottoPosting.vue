@@ -81,7 +81,7 @@
           </div>
         </div>
 
-        <file-upload-component />
+        <file-upload-button />
 
       </div>
     </div>
@@ -90,13 +90,11 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import { IBoard } from "@/interfaces/IBoard";
-import FileUploadComponent from "@/components/common/utils/FileUploadComponent.vue";
+import FileUploadButton from "@/components/common/utils/button/FileUploadButton.vue";
 import { ins } from '@/lib/axios';
-import {AxiosInstance} from "axios";
 @Component({
   components: {
-    FileUploadComponent
+    FileUploadButton
   }
 })
 export default class DottoPostingComponent extends Vue {
