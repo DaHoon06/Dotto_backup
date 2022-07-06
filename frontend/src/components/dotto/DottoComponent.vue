@@ -10,14 +10,14 @@
         <h5>API 연동 해야함</h5>
         <h1>게시글이 존재하지 않습니다.</h1>
       </article>
-      <article class="tattoo-board-list" v-for="(dotto, index) in testData" :key="dotto.id" v-else>
+      <article class="tattoo-board-list" v-for="(dotto, index) in testData" :key="index" v-else>
         <!--TODO: 실제 변수 체크 -->
-        <router-link :to=`/dotto/board/view/${dotto.postNo}`>
-<!--          <div>-->
+        <router-link :to="{ path: '/dotto/board/view', params: {postNo: dotto.postNo} }">
+<!--          <section>-->
 <!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
-<!--          </div>-->
-          <section class="tattoo-board-list-info user-name">tattooist_id</section>
-          <section class="tattoo-board-list-info title">{ dotto.title }}</section>
+<!--          </section>-->
+          <section class="tattoo-board-list-info user-name">{{ dotto.id }}</section>
+          <section class="tattoo-board-list-info title">{{ dotto.title }}</section>
           <section class="tattoo-board-list-info">
             <span class="event-price price">{{ dotto.salesPrice }}</span>
 <!--            <span class="original-price price">{{ dotto.price }}</span>-->
