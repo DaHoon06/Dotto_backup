@@ -24,6 +24,7 @@
 
     <dotto-component
         :limit="limit"
+        :infinite-scroll="true"
     />
 
     <aside id="side-button-container">

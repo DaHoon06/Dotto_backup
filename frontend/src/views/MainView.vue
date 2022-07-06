@@ -22,6 +22,7 @@
         </div>
         <dotto-component
             :limit="limit"
+            :infinite-scroll="false"
         />
       </article>
 
