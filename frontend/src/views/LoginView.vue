@@ -34,7 +34,7 @@
         </section>
 
         <section class="login-btn-wrapper">
-          <button id="google-btn">
+          <button id="google-btn" @click="googleLogin">
             <img src="@/assets/img/login/Google.png" alt="google" />
           </button>
         </section>
@@ -166,6 +166,17 @@ export default class LoginView extends Vue {
         console.log(error);
       }
     });
+  }
+
+  private async googleLogin(): Promise<void> {
+    const googleUser = await this.$gAuth.signIn();
+    console.log(googleUser)
+    const accessToken = googleUser.getAuthResponse().access_token;
+    console.log(accessToken)
+  }
+
+  private getGoogleAPI() {
+    console.log('google')
   }
 
   @Emit('closeModal')
