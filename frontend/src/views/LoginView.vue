@@ -146,7 +146,7 @@ export default class LoginView extends Vue {
           nickname: kakao_account.profile.nickname,
           birthday: kakao_account.birthday,
           gender: kakao_account.gender,
-          ageRange: kakao_account.age_range
+          ageRange: kakao_account.age_range,
         };
         console.log(kakao_info);
         //TODO: 정보 조회 후 존재하면 로그인

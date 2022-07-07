@@ -10,31 +10,34 @@
         <h5>API 연동 해야함</h5>
         <h1>게시글이 존재하지 않습니다.</h1>
       </article>
-      <article class="tattoo-board-list" v-for="(dotto, index) in testData" :key="dotto.id" v-else>
+      <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
         <!--TODO: 실제 변수 체크 -->
-        <router-link :to='{ path: "/dotto/board/view/"+dotto.postNo }'>
-<!--          <div>-->
+        <router-link :to="{ path: '/dotto/board/view', params: {postNo: dotto.postNo} }">
+<!--          <section>-->
 <!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
-<!--          </div>-->
-          <section class="tattoo-board-list-info user-name">tattooist_id</section>
-          <section class="tattoo-board-list-info title">{ dotto.title }}</section>
+<!--          </section>-->
+          <section class="tattoo-board-list-info user-name">{{ dotto.id }}</section>
+          <section class="tattoo-board-list-info title">{{ dotto.title }}</section>
           <section class="tattoo-board-list-info">
             <span class="event-price price">{{ dotto.salesPrice }}</span>
-<!--            <span class="original-price price">{{ dotto.price }}</span>-->
+            <span class="original-price price">{{ dotto.price }}</span>
             <span class="discount-rate price">{{ dotto.salesPct }}</span>
           </section>
           <!--TODO: 태그 추가 받아올때 스트링으로 넘어옴 -->
-          <section @load="makeTags(dotto.tags)" class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">
-            # {{ dottoTags }}
+
+          <section class="tag-area tattoo-board-list-info location">
+            {{dotto.tags}}
           </section>
+<!--          <section @load="makeTags(dotto.tags)" class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">-->
+<!--            # {{ dottoTags }}-->
+<!--          </section>-->
         </router-link>
       </article>
     </section>
     <infinite-loading
         @infinite="getDottoBoardList"
-        :infiniteId="infiniteId"
         spinner="waveDots"
-        ref="InfiniteLoading"
+        v-if="infiniteScroll"
     />
 
   </article>
@@ -54,6 +57,7 @@ import { IBoard } from "@/interfaces/IBoard";
 })
 export default class DottoComponent extends Vue {
   @Prop() limit?: number;
+  @Prop() infiniteScroll?: boolean;
 
   existData = false;
 
@@ -68,8 +72,8 @@ export default class DottoComponent extends Vue {
   showFilterComponent = false;
   filterType = '최신순';
   showSearchFilter = 'showSearchFilter';
-  page = 1;
-  lists: IBoard.dottoList[] = [];
+  page = 0;
+  lists: any[] = [];
   infiniteId = +new Date();
   tags: string[] = [];
 
@@ -77,29 +81,28 @@ export default class DottoComponent extends Vue {
     super();
   }
 
-  created(): void {
+  async created(): Promise<void> {
     this.changeBackground();
-    this.setDottoBoardData();
+    if (!this.infiniteScroll) await this.initDottoBoard();
   }
-
-  private makeTags(tag: string) {
-    this.tags = tag.split(',');
-  }
-
-  private async setDottoBoardData() {
-    const { data: responseData } = await this.axios.get('/dottopost', {
+  private async initDottoBoard() {
+    const { data } = await this.axios.get('/dottopost', {
       params: {
         size: this.limit,
         page: this.page
       }
     });
-    const { result, success } = responseData;
+    const { result, success } = data as any;
     if (success) {
+      this.existData = true;
       const { data } = result;
       const { dottoPostDtoList } = data;
-      console.log(dottoPostDtoList)
-      this.testData = dottoPostDtoList;
+      this.lists.push(...dottoPostDtoList);
     }
+  }
+
+  private makeTags(tag: string) {
+    this.tags = tag.split(',');
   }
 
   private async getDottoBoardList($state: any): Promise<void> {
@@ -111,16 +114,23 @@ export default class DottoComponent extends Vue {
           page: this.page
         }
       });
-      const { lists, result } = data as { lists: IBoard.dottoList, result: boolean };
-      if (result) {
-        setTimeout(async () => {
-          this.page += 1;
-          this.lists.push(lists);
-          //태그 생성
-          this.makeTags(lists.tags)
+      const { result, success } = data as any;
+      if (success) {
+        const { data } = result;
+        const { dottoPostDtoList } = data;
+        const { totalPage } = data;
+        if (totalPage === this.page) {
+          $state.complete();
+        } else {
+          setTimeout(async () => {
+            this.lists.push(...dottoPostDtoList);
+            this.page++;
+            $state.loaded();
+          }, 1000);
+        }
+        //태그 생성
+        // this.makeTags(lists.tags)
 
-          $state.loaded();
-        }, 1000);
         this.existData = true;
       } else {
         $state.complete();
