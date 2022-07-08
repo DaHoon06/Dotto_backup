@@ -1,29 +1,34 @@
 <template>
   <button
     class="register-common-btn"
-    :class="registerProcess ? activeBtn: ''"
-    type="button">
+    :class="registerProcessComputed ? activeBtn: ''"
+    type="button"
+    @click="pageController"
+  >
     {{ buttonLabelComputed }}
   </button>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import EventBus from "@/utils/eventBus";
 
 @Component
 export default class RegisterButton extends Vue {
   @Prop() buttonType?: string;
-  @Prop({ default: false }) next?: boolean;
-  @Prop({ default: false }) nextProcess?: boolean;
 
-  openBtn = this.$store.getters["utilsStore/next"];
   activeBtn = 'register-common-btn-active';
-  test = false;
+  registerProcess = false;
   label = '';
 
   mounted(): void {
     this.buttonName();
-    console.log(this.nextProcess)
+    EventBus.$on('next',this.nextProcess);
+  }
+
+  private nextProcess(next: boolean) {
+    // 가입 버튼만 active
+    if (this.buttonType+'' === '2') this.registerProcessComputed = next;
   }
 
   private buttonName() {
@@ -46,23 +51,33 @@ export default class RegisterButton extends Vue {
     this.label = label;
   }
 
-  private set registerProcess(type: boolean) {
-    this.test = this.$store.getters["utilsStore/next"];
+  private set registerProcessComputed(type: boolean) {
+    this.registerProcess = type;
   }
-  private get registerProcess() {
-    return this.test
+  private get registerProcessComputed() {
+    return this.registerProcess;
   }
 
-  private btnActive() {
-    this.openBtn = !this.next;
+  // 화면 전환
+  private pageController() {
+    switch (this.buttonType+'') {
+      case '1':
+        this.redirectLoginForm();
+        break;
+      case '2':
+        this.redirectRegisterForm();
+        break;
+      case '3':
+        break;
+    }
   }
 
   // 약관 동의 화면
   @Emit('changeComponent')
   private redirectRegisterForm(): string {
-    if (this.next) {
-      alert('필수 선택사항을 체크해 주세요.');
-      return 'PolicyComponent';
+    if (this.registerProcess) {
+      //'PolicyComponent';
+      return 'RegisterComponent';
     } else {
       return 'RegisterComponent';
     }

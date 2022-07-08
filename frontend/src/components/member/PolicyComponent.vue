@@ -46,6 +46,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import termsContent from '@/assets/dummy/terms.ts';
+import EventBus from "@/utils/eventBus";
 
 @Component
 export default class PolicyComponent extends Vue {
@@ -55,9 +56,6 @@ export default class PolicyComponent extends Vue {
 
   showDottoPolicy = false;
   showPrivatePolicy = false;
-
-  next = false;
-  openBtn = true;
 
   terms = {
     dottoPolicyContent: '',
@@ -78,10 +76,8 @@ export default class PolicyComponent extends Vue {
 
   private handleClickAllCheckBox() {
     if (this.allCheckItems) {
-      console.log('??????')
       this.checkList1 = true;
       this.checkList2 = true;
-      this.$store.commit('utilsStore/next', true);
     } else {
       this.checkList1 = false;
       this.checkList2 = false;
@@ -90,8 +86,7 @@ export default class PolicyComponent extends Vue {
 
   private btnActive() {
     // 전체 동의일 경우 다음 버튼 활성화
-    this.$store.commit('utilsStore/next', true);
-    this.openBtn = !(this.checkList1 && this.checkList2);
+    EventBus.$emit('next', (this.checkList1 && this.checkList2));
   }
 
   private handleClickEachCheckBox() {
@@ -105,6 +100,8 @@ export default class PolicyComponent extends Vue {
   private showPrivatePolicyContent(): void {
     this.showPrivatePolicy = !this.showPrivatePolicy;
   }
+
+
 
 }
 </script>

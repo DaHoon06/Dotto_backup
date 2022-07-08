@@ -18,10 +18,12 @@
 
     <section id="register-btn-container" >
       <register-button
-        :buttonType="1"/>
+        :buttonType="1"
+        @redirectLoginForm="redirectLoginView"
+      />
       <register-button
         :buttonType="2"
-        :next="true"
+        @changeComponent="changeComponent"
       />
     </section>
 
@@ -52,7 +54,6 @@ import RegisterButton from "@/components/member/RegisterButton.vue";
 export default class RegisterView extends Vue {
   type = 'PolicyComponent';
   progress = 1;
-  nextProcess = this.$store.getters["utilsStore/next"];
 
   private changeComponent(componentType: string): void {
     this.type = componentType;

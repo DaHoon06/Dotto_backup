@@ -1,107 +1,106 @@
 <template>
-  <section id="member-register-wrapper" >
+  <article id="register-form-container" >
     <form id="member-register-form" @submit.prevent="register">
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <label>아이디</label>
         <input
-            @keydown.enter.prevent
-            @blur="validationId"
-            @change="btnActive"
-            type="text"
-            v-model="id"
-            class="input-text"
-            ref="refId"
+          @keydown.enter.prevent
+          @blur="validationId"
+          @change="btnActive"
+          type="text"
+          v-model="id"
+          class="input-text"
+          ref="refId"
+          tabindex="10"
         />
         <button class="register-btn" @click="idCheck" type="button">중복확인</button>
-      </div>
+      </section>
 
-      <div class="warning-msg">{{ IdMessage }}</div>
+      <p class="warning-msg">{{ IdMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <label>비밀번호</label>
         <input
-            @keydown.enter.prevent
-            type="password" autocomplete="off"
-            @change="[validationPassword(), btnActive()]"
-            v-model="password"
-            class="input-text"
-            ref="refPassword"
+          @keydown.enter.prevent
+          type="password" autocomplete="off"
+          @change="[validationPassword(), btnActive()]"
+          v-model="password"
+          class="input-text"
+          ref="refPassword"
+          tabindex="10"
         />
-      </div>
-      <div class="warning-msg">{{ PasswordMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ PasswordMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <label>비밀번호 확인</label>
         <input
-            @keydown.enter.prevent
-            type="password" autocomplete="off"
-            @change="[validationPassword(), btnActive()]"
-            v-model="passwordCheck"
-            class="input-text" />
-      </div>
-      <div class="warning-msg">{{ PasswordCheckMessage }}</div>
+          @keydown.enter.prevent
+          type="password" autocomplete="off"
+          @change="[validationPassword(), btnActive()]"
+          v-model="passwordCheck"
+          class="input-text"
+          tabindex="10"
+        />
+      </section>
+      <p class="warning-msg">{{ PasswordCheckMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <label>닉네임</label>
         <input
-            @keydown.enter.prevent
-            type="text"
-            @focus="msgClear"
-            @change="btnActive"
-            v-model="nickname"
-            class="input-text"
-            ref="refNickName"
+          @keydown.enter.prevent
+          type="text"
+          @focus="msgClear"
+          @change="btnActive"
+          v-model="nickname"
+          class="input-text"
+          ref="refNickName"
+          tabindex="10"
         />
         <button
-            @click="validationNickName"
-            class="register-btn"
-            type="button">중복확인</button>
-      </div>
-      <div class="warning-msg">{{ NickNameMessage }}</div>
+          @click="validationNickName"
+          class="register-btn"
+          type="button">중복확인</button>
+      </section>
+      <p class="warning-msg">{{ NickNameMessage }}</p>
 
-      <div class="input-wrapper" >
+      <section class="input-wrapper" >
         <input
-            @keydown.enter.prevent
-            @keydown="validationPhoneNumber"
-            @change="btnActive"
-            type="number"
-            maxlength="11"
-            class="input-text"
-            v-model="phone"
-            placeholder="휴대폰번호 입력"
-            ref="refPhone"
+          @keydown.enter.prevent
+          @keydown="validationPhoneNumber"
+          @change="btnActive"
+          type="number"
+          maxlength="11"
+          class="input-text"
+          v-model="phone"
+          placeholder="휴대폰번호 입력"
+          ref="refPhone"
+          tabindex="10"
         />
         <button class="register-btn">인증번호받기</button>
-      </div>
-      <div class="warning-msg">{{ PhoneMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ PhoneMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <input
-            @keydown.enter.prevent
-            type="text"
-            class="input-text"
-            placeholder="인증번호 입력" />
+          @keydown.enter.prevent
+          type="text"
+          class="input-text"
+          placeholder="인증번호 입력"
+          tabindex="10"
+        />
         <button class="register-btn">인증하기</button>
-      </div>
+      </section>
 
-      <div id="gender-wrapper">
+      <section id="gender-wrapper">
         <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="male" v-model="gender" value="male" name="male" />
         <label for="male">남성</label>
         <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="female" v-model="gender" value="female" name="female" />
         <label for="female">여성</label>
-      </div>
-
-      <div class="register-submit">
-        <button class="register-common-btn" type="button" @click="prev">이전</button>
-        <button
-            class="register-common-btn"
-            type="submit"
-            :disabled="openBtn"
-            :class="openBtn ? '' : activeBtn"
-        >다음</button>
-      </div>
+      </section>
     </form>
-  </section>
+
+  </article>
 </template>
 
 <script lang="ts">
@@ -133,7 +132,6 @@ export default class MemberRegisterComponent extends Vue {
   phoneMessage = '';
   gender = '';
   openBtn = true;
-  activeBtn = 'register-common-btn-active';
 
   constructor() {
     super();
@@ -315,8 +313,8 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-#member-register-wrapper {
-  height: 90%;
+#register-form-container {
+
 }
 
 #member-register-form {
