@@ -57,7 +57,8 @@ export default class ProgressComponent extends Vue {
 #progress-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 91px;
+  /*margin-bottom: 91px;*/
+  margin-bottom: 65px;
 }
 
 .progress-items-wrapper {

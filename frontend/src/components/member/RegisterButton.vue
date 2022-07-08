@@ -40,6 +40,7 @@ export default class RegisterButton extends Vue {
         this.buttonLabelComputed = '가입';
         break;
       case '3':
+        this.buttonLabelComputed = '다음';
         break;
     }
   }
