@@ -207,7 +207,7 @@ hr {
 #login-container {
   display: flex;
   max-width: 400px;
-  margin: 45px auto 45px auto;
+  margin: 45px auto 0 auto;
   flex-direction: column;
   align-items: center;
 }
