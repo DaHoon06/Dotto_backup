@@ -64,7 +64,12 @@ public class InitDB {
 
                 )
         );
-
+        //dummy member
+        IntStream.range(0, 100)
+                .forEach( i -> memberRepository.save(
+                        new Member("member10"+i, passwordEncoder.encode("1234"),"nickname10"+i,
+                "gender","01012345678", List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new)),kakaoLoginType))
+        );
     };
 
     private void initDottoPost(){
@@ -73,7 +78,7 @@ public class InitDB {
 
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
-                                "title1","content1",10000,9000,'Y',"블랙엔그레이",30,tags,"", List.of()),
+                                "title1","content1",10000,9000,'Y',"블랙엔그레이",30,tags,"10%", List.of()),
                         new DottoPost(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new),
                                 "title2","content2",20000, 18000, 'N',"올드스쿨",180,tags,"",List.of()),
                         new DottoPost(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new),
@@ -82,10 +87,10 @@ public class InitDB {
                         )
                 );
 
-        Member member = memberRepository.findAll().get(0);
-
-        //dummy
+        //dummy post
         IntStream.range(0, 100)
-                .forEach(i-> dottoPostRepository.save(new DottoPost(member,"title10"+i,"content10"+i, 10000,9000,'N',"더미"+i, i, tags,"", List.of())));
+                .forEach(i-> dottoPostRepository.save(
+                        new DottoPost(memberRepository.findById("member10"+i).orElseThrow(MemberNotFoundException::new),
+                                "title10"+i,"content10"+i, 10000,9000,'Y',"레터링", i, tags,"10%", List.of())));
     };
 }
