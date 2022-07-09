@@ -126,22 +126,22 @@ class MemberRepositoryTest {
     @Test
     void uniqueMemberIdTest(){
         //given
-        Member member = memberRepository.save(createMember("member1@email.com","qwe123!","nickname","gender","01012345678", null));
+        Member member = memberRepository.save(createMember("member1@email.com","qwe123!","nickname","gender","01012345678"));
         clear();
 
         //when
-        assertThatThrownBy(() -> memberRepository.save(createMember(member.getId(),"qwe123!2","nickname2","gender2","01112345678", null)))
+        assertThatThrownBy(() -> memberRepository.save(createMember(member.getId(),"qwe123!2","nickname2","gender2","01112345678")))
                 .isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @Test
     void uniqueNicknameTest(){
         //given
-        Member member = memberRepository.save(createMember("member1","qwe123!","nickname","gender","01012345678",null));
+        Member member = memberRepository.save(createMember("member1","qwe123!","nickname","gender","01012345678"));
         clear();
 
         //when
-        assertThatThrownBy(() -> memberRepository.save(createMember("member1","qwe123!", member.getNickname(),"gender","01012345678", null)))
+        assertThatThrownBy(() -> memberRepository.save(createMember("member1","qwe123!", member.getNickname(),"gender","01012345678")))
                 .isInstanceOf(DataIntegrityViolationException.class);
     }
 
