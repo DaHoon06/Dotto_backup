@@ -42,5 +42,9 @@ public class SignUpRequest {
     @NotBlank
     private String phone;
 
+    @ApiModelProperty(value = "로그인 타입", notes = "로그인 타입을 입력해주세요", required = true, example = "kakao")
+    @NotBlank
+    private String loginType;
+
 
 }

@@ -49,15 +49,17 @@ public class InitDB {
     }
 
     private void initMember(){
+        String googleLoginType = "google";
+        String kakaoLoginType = "kakao";
         memberRepository.saveAll(
                 List.of(new Member("member1", passwordEncoder.encode("1234"), "nickname", "male", "01012345678"
-                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new))
+                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new)),googleLoginType
                         ),
                         new Member("member2", passwordEncoder.encode("1234"), "nickname2", "female", "01012345678"
-                                , List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new))
+                                , List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new)),kakaoLoginType
                         ),
                         new Member("member3", passwordEncoder.encode("1234"), "nickname3", "none", "01012345678"
-                                ,List.of(roleRepository.findByRoleType(RoleType.ROLE_ADMIN).orElseThrow(RoleNotFoundException::new))
+                                ,List.of(roleRepository.findByRoleType(RoleType.ROLE_ADMIN).orElseThrow(RoleNotFoundException::new)),kakaoLoginType
                         )
 
                 )
@@ -67,7 +69,7 @@ public class InitDB {
 
     private void initDottoPost(){
 
-        String tags = "[#멋져, #훈남, #최고]";
+        String tags = "멋져, 훈남, 최고";
 
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
