@@ -47,8 +47,10 @@ public class DottoPostService {
         String salesPct = req.getSalesYn()== 'Y'? salesPctCalc(req): "";
 
         List<Image> images = req.getPostPhoto().stream().map(i -> new Image(i.getOriginalFilename())).collect(Collectors.toList());
+
+        String tags = req.getTags().toString().replace("[","").replace("]","");
         DottoPost dottoPost = dottoPostRepository.save(
-                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),req.getTags(),salesPct, images)
+                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),tags,salesPct, images)
         );
         uploadImages(dottoPost.getImages(), req.getPostPhoto());
 
