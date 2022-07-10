@@ -36,4 +36,21 @@ public class MemberController {
         return Response.success();
     }
 
+    @ApiOperation(value = "닉네임 중복 여부", notes = "닉네임 중복 여부를 조회한다")
+    @GetMapping("/api/members/existsbynickname/{nickname}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response existsByNickname(
+            @ApiParam(value = "중복 조회할 닉네임", required = true)
+            @PathVariable String nickname){
+        return Response.success(memberService.existsByNickname(nickname));
+    }
+
+    @ApiOperation(value = "아이디 중복 여부", notes = "아이디 중복 여부를 조회한다")
+    @GetMapping("/api/members/existsbyid/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response existsById(
+            @ApiParam(value = "중복 조회할 아이디", required = true)
+            @PathVariable String id){
+        return Response.success(memberService.existsById(id));
+    }
 }
