@@ -1,19 +1,19 @@
 <template>
   <article
-      id="modal"
-      v-if="this.isModal"
-      ref="modalContainer"
-      @click="closeModalOuter"
+    id="modal"
+    v-if="this.isModal"
+    ref="modalContainer"
+    @click="closeModalOuter"
   >
     <section
-        class="modal-body"
-        :class="modalTypeComputed === 'Login' ? '' : 'modal-body-register'">
+      class="modal-body"
+      :class="modalTypeComputed === 'Login' ? '' : 'modal-body-register'">
       <component
-          :is="dynamicView"
-          @closeModal="closeModal"
-          @redirectLoginView="redirectLoginView"
-          @redirectHome="redirectHome"
-          @modalTypeRegister="changeModalType" />
+        :is="dynamicView"
+        @closeModal="closeModal"
+        @redirectLoginView="redirectLoginView"
+        @redirectHome="redirectHome"
+        @modalTypeRegister="changeModalType" />
     </section>
   </article>
 </template>
@@ -128,10 +128,10 @@ export default class ModalComponent extends Vue {
 }
 
 .modal-body-register {
-  width: 520px;
-  height: 710px;
+  width: 680px;
+  height: 800px;
   top: 50%;
-  padding: 15px;
+  padding: 24px 40px 39px 40px;
 }
 
 @media (max-width: 1439px) {

@@ -1,107 +1,118 @@
 <template>
-  <section id="member-register-wrapper" >
+  <article id="register-form-container" >
     <form id="member-register-form" @submit.prevent="register">
-      <div class="input-wrapper">
-        <label>아이디</label>
+      <section class="input-wrapper">
+        <label class="label">아이디</label>
         <input
-            @keydown.enter.prevent
-            @blur="validationId"
-            @change="btnActive"
-            type="text"
-            v-model="id"
-            class="input-text"
-            ref="refId"
+          @keydown.enter.prevent
+          @blur="validationId"
+          @change="btnActive"
+          type="text"
+          v-model="id"
+          class="input-text"
+          ref="refId"
+          tabindex="10"
+          placeholder="6자이상의 영문 혹은 명문과 숫자 조합"
         />
         <button class="register-btn" @click="idCheck" type="button">중복확인</button>
-      </div>
+      </section>
 
-      <div class="warning-msg">{{ IdMessage }}</div>
+      <p class="warning-msg">{{ IdMessage }}</p>
 
-      <div class="input-wrapper">
-        <label>비밀번호</label>
+      <section class="input-wrapper">
+        <label class="label">비밀번호</label>
         <input
-            @keydown.enter.prevent
-            type="password" autocomplete="off"
-            @change="[validationPassword(), btnActive()]"
-            v-model="password"
-            class="input-text"
-            ref="refPassword"
+          @keydown.enter.prevent
+          type="password" autocomplete="off"
+          @change="[validationPassword(), btnActive()]"
+          v-model="password"
+          class="input-text"
+          ref="refPassword"
+          tabindex="10"
+          placeholder="비밀번호를 입력해 주세요."
         />
-      </div>
-      <div class="warning-msg">{{ PasswordMessage }}</div>
+        <div class="label-division"></div>
+      </section>
+      <p class="warning-msg">{{ PasswordMessage }}</p>
 
-      <div class="input-wrapper">
-        <label>비밀번호 확인</label>
+      <section class="input-wrapper">
+        <label class="label">비밀번호 확인</label>
         <input
-            @keydown.enter.prevent
-            type="password" autocomplete="off"
-            @change="[validationPassword(), btnActive()]"
-            v-model="passwordCheck"
-            class="input-text" />
-      </div>
-      <div class="warning-msg">{{ PasswordCheckMessage }}</div>
+          @keydown.enter.prevent
+          type="password" autocomplete="off"
+          @change="[validationPassword(), btnActive()]"
+          v-model="passwordCheck"
+          class="input-text"
+          tabindex="10"
+          placeholder="비밀번호를 한번 더 입력해 주세요."
+        />
+        <div class="label-division"></div>
+      </section>
+      <p class="warning-msg">{{ PasswordCheckMessage }}</p>
 
-      <div class="input-wrapper">
-        <label>닉네임</label>
+      <section class="input-wrapper">
+        <label class="label">닉네임</label>
         <input
-            @keydown.enter.prevent
-            type="text"
-            @focus="msgClear"
-            @change="btnActive"
-            v-model="nickname"
-            class="input-text"
-            ref="refNickName"
+          @keydown.enter.prevent
+          type="text"
+          @focus="msgClear"
+          @change="btnActive"
+          v-model="nickname"
+          class="input-text"
+          ref="refNickName"
+          tabindex="10"
+          placeholder="닉네임을 입력해 주세요."
         />
         <button
-            @click="validationNickName"
-            class="register-btn"
-            type="button">중복확인</button>
-      </div>
-      <div class="warning-msg">{{ NickNameMessage }}</div>
+          @click="validationNickName"
+          class="register-btn"
+          type="button">중복확인</button>
+      </section>
+      <p class="warning-msg">{{ NickNameMessage }}</p>
 
-      <div class="input-wrapper" >
+      <section class="input-wrapper" >
+        <div class="label-division"></div>
         <input
-            @keydown.enter.prevent
-            @keydown="validationPhoneNumber"
-            @change="btnActive"
-            type="number"
-            maxlength="11"
-            class="input-text"
-            v-model="phone"
-            placeholder="휴대폰번호 입력"
-            ref="refPhone"
+          @keydown.enter.prevent
+          @keydown="validationPhoneNumber"
+          @change="btnActive"
+          type="number"
+          maxlength="11"
+          class="input-text"
+          v-model="phone"
+          placeholder="숫자만 입력해 주세요."
+          ref="refPhone"
+          tabindex="10"
         />
         <button class="register-btn">인증번호받기</button>
-      </div>
-      <div class="warning-msg">{{ PhoneMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ PhoneMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
+        <div class="label-division"></div>
         <input
-            @keydown.enter.prevent
-            type="text"
-            class="input-text"
-            placeholder="인증번호 입력" />
+          @keydown.enter.prevent
+          type="text"
+          class="input-text"
+          placeholder="인증번호 입력"
+          tabindex="10"
+        />
         <button class="register-btn">인증하기</button>
-      </div>
+      </section>
 
-      <div id="gender-wrapper">
-        <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="male" v-model="gender" value="male" name="male" />
-        <label for="male">남성</label>
-        <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="female" v-model="gender" value="female" name="female" />
-        <label for="female">여성</label>
-      </div>
-
-      <div class="register-submit">
-        <button class="register-common-btn" type="button" @click="prev">이전</button>
-        <button
-            class="register-common-btn"
-            type="submit"
-            :disabled="openBtn"
-            :class="openBtn ? '' : activeBtn"
-        >다음</button>
-      </div>
+      <section id="gender-wrapper">
+        <label class="label">성별</label>
+        <div id="gender-radio-group">
+          <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="male" v-model="gender" value="male" name="male" />
+          <label for="male">남성</label>
+          <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="female" v-model="gender" value="female" name="female" />
+          <label for="female">여성</label>
+        </div>
+        <div class="label-division"></div>
+      </section>
     </form>
-  </section>
+
+  </article>
 </template>
 
 <script lang="ts">
@@ -133,7 +144,6 @@ export default class MemberRegisterComponent extends Vue {
   phoneMessage = '';
   gender = '';
   openBtn = true;
-  activeBtn = 'register-common-btn-active';
 
   constructor() {
     super();
@@ -315,19 +325,25 @@ export default class MemberRegisterComponent extends Vue {
 </script>
 
 <style scoped>
-#member-register-wrapper {
-  height: 90%;
+#register-form-container {
+  display: flex;
+  justify-content: flex-start;
 }
 
 #member-register-form {
-  height: 95%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin: 0 2em;
 }
 
+/* Wrapper */
+#gender-wrapper {
+  display: flex;
+}
+#gender-radio-group {
+  height: 52px;
+  width: 344px;
+}
 .register-submit {
   margin-top: 20px;
   width: 100%;
@@ -354,5 +370,51 @@ select::-ms-expand {
   background: black;
   color: #fff;
   padding: 3px 0;
+}
+
+.label {
+  font-size: 14px;
+  height: 52px;
+  width: 120px;
+}
+.label-division {
+  height: 52px;
+  width: 120px;
+}
+/* 회원가입 버튼 */
+.register-btn {
+  border: 1px solid #222222;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px #b2b2b2;
+  color: #222222;
+  font-weight: bold;
+  background: #FFFFFF;
+  font-size: 14px;
+  height: 52px;
+  width: 120px;
+  padding: 6px 6px 6px 6px;
+}
+
+/* 회원가입 input */
+.input-text {
+  border: 1px solid #E2E2E2;
+  border-radius: 4px;
+  color: #BDBDBD;
+  outline: none;
+  background: #FFFFFF;
+  height: 52px;
+  width: 344px;
+  padding-left: 10px;
+}
+
+/* 경고 메세지 */
+.warning-msg {
+  padding: 5px 0;
+  display: block;
+  font-size: 11px;
+  color: red;
+  min-height: 23px;
+  max-height: 23px;
+  text-align: left;
 }
 </style>

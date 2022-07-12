@@ -14,6 +14,7 @@ import { Mixin } from "@/mixins/mixin";
 import InfiniteLoading from 'vue-infinite-loading';
 import PerfectScrollbar from 'vue2-perfect-scrollbar';
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css';
+import GAuth from 'vue-google-oauth2';
 
 // import { io } from 'socket.io-client';
 
@@ -24,6 +25,11 @@ import '@/assets/styles/index.css';
 
 Vue.config.productionTip = false
 
+Vue.use(GAuth, {
+  clientId: process.env.VUE_APP_GOOGLE_KEY,
+  scope: process.env.VUE_APP_GOOGLE_SCOPE,
+  prompt: 'select_account'
+})
 Vue.use(PerfectScrollbar);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);

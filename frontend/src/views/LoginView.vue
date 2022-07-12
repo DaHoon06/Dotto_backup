@@ -34,7 +34,7 @@
         </section>
 
         <section class="login-btn-wrapper">
-          <button id="google-btn">
+          <button id="google-btn" @click="googleLogin">
             <img src="@/assets/img/login/Google.png" alt="google" />
           </button>
         </section>
@@ -168,6 +168,17 @@ export default class LoginView extends Vue {
     });
   }
 
+  private async googleLogin(): Promise<void> {
+    const googleUser = await this.$gAuth.signIn();
+    console.log(googleUser)
+    const accessToken = googleUser.getAuthResponse().access_token;
+    console.log(accessToken)
+  }
+
+  private getGoogleAPI() {
+    console.log('google')
+  }
+
   @Emit('closeModal')
   private closeModal(): boolean {
     return false;
@@ -196,7 +207,7 @@ hr {
 #login-container {
   display: flex;
   max-width: 400px;
-  margin: 45px auto 45px auto;
+  margin: 45px auto 0 auto;
   flex-direction: column;
   align-items: center;
 }

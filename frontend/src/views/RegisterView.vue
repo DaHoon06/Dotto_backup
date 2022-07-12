@@ -1,22 +1,33 @@
 <template>
-  <main id="register-container">
-    <section id="tab-wrapper">
+  <article id="register-container">
+    <section id="register-title-wrapper">
       <span>회원 가입</span>
     </section>
 
     <progress-component
-        :progress="progress"
+      :progress="progress"
     />
     <component
-        :is="dynamicComponent"
-        @changeComponent="changeComponent"
-        @redirectLoginView="redirectLoginView"
-        @prev="prev"
-        @closeModal="closeForm"
-        @redirectHome="redirectHome"
+      :is="dynamicComponent"
+      @changeComponent="changeComponent"
+      @redirectLoginView="redirectLoginView"
+      @prev="prev"
+      @closeModal="closeForm"
+      @redirectHome="redirectHome"
     />
 
-  </main>
+    <section id="register-btn-container" >
+      <register-button
+        :buttonType="1"
+        @redirectLoginForm="redirectLoginView"
+      />
+      <register-button
+        :buttonType="2"
+        @changeComponent="changeComponent"
+      />
+    </section>
+
+  </article>
 </template>
 
 <script lang="ts">
@@ -29,13 +40,15 @@ import {
   MenuButton
 } from "@/components/common";
 import ProgressComponent from "@/components/member/ProgressComponent.vue";
+import RegisterButton from "@/components/member/RegisterButton.vue";
 
 @Component({
   components: {
     RegisterComponent,
     FooterComponent,
     MenuButton,
-    ProgressComponent
+    ProgressComponent,
+    RegisterButton
   }
 })
 export default class RegisterView extends Vue {
@@ -88,10 +101,10 @@ export default class RegisterView extends Vue {
   height: 100%;
 
 }
-#tab-wrapper {
+#register-title-wrapper {
   display: flex;
-  margin-bottom: 3em;
-  padding-bottom: 10px;
+  margin-bottom: 41px;
+
   justify-content: flex-start;
 }
 #tab-wrapper span {
@@ -110,6 +123,12 @@ export default class RegisterView extends Vue {
 .currentPage {
   font-weight: 700;
   color: #606060 !important;
+}
+
+#register-btn-container {
+  position: absolute;
+  top: 90%;
+  right: 28%;
 }
 
 </style>

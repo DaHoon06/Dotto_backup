@@ -17,7 +17,6 @@ body::-webkit-scrollbar {
     display:none;
 }
 
-
 ul {
     list-style: none;
     margin: 0;
@@ -39,6 +38,16 @@ a {
 
 a:hover {
     color: #222222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+p {
+    margin: 0;
 }
 
 /* input number 화살표 제거 */
