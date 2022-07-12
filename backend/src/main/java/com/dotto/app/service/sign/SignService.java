@@ -44,7 +44,9 @@ public class SignService {
                         req.getNickname(),
                         req.getGender(),
                         req.getPhone(),
-                        roles
+                        roles,
+                        req.getLoginType()
+
                 )
         );
     }

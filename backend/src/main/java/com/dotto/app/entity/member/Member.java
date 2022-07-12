@@ -43,14 +43,17 @@ public class Member extends EntityDate {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<MemberRole> roles;
 
+    @Column(nullable = false)
+    private String loginType;
 
-    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles){
+    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
         this.id = id;
         this.password = password;
         this.nickname = nickname;
         this.gender = gender;
         this.phone = phone;
         this.roles = roles.stream().map(r -> new MemberRole(this,r )).collect(Collectors.toSet());
+        this.loginType = loginType;
     }
 
     public void updateNickName(String nickname){

@@ -24,4 +24,12 @@ public class MemberService {
         Member member = memberRepository.findById(memberNo).orElseThrow(MemberNotFoundException::new);
         memberRepository.delete(member);
     }
+
+    public boolean existsByNickname(String nickname){
+        return memberRepository.existsByNickname(nickname);
+    }
+
+    public boolean existsById(String id){
+        return memberRepository.existsById(id);
+    }
 }
