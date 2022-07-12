@@ -91,6 +91,6 @@ public class InitDB {
         IntStream.range(0, 100)
                 .forEach(i-> dottoPostRepository.save(
                         new DottoPost(memberRepository.findById("member10"+i).orElseThrow(MemberNotFoundException::new),
-                                "title10"+i,"content10"+i, 10000,9000,'Y',"레터링", i, tags,"10%", List.of())));
+                                "title10"+i,"content10"+i, 10000,9000,'Y',"레터링", i, "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of())));
     };
 }
