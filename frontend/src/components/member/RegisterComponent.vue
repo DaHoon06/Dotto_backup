@@ -165,13 +165,11 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   async idCheck(): Promise<void> {
-    const { data } = await this.axios.get('/members/readId', {
-      params: {
-        id: this.id,
-      }
-    })
-    const { result } = data;
-    if (result) {
+    const { data } = await this.axios.get(`/members/existsbyid/${this.id}`);
+    const { success, result } = data;
+    const { data: idCheck } = result;
+    // true: 이미 존재
+    if (!idCheck) {
       this.IdMessage =  EMessageRegister.AVAILABLE_ID;
     } else {
       this.IdMessage = EMessageRegister.EXIST_ID;
@@ -180,18 +178,18 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   async nickNameCheck(): Promise<void> {
-    const { data } = await this.axios.get('/members/readNickName',{
-      params: {
-        nickname: this.nickname,
-      }
-    });
-    const { result } = data;
-    if (result) {
-      this.NickNameMessage = EMessageRegister.BLANK;
+    const { data }  = await this.axios.get(`/members/existsbynickname/${this.nickname}`);
+    console.log(data);
+    const { success, result } = data;
+    const { data: nickNameCheck } = result;
+    // true: 이미 존재
+    if (!nickNameCheck) {
+      this.NickNameMessage = EMessageRegister.AVAILABLE_NICKNAME;
     } else {
       this.NickNameMessage = EMessageRegister.EXIST_NICKNAME;
     }
   }
+
   validationNickName(): void {
     const reg = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
     if (reg.test(this.nickname)) {
