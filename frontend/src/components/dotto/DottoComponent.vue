@@ -25,12 +25,13 @@
           </section>
           <!--TODO: 태그 추가 받아올때 스트링으로 넘어옴 -->
 
-          <section class="tag-area tattoo-board-list-info location">
-            {{dotto.tags}}
+          <section
+              @load="makeTags(dotto.tags)"
+              class="tag-area tattoo-board-list-info location"
+              v-for="(dottoTags, index) in tags"
+              :key="index">
+            # {{ dottoTags }}
           </section>
-<!--          <section @load="makeTags(dotto.tags)" class="tag-area tattoo-board-list-info location" v-for="(dottoTags, index) in tags" :key="index">-->
-<!--            # {{ dottoTags }}-->
-<!--          </section>-->
         </router-link>
       </article>
     </section>
@@ -85,6 +86,7 @@ export default class DottoComponent extends Vue {
     this.changeBackground();
     if (!this.infiniteScroll) await this.initDottoBoard();
   }
+
   private async initDottoBoard() {
     const { data } = await this.axios.get('/dottopost', {
       params: {
@@ -97,12 +99,15 @@ export default class DottoComponent extends Vue {
       this.existData = true;
       const { data } = result;
       const { dottoPostDtoList } = data;
+      this.makeTags(dottoPostDtoList);
       this.lists.push(...dottoPostDtoList);
     }
   }
 
-  private makeTags(tag: string) {
-    this.tags = tag.split(',');
+  private makeTags(dottoPostDtoList: any) {
+    dottoPostDtoList.forEach((list: any) => {
+      this.tags = list.tags.split(',');
+    });
   }
 
   private async getDottoBoardList($state: any): Promise<void> {
