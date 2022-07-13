@@ -134,7 +134,9 @@ export default class MemberRegisterComponent extends Vue {
   passwordCheck = '';
   nickname = '';
   phone = '';
-  //TODO: 인증 후 true로
+  idVerification = false;
+  nicknameVerification = false;
+
   authentication = true;
   // ERROR MSG
   nickNameMessage = '';
@@ -171,22 +173,24 @@ export default class MemberRegisterComponent extends Vue {
     // true: 이미 존재
     if (!idCheck) {
       this.IdMessage =  EMessageRegister.AVAILABLE_ID;
+      this.idVerification = true;
     } else {
       this.IdMessage = EMessageRegister.EXIST_ID;
+      this.idVerification = false;
     }
-    console.log(result);
   }
 
   async nickNameCheck(): Promise<void> {
     const { data }  = await this.axios.get(`/members/existsbynickname/${this.nickname}`);
-    console.log(data);
     const { success, result } = data;
     const { data: nickNameCheck } = result;
     // true: 이미 존재
     if (!nickNameCheck) {
       this.NickNameMessage = EMessageRegister.AVAILABLE_NICKNAME;
+      this.nicknameVerification = true;
     } else {
       this.NickNameMessage = EMessageRegister.EXIST_NICKNAME;
+      this.nicknameVerification = false;
     }
   }
 
@@ -242,7 +246,7 @@ export default class MemberRegisterComponent extends Vue {
   async register(): Promise<void> {
     const result = this.blankCheck();
     //TODO: 휴대폰 인증에 관한 처리
-    if (result && this.authentication) {
+    if ((result && this.authentication) && (this.idVerification && this.nicknameVerification)) {
       const sendData: IUser.IRegisterProp = {
         nickname: this.nickname,
         password: this.password,
