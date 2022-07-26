@@ -23,14 +23,9 @@
             <span class="original-price price">{{ dotto.price }}</span>
             <span class="discount-rate price">{{ dotto.salesPct }}</span>
           </section>
-          <!--TODO: 태그 추가 받아올때 스트링으로 넘어옴 -->
-
-          <section
-              @load="makeTags(dotto.tags)"
-              class="tag-area tattoo-board-list-info location"
-              v-for="(dottoTags, index) in tags"
-              :key="index">
-            # {{ dottoTags }}
+          <section class="tag-area tattoo-board-list-info location">
+            <b v-bind="tagMaker(dotto.tags)" class="tag" v-for="(tagsTest,index) of tags" :key="index"># {{ tagsTest }}</b>
+  <!--            {{ tagMaker(dotto.tags)}}-->
           </section>
         </router-link>
       </article>
@@ -82,6 +77,11 @@ export default class DottoComponent extends Vue {
     super();
   }
 
+  tagMaker(tags: string) {
+    this.tags = tags.split(',');
+    console.log(tags)
+    return this.tags
+  }
   async created(): Promise<void> {
     this.changeBackground();
     if (!this.infiniteScroll) await this.initDottoBoard();
@@ -98,16 +98,19 @@ export default class DottoComponent extends Vue {
     if (success) {
       this.existData = true;
       const { data } = result;
+      console.log(data);
       const { dottoPostDtoList } = data;
-      this.makeTags(dottoPostDtoList);
-      this.lists.push(...dottoPostDtoList);
+      const tagMaker = this.makeTags(dottoPostDtoList);
+
     }
   }
 
   private makeTags(dottoPostDtoList: any) {
+    let tagMaker = {};
     dottoPostDtoList.forEach((list: any) => {
-      this.tags = list.tags.split(',');
+      tagMaker = list.tags.split(',');
     });
+    return { ...tagMaker }
   }
 
   private async getDottoBoardList($state: any): Promise<void> {

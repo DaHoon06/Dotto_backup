@@ -80,27 +80,28 @@ input[type=number] {
 }
 
 /* 태그 */
-.tag-area {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+.tag {
     padding: 5px 8px;
     background: #F5F5F5;
-    /* 서울 홍대 */
-    position: static;
     width: 40px;
     height: 23px;
-    left: 8px;
-    top: 4px;
-    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
-    line-height: 14px;
     color: #696969;
     /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 0 0;
+}
+.tag-area {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: static;
+    left: 8px;
+    top: 4px;
+    line-height: 14px;
+
 }
