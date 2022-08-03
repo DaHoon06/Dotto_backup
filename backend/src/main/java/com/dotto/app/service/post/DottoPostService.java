@@ -1,13 +1,11 @@
 package com.dotto.app.service.post;
 
-import com.dotto.app.dto.post.DottoPostCreateRequest;
-import com.dotto.app.dto.post.DottoPostCreateResponse;
-import com.dotto.app.dto.post.DottoPostListDto;
-import com.dotto.app.dto.post.PostReadCondition;
+import com.dotto.app.dto.post.*;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.entity.post.DottoPost;
 import com.dotto.app.entity.post.Image;
+import com.dotto.app.exception.DottoPostNotFoundException;
 import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.exception.MemberRoleAuthorizationException;
 import com.dotto.app.repository.member.MemberRepository;
@@ -61,6 +59,10 @@ public class DottoPostService {
         return DottoPostListDto.toDto(
                 dottoPostRepository.findAllCondition(cond)
         );
+    }
+
+    public DottoPostDetailDto read(Long id){
+        return DottoPostDetailDto.toDto(dottoPostRepository.findById(id).orElseThrow(DottoPostNotFoundException::new));
     }
 
     private String salesPctCalc(DottoPostCreateRequest req){

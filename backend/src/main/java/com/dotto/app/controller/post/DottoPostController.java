@@ -34,4 +34,11 @@ public class DottoPostController {
     public Response readAll(PostReadCondition cond){
         return Response.success(dottoPostService.readAll(cond));
     }
+
+    @ApiOperation(value = "닷투 게시판 상세 글 보기", notes = "닷투게시판 상세 글을 조회한다")
+    @GetMapping("/api/dottopost/detail/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response read(@PathVariable Long id){
+       return Response.success(dottoPostService.read(id));
+    }
 }
