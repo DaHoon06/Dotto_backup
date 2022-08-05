@@ -78,11 +78,11 @@ public class InitDB {
 
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
-                                "title1","content1",10000,9000,'Y',"블랙엔그레이",30,tags,"10%", List.of()),
+                                "title1","content1",10000,9000,'Y',"블랙엔그레이",30,tags,"10%", List.of(),'Y'),
                         new DottoPost(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new),
-                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,tags,"",List.of()),
+                                "title2","content2",20000, 18000, 'N',"올드스쿨",180,tags,"",List.of(), 'N'),
                         new DottoPost(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new),
-                                "title3","content3",30000,27000,'N',"이레즈미",270,"","",List.of())
+                                "title3","content3",30000,27000,'N',"이레즈미",270,"","",List.of(), 'N')
 
                         )
                 );
@@ -91,6 +91,6 @@ public class InitDB {
         IntStream.range(0, 100)
                 .forEach(i-> dottoPostRepository.save(
                         new DottoPost(memberRepository.findById("member10"+i).orElseThrow(MemberNotFoundException::new),
-                                "title10"+i,"content10"+i, 10000,9000,'Y',"레터링", i, "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of())));
+                                "title10"+i,"content10"+i, 10000,9000,'Y',"레터링", i, "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of(),'N')));
     };
 }
