@@ -2,6 +2,7 @@ package com.dotto.app.controller.post;
 
 import com.dotto.app.aop.AssignMemberNo;
 import com.dotto.app.dto.post.DottoPostCreateRequest;
+import com.dotto.app.dto.post.DottoPostUpdateRequest;
 import com.dotto.app.dto.post.PostReadCondition;
 import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.post.DottoPostService;
@@ -36,9 +37,24 @@ public class DottoPostController {
     }
 
     @ApiOperation(value = "닷투 게시판 상세 글 보기", notes = "닷투게시판 상세 글을 조회한다")
-    @GetMapping("/api/dottopost/detail/{id}")
+    @GetMapping("/api/dottopost/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Response read(@PathVariable Long id){
        return Response.success(dottoPostService.read(id));
+    }
+
+    @ApiOperation(value = "닷투 게시판 글 수정", notes = "닷투게시판에 작성한 글을 수정 한다")
+    @PutMapping("/api/dottopost/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response update(@PathVariable Long id, DottoPostUpdateRequest req){
+        return Response.success(dottoPostService.update(id, req));
+    }
+
+    @ApiOperation(value = "닷투 게시판 글 삭제", notes = "닷투게시판 글을 삭제한다")
+    @DeleteMapping("/api/dottopost/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Response delete(@PathVariable Long id){
+        dottoPostService.delete(id);
+        return Response.success();
     }
 }
