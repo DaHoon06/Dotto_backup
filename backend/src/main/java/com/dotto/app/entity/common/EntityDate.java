@@ -22,7 +22,7 @@ public abstract class EntityDate {
 
 
     @LastModifiedDate
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private Timestamp modifiedAt;
 
 }
