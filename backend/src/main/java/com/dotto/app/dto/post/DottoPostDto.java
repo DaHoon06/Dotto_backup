@@ -12,14 +12,14 @@ public class DottoPostDto {
     private Long postNo;
     private String title;
     private String id;
-    private Integer price;
-    private Integer salesPrice;
-    private Character salesYn;
+    private String price;
+    private String salesPrice;
+    private String salesYn;
     private String salesPct;
     private String tags;
 
     @QueryProjection
-    public DottoPostDto(Long postNo, String title, String id, int price, int salesPrice, char salesYn, String salesPct, String tags){
+    public DottoPostDto(Long postNo, String title, String id, String price, String salesPrice, String salesYn, String salesPct, String tags){
         this.postNo = postNo;
         this.title = title;
         this.id = id;
