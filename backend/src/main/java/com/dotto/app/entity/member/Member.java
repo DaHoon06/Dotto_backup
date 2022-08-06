@@ -46,7 +46,11 @@ public class Member extends EntityDate {
     @Column(nullable = false)
     private String loginType;
 
-    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
+
+    @Column
+    private String deletedYn;
+
+    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType, String deletedYn){
         this.id = id;
         this.password = password;
         this.nickname = nickname;
@@ -54,11 +58,16 @@ public class Member extends EntityDate {
         this.phone = phone;
         this.roles = roles.stream().map(r -> new MemberRole(this,r )).collect(Collectors.toSet());
         this.loginType = loginType;
+        this.deletedYn = deletedYn;
     }
 
-    public void updateNickName(String nickname){
+    public void update(String nickname, String intro){
         this.nickname = nickname;
+        this.intro = intro;
     }
 
-    public void updateIntro(String intro){this.intro = intro;}
+    public void setDeletedYn(String yn){
+        this.deletedYn = yn;
+    }
+
 }
