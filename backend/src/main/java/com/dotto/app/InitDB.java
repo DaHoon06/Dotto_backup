@@ -53,13 +53,13 @@ public class InitDB {
         String kakaoLoginType = "kakao";
         memberRepository.saveAll(
                 List.of(new Member("member1", passwordEncoder.encode("1234"), "nickname", "male", "01012345678"
-                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new)),googleLoginType
+                                , List.of(roleRepository.findByRoleType(RoleType.ROlE_NORMAL).orElseThrow(RoleNotFoundException::new)),googleLoginType,"Y"
                         ),
                         new Member("member2", passwordEncoder.encode("1234"), "nickname2", "female", "01012345678"
-                                , List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new)),kakaoLoginType
+                                , List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new)),kakaoLoginType,"N"
                         ),
                         new Member("member3", passwordEncoder.encode("1234"), "nickname3", "none", "01012345678"
-                                ,List.of(roleRepository.findByRoleType(RoleType.ROLE_ADMIN).orElseThrow(RoleNotFoundException::new)),kakaoLoginType
+                                ,List.of(roleRepository.findByRoleType(RoleType.ROLE_ADMIN).orElseThrow(RoleNotFoundException::new)),kakaoLoginType,"N"
                         )
 
                 )
@@ -68,7 +68,7 @@ public class InitDB {
         IntStream.range(0, 24)
                 .forEach( i -> memberRepository.save(
                         new Member("member10"+i, passwordEncoder.encode("1234"),"nickname10"+i,
-                "gender","01012345678", List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new)),kakaoLoginType))
+                "gender","01012345678", List.of(roleRepository.findByRoleType(RoleType.ROLE_ARTIST).orElseThrow(RoleNotFoundException::new)),kakaoLoginType,"N"))
         );
     };
 
