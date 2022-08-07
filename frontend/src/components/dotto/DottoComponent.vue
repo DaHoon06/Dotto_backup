@@ -24,8 +24,7 @@
             <span class="discount-rate price">{{ dotto.salesPct }}</span>
           </section>
           <section class="tag-area tattoo-board-list-info location">
-            <b v-bind="tagMaker(dotto.tags)" class="tag" v-for="(tagsTest,index) of tags" :key="index"># {{ tagsTest }}</b>
-  <!--            {{ tagMaker(dotto.tags)}}-->
+            <span v-for="(tag,index) of dotto.tags.split(',')" :key="index" class="tag"># {{ tag }}</span>
           </section>
         </router-link>
       </article>
@@ -76,7 +75,9 @@ export default class DottoComponent extends Vue {
   constructor() {
     super();
   }
-
+  test(tag: string) {
+    console.log(tag)
+  }
   tagMaker(tags: string) {
     this.tags = tags.split(',');
     console.log(tags)

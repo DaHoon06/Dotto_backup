@@ -1,5 +1,5 @@
 <template>
-  <div id="my-feed-view-container">
+  <article id="my-feed-view-container">
     <section id="my-information-wrapper" >
       <my-information-component />
     </section>
@@ -19,7 +19,7 @@
       <component
           :is="dynamicView" />
     </section>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">

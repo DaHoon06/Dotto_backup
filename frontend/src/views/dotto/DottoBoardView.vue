@@ -1,16 +1,16 @@
 <template>
-  <div id="dotto-board-container"
-       :class="dottoBoardBackground === 'main' ? '' : otherBgColor">
-    <div id="side-search-filter-wrapper">
+  <main id="dotto-board-container"
+        :class="dottoBoardBackground === 'main' ? '' : otherBgColor">
+    <article id="side-search-filter-wrapper">
       <transition name="fade">
         <side-filter
             v-show="showSearchFilter" />
       </transition>
-    </div>
+    </article>
     <router-view
         @showFilter="showFilter"
         @changeBackground="changeBackground"/>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

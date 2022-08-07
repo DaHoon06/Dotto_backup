@@ -1,9 +1,7 @@
 <template>
   <header id="header">
-    <header-component
-    />
-    <status-component
-    />
+    <header-component />
+    <status-component />
     <navigation-component
         :navigationType="navigationType"
     />

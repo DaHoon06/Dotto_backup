@@ -6,7 +6,7 @@
     <article id="main-wrapper" >
 
       <article id="home-dotto-container" >
-        <div class="main-component-wrapper">
+        <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h5>닷투 게시판</h5>
             <small>타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small>
@@ -19,7 +19,7 @@
               <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
             </router-link>
           </section>
-        </div>
+        </article>
         <dotto-component
             :limit="limit"
             :infinite-scroll="false"
@@ -27,7 +27,7 @@
       </article>
 
       <article id="home-seekers-wrapper" >
-        <div class="main-component-wrapper">
+        <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h5>닷찾사 게시판</h5>
             <small>내가 원하는 도안을 제시하고 타투이스트에게 답변 받아보세요!</small>
@@ -40,12 +40,12 @@
               <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
             </router-link>
           </section>
-        </div>
+        </article>
         닷찾사 게시판 컴포넌트 위치 ( limit: 8개 )
       </article>
 
       <article id="home-feed-container" >
-        <div class="main-component-wrapper">
+        <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h5>FEED</h5>
             <small>자유롭게 이야기를 나눠요!</small>
@@ -58,15 +58,12 @@
               <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
             </router-link>
           </section>
-        </div>
+        </article>
         FEED 게시판 컴포넌트 위치 ( limit: 8개 )
       </article>
-
     </article>
 
-    <aside id="side-button-container">
-      <top-scroll-button />
-    </aside>
+    <top-scroll-button />
 
   </main>
 </template>
@@ -188,12 +185,7 @@ small {
   height: 5px;
 }
 
-/* side button */
-#side-button-container {
-  position: fixed;
-  top: 50%;
-  right: 48px;
-}
+
 
 @media screen and (max-width: 1260px){
   #navigation-container {

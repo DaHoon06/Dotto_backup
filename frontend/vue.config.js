@@ -14,5 +14,5 @@ proxy: {
         }
     }
 },
-outputDir: '../backend/docs',
+
 }

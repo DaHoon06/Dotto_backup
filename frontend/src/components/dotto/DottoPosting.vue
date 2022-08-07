@@ -108,10 +108,7 @@ export default class DottoPostingComponent extends Vue {
   genreDefault = '';
   totalTimeDefault = '';
   postPhoto: any = [];
-
   tag: string[] = [];
-  addTag = '';
-
   genre = [
     { text: '1', value: '1' },
     { text: '2', value: '2' },
@@ -137,32 +134,22 @@ export default class DottoPostingComponent extends Vue {
     this.openBtn = !(this.title.length && this.genreDefault.length && this.totalTimeDefault.length && this.content.length && this.originalPrice);
   }
 
-
   async posting(): Promise<void> {
-    console.log(this.originalPrice)
-    const sendData: any = {
-      title: this.title,
-      content: this.content,
-      price: +this.originalPrice,
-      salesPrice: this.salesPrice,
-      salesYn: this.salesYn,
-      genre: this.genreDefault,
-      totalTime: this.totalTimeDefault,
-      tag: this.tag,
-      postPhoto: this.postPhoto
-    }
-
     const headers = {
       'Content-Type': 'multipart/form-data',
     }
-    const test = new FormData();
-    test.append('data', sendData);
-    console.log(sendData)
-    const { data } = await ins.post('/dottopost', test, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      }
-    });
+    const formData = new FormData();
+    formData.append('title', this.title);
+    formData.append('content', this.content);
+    formData.append('price', String(this.price));
+    formData.append('salesPrice', String(this.salesPrice));
+    formData.append('salesYn', this.salesYn ? 'Y' : 'N');
+    formData.append('genre', String(this.genre));
+    formData.append('totalTime', String(this.totalTime));
+    formData.append('tags', String(this.tag));
+    formData.append('postPhoto', this.postPhoto);
+
+    const { data } = await ins.post('/dottopost', formData, { headers });
     console.log(data);
   }
 
@@ -176,13 +163,6 @@ export default class DottoPostingComponent extends Vue {
     for (let i = 0; i < files.length; i++) {
       fileList.append('files', this.postPhoto[i]);
     }
-  }
-
-  private addTags(): void {
-    if (this.tag.length < 5) this.tag.push(this.addTag);
-    else alert('모달 새로만들어서 최대 태그 문구 화면에 출력');
-
-    this.addTag = '';
   }
 
   private deleteTag(index: number): void {

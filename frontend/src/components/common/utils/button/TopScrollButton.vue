@@ -1,10 +1,10 @@
 <template>
-  <section class="right-side">
+  <aside id="side-button-container" class="right-side">
     <button id="go-top" class="right-side-btn" @click="scrollHandler">
       <img id="top" src="@/assets/icons/main/go-top.svg" alt="top" />
       <span>TOP</span>
     </button>
-  </section>
+  </aside>
 </template>
 
 <script lang="ts">
@@ -40,6 +40,12 @@ export default class TopScrollButton extends Vue {
 
 #top {
 width: 10px;
+}
+/* side button */
+#side-button-container {
+  position: fixed;
+  top: 50%;
+  right: 48px;
 }
 
 .right-side-btn {
