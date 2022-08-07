@@ -22,9 +22,7 @@
           >
         </template>
       </b-carousel-slide>
-
     </b-carousel>
-
   </article>
 </template>
 

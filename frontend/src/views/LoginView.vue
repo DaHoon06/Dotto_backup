@@ -28,18 +28,17 @@
       <img id="social-login-division" src="@/assets/icons/mymenu/login_SimpleLine.svg" alt="간편로그인 /">
       <article id="social-login-btn-container">
         <section class="login-btn-wrapper">
-          <button id="kakao-btn" @click="kakaoLogin">
-            <img src="@/assets/img/login/kakao.png" alt="kakao" />
+          <button type="button" id="kakao-btn" @click="kakaoLogin">
+            <img src="@/assets/img/login/kakao.png" alt="카카오 로그인 이미지" />
           </button>
         </section>
 
         <section class="login-btn-wrapper">
-          <button id="google-btn" @click="googleLogin">
-            <img src="@/assets/img/login/Google.png" alt="google" />
+          <button type="button" id="google-btn" @click="googleLogin">
+            <img src="@/assets/img/login/Google.png" alt="구글 로그인 이미지" />
           </button>
         </section>
       </article>
-
     </article>
 
     <article id="login-utils-container">
