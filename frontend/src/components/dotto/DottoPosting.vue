@@ -107,7 +107,7 @@ export default class DottoPostingComponent extends Vue {
   salesYn = false;
   genreDefault = '';
   totalTimeDefault = '';
-  postPhoto: string[] = [];
+  postPhoto: any = [];
   tag: string[] = [];
   genre = [
     { text: '1', value: '1' },
@@ -163,13 +163,6 @@ export default class DottoPostingComponent extends Vue {
     for (let i = 0; i < files.length; i++) {
       fileList.append('files', this.postPhoto[i]);
     }
-  }
-
-  private addTags(): void {
-    if (this.tag.length < 5) this.tag.push(this.addTag);
-    else alert('모달 새로만들어서 최대 태그 문구 화면에 출력');
-
-    this.addTag = '';
   }
 
   private deleteTag(index: number): void {

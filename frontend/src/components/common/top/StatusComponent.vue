@@ -1,75 +1,81 @@
 <template>
-  <section id="status-container">
+  <article id="status-container">
 
     <article id="login-btn-wrapper" v-if="!isLogin">
       <button
           class="nav-icon-label login-label"
+          type="button"
           @click="showLoginView">LOGIN</button>
     </article>
     <article id="isLoginTrue" v-else>
-      <div id="alarm-wrapper">
-        <img id="alarm" src="@/assets/icons/default_alarm.svg" alt="alarm" @click="showAlarm" />
-        <div v-if="showMessage" id="alarm-container">
+
+      <article id="alarm-wrapper" @click="showAlarm">
+        <button type="button">
+          <img id="alarm" src="@/assets/icons/default_alarm.svg" alt="alarm"  />
+        </button>
+        <section v-if="showMessage" id="alarm-container">
           메세지 영역
-        </div>
-      </div>
-      <div id="my-page-container" >
-        <div id="my-page" @click="goMyPage">
+        </section>
+      </article>
+
+      <article id="my-page-container" >
+        <section id="my-page" @click="goMyPage">
           <img src="@/assets/icons/default.svg" id="my" alt="my" />
           <span id="my_name">NAME</span>
-        </div>
-        <div id="drop-down-btn-container">
-          <span @click="showMenu">
+        </section>
+        <section id="drop-down-btn-container">
+          <button @click="showMenu">
             <img src="@/assets/icons/nav/filter-btn.svg" id="drop-down-btn" alt="dropdown" />
-          </span>
-        </div>
-      </div>
-      <div v-if="showMyMenu" id="my-menu-list">
-        <div id="my-menu-items">
-          <div>
+          </button>
+        </section>
+      </article>
+
+      <article v-if="showMyMenu" id="my-menu-list">
+        <section id="my-menu-items">
+          <section>
             <span>
               <img src="@/assets/icons/mymenu/dottoDesign.svg" alt="design" class="my-menu-icons" />
             </span>
             <router-link to="t">타투도안</router-link>
-          </div>
-          <div>
+          </section>
+          <section>
             <span>
               <img src="@/assets/icons/mymenu/reservationList.svg" alt="reservation" class="my-menu-icons" />
             </span>
             <router-link to="t">내 예약목록</router-link>
-          </div>
-          <div>
+          </section>
+          <section>
             <span>
               <img src="@/assets/icons/mymenu/myReview.svg" alt="review" class="my-menu-icons" />
             </span>
             <router-link to="t">내 댓글 / 리뷰</router-link>
-          </div>
-          <div>
+          </section>
+          <section>
             <span>
               <img src="@/assets/icons/mymenu/favorites.svg" alt="favorites" class="my-menu-icons" />
             </span>
             <router-link to="t">찜한 목록</router-link>
-          </div>
+          </section>
 
           <hr />
 
-          <div>
+          <section>
             <span>
               <img src="@/assets/icons/mymenu/security.png" alt="security" class="my-menu-icons"/>
             </span>
             <router-link to="t">보안 / 계정</router-link>
-          </div>
-          <div id="logout">
-
+          </section>
+          <section id="logout">
             <button type="button" @click="logout">
               <span>
                 <img src="@/assets/icons/mymenu/logout.svg" alt="logout" class="my-menu-icons" />
               </span>
               로그아웃
             </button>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </article>
+
     </article>
 
     <transition name="fade">
@@ -80,7 +86,7 @@
       />
     </transition>
 
-  </section>
+  </article>
 </template>
 
 <script lang="ts">

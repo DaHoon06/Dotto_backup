@@ -2,7 +2,7 @@
   <nav id="navigation-container">
     <ul>
       <li>
-        <article class="menu">
+        <section class="menu">
           <ul>
             <li>
               <router-link to="/"
@@ -11,10 +11,10 @@
                 HOME</router-link>
             </li>
           </ul>
-        </article>
+        </section>
       </li>
       <li>
-        <article class="menu">
+        <section class="menu">
           <ul>
             <li>
               <router-link
@@ -24,10 +24,10 @@
                 try DOTTO</router-link>
             </li>
           </ul>
-        </article>
+        </section>
       </li>
       <li>
-        <article class="menu">
+        <section class="menu">
           <ul>
             <li>
               <span
@@ -37,7 +37,7 @@
                   @mouseleave="showCommunity('hide')">COMMUNITY</span>
             </li>
             <li v-show="menu_community">
-              <div class="nav-menu-list"
+              <section class="nav-menu-list"
                    @mouseover="showCommunity('show')"
                    @mouseleave="showCommunity('hide')">
                 <router-link
@@ -48,13 +48,13 @@
                     to="/"
                     class="sub-nav-items"
                 >닷찾사 게시판</router-link>
-              </div>
+              </section>
             </li>
           </ul>
-        </article>
+        </section>
       </li>
       <li>
-        <article class="menu">
+        <section class="menu">
           <ul>
             <li>
               <router-link
@@ -64,10 +64,10 @@
               >FEED</router-link>
             </li>
           </ul>
-        </article>
+        </section>
       </li>
       <li>
-        <article class="menu">
+        <section class="menu">
           <ul>
             <li>
               <span
@@ -77,9 +77,9 @@
                   @mouseleave="showInformation('hide')">고객지원</span>
             </li>
             <li v-show="menu_information">
-              <div class="nav-menu-list"
-                   @mouseover="showInformation('show')"
-                   @mouseleave="showInformation('hide')">
+              <section class="nav-menu-list"
+                  @mouseover="showInformation('show')"
+                  @mouseleave="showInformation('hide')">
                 <router-link
                     to="/"
                     class="sub-nav-items"
@@ -88,10 +88,10 @@
                     to="/"
                     class="sub-nav-items"
                 >공지사항</router-link>
-              </div>
+              </section>
             </li>
           </ul>
-        </article>
+        </section>
       </li>
     </ul>
   </nav>

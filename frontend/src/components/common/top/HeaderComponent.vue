@@ -1,5 +1,5 @@
 <template>
-  <section id="navBar-container" >
+  <article id="nav-bar-container" >
 
     <article>
       <ul>
@@ -9,9 +9,7 @@
           </button>
         </li>
         <li>
-          <span>
-            <a href="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></a>
-          </span>
+          <router-link to="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></router-link>
         </li>
       </ul>
     </article>
@@ -23,29 +21,27 @@
       </button>
 
       <transition name="fade">
-        <article v-show="showSearchList" id="search-list">
-          <div id="search-list-wrapper">
+        <section v-show="showSearchList" id="search-list">
+          <section id="search-list-wrapper">
             <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
             <ul>
               <li>
               </li>
             </ul>
-          </div>
-          <div id="outer" @click="closeSearchList"/>
-        </article>
+          </section>
+          <section id="outer" @click="closeSearchList" />
+        </section>
       </transition>
     </article>
 
     <article class="close-search-list-none" v-if="!showSearchList"></article>
-    <article v-else>
-      <div class="close-search-list" >
-        <button @click="closeSearchList">
-          <img src="@/assets/icons/nav/close.png" id="close-img" alt="close" />
-        </button>
-      </div>
+    <article class="close-search-list" v-else>
+      <button @click="closeSearchList">
+        <img src="@/assets/icons/nav/close.png" id="close-img" alt="close" />
+      </button>
     </article>
 
-  </section>
+  </article>
 </template>
 
 <script lang="ts">
@@ -92,7 +88,7 @@ export default class HeaderComponent extends Vue {
 </script>
 
 <style scoped>
-#navBar-container {
+#nav-bar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
