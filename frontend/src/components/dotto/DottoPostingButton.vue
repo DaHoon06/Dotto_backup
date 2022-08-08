@@ -1,9 +1,9 @@
 <template>
-  <section >
+  <article>
     <router-link to="/dotto/board/post">
       <img id='posting-btn-img' src="@/assets/icons/board/dotto/plus.png" alt="posting" />
     </router-link>
-  </section>
+  </article>
 </template>
 
 <script lang="ts">

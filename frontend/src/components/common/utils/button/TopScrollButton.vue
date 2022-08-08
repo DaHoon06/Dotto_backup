@@ -1,10 +1,10 @@
 <template>
-  <aside id="side-button-container" class="right-side">
+  <article class="right-side">
     <button id="go-top" class="right-side-btn" @click="scrollHandler">
       <img id="top" src="@/assets/icons/main/go-top.svg" alt="top" />
       <span>TOP</span>
     </button>
-  </aside>
+  </article>
 </template>
 
 <script lang="ts">
@@ -16,11 +16,6 @@ export default class TopScrollButton extends Vue {
 
   private scrollHandler() {
     window.scrollBy(0,-9999);
-    // if (document.body.scrollTop != 0 || document.documentElement.scrollTop != 0) {
-    //   window.scrollBy(0,-9999);
-    // } else {
-    //   clearTimeout(this.timeOut);
-    // }
   }
 
 }

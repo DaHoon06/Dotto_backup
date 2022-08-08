@@ -1,40 +1,36 @@
 <template>
-  <article>
+  <article id="tattoo-container">
 
-    <section id="tattoo-container">
-
-      <article v-if="!existData">
-        <h5>
-          <router-link to="/dotto/board/view">임시 상세보기</router-link>
-        </h5>
-        <h5>API 연동 해야함</h5>
-        <h1>게시글이 존재하지 않습니다.</h1>
-      </article>
-      <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
-        <!--TODO: 실제 변수 체크 -->
-        <router-link :to="{ path: '/dotto/board/view', params: {postNo: dotto.postNo} }">
+    <article v-if="!existData">
+      <h5>
+        <router-link to="/dotto/board/view">임시 상세보기</router-link>
+      </h5>
+      <h5>API 연동 해야함</h5>
+      <h1>게시글이 존재하지 않습니다.</h1>
+    </article>
+    <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
+      <!--TODO: 실제 변수 체크 -->
+      <router-link :to="{ path: '/dotto/board/view', params: {postNo: dotto.postNo} }">
 <!--          <section>-->
 <!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
 <!--          </section>-->
-          <section class="tattoo-board-list-info user-name">{{ dotto.id }}</section>
-          <section class="tattoo-board-list-info title">{{ dotto.title }}</section>
-          <section class="tattoo-board-list-info">
-            <span class="event-price price">{{ dotto.salesPrice }}</span>
-            <span class="original-price price">{{ dotto.price }}</span>
-            <span class="discount-rate price">{{ dotto.salesPct }}</span>
-          </section>
-          <section class="tag-area tattoo-board-list-info location">
-            <span v-for="(tag,index) of dotto.tags.split(',')" :key="index" class="tag"># {{ tag }}</span>
-          </section>
-        </router-link>
-      </article>
-    </section>
+        <section class="tattoo-board-list-info user-name">{{ dotto.id }}</section>
+        <section class="tattoo-board-list-info title">{{ dotto.title }}</section>
+        <section class="tattoo-board-list-info">
+          <span class="event-price price">{{ dotto.salesPrice }}</span>
+          <span class="original-price price">{{ dotto.price }}</span>
+          <span class="discount-rate price">{{ dotto.salesPct }}</span>
+        </section>
+        <section class="tag-area tattoo-board-list-info location">
+          <span v-for="(tag,index) of dotto.tags.split(',')" :key="index" class="tag"># {{ tag }}</span>
+        </section>
+      </router-link>
+    </article>
     <infinite-loading
         @infinite="getDottoBoardList"
         spinner="waveDots"
         v-if="infiniteScroll"
     />
-
   </article>
 </template>
 
