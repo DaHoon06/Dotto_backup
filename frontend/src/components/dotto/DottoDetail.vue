@@ -101,6 +101,23 @@ export default class DottoDetailComponent extends Vue {
       3 - 2. 게시글에 있는 리뷰 조회
   * */
 
+  postNo: string = this.$route.params.postNo;
+
+  created() {
+    this.init();
+  }
+
+  async init() {
+    await this.getBoardData();
+  }
+
+  private async getBoardData() {
+    const { data } = await this.axios.get(`/post/list/${this.postNo}`);
+    console.log(data);
+  }
+
+
+
 
 }
 </script>

@@ -81,7 +81,7 @@
           </div>
         </div>
 
-        <file-upload-button />
+        <file-upload-button @sendImg="getImg"/>
 
       </div>
     </div>
@@ -109,25 +109,36 @@ export default class DottoPostingComponent extends Vue {
   totalTimeDefault = '';
   postPhoto: any = [];
   tag: string[] = [];
+  addTag = '';
   genre = [
-    { text: '1', value: '1' },
-    { text: '2', value: '2' },
-    { text: '3', value: '3' },
-    { text: '4', value: '4' },
-    { text: '5', value: '5' },
+    { text: '올드스쿨', value: '1' },
+    { text: '뉴스쿨', value: '2' },
+    { text: '재패니즈', value: '3' },
+    { text: '블랙엔그레이', value: '4' },
+    { text: '다크사이드', value: '5' },
+    { text: '트래쉬폴카', value: '6' },
+    { text: '치카노', value: '7' },
+    { text: '블랙워크', value: '8' },
+    { text: '라인워크', value: '9' },
+    { text: '폴리네시안', value: '10' },
+    { text: '컬러', value: '11' },
+    { text: '커스텀', value: '12' },
   ];
   totalTime = [
-    { text: '1', value: '1' },
-    { text: '2', value: '2' },
-    { text: '3', value: '3' },
-    { text: '4', value: '4' },
-    { text: '5', value: '5' },
+    { text: '1 시간 이내', value: '1' },
+    { text: '1 ~ 2 시간', value: '2' },
+    { text: '2 ~ 3 시간', value: '3' },
+    { text: '4 시간 이상', value: '4' },
   ];
   openBtn = true;
   activeBtn = 'active-post-btn';
 
   created(): void {
     this.changeBackground();
+  }
+
+  getImg(img: any) {
+    this.postPhoto = img;
   }
 
   private validation(): void {
@@ -153,15 +164,14 @@ export default class DottoPostingComponent extends Vue {
     console.log(data);
   }
 
-  private uploadFiles(e: Event) {
-    const target = e.target as HTMLInputElement;
-    this.postPhoto = target.files;
-    this.addFiles(this.postPhoto);
-  }
-  private async addFiles(files: File[]): Promise<void> {
-    const fileList = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      fileList.append('files', this.postPhoto[i]);
+  private addTags(): void {
+    if (this.tag.length < 5) {
+      this.tag.push(this.addTag);
+      this.addTag = '';
+    }
+    else {
+      alert('모달 새로만들어서 최대 태그 문구 화면에 출력');
+      this.addTag = '';
     }
   }
 

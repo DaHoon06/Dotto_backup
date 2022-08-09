@@ -1,7 +1,7 @@
 <template>
-  <div class="room-file-upload-wrapper">
+  <article class="room-file-upload-wrapper">
 
-    <div v-if="!files.length" class="room-file-upload-example-container">
+    <article v-if="!files.length" class="room-file-upload-example-container">
       <div class="room-file-upload-example">
         <div class="room-file-notice-item room-file-upload-button">
           <div class="image-box">
@@ -18,8 +18,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div v-else class="file-preview-content-container">
+    </article>
+    <article v-else class="file-preview-content-container">
       <div class="file-preview-container">
         <div v-for="(file, index) in files" :key="index" class="file-preview-wrapper">
           <div class="file-close-button" @click="fileDeleteButton" :id="file.number" >
@@ -42,17 +42,17 @@
           />
         </div>
       </div>
-    </div>
+    </article>
 <!--    <div>-->
 <!--      <span>업로드 제한 : 10MB</span>-->
 <!--      <span>최대 3장 / JPG, PNG / 10MB까지 등록</span>-->
 <!--    </div>-->
 
-  </div>
+  </article>
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import {Component, Emit, Ref, Vue} from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
 
 
@@ -63,6 +63,11 @@ export default class FileUploadComponent extends Vue {
 
   files: IBoard.IFileUpload[] = [];
   uploadImageIndex = 0;
+
+  @Emit('sendImg')
+  sendImg(img: any) {
+    return img;
+  }
 
   private imageUpload(): void {
     let num = -1;
@@ -78,6 +83,7 @@ export default class FileUploadComponent extends Vue {
       num = i;
     }
     this.uploadImageIndex = num + 1;
+    this.sendImg(this.files);
   }
 
   private imageAddUpload() {
@@ -94,6 +100,7 @@ export default class FileUploadComponent extends Vue {
       num = i;
     }
     this.uploadImageIndex = this.uploadImageIndex + num + 1;
+    this.sendImg(this.files);
   }
 
   private fileDeleteButton(e: Event) {
