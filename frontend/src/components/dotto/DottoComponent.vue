@@ -57,58 +57,48 @@ export default class DottoComponent extends Vue {
       2. 리스트 호출 -> limit 8, limit 16  2Type
       3. 무한 스크롤 기능 구현
   */
-  testData: IBoard.dottoList[] = [];
-
   showSortComponent = false;
   showFilterComponent = false;
   filterType = '최신순';
   showSearchFilter = 'showSearchFilter';
   page = 0;
-  lists: any[] = [];
+  lists: IBoard.dottoList[] = [];
   infiniteId = +new Date();
   tags: string[] = [];
 
   constructor() {
     super();
   }
-  test(tag: string) {
-    console.log(tag)
-  }
-  tagMaker(tags: string) {
-    this.tags = tags.split(',');
-    console.log(tags)
-    return this.tags
-  }
-  async created(): Promise<void> {
+
+  created(): void {
     this.changeBackground();
-    if (!this.infiniteScroll) await this.initDottoBoard();
+    //if (!this.infiniteScroll) await this.initDottoBoard();
   }
 
-  private async initDottoBoard() {
-    const { data } = await this.axios.get('/dottopost', {
-      params: {
-        size: this.limit,
-        page: this.page
-      }
-    });
-    const { result, success } = data as any;
-    if (success) {
-      this.existData = true;
-      const { data } = result;
-      console.log(data);
-      const { dottoPostDtoList } = data;
-      const tagMaker = this.makeTags(dottoPostDtoList);
-
-    }
-  }
-
-  private makeTags(dottoPostDtoList: any) {
-    let tagMaker = {};
-    dottoPostDtoList.forEach((list: any) => {
-      tagMaker = list.tags.split(',');
-    });
-    return { ...tagMaker }
-  }
+  // private async initDottoBoard() {
+  //   const { data } = await this.axios.get('/dottopost', {
+  //     params: {
+  //       size: this.limit,
+  //       page: this.page
+  //     }
+  //   });
+  //   const { result, success } = data as any;
+  //   if (success) {
+  //     this.existData = true;
+  //     const { data } = result;
+  //     const { dottoPostDtoList } = data;
+  //     const tagMaker = this.makeTags(dottoPostDtoList);
+  //
+  //   }
+  // }
+  //
+  // private makeTags(dottoPostDtoList: any) {
+  //   let tagMaker = {};
+  //   dottoPostDtoList.forEach((list: any) => {
+  //     tagMaker = list.tags.split(',');
+  //   });
+  //   return { ...tagMaker }
+  // }
 
   private async getDottoBoardList($state: any): Promise<void> {
     this.existData = false;
@@ -133,9 +123,6 @@ export default class DottoComponent extends Vue {
             $state.loaded();
           }, 1000);
         }
-        //태그 생성
-        // this.makeTags(lists.tags)
-
         this.existData = true;
       } else {
         $state.complete();

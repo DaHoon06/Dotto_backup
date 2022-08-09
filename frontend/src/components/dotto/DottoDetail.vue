@@ -4,39 +4,38 @@
     <section class="dotto-detail-wrapper">
       <article class="dotto-detail-section">
         <div>이 작업이 마음에 드시나요?</div>
-       <button type="button" id="dotto-detail-like-btn">찜하기</button>
+        <button type="button" id="dotto-detail-like-btn">찜하기</button>
       </article>
       <article class="dotto-detail-flex-row">
-        <div id="dotto-detail-img">아래 3장의 이미지 확대해서 보기 default 첫번째 이미지</div>
         <div class="dotto-detail-flex" id="dotto-detail-information">
-          <h4>꽃과 레터링 할인 이벤트</h4>
+          <h1>{{ list.title }}</h1>
           <div class="dotto-detail-flex-row">
             <div>조회수</div>
             <div>56회</div>
           </div>
           <div class="dotto-detail-flex-row">
-            <div>50,000</div>
-            <div>100,000</div>
+            <div>{{ list.salesPrice}}</div>
+            <div>{{ list.price }}</div>
           </div>
           <hr />
           <div class="dotto-detail-flex-row">
             <div>위치</div>
-            <div>서울 마포구 (홍대)</div>
+            <div>{{ list.location }}</div>
           </div>
           <div class="dotto-detail-flex-row">
             <div>장르</div>
-            <div>블랙워크</div>
+            <div>{{ list.genre}}</div>
           </div>
           <div class="dotto-detail-flex-row">
             <div>소요시간</div>
-            <div>2~3 시간</div>
+            <div>{{ list.totalTime}}</div>
           </div>
           <hr />
           <div>
-            두달동안 할인가에 진행되고 있는 인기 최고 꽃과 레터링 입니다. 꽃은 손님의 탄생화로 수정해 드렸고 레터링은 기존 글씨체에 좋아 하시는 글귀를 넣어 작업했습니다 꽃, 글씨체 수정 등 요청사항다 반영해드립니다! 편하게 메세지 주세요!
+            {{ list.content }}
           </div>
           <div>
-            <span class="tag-area">태그들</span>
+            <span class="tag-area" v-for="(tag, index) of list.tags.split(',')" :key="index">{{ tag }}</span>
           </div>
           <hr />
           <article class="dotto-detail-section">
@@ -83,6 +82,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import DottoTabsContainer from "@/components/dotto/tab/DottoTabs.vue";
+import {IBoard} from "@/interfaces/IBoard";
 
 
 //TODO: 테스트 종료 후 class dotto-detail-comment-content height 수정
@@ -93,6 +93,7 @@ import DottoTabsContainer from "@/components/dotto/tab/DottoTabs.vue";
   }
 })
 export default class DottoDetailComponent extends Vue {
+
   /*
     TODO:
       1. 게시글 상세 조회
@@ -100,8 +101,26 @@ export default class DottoDetailComponent extends Vue {
       3 - 1. 게시글에 있는 댓글 조회
       3 - 2. 게시글에 있는 리뷰 조회
   * */
-
+  list: IBoard.dottoList;
   postNo: string = this.$route.params.postNo;
+
+  constructor() {
+    super();
+    this.list = {
+      id: '',
+      title: '',
+      postNo: '',
+      price: '',
+      salesPct: '',
+      salesPrice: '',
+      salesYn: '',
+      tags: [],
+      totalTime: '',
+      genre: '',
+      location: '',
+      content: '',
+    }
+  }
 
   created() {
     this.init();
@@ -112,8 +131,17 @@ export default class DottoDetailComponent extends Vue {
   }
 
   private async getBoardData() {
-    const { data } = await this.axios.get(`/post/list/${this.postNo}`);
-    console.log(data);
+    try {
+      const { data } = await this.axios.get(`/dottopost/${this.postNo}`);
+      const { result, success } = data;
+      if (success) {
+        const { data } = result;
+        const { dottoPostDtoList } = data;
+        this.list = dottoPostDtoList;
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
 
 
