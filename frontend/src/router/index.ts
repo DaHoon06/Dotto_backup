@@ -55,6 +55,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('@/views/feed/FeedView.vue'),
     children: [
       { path: 'index', name: 'feed', component: () => import('@/components/feed/FeedComponent.vue'), meta: { unauthorized: true } },
+      { path: 'post', name: 'post', component: () => import('@/components/feed/FeedPosting.vue'), meta: { unauthorized: true } },
     ]
   }
 ]

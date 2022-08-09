@@ -1,12 +1,6 @@
 <template>
   <article id="my-feed-view-container">
-    <section id="my-information-wrapper" >
-      <my-information-component />
-    </section>
-
-    <section id="my-follow-wrapper" >
-      <my-follow-component />
-    </section>
+    <my-information-component />
 
     <section id="my-category">
       <ul>
@@ -83,10 +77,6 @@ export default class MyView extends Vue {
 #my-information-wrapper {
   margin: 10em auto 4em auto;
   width: 50vw;
-}
-#my-follow-wrapper {
-  width: 50vw;
-  margin: auto;
 }
 
 #my-category {
