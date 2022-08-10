@@ -10,14 +10,19 @@
         </button>
       </section>
       <section id="feed-post-body">
-        <h1>피드 작성</h1>
+        <section id="feed-body-top-container">
+          <h1 id="feed-title">피드 작성</h1>
+          <button type="button" id="feed-posting-btn">게시</button>
+        </section>
         <section id="feed-body-items-container">
           <section id="feed-post-upload-wrapper">
             <span><img src="@/assets/icons/myfeed/upload.svg" alt="파일업로드"></span>
             <h6 id="upload-description">드래그하거나 클릭하여 업로드</h6>
           </section>
-          <section>
-            <p>유저 프로필 영역</p>
+          <section id="feed-post-info">
+            <p><span>프로필 이미지</span><span>닉네임</span></p>
+            <textarea placeholder="내용을 입력해 주세요..." id="textarea" v-model="feedContent" @keyup="contentLengthCheck"></textarea>
+            <p id="feed-content-size">{{feedContent.length}} / 1,000</p>
           </section>
         </section>
       </section>
@@ -26,12 +31,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Vue, Watch} from "vue-property-decorator";
 
 @Component
 export default class FeedPosting extends Vue {
+  feedContent = '';
+  contentSize = this.feedContent.length;
   private historyBack() {
     this.$router.go(-1);
+  }
+
+  @Watch('feedContent')
+  private contentLengthCheck() {
+    if (this.feedContent.length >= 1000) {
+      alert('놉ㅡㅡ');
+      return false;
+    }
   }
 }
 </script>
@@ -69,6 +84,27 @@ export default class FeedPosting extends Vue {
   justify-content: center;
   margin-top: 80px;
 }
+
+#feed-body-top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 112px;
+  height: 100vh;
+}
+#feed-title {
+  font-size: 24px;
+  margin-left: 40px;
+}
+#feed-posting-btn {
+  color: #BDBDBD;
+  background: #F5F5F5;
+  border-radius: 50px;
+  width: 100px;
+  padding: 12px;
+  margin-right: 40px;
+}
+
 #feed-post-body {
   border: 1px solid #e2e2e2;
   border-radius: 5px;
@@ -104,10 +140,16 @@ export default class FeedPosting extends Vue {
   margin-top: 32px;
 }
 
+#feed-post-info {
+  width: 560px;
+  height: 540px;
+}
+
 #history-back-button {
   border: 1px solid #e2e2e2;
   background: white;
   border-radius: 50%;
+  box-shadow: 0 3px 3px 0 gray;
   width: 56px;
   height: 56px;
   margin-right: 32px;
@@ -117,4 +159,18 @@ export default class FeedPosting extends Vue {
   padding-bottom: 2px;
 }
 
+#textarea {
+  border: none;
+  resize: none;
+  width: 528px;
+  height: 419px;
+  font-size: 16px;
+  color: #919191;
+}
+#feed-content-size {
+  display: flex;
+  justify-content: flex-end;
+  color: #BDBDBD;
+  font-size: 16px;
+}
 </style>
