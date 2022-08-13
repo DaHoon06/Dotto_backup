@@ -57,6 +57,15 @@ public class Feed {
         return rs;
     }
 
+    public void deleted(){
+        deletedY();
+    }
+
+    private char deletedY(){
+        return  this.deletedYn = 'Y';
+    }
+
+
     private FeedImageUpdateResult findFeedImageUpdateResult(List<MultipartFile> addedImageFiles, List<Long> deletedImageIds){
         List<FeedImage> addedImages = convertImageFilesToImages(addedImageFiles);
         List<FeedImage> deletedImages = convertImageIdsToImages(deletedImageIds);

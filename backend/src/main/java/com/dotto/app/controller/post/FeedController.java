@@ -69,6 +69,7 @@ public class FeedController {
     public Response delete(
             @ApiParam(value = "게시물 id", required = true)
             @PathVariable Long id){
+        feedService.delete(id);
         return Response.success();
     }
 
