@@ -79,7 +79,7 @@ public class DottoPostService {
     @Transactional
     public void delete(Long id){
         DottoPost post = dottoPostRepository.findByIdWithMemberAndDeletedN(id).orElseThrow(DottoPostNotFoundException::new);
-        post.setDeletedY("Y");
+        post.deleted();
         deleteImages(post.getImages());
         dottoPostRepository.save(post);
 
