@@ -48,7 +48,7 @@ public class DottoPostService {
 
         String tags = tagsConvertString(req.getTags());
         DottoPost dottoPost = dottoPostRepository.save(
-                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),tags,salesPct, images, 'N')
+                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),tags,salesPct, images, "N")
         );
         uploadImages(dottoPost.getImages(), req.getPostPhoto());
 
@@ -79,7 +79,7 @@ public class DottoPostService {
     @Transactional
     public void delete(Long id){
         DottoPost post = dottoPostRepository.findByIdWithMemberAndDeletedN(id).orElseThrow(DottoPostNotFoundException::new);
-        post.setDeletedY('Y');
+        post.deleted();
         deleteImages(post.getImages());
         dottoPostRepository.save(post);
 
@@ -89,8 +89,8 @@ public class DottoPostService {
        return tags.toString().replace("[","").replace("]","");
     }
 
-    private String salesPctCalc(char salesYn, int price, int salesPrice){
-        return salesYn=='Y'? Math.round(((1- (double) salesPrice / (double) price))*100)+"%":"";
+    private String salesPctCalc(String salesYn, String price, String salesPrice){
+        return salesYn.equals("Y")? Math.round(((1- (double) Integer.parseInt(salesPrice) / (double) Integer.parseInt(price)))*100)+"%":"";
 
     }
 

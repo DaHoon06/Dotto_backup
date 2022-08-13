@@ -6,7 +6,6 @@ import com.dotto.app.dto.sign.SignInRequest;
 import com.dotto.app.dto.sign.SignInResponse;
 import com.dotto.app.dto.sign.SignUpRequest;
 import com.dotto.app.entity.member.Member;
-import com.dotto.app.entity.member.MemberRole;
 import com.dotto.app.entity.member.Role;
 import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.exception.*;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +43,9 @@ public class SignService {
                         req.getGender(),
                         req.getPhone(),
                         roles,
-                        req.getLoginType()
+                        req.getLoginType(),
+                        "N"
+
 
                 )
         );

@@ -10,7 +10,6 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findById(String id);
-    Optional<Member> findByNickname(String nickname);
 
     boolean existsById(String id);
     boolean existsByNickname(String nickname);
@@ -18,8 +17,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @EntityGraph("Member.roles")
     Optional<Member>findWithRolesById(String id);
 
-
     @EntityGraph("Member.roles")
     Optional<Member>findWithRolesByMemberNo(Long memberNo);
+
+    @Query("select m from Member m where m.memberNo =:memberNo And m.deletedYn='N' ")
+    Optional<Member>findByMemberNoAndDeletedYnEqualsN(Long memberNo);
 
 }

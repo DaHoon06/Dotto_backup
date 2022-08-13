@@ -14,11 +14,11 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Image {
+public class FeedImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imgNo;
+    private Long feedImgNo;
 
     @Column(nullable = false)
     private String name;
@@ -27,19 +27,19 @@ public class Image {
     private String originName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postNo",nullable = false)
+    @JoinColumn(name = "feedNo", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private DottoPost dottoPost;
+    private Feed feed;
 
     private final static String[] supportedExtension = {"jpg", "jpeg", "gif", "bmp", "png"};
 
-    public Image(String originName){
+    public FeedImage(String originName){
         this.name = generateName(extractExtension(originName));
         this.originName = originName;
     }
 
-    public void initDottoPost(DottoPost dottoPost){
-        if(this.dottoPost == null) this.dottoPost = dottoPost;
+    public void initFeed(Feed feed){
+        if(this.feed == null) this.feed = feed;
 
     }
 
@@ -58,4 +58,7 @@ public class Image {
     private boolean isSupportedFormat(String ext){
         return Arrays.stream(supportedExtension).anyMatch(e -> e.equalsIgnoreCase(ext));
     }
+
+
+
 }

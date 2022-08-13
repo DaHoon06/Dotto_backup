@@ -27,21 +27,21 @@ public class DottoPostUpdateRequest {
 
     @ApiModelProperty(value = "가격", notes = "가격을 입력해 주세요", required = true, example = "10000")
     @NotBlank
-    private int price;
+    private String price;
 
     @ApiModelProperty(value = "할인 가격", notes = "할인 가격을 입력해 주세요", example = "9000")
-    private int salesPrice;
+    private String salesPrice;
 
     @ApiModelProperty(value = "할인 적용 여부", notes = "할인 적용 여부를 입력해 주세요", required = true, example = "Y")
     @NotBlank
-    private char salesYn;
+    private String salesYn;
 
     @ApiModelProperty(value = "장르", notes = "장르를 입력해 주세요", required = true, example = "레터링")
     @NotBlank
     private String genre;
 
     @ApiModelProperty(value = "소요시간", notes = "소요시간을 입력해 주세요", required = true, example = "30")
-    private int totalTime;
+    private String totalTime;
 
     @ApiModelProperty(value = "태그", notes = "태그를 입력해 주세요", example = "#멋져, #최고")
     private List<String> tags;

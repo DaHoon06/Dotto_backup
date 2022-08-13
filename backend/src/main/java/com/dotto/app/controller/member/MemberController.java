@@ -1,5 +1,6 @@
 package com.dotto.app.controller.member;
 
+import com.dotto.app.dto.member.MemberUpdateRequest;
 import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.member.MemberService;
 import io.swagger.annotations.Api;
@@ -25,6 +26,14 @@ public class MemberController {
         return Response.success(memberService.read(id));
     }
 
+    @ApiOperation(value = "사용자 정보 수정", notes = "사용자 정보를 수정 한다")
+    @PutMapping("/api/members/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response update(
+            @ApiParam(value = "사용자 id", required = true)
+            @PathVariable Long id, MemberUpdateRequest req){
+        return Response.success(memberService.update(id, req));
+    }
 
     @ApiOperation(value = "사용자 정보 삭제", notes = "사용자 정보를 삭제 한다")
     @DeleteMapping("/api/members/{id}")

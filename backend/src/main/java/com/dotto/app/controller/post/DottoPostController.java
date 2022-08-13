@@ -8,6 +8,7 @@ import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.post.DottoPostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -39,21 +40,27 @@ public class DottoPostController {
     @ApiOperation(value = "닷투 게시판 상세 글 보기", notes = "닷투게시판 상세 글을 조회한다")
     @GetMapping("/api/dottopost/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response read(@PathVariable Long id){
+    public Response read(
+            @ApiParam(value = "게시물 id", required = true)
+            @PathVariable Long id){
        return Response.success(dottoPostService.read(id));
     }
 
     @ApiOperation(value = "닷투 게시판 글 수정", notes = "닷투게시판에 작성한 글을 수정 한다")
     @PutMapping("/api/dottopost/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response update(@PathVariable Long id, DottoPostUpdateRequest req){
+    public Response update(
+            @ApiParam(value = "게시물 id", required = true)
+            @PathVariable Long id, DottoPostUpdateRequest req){
         return Response.success(dottoPostService.update(id, req));
     }
 
     @ApiOperation(value = "닷투 게시판 글 삭제", notes = "닷투게시판 글을 삭제한다")
     @DeleteMapping("/api/dottopost/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Response delete(@PathVariable Long id){
+    public Response delete(
+            @ApiParam(value = "게시물 id", required = true)
+            @PathVariable Long id){
         dottoPostService.delete(id);
         return Response.success();
     }
