@@ -59,7 +59,7 @@ public class FeedController {
     public Response update(
             @ApiParam(value = "게시물 id", required = true)
             @PathVariable Long id, FeedUpdateRequest req){
-        return Response.success();
+        return Response.success(feedService.update(id, req));
     }
 
     @ApiOperation(value = "피드 게시물 삭제", notes = "피드 게시물을 삭제한다.")

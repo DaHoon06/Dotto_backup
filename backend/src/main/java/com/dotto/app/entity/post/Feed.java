@@ -1,12 +1,18 @@
 package com.dotto.app.entity.post;
 
+import com.dotto.app.dto.post.FeedUpdateRequest;
 import com.dotto.app.entity.member.Member;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 @Getter
@@ -43,6 +49,21 @@ public class Feed {
 
     }
 
+    public FeedImageUpdateResult update(FeedUpdateRequest req){
+        this.content = req.getContent();
+        FeedImageUpdateResult rs = findFeedImageUpdateResult(req.getAddedImg(), req.getDeletedImg());
+        addedImages(rs.getAddedImages());
+        deleteImages(rs.getDeletedImages());
+        return rs;
+    }
+
+    private FeedImageUpdateResult findFeedImageUpdateResult(List<MultipartFile> addedImageFiles, List<Long> deletedImageIds){
+        List<FeedImage> addedImages = convertImageFilesToImages(addedImageFiles);
+        List<FeedImage> deletedImages = convertImageIdsToImages(deletedImageIds);
+        return new FeedImageUpdateResult(addedImageFiles, addedImages, deletedImages);
+    }
+
+
     private void addedImages(List<FeedImage> added){
         added.stream().forEach(feedImage -> {
             feedImages.add(feedImage);
@@ -50,5 +71,31 @@ public class Feed {
         });
     }
 
+    private void deleteImages(List<FeedImage> deletedImages){
+        deletedImages.stream().forEach(image -> this.feedImages.remove(image));
+    }
+
+    private List<FeedImage> convertImageFilesToImages(List<MultipartFile> imageFiles){
+        return imageFiles.stream().map(imageFile -> new FeedImage(imageFile.getOriginalFilename())).collect(toList());
+    }
+
+    private List<FeedImage> convertImageIdsToImages(List<Long> imageIds){
+        return imageIds.stream().map(id -> convertImageIdToImage(id))
+                .filter(i -> i.isPresent())
+                .map(i -> i.get())
+                .collect(toList());
+    }
+
+    private Optional<FeedImage> convertImageIdToImage(Long imageIds){
+        return this.feedImages.stream().filter(feedImage -> feedImage.getFeedImgNo().equals(imageIds)).findAny();
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class FeedImageUpdateResult{
+        private List<MultipartFile> addedImageFiles;
+        private List<FeedImage> addedImages;
+        private List<FeedImage> deletedImages;
+    }
 
 }
