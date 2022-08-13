@@ -50,7 +50,7 @@ public class FeedController {
     @PostMapping(value = "/api/feed")
     @ResponseStatus(HttpStatus.CREATED)
     public Response create(@ModelAttribute FeedCreateRequest req){
-        return Response.success();
+        return Response.success(feedService.create(req));
     }
 
     @ApiOperation(value = "피드 게시물 수정", notes = "피드 게시물을 수정한다.")
