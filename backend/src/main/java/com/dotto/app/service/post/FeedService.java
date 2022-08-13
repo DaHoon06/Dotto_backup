@@ -57,6 +57,7 @@ public class FeedService {
     public void delete (Long feedNo){
         Feed feed = feedRepository.findByFeedNoWithDeletedYnEqualsN(feedNo).orElseThrow(FeedNotFoundException::new);
         feed.deleted();
+        deletedImage(feed.getFeedImages());
     }
 
     private void uploadImage(List<FeedImage> images, List<MultipartFile> files){
