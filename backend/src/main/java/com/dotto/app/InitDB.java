@@ -43,6 +43,7 @@ public class InitDB {
         initRole();
         initMember();
         initDottoPost();
+        initFeed();
         log.info("initialize database");
     }
 
@@ -97,4 +98,13 @@ public class InitDB {
                         new DottoPost(memberRepository.findById("member10"+i).orElseThrow(MemberNotFoundException::new),
                                 "title10"+i,"content10"+i, "10000","9000","Y","레터링", "111", "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of())));
     };
+
+    private void initFeed(){
+        feedRepository.saveAll(
+                List.of(new Feed(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new), "피드내용1", List.of()),
+                        new Feed(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new), "피드내용2", List.of()),
+                        new Feed(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new), "피드내용3", List.of()))
+        );
+    }
+
 }
