@@ -43,10 +43,7 @@ public class SignService {
                         req.getGender(),
                         req.getPhone(),
                         roles,
-                        req.getLoginType(),
-                        "N"
-
-
+                        req.getLoginType()
                 )
         );
     }

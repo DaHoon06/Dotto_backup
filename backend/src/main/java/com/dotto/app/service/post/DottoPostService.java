@@ -48,7 +48,7 @@ public class DottoPostService {
 
         String tags = tagsConvertString(req.getTags());
         DottoPost dottoPost = dottoPostRepository.save(
-                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),tags,salesPct, images, "N")
+                new DottoPost(member, req.getTitle(),req.getContent(), req.getPrice(), req.getSalesPrice(),req.getSalesYn(),req.getGenre(),req.getTotalTime(),tags,salesPct, images)
         );
         uploadImages(dottoPost.getImages(), req.getPostPhoto());
 

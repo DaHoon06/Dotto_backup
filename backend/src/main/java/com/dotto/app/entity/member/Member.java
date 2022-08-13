@@ -50,7 +50,7 @@ public class Member extends EntityDate {
     @Column
     private String deletedYn;
 
-    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType, String deletedYn){
+    public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
         this.id = id;
         this.password = password;
         this.nickname = nickname;
@@ -58,7 +58,7 @@ public class Member extends EntityDate {
         this.phone = phone;
         this.roles = roles.stream().map(r -> new MemberRole(this,r )).collect(Collectors.toSet());
         this.loginType = loginType;
-        this.deletedYn = deletedYn;
+        this.deletedYn = "N";
     }
 
     public void update(String nickname, String intro){
