@@ -44,6 +44,7 @@ public class FeedService {
         return new FeedCreateResponse(feed.getFeedNo());
     }
 
+    @Transactional
     public FeedUpdateResponse update(Long feedNo, FeedUpdateRequest req){
         Feed feed = feedRepository.findByFeedNoWithDeletedYnEqualsN(feedNo).orElseThrow(FeedNotFoundException::new);
         Feed.FeedImageUpdateResult rs = feed.update(req);
