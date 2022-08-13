@@ -48,6 +48,7 @@ public class FeedController {
 
     @ApiOperation(value = "피드 게시물 작성", notes = "피드 게시물을 작성한다.")
     @PostMapping(value = "/api/feed")
+    @AssignMemberNo
     @ResponseStatus(HttpStatus.CREATED)
     public Response create(@ModelAttribute FeedCreateRequest req){
         return Response.success(feedService.create(req));
