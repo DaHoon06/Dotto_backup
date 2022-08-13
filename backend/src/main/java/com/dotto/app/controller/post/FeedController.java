@@ -33,7 +33,7 @@ public class FeedController {
     public Response read(
             @ApiParam(value = "게시물 id", required = true)
             @PathVariable Long id){
-        return Response.success();
+        return Response.success(feedService.read(id));
     }
 
     @ApiOperation(value = "마이피드 보기", notes = "마이 피드를 조회한다")

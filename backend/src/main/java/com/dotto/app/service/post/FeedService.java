@@ -1,9 +1,6 @@
 package com.dotto.app.service.post;
 
-import com.dotto.app.dto.post.FeedCreateRequest;
-import com.dotto.app.dto.post.FeedCreateResponse;
-import com.dotto.app.dto.post.FeedUpdateRequest;
-import com.dotto.app.dto.post.FeedUpdateResponse;
+import com.dotto.app.dto.post.*;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.post.Feed;
 import com.dotto.app.entity.post.FeedImage;
@@ -33,6 +30,9 @@ public class FeedService {
     private final FileService fileService;
 
 
+    public FeedDetailDto read (Long feedNo){
+        return FeedDetailDto.toDto(feedRepository.findByFeedNoWithDeletedYnEqualsN(feedNo).orElseThrow(FeedNotFoundException::new));
+    }
     @Transactional
     public FeedCreateResponse create (FeedCreateRequest req){
         log.info("memberNo = {}", req.getMemberNo());
