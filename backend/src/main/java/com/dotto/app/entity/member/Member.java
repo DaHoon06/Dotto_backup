@@ -66,8 +66,11 @@ public class Member extends EntityDate {
         this.intro = intro;
     }
 
-    public void setDeletedYn(String yn){
-        this.deletedYn = yn;
+    public void deleted(){
+        setDeleted();
     }
 
+    private void setDeleted(){
+        this.deletedYn = "Y";
+    }
 }

@@ -81,7 +81,11 @@ public class DottoPost extends EntityDate {
         this.deletedYn = deletedYn;
     }
 
-    public void setDeletedY(String Y){
+    public void deleted(){
+        deletedY();
+    }
+
+    private void deletedY(){
         this.deletedYn = "Y";
     }
 

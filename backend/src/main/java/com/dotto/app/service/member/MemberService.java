@@ -31,7 +31,7 @@ public class MemberService {
     @Transactional
     public void delete(Long memberNo){
         Member member = memberRepository.findByMemberNoAndDeletedYnEqualsN(memberNo).orElseThrow(MemberNotFoundException::new);
-        member.setDeletedYn("Y");
+        member.deleted();
     }
 
     public boolean existsByNickname(String nickname){
