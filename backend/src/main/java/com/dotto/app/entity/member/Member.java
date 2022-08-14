@@ -1,6 +1,7 @@
 package com.dotto.app.entity.member;
 
 import com.dotto.app.entity.common.EntityDate;
+import com.dotto.app.entity.policy.PolicyAgree;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,6 +50,10 @@ public class Member extends EntityDate {
 
     @Column
     private String deletedYn;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "policyAgreeNo")
+    private PolicyAgree policyAgree;
 
     public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
         this.id = id;
