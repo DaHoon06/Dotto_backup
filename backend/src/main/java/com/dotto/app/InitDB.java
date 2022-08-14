@@ -3,11 +3,13 @@ package com.dotto.app;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.Role;
 import com.dotto.app.entity.member.RoleType;
+import com.dotto.app.entity.policy.Policy;
 import com.dotto.app.entity.post.DottoPost;
 import com.dotto.app.entity.post.Feed;
 import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.exception.RoleNotFoundException;
 import com.dotto.app.repository.member.MemberRepository;
+import com.dotto.app.repository.policy.PolicyRepository;
 import com.dotto.app.repository.post.DottoPostRepository;
 import com.dotto.app.repository.post.FeedRepository;
 import com.dotto.app.repository.role.RoleRepository;
@@ -20,6 +22,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,15 +40,18 @@ public class InitDB {
     private final DottoPostRepository dottoPostRepository;
 
     private final FeedRepository feedRepository;
+
+    private final PolicyRepository policyRepository;
     private final PasswordEncoder passwordEncoder;
 
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
-    public void initDB(){
+    public void initDB() throws IOException {
         initRole();
         initMember();
         initDottoPost();
         initFeed();
+        initPolicy();
         log.info("initialize database");
     }
 
@@ -105,6 +113,32 @@ public class InitDB {
                         new Feed(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new), "피드내용2", List.of()),
                         new Feed(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new), "피드내용3", List.of()))
         );
+    }
+
+    private void initPolicy() throws IOException {
+        String dottoPolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/dottoPolicyContent.txt");
+        String marketingPolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/marketingPolicyContent.txt");
+        String privatePolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/privatePolicyContent.txt");
+
+        policyRepository.save(new Policy(dottoPolicyContent, privatePolicyContent, marketingPolicyContent));
+
+    }
+
+
+
+    private String readFileAsString(String filePath) throws java.io.IOException {
+        StringBuffer fileData = new StringBuffer();
+        BufferedReader reader = new BufferedReader(
+                new FileReader(filePath));
+        char[] buf = new char[1024];
+        int numRead=0;
+        while((numRead=reader.read(buf)) != -1){
+            String readData = String.valueOf(buf, 0, numRead);
+            fileData.append(readData);
+            buf = new char[1024];
+        }
+        reader.close();
+        return fileData.toString();
     }
 
 }
