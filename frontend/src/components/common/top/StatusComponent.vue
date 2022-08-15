@@ -124,10 +124,14 @@ export default class StatusComponent extends Vue {
 
   private logout(): void {
     this.$store.commit('userStore/logout');
-
     // 만약 카카오 로그인일 경우 따로 로그아웃 구현
     this.kakaoLogout();
-
+    const { path } = this.$router.currentRoute;
+    if (path === '/') {
+      this.$router.go(0);
+    } else {
+      this.$router.push('/');
+    }
   }
 
   private kakaoLogout(): void {

@@ -208,6 +208,7 @@ export default class FeedPosting extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 #upload-description {
