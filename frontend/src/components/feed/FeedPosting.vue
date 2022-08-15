@@ -1,5 +1,6 @@
 <template>
   <article id="feed-post-container">
+
     <section id="feed-post-top">
       <img id="logo" src="@/assets/img/dotto.svg" alt="logo" />
     </section>
@@ -12,37 +13,102 @@
       <section id="feed-post-body">
         <section id="feed-body-top-container">
           <h1 id="feed-title">피드 작성</h1>
-          <button type="button" id="feed-posting-btn">게시</button>
+          <button type="button" id="feed-posting-btn" :class="feedPosting ? disabledButton : notDisabledButton" :disabled="feedPosting" @click="posting">게시</button>
         </section>
         <section id="feed-body-items-container">
-          <section id="feed-post-upload-wrapper">
-            <span><img src="@/assets/icons/myfeed/upload.svg" alt="파일업로드"></span>
-            <h6 id="upload-description">드래그하거나 클릭하여 업로드</h6>
+          <section
+              id="feed-post-upload-wrapper"
+              @click="clickInputTag"
+              @drop.prevent="dropInputTag($event)"
+              @dragover.prevent
+          >
+            <img src="@/assets/icons/myfeed/upload.svg" alt="파일업로드">
+            <h2 id="upload-description">드래그하거나 클릭하여 업로드</h2>
+            <input
+                type="file"
+                ref="fileInput"
+                class="file-upload-input"
+                @change="onFileChange"
+                multiple
+                hidden
+                accept=".jpg, .jpeg, .png" >
           </section>
           <section id="feed-post-info">
-            <p><span>프로필 이미지</span><span>닉네임</span></p>
+            <p class="feed-profile-container"><span class="feed-profile-img"></span><span class="feed-profile-nickname">닉네임</span></p>
             <textarea placeholder="내용을 입력해 주세요..." id="textarea" v-model="feedContent" @keyup="contentLengthCheck"></textarea>
             <p id="feed-content-size">{{feedContent.length}} / 1,000</p>
           </section>
         </section>
+
+        <p class="upload-warning"><img src="@/assets/icons/myfeed/dashicons_info-outline.svg" alt="이미지 형식" > 권장사항 : 최대 3장 / JPG PNG / 10 MB 이하 파일</p>
+
       </section>
     </article>
+
   </article>
 </template>
 
 <script lang="ts">
-import {Component, Vue, Watch} from "vue-property-decorator";
+import { Component, Ref, Vue, Watch } from "vue-property-decorator";
+import { ins } from '@/lib/axios';
 
 @Component
 export default class FeedPosting extends Vue {
+  @Ref() readonly fileInput!: any;
+
   feedContent = '';
   contentSize = this.feedContent.length;
+  feedPosting = true;
+  notDisabledButton = 'notDisabledButton';
+  disabledButton = 'disabledButton';
+
+  isDragged = false;
+  fileList: FileList[] = [];
+  images: any;
+
+  userNickname = this.$store.getters['userStore/nickname'];
+
   private historyBack() {
     this.$router.go(-1);
   }
 
+  clickInputTag() {
+    this.fileInput.click();
+  }
+
+  dropInputTag(e: any) {
+    let files = Array.from(e.dataTransfer.files, v => v)[0];
+    this.images.push(files);
+  }
+
+  onFileChange () {
+    const data = this.fileInput.files[0];
+    this.images.push(data);
+  }
+
+  async posting() {
+    try {
+      const formData = new FormData();
+      formData.append('feedContent', this.feedContent);
+      formData.append('userNickname', this.userNickname);
+      formData.append('fileList', this.images);
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+      }
+      const { data } = await ins.post('/user/feed',formData, { headers });
+      console.log(data);
+      if (data) {
+        await this.$router.push('/');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   @Watch('feedContent')
   private contentLengthCheck() {
+    this.feedPosting = !this.feedContent.length;
+
     if (this.feedContent.length >= 1000) {
       alert('놉ㅡㅡ');
       return false;
@@ -83,6 +149,7 @@ export default class FeedPosting extends Vue {
   display: flex;
   justify-content: center;
   margin-top: 80px;
+  padding-bottom: 217px;
 }
 
 #feed-body-top-container {
@@ -98,12 +165,21 @@ export default class FeedPosting extends Vue {
 }
 #feed-posting-btn {
   color: #BDBDBD;
-  background: #F5F5F5;
   border-radius: 50px;
   width: 100px;
   padding: 12px;
   margin-right: 40px;
 }
+
+/* 버튼 바인딩 - 글자 입력 후 disabled 해제 */
+.notDisabledButton {
+  background: black;
+}
+.disabledButton {
+  background: #F5F5F5;
+  cursor: auto;
+}
+
 
 #feed-post-body {
   border: 1px solid #e2e2e2;
@@ -113,6 +189,7 @@ export default class FeedPosting extends Vue {
   max-width: 1200px;
   height: 100vh;
   max-height: 700px;
+  padding-left: 20px;
 }
 #feed-body-items-container {
   display: flex;
@@ -140,11 +217,6 @@ export default class FeedPosting extends Vue {
   margin-top: 32px;
 }
 
-#feed-post-info {
-  width: 560px;
-  height: 540px;
-}
-
 #history-back-button {
   border: 1px solid #e2e2e2;
   background: white;
@@ -164,8 +236,10 @@ export default class FeedPosting extends Vue {
   resize: none;
   width: 528px;
   height: 419px;
-  font-size: 16px;
   color: #919191;
+  outline: none;
+  padding: 5px;
+  font-size: 16px;
 }
 #feed-content-size {
   display: flex;
@@ -173,4 +247,35 @@ export default class FeedPosting extends Vue {
   color: #BDBDBD;
   font-size: 16px;
 }
+
+.upload-warning {
+  color: #919191;
+  padding-left: 27px;
+}
+
+/* 프로필 */
+#feed-post-info {
+  width: 560px;
+  height: 540px;
+}
+
+.feed-profile-container {
+  display: flex;
+  align-items: center;
+}
+.feed-profile-img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+.feed-profile-nickname {
+  display: inline-block;
+  color: #222222;
+  font-size: 16px;
+  padding-left: 16px;
+  font-weight: 600;
+}
+
 </style>

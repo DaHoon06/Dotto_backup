@@ -92,6 +92,7 @@
 import { Component, Emit, Vue } from "vue-property-decorator";
 import FileUploadButton from "@/components/common/utils/button/FileUploadButton.vue";
 import { ins } from '@/lib/axios';
+
 @Component({
   components: {
     FileUploadButton
@@ -162,6 +163,9 @@ export default class DottoPostingComponent extends Vue {
 
     const { data } = await ins.post('/dottopost', formData, { headers });
     console.log(data);
+    if (data) {
+      await this.$router.push('/');
+    }
   }
 
   private addTags(): void {
