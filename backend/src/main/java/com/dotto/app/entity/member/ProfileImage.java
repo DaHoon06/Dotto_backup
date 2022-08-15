@@ -26,8 +26,7 @@ public class ProfileImage {
     @Column(nullable = false)
     private String originName;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberNo", nullable = false)
+    @OneToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Member member;
 

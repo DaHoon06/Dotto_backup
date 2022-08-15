@@ -1,10 +1,13 @@
 package com.dotto.app.entity.member;
 
+import com.dotto.app.dto.member.MemberProfileUploadRequest;
 import com.dotto.app.entity.common.EntityDate;
 import com.dotto.app.entity.policy.PolicyAgree;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -51,6 +54,10 @@ public class Member extends EntityDate {
     @Column
     private String deletedYn;
 
+    @OneToOne(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JoinColumn(name = "imgNo")
+    private ProfileImage profileImage;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "policyAgreeNo")
     private PolicyAgree policyAgree;
@@ -71,11 +78,43 @@ public class Member extends EntityDate {
         this.intro = intro;
     }
 
+    public ProfileImageUpdateResult uploadProfile(MemberProfileUploadRequest req){
+        ProfileImageUpdateResult rs = findProfileUpdatedResult(req.getUploadProfile());
+        addedProfileImage(convertFilesToImage(rs.getAddedImageFile()));
+        return rs;
+    }
+    public void deletedProfile(ProfileImage deleteImage){
+        deletedProfileImage(deleteImage);
+    }
+    private ProfileImageUpdateResult findProfileUpdatedResult(MultipartFile addedFile){
+        ProfileImage addedImages = convertFilesToImage(addedFile);
+        return new ProfileImageUpdateResult(addedFile, addedImages);
+    }
+
     public void deleted(){
         setDeleted();
     }
 
     private void setDeleted(){
         this.deletedYn = "Y";
+    }
+
+    private void addedProfileImage(ProfileImage images){
+        images.initMember(this);
+    }
+
+    private void deletedProfileImage(ProfileImage deleteImages){
+        if(deleteImages.equals(this.profileImage)) this.profileImage = null;
+    }
+
+    private ProfileImage convertFilesToImage(MultipartFile file){
+        return new ProfileImage(file.getOriginalFilename());
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class ProfileImageUpdateResult{
+        private MultipartFile addedImageFile;
+        private ProfileImage addedImages;
     }
 }
