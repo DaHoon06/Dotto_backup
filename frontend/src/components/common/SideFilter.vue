@@ -1,5 +1,4 @@
 <template>
-
   <aside id="filter-container">
     <perfect-scrollbar>
       <div id="side-menu-flex">
@@ -8,7 +7,11 @@
             <article id="tag-area">
               <h4 class="filter-title">#태그</h4>
               <button @click="showTags">
-                <img class="filter-drop-btn" src="@/assets/icons/nav/filter-btn.svg" alt="filter" />
+                <img
+                  class="filter-drop-btn"
+                  src="@/assets/icons/nav/filter-btn.svg"
+                  alt="filter"
+                />
               </button>
             </article>
 
@@ -23,7 +26,6 @@
                 <span class="filter-tag">뉴스쿨</span>
               </article>
             </transition>
-
           </div>
         </section>
 
@@ -34,19 +36,31 @@
             <article id="location-area">
               <h4 class="filter-title">지역</h4>
               <button class="filter-drop-btn" @click="showLocation">
-                <img class="filter-drop-btn" src="@/assets/icons/nav/filter-btn.svg" alt="filter" />
+                <img
+                  class="filter-drop-btn"
+                  src="@/assets/icons/nav/filter-btn.svg"
+                  alt="filter"
+                />
               </button>
             </article>
 
             <transition name="fade">
               <article v-if="showLocationArea" id="filter-search-items">
                 <input
-                    type="text"
-                    ref="refKeyword"
-                    v-model="keyword"
-                    id="filter-search-bar" />
-                <button class="filter-drop-btn filter-search-btn" id="search-btn">
-                  <img id="search-icon"  src="@/assets/icons/nav/search.svg" alt="search" />
+                  type="text"
+                  ref="refKeyword"
+                  v-model="keyword"
+                  id="filter-search-bar"
+                />
+                <button
+                  class="filter-drop-btn filter-search-btn"
+                  id="search-btn"
+                >
+                  <img
+                    id="search-icon"
+                    src="@/assets/icons/nav/search.svg"
+                    alt="search"
+                  />
                 </button>
               </article>
             </transition>
@@ -56,16 +70,16 @@
         <section>
           <article>
             <button
-                class="filter-menu-button"
-                id="reset"
-                @click="reset"
-                type="button"
-            >초기화</button>
-            <button
-                class="filter-menu-button"
-                id="show-result"
-                type="button"
-            >결과보기</button>
+              class="filter-menu-button"
+              id="reset"
+              @click="reset"
+              type="button"
+            >
+              초기화
+            </button>
+            <button class="filter-menu-button" id="show-result" type="button">
+              결과보기
+            </button>
           </article>
         </section>
       </div>
@@ -78,11 +92,10 @@ import { Component, Ref, Vue } from "vue-property-decorator";
 
 @Component
 export default class SearchFilterComponent extends Vue {
-
-  showSortArea= false;
+  showSortArea = false;
   showTagArea = false;
   showLocationArea = false;
-  keyword = '';
+  keyword = "";
   @Ref() readonly refKeyword!: HTMLElement;
 
   constructor() {
@@ -90,10 +103,9 @@ export default class SearchFilterComponent extends Vue {
   }
 
   private reset() {
-    this.keyword = '';
+    this.keyword = "";
     this.$nextTick(() => this.refKeyword.focus());
   }
-
 
   private showTags() {
     this.showTagArea = !this.showTagArea;
@@ -101,11 +113,9 @@ export default class SearchFilterComponent extends Vue {
 
   private showLocation() {
     if (this.showLocationArea) this.$nextTick(() => this.refKeyword.focus());
-    if (this.showLocationArea) this.keyword = '';
+    if (this.showLocationArea) this.keyword = "";
     this.showLocationArea = !this.showLocationArea;
   }
-
-
 }
 </script>
 
@@ -144,7 +154,8 @@ hr {
   color: #222222;
 }
 
-#tag-area, #location-area {
+#tag-area,
+#location-area {
   display: flex;
   justify-content: space-between;
 }
@@ -181,7 +192,7 @@ hr {
 
 .filter-menu-button {
   box-sizing: border-box;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   font-weight: 400;
   border-radius: 4px;
   line-height: 17px;
@@ -214,8 +225,8 @@ hr {
 
 /* 태그 */
 .filter-tag {
-  border: 1px solid #F5F5F5;
-  background: #F5F5F5;
+  border: 1px solid #f5f5f5;
+  background: #f5f5f5;
   color: #222222;
   padding: 8px;
   margin-right: 8px;
@@ -237,12 +248,9 @@ hr {
 }
 
 /*------ 반응형 -----*/
-@media screen and (max-width: 1440px){
-
+@media screen and (max-width: 1440px) {
 }
 
 @media screen and (max-width: 1260px) {
-
 }
-
 </style>

@@ -1,11 +1,10 @@
 <template>
   <article id="feed-post-container">
-
     <section id="feed-post-top">
       <img id="logo" src="@/assets/img/dotto.svg" alt="logo" />
     </section>
     <article id="feed-post-form">
-      <section >
+      <section>
         <button id="history-back-button" type="button" @click="historyBack">
           <img src="@/assets/icons/myfeed/history-back.svg" alt="뒤로가기" />
         </button>
@@ -13,60 +12,81 @@
       <section id="feed-post-body">
         <section id="feed-body-top-container">
           <h1 id="feed-title">피드 작성</h1>
-          <button type="button" id="feed-posting-btn" :class="feedPosting ? disabledButton : notDisabledButton" :disabled="feedPosting" @click="posting">게시</button>
+          <button
+            type="button"
+            id="feed-posting-btn"
+            :class="feedPosting ? disabledButton : notDisabledButton"
+            :disabled="feedPosting"
+            @click="posting"
+          >
+            게시
+          </button>
         </section>
         <section id="feed-body-items-container">
           <section
-              id="feed-post-upload-wrapper"
-              @click="clickInputTag"
-              @drop.prevent="dropInputTag($event)"
-              @dragover.prevent
+            id="feed-post-upload-wrapper"
+            @click="clickInputTag"
+            @drop.prevent="dropInputTag($event)"
+            @dragover.prevent
           >
-            <img src="@/assets/icons/myfeed/upload.svg" alt="파일업로드">
+            <img src="@/assets/icons/myfeed/upload.svg" alt="파일업로드" />
             <h2 id="upload-description">드래그하거나 클릭하여 업로드</h2>
             <input
-                type="file"
-                ref="fileInput"
-                class="file-upload-input"
-                @change="onFileChange"
-                multiple
-                hidden
-                accept=".jpg, .jpeg, .png" >
+              type="file"
+              ref="fileInput"
+              class="file-upload-input"
+              @change="onFileChange"
+              multiple
+              hidden
+              accept=".jpg, .jpeg, .png"
+            />
           </section>
           <section id="feed-post-info">
-            <p class="feed-profile-container"><span class="feed-profile-img"></span><span class="feed-profile-nickname">닉네임</span></p>
-            <textarea placeholder="내용을 입력해 주세요..." id="textarea" v-model="feedContent" @keyup="contentLengthCheck"></textarea>
-            <p id="feed-content-size">{{feedContent.length}} / 1,000</p>
+            <p class="feed-profile-container">
+              <span class="feed-profile-img"></span
+              ><span class="feed-profile-nickname">닉네임</span>
+            </p>
+            <textarea
+              placeholder="내용을 입력해 주세요..."
+              id="textarea"
+              v-model="feedContent"
+              @keyup="contentLengthCheck"
+            ></textarea>
+            <p id="feed-content-size">{{ feedContent.length }} / 1,000</p>
           </section>
         </section>
 
-        <p class="upload-warning"><img src="@/assets/icons/myfeed/dashicons_info-outline.svg" alt="이미지 형식" > 권장사항 : 최대 3장 / JPG PNG / 10 MB 이하 파일</p>
-
+        <p class="upload-warning">
+          <img
+            src="@/assets/icons/myfeed/dashicons_info-outline.svg"
+            alt="이미지 형식"
+          />
+          권장사항 : 최대 3장 / JPG PNG / 10 MB 이하 파일
+        </p>
       </section>
     </article>
-
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Ref, Vue, Watch } from "vue-property-decorator";
-import { ins } from '@/lib/axios';
+import { ins } from "@/lib/axios";
 
 @Component
 export default class FeedPosting extends Vue {
   @Ref() readonly fileInput!: any;
 
-  feedContent = '';
+  feedContent = "";
   contentSize = this.feedContent.length;
   feedPosting = true;
-  notDisabledButton = 'notDisabledButton';
-  disabledButton = 'disabledButton';
+  notDisabledButton = "notDisabledButton";
+  disabledButton = "disabledButton";
 
   isDragged = false;
   fileList: FileList[] = [];
   images: any;
 
-  userNickname = this.$store.getters['userStore/nickname'];
+  userNickname = this.$store.getters["userStore/nickname"];
 
   private historyBack() {
     this.$router.go(-1);
@@ -77,11 +97,11 @@ export default class FeedPosting extends Vue {
   }
 
   dropInputTag(e: any) {
-    let files = Array.from(e.dataTransfer.files, v => v)[0];
+    let files = Array.from(e.dataTransfer.files, (v) => v)[0];
     this.images.push(files);
   }
 
-  onFileChange () {
+  onFileChange() {
     const data = this.fileInput.files[0];
     this.images.push(data);
   }
@@ -89,28 +109,28 @@ export default class FeedPosting extends Vue {
   async posting() {
     try {
       const formData = new FormData();
-      formData.append('feedContent', this.feedContent);
-      formData.append('userNickname', this.userNickname);
-      formData.append('fileList', this.images);
+      formData.append("feedContent", this.feedContent);
+      formData.append("userNickname", this.userNickname);
+      formData.append("fileList", this.images);
       const headers = {
-        'Content-Type': 'multipart/form-data',
-      }
-      const { data } = await ins.post('/user/feed',formData, { headers });
+        "Content-Type": "multipart/form-data",
+      };
+      const { data } = await ins.post("/user/feed", formData, { headers });
       console.log(data);
       if (data) {
-        await this.$router.push('/');
+        await this.$router.push("/");
       }
     } catch (e) {
       console.log(e);
     }
   }
 
-  @Watch('feedContent')
+  @Watch("feedContent")
   private contentLengthCheck() {
     this.feedPosting = !this.feedContent.length;
 
     if (this.feedContent.length >= 1000) {
-      alert('놉ㅡㅡ');
+      alert("놉ㅡㅡ");
       return false;
     }
   }
@@ -122,7 +142,7 @@ export default class FeedPosting extends Vue {
   position: absolute;
   top: 0;
   left: 0;
-  background: #E2E2E2;
+  background: #e2e2e2;
   width: 100vw;
   min-height: 100vh;
   z-index: 10;
@@ -164,7 +184,7 @@ export default class FeedPosting extends Vue {
   margin-left: 40px;
 }
 #feed-posting-btn {
-  color: #BDBDBD;
+  color: #bdbdbd;
   border-radius: 50px;
   width: 100px;
   padding: 12px;
@@ -176,10 +196,9 @@ export default class FeedPosting extends Vue {
   background: black;
 }
 .disabledButton {
-  background: #F5F5F5;
+  background: #f5f5f5;
   cursor: auto;
 }
-
 
 #feed-post-body {
   border: 1px solid #e2e2e2;
@@ -245,7 +264,7 @@ export default class FeedPosting extends Vue {
 #feed-content-size {
   display: flex;
   justify-content: flex-end;
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-size: 16px;
 }
 
@@ -278,5 +297,4 @@ export default class FeedPosting extends Vue {
   padding-left: 16px;
   font-weight: 600;
 }
-
 </style>

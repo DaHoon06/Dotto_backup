@@ -1,23 +1,37 @@
 <template>
-  <article id="nav-bar-container" >
-
+  <article id="nav-bar-container">
     <article>
       <ul>
         <li id="menu-button-container">
           <button>
-            <img class="menu-icon" src="@/assets/icons/nav/menu.png" alt="menu"  />
+            <img
+              class="menu-icon"
+              src="@/assets/icons/nav/menu.png"
+              alt="menu"
+            />
           </button>
         </li>
         <li>
-          <router-link to="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></router-link>
+          <router-link to="/"
+            ><img id="logo" src="@/assets/img/dotto.svg" alt="logo"
+          /></router-link>
         </li>
       </ul>
     </article>
 
     <article id="search-container">
-      <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
-      <button id="search-btn" >
-        <img class="side-menu-drop-btn" src="@/assets/icons/nav/search.svg" alt="search" />
+      <input
+        type="text"
+        placeholder="Search"
+        @click="searchLists"
+        id="navigation-search-bar"
+      />
+      <button id="search-btn">
+        <img
+          class="side-menu-drop-btn"
+          src="@/assets/icons/nav/search.svg"
+          alt="search"
+        />
       </button>
 
       <transition name="fade">
@@ -25,8 +39,7 @@
           <section id="search-list-wrapper">
             <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
             <ul>
-              <li>
-              </li>
+              <li></li>
             </ul>
           </section>
           <section id="outer" @click="closeSearchList" />
@@ -40,7 +53,6 @@
         <img src="@/assets/icons/nav/close.png" id="close-img" alt="close" />
       </button>
     </article>
-
   </article>
 </template>
 
@@ -51,11 +63,11 @@ import LoginView from "@/views/LoginView.vue";
 @Component({
   components: {
     LoginView,
-  }
+  },
 })
 export default class HeaderComponent extends Vue {
   showSearchList = false;
-  modalType = '';
+  modalType = "";
   showMessage = false;
   showMyMenu = false;
 
@@ -65,25 +77,24 @@ export default class HeaderComponent extends Vue {
 
   private closeSearchList() {
     this.showSearchList = !this.showSearchList;
-    this.$store.commit('cssStore/backgroundBlur', this.showSearchList);
-    this.$store.commit('cssStore/scrollOn', this.showSearchList);
+    this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
+    this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
   private logout(): void {
-    console.log('logout')
+    console.log("logout");
   }
 
   private searchLists(): void {
     this.showSearchList = !this.showSearchList;
-    this.$store.commit('cssStore/backgroundBlur', this.showSearchList);
-    this.$store.commit('cssStore/scrollOn', this.showSearchList);
+    this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
+    this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
-  @Emit('notScroll')
+  @Emit("notScroll")
   private notScrollBody() {
     return true;
   }
-
 }
 </script>
 
@@ -126,7 +137,7 @@ export default class HeaderComponent extends Vue {
   height: 100%;
   border: 1px solid #ececec;
   outline: none;
-  background: #F5F5F5;
+  background: #f5f5f5;
   padding-left: 10px;
   padding-right: 10px;
   font-size: 18px;
@@ -143,13 +154,13 @@ export default class HeaderComponent extends Vue {
   display: inline-block;
   width: 100vw;
   height: 30vh;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 #outer {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3)
+  background: rgba(0, 0, 0, 0.3);
 }
 #search-btn {
   position: relative;
@@ -179,8 +190,5 @@ hr {
 a:hover {
   color: #8d8d8d;
   font-weight: 700;
-
 }
-
-
 </style>

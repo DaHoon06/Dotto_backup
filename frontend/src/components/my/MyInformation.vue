@@ -1,27 +1,29 @@
 <template>
   <article id="my-information-container">
-
     <section id="my-info-area-1">
       <div id="my-information-profile-img">{{ profile.userProfile }}</div>
     </section>
 
-    <article id='my-info-area-2'>
+    <article id="my-info-area-2">
       <section id="my-information-write">
         <span>{{ profile.userNickname }}</span>
-        <button type="button" id="feed-posting-btn" @click="redirectFeedPosting">
-<!--          <img id='posting-btn-img' src="@/assets/icons/board/dotto/plus.png" alt="피드작성" />-->
+        <button
+          type="button"
+          id="feed-posting-btn"
+          @click="redirectFeedPosting"
+        >
+          <!--          <img id='posting-btn-img' src="@/assets/icons/board/dotto/plus.png" alt="피드작성" />-->
           게시글 작성
         </button>
       </section>
       <section>
-        <span>팔로우</span><span>{{ profile.follower}}</span>
-        <span>팔로잉</span><span>{{ profile.following}}</span>
+        <span>팔로우</span><span>{{ profile.follower }}</span>
+        <span>팔로잉</span><span>{{ profile.following }}</span>
       </section>
       <section>
         {{ profile.following }}
       </section>
     </article>
-
   </article>
 </template>
 
@@ -29,27 +31,27 @@
 import { Component, Vue } from "vue-property-decorator";
 
 export interface IUser {
-  userNickname: string,
-  userProfile: string,
-  follower: string,
-  following: string,
-  userDesc: string,
+  userNickname: string;
+  userProfile: string;
+  follower: string;
+  following: string;
+  userDesc: string;
 }
 @Component
 export default class MyInformationComponent extends Vue {
   //token
-  accessToken = this.$store.getters['userStore/accessToken'];
+  accessToken = this.$store.getters["userStore/accessToken"];
   profile: IUser;
 
   constructor() {
     super();
     this.profile = {
-      userNickname: '',
-      userProfile: '',
-      userDesc: '',
-      follower: '',
-      following: '',
-    }
+      userNickname: "",
+      userProfile: "",
+      userDesc: "",
+      follower: "",
+      following: "",
+    };
   }
 
   created() {
@@ -65,9 +67,8 @@ export default class MyInformationComponent extends Vue {
   }
 
   private redirectFeedPosting() {
-    this.$router.push('/dotto/feed/post');
+    this.$router.push("/dotto/feed/post");
   }
-
 }
 </script>
 
@@ -101,7 +102,7 @@ export default class MyInformationComponent extends Vue {
 }
 
 #feed-posting-btn {
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   width: 129px;
   height: 40px;
   border-radius: 30px;

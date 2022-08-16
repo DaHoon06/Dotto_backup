@@ -1,27 +1,28 @@
 <template>
   <div id="dotto-comment-container">
-
     <section id="dotto-add-comment-wrapper">
       <div id="comment-profile-img-div">
         <img src="@/assets/icons/default.svg" class="profile-img" alt="my" />
       </div>
       <div>
         <input
-            type="text"
-            placeholder="댓글을 남겨주세요."
-            id="dotto-add-comment-input"
+          type="text"
+          placeholder="댓글을 남겨주세요."
+          id="dotto-add-comment-input"
         />
       </div>
       <div id="comment-btn-wrapper">
+        <button type="button" class="dotto-comment-btn" id="cancel">
+          취소
+        </button>
         <button
-            type="button"
-            class="dotto-comment-btn"
-            id="cancel">취소</button>
-        <button
-            type="button"
-            :disabled="activeBtn"
-            class="dotto-comment-btn"
-            id="posting">작성</button>
+          type="button"
+          :disabled="activeBtn"
+          class="dotto-comment-btn"
+          id="posting"
+        >
+          작성
+        </button>
       </div>
     </section>
 
@@ -30,20 +31,47 @@
       <article class="dotto-comment-wrapper">
         <div class="dotto-tabs-flex-row">
           <div class="dotto-tab-profile">
-            <img src="@/assets/icons/default.svg" class="profile-img" alt="my" />
+            <img
+              src="@/assets/icons/default.svg"
+              class="profile-img"
+              alt="my"
+            />
             <div class="dotto-comment-items">
               <div class="dotto-detail-comment-user">
                 <div>전다훈</div>
                 <div>2022.05.19</div>
               </div>
               <div class="dotto-comment-contents">
-                깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!요~!~!~!~!
+                깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!요~!~!~!~!
               </div>
             </div>
           </div>
           <div class="tabs-side-menu-btn-wrapper">
             <button type="button" @click="showCommentOptions">
-              <img src="@/assets/icons/board/dotto/tabs-side-menu-btn.png" class="tabs-side-menu-btn" alt="options"/>
+              <img
+                src="@/assets/icons/board/dotto/tabs-side-menu-btn.png"
+                class="tabs-side-menu-btn"
+                alt="options"
+              />
             </button>
             <div class="dotto-detail-comment-options" v-if="showMenuList">
               <div class="tabs-side-menu-btn-div">
@@ -63,20 +91,47 @@
       <article class="dotto-comment-wrapper">
         <div class="dotto-tabs-flex-row">
           <div class="dotto-tab-profile">
-            <img src="@/assets/icons/default.svg" class="profile-img" alt="my" />
+            <img
+              src="@/assets/icons/default.svg"
+              class="profile-img"
+              alt="my"
+            />
             <div class="dotto-comment-items">
               <div class="dotto-detail-comment-user">
                 <div>전다훈</div>
                 <div>2022.05.19</div>
               </div>
               <div class="dotto-comment-contents">
-                깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!요~!~!~!~!
+                깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!요~!~!~!~!
               </div>
             </div>
           </div>
           <div class="tabs-side-menu-btn-wrapper">
             <button type="button" @click="showCommentOptions">
-              <img src="@/assets/icons/board/dotto/tabs-side-menu-btn.png" class="tabs-side-menu-btn" alt="options"/>
+              <img
+                src="@/assets/icons/board/dotto/tabs-side-menu-btn.png"
+                class="tabs-side-menu-btn"
+                alt="options"
+              />
             </button>
             <div class="dotto-detail-comment-options" v-if="showMenuList">
               <div class="tabs-side-menu-btn-div">
@@ -96,20 +151,47 @@
       <article class="dotto-comment-wrapper">
         <div class="dotto-tabs-flex-row">
           <div class="dotto-tab-profile">
-            <img src="@/assets/icons/default.svg" class="profile-img" alt="my" />
+            <img
+              src="@/assets/icons/default.svg"
+              class="profile-img"
+              alt="my"
+            />
             <div class="dotto-comment-items">
               <div class="dotto-detail-comment-user">
                 <div>전다훈</div>
                 <div>2022.05.19</div>
               </div>
               <div class="dotto-comment-contents">
-                깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!요~!~!~!~!
+                깔끔하고 예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!깔끔하고 예쁘네요~!~!~!~!깔끔하고
+                예쁘네요~!~!~!~!요~!~!~!~!
               </div>
             </div>
           </div>
           <div class="tabs-side-menu-btn-wrapper">
             <button type="button" @click="showCommentOptions">
-              <img src="@/assets/icons/board/dotto/tabs-side-menu-btn.png" class="tabs-side-menu-btn" alt="options"/>
+              <img
+                src="@/assets/icons/board/dotto/tabs-side-menu-btn.png"
+                class="tabs-side-menu-btn"
+                alt="options"
+              />
             </button>
             <div class="dotto-detail-comment-options" v-if="showMenuList">
               <div class="tabs-side-menu-btn-div">
@@ -125,9 +207,7 @@
           </div>
         </div>
       </article>
-
     </section>
-
   </div>
 </template>
 
@@ -160,7 +240,7 @@ export default class DottoCommentComponent extends Vue {
   height: 56px;
   outline: none;
   border: none;
-  border-bottom: 1px solid #E2E2E2;
+  border-bottom: 1px solid #e2e2e2;
   margin-left: 32px;
 }
 #comment-profile-img-div {
@@ -180,9 +260,9 @@ export default class DottoCommentComponent extends Vue {
   color: #919191;
 }
 #posting {
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-size: 18px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   margin-left: 12px;
 }
 .dotto-comment-btn {
@@ -228,7 +308,7 @@ export default class DottoCommentComponent extends Vue {
   flex-direction: row;
   align-items: flex-start;
 }
-.dotto-detail-comment-user > div:nth-child(1){
+.dotto-detail-comment-user > div:nth-child(1) {
   font-size: 18px;
   color: #222222;
   font-weight: 600;
@@ -261,7 +341,7 @@ export default class DottoCommentComponent extends Vue {
 .dotto-detail-comment-options {
   font-size: 14px;
   color: #222222;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   border-radius: 8px;
   box-shadow: 0 1px 5px 1px #e2e2e2;
   width: 144px;
@@ -274,6 +354,4 @@ export default class DottoCommentComponent extends Vue {
   justify-content: space-around;
 }
 /*------------------*/
-
-
 </style>

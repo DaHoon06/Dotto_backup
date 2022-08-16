@@ -2,9 +2,7 @@
   <header id="header">
     <header-component />
     <status-component />
-    <navigation-component
-        :navigationType="navigationType"
-    />
+    <navigation-component :navigationType="navigationType" />
     <menu-button />
   </header>
 </template>
@@ -21,23 +19,23 @@ import StatusComponent from "@/components/common/top/StatusComponent.vue";
     HeaderComponent,
     MenuButton,
     NavigationComponent,
-    StatusComponent
-  }
+    StatusComponent,
+  },
 })
 export default class HeaderView extends Vue {
-  @Prop({ default: 'home' }) navigationType?: string;
+  @Prop({ default: "home" }) navigationType?: string;
 
   //CSS 적용
   private blurBackground(isBlur: boolean) {
-    this.$emit('blurBackground', isBlur);
+    this.$emit("blurBackground", isBlur);
   }
   private notScrollBody(scrollEvent: boolean) {
-    this.$emit('notScrollBody', scrollEvent);
+    this.$emit("notScrollBody", scrollEvent);
   }
 }
 </script>
 
-<style >
+<style>
 #header {
   position: fixed;
   display: flex;
@@ -46,9 +44,9 @@ export default class HeaderView extends Vue {
   height: 144px;
   left: 0;
   top: 0;
-  background: #FFFFFF;
+  background: #ffffff;
   z-index: 10;
   flex-direction: column;
-  border-bottom: 1px solid #E2E2E2;
+  border-bottom: 1px solid #e2e2e2;
 }
 </style>

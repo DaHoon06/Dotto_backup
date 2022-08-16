@@ -61,4 +61,9 @@ export namespace IBoard {
     type: string,
     webkitRelativePath: string
   }
+
+  export interface SelectOptions {
+    text: string,
+    value: string,
+  }
 }

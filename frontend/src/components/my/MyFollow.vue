@@ -4,34 +4,74 @@
       <span> < </span>
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div class="follow-artist-list">
-      <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+      <img
+        class="follow-artist-list"
+        src="@/assets/icons/main/sample/sample-follow-artist.png"
+        alt="sample1"
+      />
     </div>
     <div>
       <span> > </span>
@@ -43,9 +83,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class MyFollowComponent extends Vue {
-
-}
+export default class MyFollowComponent extends Vue {}
 </script>
 
 <style scoped>
@@ -61,9 +99,9 @@ export default class MyFollowComponent extends Vue {
 }
 
 .follow-artist-list {
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   border-radius: 45px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   width: 50px;
   height: 50px;
 }

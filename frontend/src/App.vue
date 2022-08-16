@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <header-view
-        :navigationType="navigationTypeComputed"
-    />
+    <header-view :navigationType="navigationTypeComputed" />
     <router-view
-        :class='[this.Blur ? "setBlur" : "", this.Scroll ? "notScroll" : ""]'
-        @changeNavType="changeNavType" />
+      :class="[this.Blur ? 'setBlur' : '', this.Scroll ? 'notScroll' : '']"
+      @changeNavType="changeNavType"
+    />
     <footer-component />
   </div>
 </template>
@@ -14,20 +13,26 @@
 import { Component, Vue } from "vue-property-decorator";
 import HeaderView from "@/views/HeaderView.vue";
 import { FooterComponent } from "@/components/common";
+import EventBus from "@/utils/eventBus";
 
 @Component({
   components: {
     FooterComponent,
-    HeaderView
-  }
+    HeaderView,
+  },
 })
 export default class App extends Vue {
-  blurCss = '';
-  scroll = '';
-  navigationType = '';
+  blurCss = "";
+  scroll = "";
+  navigationType = "";
 
   created(): void {
     this.kakaoInit();
+    this.eventListener();
+  }
+
+  private eventListener(): void {
+    console.log("?");
   }
 
   private kakaoInit(): void {
@@ -46,18 +51,15 @@ export default class App extends Vue {
   }
 
   private get Blur() {
-    return this.blurCss = this.$store.getters["cssStore/BLUR"];
+    return (this.blurCss = this.$store.getters["cssStore/BLUR"]);
   }
   private get Scroll() {
-    return this.scroll = this.$store.getters['cssStore/SCROLL'];
+    return (this.scroll = this.$store.getters["cssStore/SCROLL"]);
   }
-
-
 }
 </script>
 
 <style>
-
 /* 아래 항목 : 이벤트에 따른 CSS 적용 */
 .setBlur {
   filter: blur(4px);
@@ -72,7 +74,6 @@ export default class App extends Vue {
 /*}*/
 
 .notScroll {
-  -ms-overflow-style:none;
+  -ms-overflow-style: none;
 }
-
 </style>

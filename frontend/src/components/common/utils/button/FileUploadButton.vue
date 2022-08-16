@@ -1,19 +1,22 @@
 <template>
   <article class="room-file-upload-wrapper">
-
     <article v-if="!files.length" class="room-file-upload-example-container">
       <div class="room-file-upload-example">
         <div class="room-file-notice-item room-file-upload-button">
           <div class="image-box">
-            <img class="upload" src="@/assets/icons/common/upload.png" alt="upload" />
+            <img
+              class="upload"
+              src="@/assets/icons/common/upload.png"
+              alt="upload"
+            />
             <label for="file">이미지 첨부</label>
             <input
-                type="file"
-                id="file"
-                ref="fileRef"
-                @change="imageUpload"
-                multiple
-                accept=".jpg, .jpeg, .png"
+              type="file"
+              id="file"
+              ref="fileRef"
+              @change="imageUpload"
+              multiple
+              accept=".jpg, .jpeg, .png"
             />
           </div>
         </div>
@@ -21,8 +24,16 @@
     </article>
     <article v-else class="file-preview-content-container">
       <div class="file-preview-container">
-        <div v-for="(file, index) in files" :key="index" class="file-preview-wrapper">
-          <div class="file-close-button" @click="fileDeleteButton" :id="file.number" >
+        <div
+          v-for="(file, index) in files"
+          :key="index"
+          class="file-preview-wrapper"
+        >
+          <div
+            class="file-close-button"
+            @click="fileDeleteButton"
+            :id="file.number"
+          >
             x
           </div>
           <img :src="file.preview" />
@@ -30,32 +41,33 @@
       </div>
       <div class="file-preview-wrapper-upload">
         <div class="image-box">
-          <img class="upload" src="@/assets/icons/common/upload.png" alt="upload" />
+          <img
+            class="upload"
+            src="@/assets/icons/common/upload.png"
+            alt="upload"
+          />
           <label for="file">이미지 첨부</label>
           <input
-              type="file"
-              id="file"
-              ref="fileRef"
-              @change="imageAddUpload"
-              multiple
-              accept=".jpg, .jpeg, .png"
+            type="file"
+            id="file"
+            ref="fileRef"
+            @change="imageAddUpload"
+            multiple
+            accept=".jpg, .jpeg, .png"
           />
         </div>
       </div>
     </article>
-<!--    <div>-->
-<!--      <span>업로드 제한 : 10MB</span>-->
-<!--      <span>최대 3장 / JPG, PNG / 10MB까지 등록</span>-->
-<!--    </div>-->
-
+    <!--    <div>-->
+    <!--      <span>업로드 제한 : 10MB</span>-->
+    <!--      <span>최대 3장 / JPG, PNG / 10MB까지 등록</span>-->
+    <!--    </div>-->
   </article>
 </template>
 
 <script lang="ts">
-import {Component, Emit, Ref, Vue} from "vue-property-decorator";
+import { Component, Emit, Ref, Vue } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
-
-
 
 @Component
 export default class FileUploadComponent extends Vue {
@@ -64,7 +76,7 @@ export default class FileUploadComponent extends Vue {
   files: IBoard.IFileUpload[] = [];
   uploadImageIndex = 0;
 
-  @Emit('sendImg')
+  @Emit("sendImg")
   sendImg(img: any) {
     return img;
   }
@@ -77,8 +89,8 @@ export default class FileUploadComponent extends Vue {
         {
           file: this.fileRef.files[i],
           preview: URL.createObjectURL(this.fileRef.files[i]),
-          number: i
-        }
+          number: i,
+        },
       ];
       num = i;
     }
@@ -94,8 +106,8 @@ export default class FileUploadComponent extends Vue {
         {
           file: this.fileRef.files[i],
           preview: URL.createObjectURL(this.fileRef.files[i]),
-          number: i + this.uploadImageIndex
-        }
+          number: i + this.uploadImageIndex,
+        },
       ];
       num = i;
     }
@@ -105,10 +117,11 @@ export default class FileUploadComponent extends Vue {
 
   private fileDeleteButton(e: Event) {
     const target = e.target as HTMLInputElement;
-    const id = target.getAttribute('id');
-    this.files = this.files.filter((data: IBoard.IFileUpload) => data.number !== Number(id));
+    const id = target.getAttribute("id");
+    this.files = this.files.filter(
+      (data: IBoard.IFileUpload) => data.number !== Number(id)
+    );
   }
-
 }
 </script>
 
@@ -148,7 +161,7 @@ export default class FileUploadComponent extends Vue {
   margin-top: 20px;
 }
 
-.image-box input[type='file'] {
+.image-box input[type="file"] {
   position: absolute;
   width: 0;
   height: 0;
@@ -161,7 +174,7 @@ export default class FileUploadComponent extends Vue {
   display: inline-block;
   padding: 7px 26px 7px 40px;
   background-color: white;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   vertical-align: middle;
   font-size: 0.82rem;
   font-weight: 600;
@@ -214,7 +227,6 @@ export default class FileUploadComponent extends Vue {
   height: 90px;
 }
 
-
 .room-write-button-wrapper > div {
   width: 160px;
   height: 50px;
@@ -225,5 +237,4 @@ export default class FileUploadComponent extends Vue {
   font-size: 15px;
   cursor: pointer;
 }
-
 </style>

@@ -83,7 +83,6 @@
 <!--        <button class="register-btn">인증하기</button>-->
 <!--      </div>-->
 
-
 <!--      <div id="gender-wrapper">-->
 <!--        <input class="selected-gender" type="radio" id="male" v-model="gender" value="male" name="male" />-->
 <!--        <label for="male">남성</label>-->
@@ -273,7 +272,6 @@
 <!--  private get IdMessage() {-->
 <!--    return this.idMessage;-->
 <!--  }-->
-
 
 <!--}-->
 <!--</script>-->

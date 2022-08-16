@@ -1,10 +1,10 @@
 <template>
   <main id="dotto-detail-container">
-
     <section class="dotto-detail-wrapper">
       <article class="dotto-detail-section">
         <div>이 작업이 마음에 드시나요?</div>
         <button type="button" id="dotto-detail-like-btn">찜하기</button>
+        <button type="button">의뢰하기</button>
       </article>
       <article class="dotto-detail-flex-row">
         <div class="dotto-detail-flex" id="dotto-detail-information">
@@ -14,7 +14,7 @@
             <div>56회</div>
           </div>
           <div class="dotto-detail-flex-row">
-            <div>{{ list.salesPrice}}</div>
+            <div>{{ list.salesPrice }}</div>
             <div>{{ list.price }}</div>
           </div>
           <hr />
@@ -24,18 +24,23 @@
           </div>
           <div class="dotto-detail-flex-row">
             <div>장르</div>
-            <div>{{ list.genre}}</div>
+            <div>{{ list.genre }}</div>
           </div>
           <div class="dotto-detail-flex-row">
             <div>소요시간</div>
-            <div>{{ list.totalTime}}</div>
+            <div>{{ list.totalTime }}</div>
           </div>
           <hr />
           <div>
             {{ list.content }}
           </div>
           <div>
-            <span class="tag-area" v-for="(tag, index) of list.tags.split(',')" :key="index">{{ tag }}</span>
+            <span
+              class="tag-area"
+              v-for="(tag, index) of list.tags.split(',')"
+              :key="index"
+              >{{ tag }}</span
+            >
           </div>
           <hr />
           <article class="dotto-detail-section">
@@ -75,25 +80,22 @@
     </section>
 
     <dotto-tabs-container id="dotto-tab" />
-
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import DottoTabsContainer from "@/components/dotto/tab/DottoTabs.vue";
-import {IBoard} from "@/interfaces/IBoard";
-
+import { IBoard } from "@/interfaces/IBoard";
 
 //TODO: 테스트 종료 후 class dotto-detail-comment-content height 수정
 
 @Component({
   components: {
-    DottoTabsContainer
-  }
+    DottoTabsContainer,
+  },
 })
 export default class DottoDetailComponent extends Vue {
-
   /*
     TODO:
       1. 게시글 상세 조회
@@ -107,19 +109,19 @@ export default class DottoDetailComponent extends Vue {
   constructor() {
     super();
     this.list = {
-      id: '',
-      title: '',
-      postNo: '',
-      price: '',
-      salesPct: '',
-      salesPrice: '',
-      salesYn: '',
+      id: "",
+      title: "",
+      postNo: "",
+      price: "",
+      salesPct: "",
+      salesPrice: "",
+      salesYn: "",
       tags: [],
-      totalTime: '',
-      genre: '',
-      location: '',
-      content: '',
-    }
+      totalTime: "",
+      genre: "",
+      location: "",
+      content: "",
+    };
   }
 
   created() {
@@ -143,16 +145,12 @@ export default class DottoDetailComponent extends Vue {
       console.error(e);
     }
   }
-
-
-
-
 }
 </script>
 
 <style scoped>
 hr {
-  color: #E2E2E2;
+  color: #e2e2e2;
   height: 2px;
   margin: 0;
 }
@@ -230,7 +228,7 @@ hr {
   width: 100px;
   height: 30px;
   color: #222222;
-  background: #F5F5F5;
+  background: #f5f5f5;
   font-size: 14px;
   font-weight: 600;
 }
@@ -242,7 +240,7 @@ hr {
   border-radius: 30px;
   width: 48px;
   height: 48px;
-  background: rgba(0,0,0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 16px;
 }

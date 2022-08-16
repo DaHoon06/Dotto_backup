@@ -1,51 +1,84 @@
 <template>
   <article id="policy-container">
+    <article>
+      <section class="policy-items">
+        <input
+          type="checkbox"
+          id="check"
+          @change="[handleClickAllCheckBox(), btnActive()]"
+          v-model="allCheckItems"
+        />
+        <label for="check"></label>
+        <section id="policy-title" class="policy-title">
+          전체 동의 합니다.
+        </section>
+      </section>
+      <hr class="under-line" />
+    </article>
 
     <article>
       <section class="policy-items">
-        <input type="checkbox" id="check" @change="[handleClickAllCheckBox(), btnActive()]" v-model="allCheckItems" />
-        <label for="check"></label>
-        <section id="policy-title" class="policy-title">전체 동의 합니다.</section>
-      </section>
-      <hr class="under-line">
-    </article>
-
-    <article >
-      <section class="policy-items">
-        <input type="checkbox" id="check1" @change="[handleClickEachCheckBox(), btnActive()]" v-model="checkList1" />
+        <input
+          type="checkbox"
+          id="check1"
+          @change="[handleClickEachCheckBox(), btnActive()]"
+          v-model="checkList1"
+        />
         <label for="check1"></label>
         <section class="policy-title">
           <h6>이용약관 동의<span class="necessary">(필수)</span></h6>
-          <img @click="showDottoPolicyContent" class="policy-drop-list-btn" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
+          <img
+            @click="showDottoPolicyContent"
+            class="policy-drop-list-btn"
+            src="@/assets/icons/nav/filter-btn.svg"
+            alt="sort"
+          />
         </section>
       </section>
-      <hr class="under-line">
+      <hr class="under-line" />
       <transition name="fade">
-        <section v-show="showDottoPolicy" class="policy-text" v-html="terms.dottoPolicyContent"></section>
+        <section
+          v-show="showDottoPolicy"
+          class="policy-text"
+          v-html="terms.dottoPolicyContent"
+        ></section>
       </transition>
     </article>
 
     <article id="policy-private-container">
       <section class="policy-items">
-        <input type="checkbox" id="check2" @change="[handleClickEachCheckBox(), btnActive()]" v-model="checkList2" />
+        <input
+          type="checkbox"
+          id="check2"
+          @change="[handleClickEachCheckBox(), btnActive()]"
+          v-model="checkList2"
+        />
         <label for="check2"></label>
         <section class="policy-title">
           <h6>개인정보 수집 . 이용동의<span class="necessary">(필수)</span></h6>
-          <img @click="showPrivatePolicyContent" class="policy-drop-list-btn" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
+          <img
+            @click="showPrivatePolicyContent"
+            class="policy-drop-list-btn"
+            src="@/assets/icons/nav/filter-btn.svg"
+            alt="sort"
+          />
         </section>
       </section>
-      <hr class="under-line">
+      <hr class="under-line" />
       <transition name="fade">
-        <section v-show="showPrivatePolicy" class="policy-text" v-html="terms.privatePolicyContent"></section>
+        <section
+          v-show="showPrivatePolicy"
+          class="policy-text"
+          v-html="terms.privatePolicyContent"
+        ></section>
       </transition>
     </article>
-
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import termsContent from '@/assets/dummy/terms.ts';
+import termsContent from "@/assets/dummy/terms.ts";
 import EventBus from "@/utils/eventBus";
 
 @Component
@@ -58,16 +91,16 @@ export default class PolicyComponent extends Vue {
   showPrivatePolicy = false;
 
   terms = {
-    dottoPolicyContent: '',
-    privatePolicyContent: '',
-  }
+    dottoPolicyContent: "",
+    privatePolicyContent: "",
+  };
 
   constructor() {
     super();
     this.terms = {
       dottoPolicyContent: termsContent[0].dottoPolicyContent,
       privatePolicyContent: termsContent[0].privatePolicyContent,
-    }
+    };
   }
 
   created(): void {
@@ -86,7 +119,7 @@ export default class PolicyComponent extends Vue {
 
   private btnActive() {
     // 전체 동의일 경우 다음 버튼 활성화
-    EventBus.$emit('next', (this.checkList1 && this.checkList2));
+    EventBus.$emit("next", this.checkList1 && this.checkList2);
   }
 
   private handleClickEachCheckBox() {
@@ -100,9 +133,6 @@ export default class PolicyComponent extends Vue {
   private showPrivatePolicyContent(): void {
     this.showPrivatePolicy = !this.showPrivatePolicy;
   }
-
-
-
 }
 </script>
 
@@ -171,7 +201,7 @@ input + label {
   border-radius: 45px;
 }
 input + label::after {
-  content: '✓';
+  content: "✓";
   font-weight: 600;
   color: #dedede;
   font-size: 12px;
@@ -180,7 +210,7 @@ input + label::after {
   bottom: 5px;
 }
 input:checked + label::after {
-  content: '✓';
+  content: "✓";
   font-weight: 1000;
   color: #1dbe0f;
   font-size: 13px;
@@ -198,14 +228,12 @@ input:checked + label {
 
 /* 버튼 */
 #policy-btn-container {
-
 }
 
 .policy-drop-list-btn {
   width: 14px;
   height: 14px;
 }
-
 
 .side-menu-drop-btn-02 {
   width: 18px;

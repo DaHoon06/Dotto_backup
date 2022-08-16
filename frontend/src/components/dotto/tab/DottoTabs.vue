@@ -1,36 +1,31 @@
 <template>
   <div>
-
     <section class="dotto-detail-wrapper dotto-detail-flex-row">
       <div
-          class="dotto-detail-tabs-wrapper"
-          :class="activeTabs === 'Review' ? 'activeTabs' : ''"
+        class="dotto-detail-tabs-wrapper"
+        :class="activeTabs === 'Review' ? 'activeTabs' : ''"
       >
-        <button
-            type="button"
-            class="tabs-title"
-            @click="showDottoReview">리뷰</button>
+        <button type="button" class="tabs-title" @click="showDottoReview">
+          리뷰
+        </button>
         <span class="tabs-count">1,200</span>
       </div>
       <div
-          class="dotto-detail-tabs-wrapper"
-          :class="activeTabs === 'Comment' ? 'activeTabs' : ''">
-        <button
-            type="button"
-            class="tabs-title"
-            @click="showDottoComment">댓글</button>
+        class="dotto-detail-tabs-wrapper"
+        :class="activeTabs === 'Comment' ? 'activeTabs' : ''"
+      >
+        <button type="button" class="tabs-title" @click="showDottoComment">
+          댓글
+        </button>
         <span class="tabs-count">1,200</span>
       </div>
-
     </section>
 
     <hr />
 
-    <component
-        :is="dynamicComponent"/>
+    <component :is="dynamicComponent" />
 
     <button id="dotto-detail-more-review">리뷰 더보기</button>
-
   </div>
 </template>
 
@@ -42,32 +37,31 @@ import DottoReview from "@/components/dotto/tab/DottoReview.vue";
 @Component({
   components: {
     DottoComment,
-    DottoReview
-  }
+    DottoReview,
+  },
 })
 export default class DottoTabsContainer extends Vue {
-  dottoTabType = 'Review';
-  activeTabs = 'Review';
+  dottoTabType = "Review";
+  activeTabs = "Review";
 
   private showDottoReview() {
-    this.dottoTabType = 'Review';
-    this.activeTabs = 'Review';
+    this.dottoTabType = "Review";
+    this.activeTabs = "Review";
   }
 
   private showDottoComment() {
-    this.dottoTabType = 'Comment';
-    this.activeTabs = 'Comment';
+    this.dottoTabType = "Comment";
+    this.activeTabs = "Comment";
   }
 
   private get dynamicComponent() {
     switch (this.dottoTabType) {
-      case 'Review':
+      case "Review":
         return DottoComment;
-      case 'Comment':
+      case "Comment":
         return DottoReview;
     }
   }
-
 }
 </script>
 
@@ -98,18 +92,18 @@ hr {
   width: 100%;
   height: 64px;
   text-align: center;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   border-radius: 2px;
   margin-bottom: 100px;
 }
 .tabs-title {
   font-size: 24px;
-  color: #BDBDBD;
-  margin-left: 51px
+  color: #bdbdbd;
+  margin-left: 51px;
 }
 .tabs-count {
   font-size: 18px;
-  color: #BDBDBD;
+  color: #bdbdbd;
   margin-left: 8px;
 }
 /* 선택된 탭 */

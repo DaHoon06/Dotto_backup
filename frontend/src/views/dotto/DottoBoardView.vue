@@ -1,15 +1,17 @@
 <template>
-  <main id="dotto-board-container"
-        :class="dottoBoardBackground === 'main' ? '' : otherBgColor">
+  <main
+    id="dotto-board-container"
+    :class="dottoBoardBackground === 'main' ? '' : otherBgColor"
+  >
     <article id="side-search-filter-wrapper">
       <transition name="fade">
-        <side-filter
-            v-show="showSearchFilter" />
+        <side-filter v-show="showSearchFilter" />
       </transition>
     </article>
     <router-view
-        @showFilter="showFilter"
-        @changeBackground="changeBackground"/>
+      @showFilter="showFilter"
+      @changeBackground="changeBackground"
+    />
   </main>
 </template>
 
@@ -21,21 +23,21 @@ import { SideFilter } from "@/components/common";
 @Component({
   components: {
     DottoComponent,
-    SideFilter
-  }
+    SideFilter,
+  },
 })
 export default class DottoBoardView extends Vue {
-  dottoBoardBackground = 'main';
+  dottoBoardBackground = "main";
   showSearchFilter = false;
-  otherBgColor = 'dotto-background-other';
+  otherBgColor = "dotto-background-other";
 
   created(): void {
     this.changeNavType();
   }
 
-  @Emit('changeNavType')
+  @Emit("changeNavType")
   private changeNavType(): string {
-    return 'community';
+    return "community";
   }
 
   private showFilter(show: boolean): void {
@@ -63,6 +65,6 @@ export default class DottoBoardView extends Vue {
 }
 
 .dotto-background-other {
-  background: #f6f6f6!important;
+  background: #f6f6f6 !important;
 }
 </style>

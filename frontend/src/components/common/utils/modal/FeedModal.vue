@@ -1,9 +1,5 @@
 <template>
-  <main
-      id="modal"
-      v-if="showModal"
-      @backgroundFixed="backgroundFixed"
-  >
+  <main id="modal" v-if="showModal" @backgroundFixed="backgroundFixed">
     <header id="feed-modal-header">
       <img id="logo" src="@/assets/img/dotto.svg" alt="logo" />
     </header>
@@ -23,8 +19,8 @@ import FeedDetailComponent from "@/components/feed/FeedDetail.vue";
 
 @Component({
   components: {
-    FeedDetailComponent
-  }
+    FeedDetailComponent,
+  },
 })
 export default class FullScreenModalComponent extends Vue {
   @Prop()
@@ -34,18 +30,15 @@ export default class FullScreenModalComponent extends Vue {
     super();
   }
 
-  @Emit('backgroundFixed')
+  @Emit("backgroundFixed")
   private backgroundFixed(): boolean {
-    return true
+    return true;
   }
 
-  @Emit('modalClose')
-  private modalClose(): boolean  {
+  @Emit("modalClose")
+  private modalClose(): boolean {
     return false;
   }
-
-
-
 }
 </script>
 
@@ -99,6 +92,4 @@ export default class FullScreenModalComponent extends Vue {
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
 }
-
-
 </style>

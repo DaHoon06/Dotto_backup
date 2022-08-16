@@ -1,61 +1,67 @@
 <template>
   <main id="main-home-container">
-
     <main-banner />
 
-    <article id="main-wrapper" >
-
-      <article id="home-dotto-container" >
+    <article id="main-wrapper">
+      <article id="home-dotto-container">
         <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h5>닷투 게시판</h5>
-            <small>타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small>
+            <small
+              >타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small
+            >
           </section>
           <section>
-            <router-link
-                to="/dotto/board/index"
-                class="show-all-lists"
-            >전체보기
-              <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
+            <router-link to="/dotto/board/index" class="show-all-lists"
+              >전체보기
+              <img
+                src="@/assets/icons/main/redirect-arrow.png"
+                class="redirect-arrow"
+                alt="dotto-board"
+              />
             </router-link>
           </section>
         </article>
-        <dotto-component
-            :limit="limit"
-            :infinite-scroll="false"
-        />
+        <dotto-component :limit="limit" :infinite-scroll="false" />
       </article>
 
-      <article id="home-seekers-wrapper" >
+      <article id="home-seekers-wrapper">
         <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h5>닷찾사 게시판</h5>
-            <small>내가 원하는 도안을 제시하고 타투이스트에게 답변 받아보세요!</small>
+            <small
+              >내가 원하는 도안을 제시하고 타투이스트에게 답변
+              받아보세요!</small
+            >
           </section>
           <section>
-            <router-link
-                to=""
-                class="show-all-lists"
-            >전체보기
-              <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
+            <router-link to="" class="show-all-lists"
+              >전체보기
+              <img
+                src="@/assets/icons/main/redirect-arrow.png"
+                class="redirect-arrow"
+                alt="dotto-board"
+              />
             </router-link>
           </section>
         </article>
         닷찾사 게시판 컴포넌트 위치 ( limit: 8개 )
       </article>
 
-      <article id="home-feed-container" >
+      <article id="home-feed-container">
         <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h5>FEED</h5>
             <small>자유롭게 이야기를 나눠요!</small>
           </section>
           <section>
-            <router-link
-                to=""
-                class="show-all-lists"
-            >전체보기
-              <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
+            <router-link to="" class="show-all-lists"
+              >전체보기
+              <img
+                src="@/assets/icons/main/redirect-arrow.png"
+                class="redirect-arrow"
+                alt="dotto-board"
+              />
             </router-link>
           </section>
         </article>
@@ -64,7 +70,6 @@
     </article>
 
     <top-scroll-button />
-
   </main>
 </template>
 
@@ -86,15 +91,14 @@ import { DottoComponent } from "@/components/dotto";
     TopScrollButton,
     FooterComponent,
     MenuButton,
-    DottoComponent
-  }
+    DottoComponent,
+  },
 })
 export default class MainView extends Vue {
   limit = 8;
   //TODO: 3가지 항목 변수 및 인터페이스 정의
 
-
-  created() {
+  created(): void {
     this.changeNavType();
     this.init();
   }
@@ -115,20 +119,20 @@ export default class MainView extends Vue {
   }
 
   private async getDottoBoardData(): Promise<void> {
-    console.log('?')
+    console.log("?");
   }
 
   private async getDottoSeekersData(): Promise<void> {
-    console.log('닷찾사');
+    console.log("닷찾사");
   }
 
   private async getFeedData(): Promise<void> {
-    console.log('피드');
+    console.log("피드");
   }
 
-  @Emit('changeNavType')
+  @Emit("changeNavType")
   private changeNavType(): string {
-    return 'home';
+    return "home";
   }
 }
 </script>
@@ -185,18 +189,12 @@ small {
   height: 5px;
 }
 
-
-
-@media screen and (max-width: 1260px){
+@media screen and (max-width: 1260px) {
   #navigation-container {
     display: none;
   }
 }
 
-@media screen and (max-width: 500px){
-
-
-
+@media screen and (max-width: 500px) {
 }
-
 </style>

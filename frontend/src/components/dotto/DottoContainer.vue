@@ -1,31 +1,40 @@
 <template>
-  <div id="main-container" :class="showFilterComponent ? 'showSearchFilter' : ''" >
+  <div
+    id="main-container"
+    :class="showFilterComponent ? 'showSearchFilter' : ''"
+  >
     <follow-list-component />
 
     <section id="filter-area">
       <span class="filter-section">
-        <button @click="showSort" >
+        <button @click="showSort">
           <span class="filter-text">{{ sendSortType }}</span>
-          <img class="side-menu-drop-btn filter-text" src="@/assets/icons/nav/filter-btn.svg" alt="sort" />
+          <img
+            class="side-menu-drop-btn filter-text"
+            src="@/assets/icons/nav/filter-btn.svg"
+            alt="sort"
+          />
         </button>
         <sort-button
-            @typeName="typeName"
-            :selectedType="filterType"
-            :showSortComponent="showSortComponent" />
+          @typeName="typeName"
+          :selectedType="filterType"
+          :showSortComponent="showSortComponent"
+        />
       </span>
 
       <span id="filter" class="filter-section">
         <button @click="showFilter">
           <span class="filter-text">FILTER</span>
-          <img class="filter-text filter-toggle-img" src="@/assets/icons/main/filter.svg" alt="filter" />
+          <img
+            class="filter-text filter-toggle-img"
+            src="@/assets/icons/main/filter.svg"
+            alt="filter"
+          />
         </button>
       </span>
     </section>
 
-    <dotto-component
-        :limit="limit"
-        :infinite-scroll="true"
-    />
+    <dotto-component :limit="limit" :infinite-scroll="true" />
 
     <aside id="side-button-container">
       <dotto-posting-button />
@@ -46,18 +55,18 @@ import { DottoComponent, DottoPostingButton } from "@/components/dotto/index";
     TopScrollButton,
     SortButton,
     FollowListComponent,
-    DottoComponent
-  }
+    DottoComponent,
+  },
 })
 export default class DottoComponentContainer extends Vue {
   showSortComponent = false;
   showFilterComponent = false;
   filterType: string;
-  showSearchFilter = 'showSearchFilter';
+  showSearchFilter = "showSearchFilter";
   limit = 16;
   constructor() {
     super();
-    this.filterType = '최신순'
+    this.filterType = "최신순";
   }
 
   created(): void {
@@ -76,17 +85,16 @@ export default class DottoComponentContainer extends Vue {
     return this.filterType;
   }
 
-  @Emit('showFilter')
+  @Emit("showFilter")
   private showFilter() {
     this.showFilterComponent = !this.showFilterComponent;
     return this.showFilterComponent;
   }
 
-  @Emit('changeBackground')
+  @Emit("changeBackground")
   private changeBackground() {
-    return 'main';
+    return "main";
   }
-
 }
 </script>
 
@@ -153,8 +161,7 @@ export default class DottoComponentContainer extends Vue {
   flex-direction: row;
   align-items: flex-start;
   padding: 5px 8px;
-  background: #F5F5F5;
-
+  background: #f5f5f5;
 
   /* 서울 홍대 */
   position: static;
@@ -163,7 +170,7 @@ export default class DottoComponentContainer extends Vue {
   left: 8px;
   top: 4px;
 
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -210,7 +217,7 @@ export default class DottoComponentContainer extends Vue {
 }
 
 .discount-rate {
-  color: #FF5841;
+  color: #ff5841;
   font-weight: 700;
   font-size: 14px;
 }
@@ -232,16 +239,13 @@ export default class DottoComponentContainer extends Vue {
   padding-left: 180px;
 }
 
-
-@media screen and (max-width: 1719px){
-
+@media screen and (max-width: 1719px) {
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1440px) {
   #filter-area {
     padding-right: 5em;
   }
-
 }
 
 @media screen and (max-width: 1260px) {
@@ -250,7 +254,7 @@ export default class DottoComponentContainer extends Vue {
   }
 }
 
-@media screen and (max-width: 869px){
+@media screen and (max-width: 869px) {
   #tattoo-container {
     justify-content: space-evenly;
   }
@@ -267,7 +271,7 @@ export default class DottoComponentContainer extends Vue {
   }
 }
 
-@media screen and (max-width: 599px){
+@media screen and (max-width: 599px) {
   #tattoo-container {
     justify-content: space-around;
   }

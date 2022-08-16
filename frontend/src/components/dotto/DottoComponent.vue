@@ -1,6 +1,5 @@
 <template>
   <article id="tattoo-container">
-
     <article v-if="!existData">
       <h5>
         <router-link to="/dotto/board/view">임시 상세보기</router-link>
@@ -8,28 +7,44 @@
       <h5>API 연동 해야함</h5>
       <h1>게시글이 존재하지 않습니다.</h1>
     </article>
-    <article class="tattoo-board-list" v-for="(dotto, index) in lists" :key="index" v-else>
+    <article
+      class="tattoo-board-list"
+      v-for="(dotto, index) in lists"
+      :key="index"
+      v-else
+    >
       <!--TODO: 실제 변수 체크 -->
-      <router-link :to="{ path: '/dotto/board/view', params: {postNo: dotto.postNo} }">
-<!--          <section>-->
-<!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
-<!--          </section>-->
-        <section class="tattoo-board-list-info user-name">{{ dotto.id }}</section>
-        <section class="tattoo-board-list-info title">{{ dotto.title }}</section>
+      <router-link
+        :to="{ path: '/dotto/board/view', params: { postNo: dotto.postNo } }"
+      >
+        <!--          <section>-->
+        <!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
+        <!--          </section>-->
+        <section class="tattoo-board-list-info user-name">
+          {{ dotto.id }}
+        </section>
+        <section class="tattoo-board-list-info title">
+          {{ dotto.title }}
+        </section>
         <section class="tattoo-board-list-info">
           <span class="event-price price">{{ dotto.salesPrice }}</span>
           <span class="original-price price">{{ dotto.price }}</span>
           <span class="discount-rate price">{{ dotto.salesPct }}</span>
         </section>
         <section class="tag-area tattoo-board-list-info location">
-          <span v-for="(tag,index) of dotto.tags.split(',')" :key="index" class="tag"># {{ tag }}</span>
+          <span
+            v-for="(tag, index) of dotto.tags.split(',')"
+            :key="index"
+            class="tag"
+            ># {{ tag }}</span
+          >
         </section>
       </router-link>
     </article>
     <infinite-loading
-        @infinite="getDottoBoardList"
-        spinner="waveDots"
-        v-if="infiniteScroll"
+      @infinite="getDottoBoardList"
+      spinner="waveDots"
+      v-if="infiniteScroll"
     />
   </article>
 </template>
@@ -37,14 +52,14 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import { DottoPostingButton } from "@/components/dotto";
-import InfiniteLoading from 'vue-infinite-loading';
+import InfiniteLoading from "vue-infinite-loading";
 import { IBoard } from "@/interfaces/IBoard";
 
 @Component({
   components: {
     DottoPostingButton,
-    InfiniteLoading
-  }
+    InfiniteLoading,
+  },
 })
 export default class DottoComponent extends Vue {
   @Prop() limit?: number;
@@ -59,8 +74,8 @@ export default class DottoComponent extends Vue {
   */
   showSortComponent = false;
   showFilterComponent = false;
-  filterType = '최신순';
-  showSearchFilter = 'showSearchFilter';
+  filterType = "최신순";
+  showSearchFilter = "showSearchFilter";
   page = 0;
   lists: IBoard.dottoList[] = [];
   infiniteId = +new Date();
@@ -103,11 +118,11 @@ export default class DottoComponent extends Vue {
   private async getDottoBoardList($state: any): Promise<void> {
     this.existData = false;
     try {
-      const { data } = await this.axios.get('/dottopost', {
+      const { data } = await this.axios.get("/dottopost", {
         params: {
           size: this.limit,
-          page: this.page
-        }
+          page: this.page,
+        },
       });
       const { result, success } = data as any;
       if (success) {
@@ -143,16 +158,15 @@ export default class DottoComponent extends Vue {
     return this.filterType;
   }
 
-  @Emit('showFilter')
+  @Emit("showFilter")
   private showFilter() {
     this.showFilterComponent = !this.showFilterComponent;
     return this.showFilterComponent;
   }
-  @Emit('changeBackground')
+  @Emit("changeBackground")
   private changeBackground() {
-    return 'main';
+    return "main";
   }
-
 }
 </script>
 
@@ -212,7 +226,7 @@ export default class DottoComponent extends Vue {
 }
 
 .discount-rate {
-  color: #FF5841;
+  color: #ff5841;
   font-weight: 700;
   font-size: 14px;
 }
@@ -223,18 +237,16 @@ export default class DottoComponent extends Vue {
   text-decoration-line: line-through;
 }
 
-@media screen and (max-width: 1719px){
-
+@media screen and (max-width: 1719px) {
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (max-width: 1440px) {
 }
 
 @media screen and (max-width: 1260px) {
-
 }
 
-@media screen and (max-width: 869px){
+@media screen and (max-width: 869px) {
   #tattoo-container {
     justify-content: space-evenly;
   }
@@ -251,7 +263,7 @@ export default class DottoComponent extends Vue {
   }
 }
 
-@media screen and (max-width: 599px){
+@media screen and (max-width: 599px) {
   #tattoo-container {
     justify-content: space-around;
   }

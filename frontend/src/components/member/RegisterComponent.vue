@@ -1,5 +1,5 @@
 <template>
-  <article id="register-form-container" >
+  <article id="register-form-container">
     <form id="member-register-form" @submit.prevent="register">
       <section class="input-wrapper">
         <label class="label">아이디</label>
@@ -14,7 +14,9 @@
           tabindex="10"
           placeholder="6자이상의 영문 혹은 명문과 숫자 조합"
         />
-        <button class="register-btn" @click="idCheck" type="button">중복확인</button>
+        <button class="register-btn" @click="idCheck" type="button">
+          중복확인
+        </button>
       </section>
 
       <p class="warning-msg">{{ IdMessage }}</p>
@@ -23,7 +25,8 @@
         <label class="label">비밀번호</label>
         <input
           @keydown.enter.prevent
-          type="password" autocomplete="off"
+          type="password"
+          autocomplete="off"
           @change="[validationPassword(), btnActive()]"
           v-model="password"
           class="input-text"
@@ -39,7 +42,8 @@
         <label class="label">비밀번호 확인</label>
         <input
           @keydown.enter.prevent
-          type="password" autocomplete="off"
+          type="password"
+          autocomplete="off"
           @change="[validationPassword(), btnActive()]"
           v-model="passwordCheck"
           class="input-text"
@@ -63,14 +67,13 @@
           tabindex="10"
           placeholder="닉네임을 입력해 주세요."
         />
-        <button
-          @click="validationNickName"
-          class="register-btn"
-          type="button">중복확인</button>
+        <button @click="validationNickName" class="register-btn" type="button">
+          중복확인
+        </button>
       </section>
       <p class="warning-msg">{{ NickNameMessage }}</p>
 
-      <section class="input-wrapper" >
+      <section class="input-wrapper">
         <div class="label-division"></div>
         <input
           @keydown.enter.prevent
@@ -103,15 +106,32 @@
       <section id="gender-wrapper">
         <label class="label">성별</label>
         <div id="gender-radio-group">
-          <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="male" v-model="gender" value="male" name="male" />
+          <input
+            @keydown.enter.prevent
+            class="selected-gender"
+            @change="btnActive"
+            type="radio"
+            id="male"
+            v-model="gender"
+            value="male"
+            name="male"
+          />
           <label for="male">남성</label>
-          <input @keydown.enter.prevent class="selected-gender" @change="btnActive" type="radio" id="female" v-model="gender" value="female" name="female" />
+          <input
+            @keydown.enter.prevent
+            class="selected-gender"
+            @change="btnActive"
+            type="radio"
+            id="female"
+            v-model="gender"
+            value="female"
+            name="female"
+          />
           <label for="female">여성</label>
         </div>
         <div class="label-division"></div>
       </section>
     </form>
-
   </article>
 </template>
 
@@ -129,22 +149,22 @@ export default class MemberRegisterComponent extends Vue {
   @Ref() readonly refNickName!: HTMLElement;
   @Ref() readonly refPhone!: HTMLElement;
 
-  id = '';
-  password = '';
-  passwordCheck = '';
-  nickname = '';
-  phone = '';
+  id = "";
+  password = "";
+  passwordCheck = "";
+  nickname = "";
+  phone = "";
   idVerification = false;
   nicknameVerification = false;
 
   authentication = true;
   // ERROR MSG
-  nickNameMessage = '';
-  passwordMessage = '';
-  passwordCheckMessage = '';
-  idMessage = '';
-  phoneMessage = '';
-  gender = '';
+  nickNameMessage = "";
+  passwordMessage = "";
+  passwordCheckMessage = "";
+  idMessage = "";
+  phoneMessage = "";
+  gender = "";
   openBtn = true;
 
   constructor() {
@@ -152,17 +172,24 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   private btnActive() {
-    this.openBtn = !(this.id.length && ( this.phone.length === 11 ) && (this.password === this.passwordCheck) && this.nickname.length && this.authentication && this.gender.length);
+    this.openBtn = !(
+      this.id.length &&
+      this.phone.length === 11 &&
+      this.password === this.passwordCheck &&
+      this.nickname.length &&
+      this.authentication &&
+      this.gender.length
+    );
   }
 
   private validationId(): void {
-    const reg =  /^[a-z0-9_]{4,20}$/;
+    const reg = /^[a-z0-9_]{4,20}$/;
 
     if (!reg.test(this.id)) {
       this.IdMessage = EMessageRegister.ID_NOT_ENTERED;
-      this.id = '';
+      this.id = "";
     } else {
-      this.IdMessage =  EMessageRegister.BLANK;
+      this.IdMessage = EMessageRegister.BLANK;
     }
   }
 
@@ -172,7 +199,7 @@ export default class MemberRegisterComponent extends Vue {
     const { data: idCheck } = result;
     // true: 이미 존재
     if (!idCheck) {
-      this.IdMessage =  EMessageRegister.AVAILABLE_ID;
+      this.IdMessage = EMessageRegister.AVAILABLE_ID;
       this.idVerification = true;
     } else {
       this.IdMessage = EMessageRegister.EXIST_ID;
@@ -181,7 +208,9 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   async nickNameCheck(): Promise<void> {
-    const { data }  = await this.axios.get(`/members/existsbynickname/${this.nickname}`);
+    const { data } = await this.axios.get(
+      `/members/existsbynickname/${this.nickname}`
+    );
     const { success, result } = data;
     const { data: nickNameCheck } = result;
     // true: 이미 존재
@@ -219,44 +248,56 @@ export default class MemberRegisterComponent extends Vue {
   }
 
   validationPassword(): void {
-    const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    if(!reg.test(this.password) && this.password.length) this.PasswordMessage = EMessageRegister.PASSWORD_NOT_ENTERED;
+    const reg =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if (!reg.test(this.password) && this.password.length)
+      this.PasswordMessage = EMessageRegister.PASSWORD_NOT_ENTERED;
     else this.PasswordMessage = EMessageRegister.BLANK;
 
-    if (this.password !== this.passwordCheck) this.PasswordCheckMessage = EMessageRegister.PASSWORD_RECHECK;
+    if (this.password !== this.passwordCheck)
+      this.PasswordCheckMessage = EMessageRegister.PASSWORD_RECHECK;
     else this.PasswordCheckMessage = EMessageRegister.BLANK;
   }
 
   private blankCheck(): boolean {
-    let result = false
+    let result = false;
     if (!this.id.length) {
       this.$nextTick(() => this.refId.focus());
     } else if (!this.password.length) {
       this.$nextTick(() => this.refPassword.focus());
     } else if (!this.nickname.length) {
-      this.$nextTick(() => this.refNickName.focus()); return false;
+      this.$nextTick(() => this.refNickName.focus());
+      return false;
     } else if (!this.phone.length) {
-      this.$nextTick(() => this.refPhone.focus()); return false;
+      this.$nextTick(() => this.refPhone.focus());
+      return false;
     } else {
       result = true;
     }
-    return result
+    return result;
   }
 
   async register(): Promise<void> {
     const result = this.blankCheck();
     //TODO: 휴대폰 인증에 관한 처리
-    if ((result && this.authentication) && (this.idVerification && this.nicknameVerification)) {
+    if (
+      result &&
+      this.authentication &&
+      this.idVerification &&
+      this.nicknameVerification
+    ) {
       const sendData: IUser.IRegisterProp = {
         nickname: this.nickname,
         password: this.password,
         id: this.id,
         phone: this.phone,
-        gender: this.gender
+        gender: this.gender,
       };
 
       //TODO: 반환 data에 대한 타입 정의
-      const { data } = await this.axios.post('/sign-up', sendData) as { data: any };
+      const { data } = (await this.axios.post("/sign-up", sendData)) as {
+        data: any;
+      };
       const { success } = data;
       if (success) {
         this.changeComponent(success);
@@ -265,34 +306,34 @@ export default class MemberRegisterComponent extends Vue {
       }
     } else {
       //TODO : 추후 수정
-      alert('빈 곳이 있다는 모달 ');
+      alert("빈 곳이 있다는 모달 ");
     }
   }
 
   //TODO : 추후 수정 !success -> success 로 변경 예정
-  @Emit('changeComponent')
+  @Emit("changeComponent")
   private changeComponent(success: boolean): string {
     if (!success) {
-      return 'CompletedComponent';
+      return "CompletedComponent";
     } else {
-      return 'RegisterComponent';
+      return "RegisterComponent";
     }
   }
 
-  @Emit('prev')
+  @Emit("prev")
   private prev(): string {
-    return 'PolicyComponent';
+    return "PolicyComponent";
   }
 
-  msgClear(): void{
-    if(this.NickNameMessage !== EMessageRegister.AVAILABLE_NICKNAME) {
+  msgClear(): void {
+    if (this.NickNameMessage !== EMessageRegister.AVAILABLE_NICKNAME) {
       this.NickNameMessage = EMessageRegister.BLANK;
-      this.nickname = '';
+      this.nickname = "";
     }
   }
 
   private set NickNameMessage(msg: string) {
-    this.nickNameMessage = msg
+    this.nickNameMessage = msg;
   }
   private get NickNameMessage() {
     return this.nickNameMessage;
@@ -321,8 +362,6 @@ export default class MemberRegisterComponent extends Vue {
   private get PhoneMessage() {
     return this.phoneMessage;
   }
-
-
 }
 </script>
 
@@ -361,7 +400,8 @@ select::-ms-expand {
   appearance: none;
   width: 150px;
   height: 35px;
-  background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+  background: url("https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png")
+    calc(100% - 5px) center no-repeat;
   background-size: 20px;
   padding: 5px 30px 5px 10px;
   border-radius: 4px;
@@ -390,7 +430,7 @@ select::-ms-expand {
   box-shadow: 1px 1px 1px #b2b2b2;
   color: #222222;
   font-weight: bold;
-  background: #FFFFFF;
+  background: #ffffff;
   font-size: 14px;
   height: 52px;
   width: 120px;
@@ -399,11 +439,11 @@ select::-ms-expand {
 
 /* 회원가입 input */
 .input-text {
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   border-radius: 4px;
-  color: #BDBDBD;
+  color: #bdbdbd;
   outline: none;
-  background: #FFFFFF;
+  background: #ffffff;
   height: 52px;
   width: 344px;
   padding-left: 10px;

@@ -1,6 +1,5 @@
 <template>
   <article id="login-container">
-
     <article id="logo-wrapper" class="login-info-section">
       <img src="@/assets/img/dotto.svg" alt="logo" id="logo" />
     </article>
@@ -8,14 +7,27 @@
     <article class="login-info-section">
       <form @submit.prevent="login">
         <section class="login-btn-wrapper">
-          <input @focus="clearMsg" class="login-info" type="text" v-model="id" placeholder="아이디" />
+          <input
+            @focus="clearMsg"
+            class="login-info"
+            type="text"
+            v-model="id"
+            placeholder="아이디"
+          />
         </section>
         <section class="login-btn-wrapper">
-          <input @focus="clearMsg" class="login-info" autocomplete="off" type="password" v-model="password" placeholder="비밀번호" />
+          <input
+            @focus="clearMsg"
+            class="login-info"
+            autocomplete="off"
+            type="password"
+            v-model="password"
+            placeholder="비밀번호"
+          />
         </section>
         <p id="warning-msg" class="text-center">{{ loginFailed }}</p>
         <section id="id-save-wrapper">
-          <input type="checkbox" id="save" @change="saveId" v-model="save">
+          <input type="checkbox" id="save" @change="saveId" v-model="save" />
           <label for="save"></label> <span id="id-save">아이디 저장</span>
         </section>
         <section class="login-btn-wrapper">
@@ -25,11 +37,18 @@
     </article>
 
     <article class="login-info-section">
-      <img id="social-login-division" src="@/assets/icons/mymenu/login_SimpleLine.svg" alt="간편로그인 /">
+      <img
+        id="social-login-division"
+        src="@/assets/icons/mymenu/login_SimpleLine.svg"
+        alt="간편로그인 /"
+      />
       <article id="social-login-btn-container">
         <section class="login-btn-wrapper">
           <button type="button" id="kakao-btn" @click="kakaoLogin">
-            <img src="@/assets/img/login/kakao.png" alt="카카오 로그인 이미지" />
+            <img
+              src="@/assets/img/login/kakao.png"
+              alt="카카오 로그인 이미지"
+            />
           </button>
         </section>
 
@@ -43,14 +62,17 @@
 
     <article id="login-utils-container">
       <section id="password-find">
-        <router-link class="login-router forgot-user-info" to="#">비밀번호 찾기</router-link>
+        <router-link class="login-router forgot-user-info" to="#"
+          >비밀번호 찾기</router-link
+        >
       </section>
       <section id="line-division">|</section>
       <section id="join">
-        <button class="login-router" @click="showRegisterView">회원가입 하기</button>
+        <button class="login-router" @click="showRegisterView">
+          회원가입 하기
+        </button>
       </section>
     </article>
-
   </article>
 </template>
 
@@ -59,19 +81,18 @@ import { Vue, Component, Emit } from "vue-property-decorator";
 import { IUser } from "@/interfaces/IUser";
 
 @Component({
-  components: {
-  }
+  components: {},
 })
 export default class LoginView extends Vue {
-  id = '';
-  password = '';
+  id = "";
+  password = "";
   save = false;
-  loginFailedMsg = '';
-  modalTypeRegister = '';
+  loginFailedMsg = "";
+  modalTypeRegister = "";
 
   params = {
-    client_id: process.env.VUE_APP_GOOGLE_KEY
-  }
+    client_id: process.env.VUE_APP_GOOGLE_KEY,
+  };
 
   constructor() {
     super();
@@ -84,44 +105,46 @@ export default class LoginView extends Vue {
   async login(): Promise<void> {
     const sendData: IUser.ILoginProp = {
       id: this.id,
-      password: this.password
+      password: this.password,
     };
-    const { data } = await this.axios.post('/sign-in', sendData) as { data: IUser.ILoginSuccess }
+    const { data } = (await this.axios.post("/sign-in", sendData)) as {
+      data: IUser.ILoginSuccess;
+    };
     const { success } = data;
     if (success) {
       if (this.save) this.saveId();
       this.saveState(data);
-      this.$store.commit('utilsStore/closeModal', true);
+      this.$store.commit("utilsStore/closeModal", true);
       await this.$router.push({
-        path: '/dotto'
+        path: "/dotto",
       });
     } else {
-      this.loginFailed = '이메일 및 패스워드를 확인해주세요.';
+      this.loginFailed = "이메일 및 패스워드를 확인해주세요.";
     }
   }
 
-  saveId(): void{
-    if(this.save) {
-      this.$cookies.set('idCookie', this.id,'30d');
+  saveId(): void {
+    if (this.save) {
+      this.$cookies.set("idCookie", this.id, "30d");
     } else {
-      this.$cookies.remove('idCookie');
-      this.id = '';
+      this.$cookies.remove("idCookie");
+      this.id = "";
     }
   }
 
   getCookie(): void {
-    if (this.$cookies.isKey('idCookie')){
-      this.id = this.$cookies.get('idCookie');
+    if (this.$cookies.isKey("idCookie")) {
+      this.id = this.$cookies.get("idCookie");
       this.save = true;
     }
   }
 
   saveState(userData: IUser.ILoginSuccess): void {
-    this.$store.commit('userStore/login', userData);
+    this.$store.commit("userStore/login", userData);
   }
 
   clearMsg(): void {
-    this.loginFailed = '';
+    this.loginFailed = "";
   }
 
   //------ 간편 로그인 ------
@@ -129,7 +152,7 @@ export default class LoginView extends Vue {
     const SCOPE = process.env.VUE_APP_SCOPE;
     window.Kakao.Auth.login({
       scope: SCOPE,
-      success: this.getKakaoAPI
+      success: this.getKakaoAPI,
     });
   }
 
@@ -137,7 +160,7 @@ export default class LoginView extends Vue {
     console.log(userInfo);
     const { access_token, refresh_token } = userInfo;
     window.Kakao.API.request({
-      url: '/v2/user/me',
+      url: "/v2/user/me",
       success: (res: any) => {
         const kakao_account = res.kakao_account;
         const kakao_info: IUser.KakaoUserData = {
@@ -156,36 +179,36 @@ export default class LoginView extends Vue {
           accessToken: access_token,
           refreshToken: refresh_token,
           nickname: kakao_info.nickname,
-          roles: 'admin'
+          roles: "admin",
         };
-        this.$store.commit('userStore/login', payload);
+        this.$store.commit("userStore/login", payload);
         this.closeModal();
       },
       fail: (error: any) => {
         console.log(error);
-      }
+      },
     });
   }
 
   private async googleLogin(): Promise<void> {
     const googleUser = await this.$gAuth.signIn();
-    console.log(googleUser)
+    console.log(googleUser);
     const accessToken = googleUser.getAuthResponse().access_token;
-    console.log(accessToken)
+    console.log(accessToken);
   }
 
   private getGoogleAPI() {
-    console.log('google')
+    console.log("google");
   }
 
-  @Emit('closeModal')
+  @Emit("closeModal")
   private closeModal(): boolean {
     return false;
   }
 
-  @Emit('modalTypeRegister')
+  @Emit("modalTypeRegister")
   private showRegisterView() {
-    return this.modalTypeRegister = 'RegisterView';
+    return (this.modalTypeRegister = "RegisterView");
   }
 
   private set loginFailed(msg) {
@@ -194,7 +217,6 @@ export default class LoginView extends Vue {
   private get loginFailed() {
     return this.loginFailedMsg;
   }
-
 }
 </script>
 
@@ -215,7 +237,7 @@ hr {
   background: #ffffff;
   width: 100%;
   height: 100%;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   font-size: 18px;
   padding: 12px 16px;
   margin-bottom: 16px;
@@ -253,16 +275,16 @@ input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"] + label{
+input[type="checkbox"] + label {
   display: inline-block;
   width: 15px;
   height: 15px;
-  border:1px solid #919191;
+  border: 1px solid #919191;
   position: relative;
 }
 
-input[id="auto"]:checked + label::after{
-  content: '✓';
+input[id="auto"]:checked + label::after {
+  content: "✓";
   color: #05152f;
   font-weight: 800;
   font-size: 12px;
@@ -273,7 +295,6 @@ input[id="auto"]:checked + label::after{
   left: 1px;
   top: -3px;
 }
-
 
 /* 로그인 버튼 */
 /* 버튼 공용 */
@@ -298,7 +319,7 @@ input[id="auto"]:checked + label::after{
   background: #222222;
 }
 
-#login-btn:hover{
+#login-btn:hover {
   border: 1px solid #464646;
   background: #464646;
   color: #ffffff;
@@ -317,7 +338,6 @@ input[id="auto"]:checked + label::after{
   color: #919191;
   font-size: 16px;
   text-decoration: none;
-
 }
 .login-router:hover {
   font-weight: bold;
@@ -325,7 +345,8 @@ input[id="auto"]:checked + label::after{
   color: #565656;
 }
 
-#password-find, #join {
+#password-find,
+#join {
   color: #919191;
   display: flex;
   justify-content: space-between;
@@ -333,7 +354,7 @@ input[id="auto"]:checked + label::after{
 }
 
 #line-division {
-  color: #E2E2E2;
+  color: #e2e2e2;
 }
 
 /* 소셜 로그인 관련 */
@@ -353,13 +374,13 @@ input[id="auto"]:checked + label::after{
   width: 100%;
   height: 100%;
   background: #ffffff;
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 #google-btn::after {
-  content: '구글 계정으로 로그인';
+  content: "구글 계정으로 로그인";
   font-size: 7px;
   color: #888888;
   font-weight: 600;
@@ -368,13 +389,13 @@ input[id="auto"]:checked + label::after{
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  background: #FEE500;
+  background: #fee500;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 #kakao-btn::after {
-  content: '카카오 계정으로 로그인';
+  content: "카카오 계정으로 로그인";
   font-size: 7px;
   color: #595959;
   font-weight: 600;
@@ -383,7 +404,6 @@ input[id="auto"]:checked + label::after{
   width: 25px;
   position: relative;
 }
-
 
 #warning-msg {
   color: red;
@@ -395,5 +415,4 @@ input[id="auto"]:checked + label::after{
     width: 70%;
   }
 }
-
 </style>

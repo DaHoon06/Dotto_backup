@@ -1,18 +1,12 @@
 <template>
-  <div>
-    like
-  </div>
+  <div>like</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class MyLikeListsComponent extends Vue {
-
-}
+export default class MyLikeListsComponent extends Vue {}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
