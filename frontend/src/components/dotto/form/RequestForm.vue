@@ -7,7 +7,12 @@
     </section>
     <section>
       <label>의뢰일자</label>
-      날짜선택 시간선택
+
+      <label>날짜선택</label>
+      <date-picker v-model:value="date" />
+
+      <label>시간선택</label>
+      <date-picker v-model:value="time" />
     </section>
 
     <hr />
@@ -29,7 +34,7 @@
       <label>본 게시물</label>
       <input type="checkbox" /> 이뢰에 참고 적용하기기
     </section>
-
+<!---->
     <hr />
 
     <section>
@@ -43,8 +48,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 
-@Component
+@Component({
+  components: {
+    DatePicker,
+  },
+})
 export default class RequestForm extends Vue {
   part: IBoard.SelectOptions[] = [
     { text: "올드스쿨", value: "1" },
