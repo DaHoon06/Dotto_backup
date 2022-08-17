@@ -62,13 +62,13 @@ const routes: Array<RouteConfig> = [
         component: () => import("@/components/dotto/DottoDetail.vue"),
         meta: { unauthorized: true },
       },
-      {
-        path: "request/:id",
-        name: "requestForm",
-        component: () => import("@/components/dotto/form/RequestForm.vue"),
-        meta: { unauthorized: true },
-      },
     ],
+  },
+  {
+    path: "/estimate/:id",
+    name: "estimateSheet",
+    component: () => import("@/views/dotto/EstimateView.vue"),
+    meta: { unauthorized: true },
   },
   {
     path: "/dotto/feed",

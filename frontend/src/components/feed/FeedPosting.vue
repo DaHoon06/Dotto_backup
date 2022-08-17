@@ -1,7 +1,9 @@
 <template>
   <article id="feed-post-container">
     <section id="feed-post-top">
-      <img id="logo" src="@/assets/img/dotto.svg" alt="logo" />
+      <router-link to="/">
+        <img id="logo" src="@/assets/img/dotto.svg" alt="logo" />
+      </router-link>
     </section>
     <article id="feed-post-form">
       <section>
