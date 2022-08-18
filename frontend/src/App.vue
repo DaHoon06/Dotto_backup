@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <header-view :navigationType="navigationTypeComputed" />
+    <header-view
+      :navigationType="navigationTypeComputed"
+      :class="topHide ? 'hide' : ''"
+    />
     <router-view
-      :class="[this.Blur ? 'setBlur' : '', this.Scroll ? 'notScroll' : '']"
+      :class="[Blur ? 'setBlur' : '', Scroll ? 'notScroll' : '']"
       @changeNavType="changeNavType"
     />
     <footer-component />
@@ -26,13 +29,22 @@ export default class App extends Vue {
   scroll = "";
   navigationType = "";
 
+  changeTopMenu = false;
+
   created(): void {
     this.kakaoInit();
     this.eventListener();
   }
-
+  private get topHide() {
+    return this.changeTopMenu;
+  }
+  private set topHide(type: boolean) {
+    this.changeTopMenu = type;
+  }
   private eventListener(): void {
-    console.log("?");
+    EventBus.$on("topMenuHide", (payload: boolean) => {
+      this.topHide = payload;
+    });
   }
 
   private kakaoInit(): void {
@@ -64,6 +76,10 @@ export default class App extends Vue {
 .setBlur {
   filter: blur(4px);
   width: 100%;
+}
+
+.hide {
+  display: none !important;
 }
 
 /*.notScroll {*/

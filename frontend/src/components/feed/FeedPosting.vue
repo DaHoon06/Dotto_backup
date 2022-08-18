@@ -7,9 +7,7 @@
     </section>
     <article id="feed-post-form">
       <section>
-        <button id="history-back-button" type="button" @click="historyBack">
-          <img src="@/assets/icons/myfeed/history-back.svg" alt="뒤로가기" />
-        </button>
+        <history-back-button />
       </section>
       <section id="feed-post-body">
         <section id="feed-body-top-container">
@@ -73,8 +71,13 @@
 <script lang="ts">
 import { Component, Ref, Vue, Watch } from "vue-property-decorator";
 import { ins } from "@/lib/axios";
+import HistoryBackButton from "@/components/common/utils/button/HistoryBackButton.vue";
 
-@Component
+@Component({
+  components: {
+    HistoryBackButton,
+  },
+})
 export default class FeedPosting extends Vue {
   @Ref() readonly fileInput!: any;
 
@@ -90,9 +93,9 @@ export default class FeedPosting extends Vue {
 
   userNickname = this.$store.getters["userStore/nickname"];
 
-  private historyBack() {
-    this.$router.go(-1);
-  }
+  // private historyBack() {
+  //   this.$router.go(-1);
+  // }
 
   clickInputTag() {
     this.fileInput.click();
@@ -239,19 +242,19 @@ export default class FeedPosting extends Vue {
   margin-top: 32px;
 }
 
-#history-back-button {
-  border: 1px solid #e2e2e2;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 3px 3px 0 gray;
-  width: 56px;
-  height: 56px;
-  margin-right: 32px;
-}
-#history-back-button > img {
-  width: 24px;
-  padding-bottom: 2px;
-}
+/*#history-back-button {*/
+/*  border: 1px solid #e2e2e2;*/
+/*  background: white;*/
+/*  border-radius: 50%;*/
+/*  box-shadow: 0 3px 3px 0 gray;*/
+/*  width: 56px;*/
+/*  height: 56px;*/
+/*  margin-right: 32px;*/
+/*}*/
+/*#history-back-button > img {*/
+/*  width: 24px;*/
+/*  padding-bottom: 2px;*/
+/*}*/
 
 #textarea {
   border: none;

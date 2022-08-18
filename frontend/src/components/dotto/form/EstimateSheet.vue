@@ -1,13 +1,13 @@
 <template>
   <article class="estimate-sheet-container">
     <h1 id="estimate-title">의뢰서</h1>
-    <section class="estimate-items-wrapper mt-56">
+    <section class="estimate-items-wrapper c-mt-56">
       <label>타투이스트</label>
-      <h1 id="nickname" class="mt-16">닉네임</h1>
+      <h1 id="nickname" class="c-mt-16">닉네임</h1>
     </section>
-    <section class="estimate-items-wrapper mt-56">
+    <section class="estimate-items-wrapper c-mt-56">
       <label>의뢰일자</label>
-      <section class="mt-16">
+      <section class="c-mt-16">
         <date-picker
           v-model="date"
           :lang="lang"
@@ -32,15 +32,16 @@
     <section class="estimate-items-wrapper">
       <label>타투 부위</label>
       <input
-        class="dotto-part-input mt-16"
+        class="dotto-part-input c-mt-16"
         type="text"
         placeholder="타투 부위"
+        v-model="dottoPart"
       />
-      <section class="test mt-16"></section>
+      <section class="test c-mt-16"></section>
     </section>
-    <section class="estimate-items-wrapper mt-56">
+    <section class="estimate-items-wrapper c-mt-56">
       <label>타투 사이즈</label>
-      <select class="dotto-size-select-box mt-16">
+      <select class="dotto-size-select-box c-mt-16" v-model="size">
         <option disabled value="">타투 사이즈를 선택해 주세요.</option>
         <option
           v-for="(size, index) of dottoSize"
@@ -52,16 +53,16 @@
       </select>
     </section>
 
-    <hr class="mt-40" />
+    <hr class="c-mt-40" />
 
-    <section class="mt-40">
+    <section class="c-mt-40">
       <label>본 게시물</label>
-      <div class="mt-24">
+      <div class="c-mt-24">
         <input type="checkbox" id="reference" v-model="reference" />
         <label for="reference">의뢰에 참고 적용하기</label>
       </div>
       <transition>
-        <section v-show="reference" class="dotto-reference-detail mt-24">
+        <section v-show="reference" class="dotto-reference-detail c-mt-24">
           <span id="main-img">대표 이지미</span>
           <section>
             <p>닉네임</p>
@@ -73,23 +74,38 @@
       </transition>
     </section>
 
-    <hr class="mt-48" />
+    <hr class="c-mt-48" />
 
-    <section class="estimate-items-wrapper mt-40">
+    <section class="estimate-items-wrapper c-mt-40">
       <label>커버업 여부</label>
-      <section class="cover-up-checks mt-40">
+      <section class="cover-up-checks c-mt-40">
         <div class="div">
-          <input id="new" type="radio" name="dotto-type" />
+          <input
+            id="new"
+            type="radio"
+            name="dotto-type"
+            v-model="coverType"
+            value="1"
+          />
           <label for="new">새로운 타투</label>
         </div>
         <div class="div">
-          <input id="cover" type="radio" name="dotto-type" />
+          <input
+            id="cover"
+            type="radio"
+            name="dotto-type"
+            v-model="coverType"
+            value="2"
+          />
           <label for="cover">커버업 타투</label>
         </div>
       </section>
-      <section class="mt-48">
-        <button class="upload-button mt-48" type="button">이미지 업로드</button>
-        <div class="mt-12">
+      <section class="c-mt-48">
+        <button class="upload-button c-mt-48" type="button">
+          <input type="file" v-on:change="selectedCoverUpDesign" />
+          이미지 업로드
+        </button>
+        <div class="c-mt-12">
           <p class="desc">
             커버업 부위를 첨부해주시면 더욱 자세한 상담이 가능해요.
           </p>
@@ -98,12 +114,15 @@
       </section>
     </section>
 
-    <hr class="mt-48" />
+    <hr class="c-mt-48" />
 
-    <section class="estimate-items-wrapper mt-40">
+    <section class="estimate-items-wrapper c-mt-40">
       <label>희망도안 (선택)</label>
-      <button class="upload-button mt-24" type="button">이미지 업로드</button>
-      <div class="mt-12">
+      <button class="upload-button c-mt-24" type="button">
+        <input type="file" v-on:change="selectedHopeDesign" />
+        이미지 업로드
+      </button>
+      <div class="c-mt-12">
         <p class="desc">
           원하는 도안을 첨부해주시면 더욱 자세한 상담이 가능해요.
         </p>
@@ -111,21 +130,33 @@
       </div>
     </section>
 
-    <hr class="mt-40" />
+    <hr class="c-mt-40" />
 
-    <section class="estimate-items-wrapper mt-40">
+    <section class="estimate-items-wrapper c-mt-40">
       <label>피부질환 여부</label>
-      <section class="cover-up-checks mt-40">
+      <section class="cover-up-checks c-mt-40">
         <div class="div">
-          <input id="none" type="radio" name="dotto-type" />
+          <input
+            id="none"
+            type="radio"
+            name="dotto-type"
+            v-model="skinDiseases"
+            value="1"
+          />
           <label for="none">없음</label>
         </div>
         <div class="div">
-          <input id="exist" type="radio" name="dotto-type" />
+          <input
+            id="exist"
+            type="radio"
+            name="dotto-type"
+            v-model="skinDiseases"
+            value="2"
+          />
           <label for="exist">있음</label>
         </div>
       </section>
-      <div class="mt-12">
+      <div class="c-mt-12">
         <p class="warning-msg">* 질환에 따라 시술이 거부 될 수 있습니다.</p>
         <p class="warning-msg">
           * 질환이 있음에도 이 사실을 거짓으로 통보하고 시술을 받은 경우 모든
@@ -134,14 +165,15 @@
       </div>
     </section>
 
-    <hr class="mt-48" />
+    <hr class="c-mt-48" />
 
-    <section class="estimate-items-wrapper mt-40 last-section">
+    <section class="estimate-items-wrapper c-mt-40 last-section">
       <label>내용</label>
       <textarea
         id="textarea"
-        class="mt-16"
+        class="c-mt-16"
         :placeholder="textareaPlaceholder"
+        v-model="requestContents"
       ></textarea>
     </section>
   </article>
@@ -161,6 +193,13 @@ import "vue2-datepicker/index.css";
 export default class EstimateSheet extends Vue {
   //#TODO 본 게시물을 참조해야하기 때문에 props로 본문 데이터도 전달 받아야 한다.
   seq = this.$route.params;
+
+  requestContents = "";
+  skinDiseases = "";
+  designForm: any[] = [];
+  coverType = "";
+  size = "";
+  dottoPart = "";
 
   reference = false;
   part: IBoard.SelectOptions[] = [
@@ -188,7 +227,7 @@ export default class EstimateSheet extends Vue {
     "손님 요청사항, 도안의 의미, 특징, 신경써서 작업한 부분, 추가 혜택 등";
   // 캘린더 사용 변수
   date = null;
-  time = 0;
+  time = null;
   lang = {
     days: ["일", "월", "화", "수", "목", "금", "토"],
     months: [
@@ -216,6 +255,18 @@ export default class EstimateSheet extends Vue {
       this.$moment(date).format("YYYYMMDD") <
       this.$moment().add("0", "days").format("YYYYMMDD")
     );
+  }
+
+  /*
+   * 파일 업로드 관련
+   * */
+  // 희망 도안 선택
+  private selectedHopeDesign(): void {
+    console.log("희망 도안 선택");
+  }
+  // 커버업 이미지 선택
+  private selectedCoverUpDesign(): void {
+    console.log("커버업 이미지 선택");
   }
 }
 </script>
@@ -308,22 +359,22 @@ hr {
 }
 
 /* 내부 아이템 마진 */
-.mt-56 {
+.c-mt-56 {
   margin-top: 56px;
 }
-.mt-12 {
+.c-mt-12 {
   margin-top: 12px;
 }
-.mt-16 {
+.c-mt-16 {
   margin-top: 16px;
 }
-.mt-24 {
+.c-mt-24 {
   margin-top: 24px;
 }
-.mt-40 {
+.c-mt-40 {
   margin-top: 40px;
 }
-.mt-48 {
+.c-mt-48 {
   margin-top: 48px;
 }
 
