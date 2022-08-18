@@ -32,7 +32,6 @@
           </button>
         </section>
       </article>
-
       <article v-if="showMyMenu" id="my-menu-list">
         <section id="my-menu-items">
           <section>
@@ -75,9 +74,7 @@
             </span>
             <router-link to="t">찜한 목록</router-link>
           </section>
-
           <hr />
-
           <section>
             <span>
               <img
@@ -104,7 +101,7 @@
       </article>
     </article>
 
-    <transition name="fade">
+    <transition>
       <main-modal
         :modalType="modalType"
         @modalType="modalType"
