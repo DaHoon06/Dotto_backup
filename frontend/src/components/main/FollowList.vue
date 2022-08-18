@@ -100,10 +100,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class FollowListComponent extends Vue {
+  @Prop({ default: "" }) type?: string;
   showList = true;
   lastScrollPosition = 0;
   scrollValue = 0;

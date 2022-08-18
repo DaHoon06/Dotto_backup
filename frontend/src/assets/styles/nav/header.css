@@ -22,7 +22,7 @@
 #my-page-container {
     display: flex;
     align-items: flex-end;
-    z-index: -1;
+    z-index: 0;
 }
 
 #my-menu-list {

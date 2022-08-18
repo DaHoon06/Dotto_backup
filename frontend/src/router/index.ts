@@ -89,6 +89,12 @@ const routes: Array<RouteConfig> = [
       },
     ],
   },
+  {
+    path: "/search/result",
+    name: "result",
+    component: () => import("@/views/search/SearchResultView.vue"),
+    meta: { unauthorized: true },
+  },
 ];
 
 const router = new VueRouter({
