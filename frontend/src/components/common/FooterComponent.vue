@@ -35,7 +35,11 @@
         <ul>
           <li>
             <div id="footer-top-icons">
-              <img class="footer-icons" src="@/assets/icons/instagram.png" alt="instagram" />
+              <img
+                class="footer-icons"
+                src="@/assets/icons/instagram.png"
+                alt="instagram"
+              />
             </div>
           </li>
           <li>개인정보처리방침</li>
@@ -45,12 +49,11 @@
       </div>
     </section>
 
-    <hr/>
+    <hr />
 
     <section id="footer-bottom">
       <span class="footer-bottom-dottoo">2022 Dotto, All rights reserved.</span>
     </section>
-
   </footer>
 </template>
 
@@ -58,9 +61,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class FooterComponent extends Vue {
-
-}
+export default class FooterComponent extends Vue {}
 </script>
 
 <style scoped>
@@ -68,7 +69,7 @@ export default class FooterComponent extends Vue {
   position: relative;
   bottom: 0;
   background: #222222;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 100%;
   font-size: 12px;
 }
@@ -79,7 +80,7 @@ export default class FooterComponent extends Vue {
   height: 16em;
   flex-direction: row;
   align-items: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
   font-size: 0.9em;
 }
 
@@ -99,29 +100,27 @@ export default class FooterComponent extends Vue {
 }
 
 .footer-top-information > span:not(:last-child)::after {
-  content: '|';
+  content: "|";
   margin-left: 0.5em;
-  color: #9E9E9E;
+  color: #9e9e9e;
 }
 
 #footer-bottom {
   height: 5em;
   text-align: center;
-  color: #9E9E9E;
+  color: #9e9e9e;
   font-size: 8px;
 }
 
 .footer-bottom-dottoo {
   font-size: 8px;
-  color: #9E9E9E;
+  color: #9e9e9e;
 }
 .footer-bottom-dottoo::before {
-  content: '@';
+  content: "@";
 }
 
 .footer-icons {
   width: 25px;
 }
-
-
 </style>

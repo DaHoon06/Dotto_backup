@@ -1,39 +1,38 @@
 <template>
-  <article
-    id="modal"
-    v-if="this.isModal"
-    ref="modalContainer"
-    @click="closeModalOuter"
-  >
-    <section
-      class="modal-body"
-      :class="modalTypeComputed === 'Login' ? '' : 'modal-body-register'">
-      <component
-        :is="dynamicView"
-        @closeModal="closeModal"
-        @redirectLoginView="redirectLoginView"
-        @redirectHome="redirectHome"
-        @modalTypeRegister="changeModalType" />
-    </section>
-  </article>
+  <transition v-if="this.isModal">
+    <article id="modal" ref="modalContainer" @click="closeModalOuter">
+      <section
+        class="modal-body"
+        :class="modalTypeComputed === 'Login' ? '' : 'modal-body-register'"
+      >
+        <component
+          :is="dynamicView"
+          @closeModal="closeModal"
+          @redirectLoginView="redirectLoginView"
+          @redirectHome="redirectHome"
+          @modalTypeRegister="changeModalType"
+        />
+      </section>
+    </article>
+  </transition>
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from "vue-property-decorator";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import TermsComponent from "@/components/member/PolicyComponent.vue";
-import {MODAL} from "@/interfaces/common/ICommon";
+import { MODAL } from "@/interfaces/common/ICommon";
 
 @Component({
   components: {
     LoginView,
     RegisterView,
-    TermsComponent
-  }
+    TermsComponent,
+  },
 })
 export default class ModalComponent extends Vue {
-  type = '';
+  type = "";
   @Prop()
   modalType?: string;
   @Prop()
@@ -58,16 +57,17 @@ export default class ModalComponent extends Vue {
     this.closeModal();
   }
 
-  private init(){
-    if (this.modalType === MODAL.REGISTER) this.modalTypeComputed = MODAL.REGISTER;
+  private init() {
+    if (this.modalType === MODAL.REGISTER)
+      this.modalTypeComputed = MODAL.REGISTER;
     else this.modalTypeComputed = MODAL.LOGIN;
   }
 
   private closeModalOuter() {
-    window.addEventListener('click', this.resetModal);
+    window.addEventListener("click", this.resetModal);
   }
 
-  @Emit('closeModal')
+  @Emit("closeModal")
   private closeModal() {
     this.modalTypeComputed = MODAL.LOGIN;
   }
@@ -94,13 +94,17 @@ export default class ModalComponent extends Vue {
       case MODAL.REGISTER:
         return RegisterView;
       case MODAL.LOGIN:
-        return LoginView
+        return LoginView;
     }
   }
 }
 </script>
 
 <style scoped>
+.v-leave-active {
+  transition: opacity 0.3s, transform 0.5s;
+}
+
 #modal {
   position: absolute;
   top: 0;
@@ -139,5 +143,4 @@ export default class ModalComponent extends Vue {
     width: 70%;
   }
 }
-
 </style>

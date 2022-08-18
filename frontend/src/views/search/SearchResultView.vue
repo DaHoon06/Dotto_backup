@@ -1,6 +1,8 @@
 <template>
-  <main id="main-home-container">
-    <main-banner />
+  <main class="search-result-container">
+    <search-categories />
+    <follow-list-component :memberType="(memberType = 'artist')" />
+    <follow-list-component :memberType="(memberType = 'user')" />
 
     <article id="main-wrapper">
       <article id="home-dotto-container">
@@ -68,89 +70,39 @@
         FEED 게시판 컴포넌트 위치 ( limit: 8개 )
       </article>
     </article>
-
-    <top-scroll-button />
   </main>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Vue } from "vue-property-decorator";
-import { MenuButton, TopScrollButton } from "@/components/common";
-import FollowList from "@/components/main/FollowList.vue";
-import MainBanner from "@/components/main/MainBanner.vue";
+import { Component, Vue } from "vue-property-decorator";
+import FollowListComponent from "@/components/main/FollowList.vue";
+import SearchCategories from "@/components/search/SearchCategories.vue";
 import { DottoComponent } from "@/components/dotto";
 
 @Component({
   components: {
-    MainBanner,
-    FollowList,
-    TopScrollButton,
-    MenuButton,
+    FollowListComponent,
+    SearchCategories,
     DottoComponent,
   },
 })
-export default class MainView extends Vue {
+export default class SearchResultView extends Vue {
+  memberType = "";
   limit = 8;
-  //TODO: 3가지 항목 변수 및 인터페이스 정의
-
-  created(): void {
-    this.changeNavType();
-    this.init();
-  }
-
-  private init() {
-    /*TODO:
-       1. 닷투 게시판 리스트 불러오기 limit 8
-       2. 닷찻사 게시판 리스트 불러오기 limit 8
-       3. FEED 리스트 불러오기 limit 8
-    */
-    this.setData();
-  }
-
-  private async setData(): Promise<void> {
-    await this.getDottoBoardData();
-    await this.getDottoSeekersData();
-    await this.getFeedData();
-  }
-
-  private async getDottoBoardData(): Promise<void> {
-    console.log("?");
-  }
-
-  private async getDottoSeekersData(): Promise<void> {
-    console.log("닷찾사");
-  }
-
-  private async getFeedData(): Promise<void> {
-    console.log("피드");
-  }
-
-  @Emit("changeNavType")
-  private changeNavType(): string {
-    return "home";
-  }
 }
 </script>
 
 <style scoped>
-small {
-  color: #696969;
-  margin-left: 10px;
-}
-
-#main-home-container {
-  width: 100%;
-  height: 100%;
-  min-height: 800px;
+.search-result-container {
+  padding-top: 224px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
   background: white;
-  margin-top: 144px;
 }
 
-#home-dotto-container {
-  max-width: 1200px;
-  width: 100%;
-}
-
+/* 메인 화면과 중복  */
 #main-wrapper {
   max-width: 1200px;
   width: 100%;
@@ -160,6 +112,7 @@ small {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .main-component-wrapper {
   display: flex;
   flex-direction: row;
@@ -182,14 +135,5 @@ small {
 .redirect-arrow {
   width: 20px;
   height: 5px;
-}
-
-@media screen and (max-width: 1260px) {
-  #navigation-container {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 500px) {
 }
 </style>

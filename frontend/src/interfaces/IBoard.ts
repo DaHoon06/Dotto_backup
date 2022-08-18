@@ -8,13 +8,17 @@ export namespace IBoard {
   // 닷투 게시글 불러오기
   export interface dottoList {
     id: string,
-    postNo: number,
-    price: number,
+    postNo: string,
+    price: string,
     salesPct: string,
     salesPrice: string,
     salesYn: string,
-    tags: string,
+    tags: string[],
     title: string,
+    totalTime?: string,
+    genre?: string,
+    location?: string,
+    content?: string,
   }
   export interface dottoListData {
     data: {
@@ -56,5 +60,10 @@ export namespace IBoard {
     size: number,
     type: string,
     webkitRelativePath: string
+  }
+
+  export interface SelectOptions {
+    text: string,
+    value: string,
   }
 }

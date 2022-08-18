@@ -1,45 +1,57 @@
 <template>
-  <main id="dotto-board-container"
-        :class="dottoBoardBackground === 'main' ? '' : otherBgColor">
+  <main
+    id="dotto-board-container"
+    :class="dottoBoardBackground === 'main' ? '' : otherBgColor"
+  >
     <article id="side-search-filter-wrapper">
-      <transition name="fade">
-        <side-filter
-            v-show="showSearchFilter" />
+      <transition v-if="showSearchFilter">
+        <side-filter @closeFilter="closeFilter" />
       </transition>
     </article>
     <router-view
-        @showFilter="showFilter"
-        @changeBackground="changeBackground"/>
+      @showFilter="showFilter"
+      @changeBackground="changeBackground"
+    />
   </main>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue, Watch } from "vue-property-decorator";
 import { DottoComponent } from "@/components/dotto";
 import { SideFilter } from "@/components/common";
 
 @Component({
   components: {
     DottoComponent,
-    SideFilter
-  }
+    SideFilter,
+  },
 })
 export default class DottoBoardView extends Vue {
-  dottoBoardBackground = 'main';
+  dottoBoardBackground = "main";
   showSearchFilter = false;
-  otherBgColor = 'dotto-background-other';
+  otherBgColor = "dotto-background-other";
+  currentPath = "";
 
   created(): void {
     this.changeNavType();
   }
 
-  @Emit('changeNavType')
-  private changeNavType(): string {
-    return 'community';
+  closeFilter(type: boolean): void {
+    this.showSearchFilter = type;
   }
 
   private showFilter(show: boolean): void {
     this.showSearchFilter = show;
+  }
+
+  @Watch("$route")
+  routeCheck(): void {
+    this.showSearchFilter = false;
+  }
+
+  @Emit("changeNavType")
+  private changeNavType(): string {
+    return "community";
   }
 
   private changeBackground(type: string) {
@@ -63,6 +75,6 @@ export default class DottoBoardView extends Vue {
 }
 
 .dotto-background-other {
-  background: #f6f6f6!important;
+  background: #f6f6f6 !important;
 }
 </style>

@@ -1,48 +1,90 @@
 <template>
-  <section>
+  <section class="follow-list-container">
     <div v-if="showList">
       <article>
-        <span class="follow-artist-title">팔로우 한 아티스트</span>
+        <span class="follow-artist-title">{{
+          memberType === "artist" ? "아티스트" : "회원"
+        }}</span>
       </article>
       <article id="follow-artist-area">
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
-          <img class="follow-artist-list" src="@/assets/icons/main/sample/sample-follow-artist.png" alt="sample1" />
+          <img
+            class="follow-artist-list"
+            src="@/assets/icons/main/sample/sample-follow-artist.png"
+            alt="sample1"
+          />
           <span class="follow-artist-nickname">닉네임</span>
         </div>
         <div class="follow-artist-list">
@@ -60,10 +102,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class FollowListComponent extends Vue {
+  @Prop({ default: "" }) memberType?: string;
   showList = true;
   lastScrollPosition = 0;
   scrollValue = 0;
@@ -71,13 +114,15 @@ export default class FollowListComponent extends Vue {
 
   mounted(): void {
     this.lastScrollPosition = window.pageXOffset;
-    window.addEventListener('scroll', this.onScroll);
+    window.addEventListener("scroll", this.onScroll);
   }
 
   private onScroll() {
-    const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+    const currentScrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
     if (currentScrollPosition < 0) return;
-    if (Math.abs(currentScrollPosition - this.lastScrollPosition) < this.OFFSET) return
+    if (Math.abs(currentScrollPosition - this.lastScrollPosition) < this.OFFSET)
+      return;
     this.showList = currentScrollPosition < this.lastScrollPosition;
     this.lastScrollPosition = currentScrollPosition;
   }
@@ -85,11 +130,16 @@ export default class FollowListComponent extends Vue {
 </script>
 
 <style scoped>
-#follow-artist-area {
-  height: 10em;
+.follow-list-container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin: auto;
-  max-width: 1260px;
+  background: white;
+}
+
+#follow-artist-area {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -102,14 +152,13 @@ export default class FollowListComponent extends Vue {
   font-size: 1.5em;
   width: 100%;
   height: 100%;
-  color: #E2E2E2;
+  color: #e2e2e2;
 }
 
-
 .follow-artist-list {
-  border: 1px solid #E2E2E2;
+  border: 1px solid #e2e2e2;
   border-radius: 45px;
-  background: #F5F5F5;
+  background: #f5f5f5;
   width: 80px;
   height: 80px;
 }
@@ -138,6 +187,6 @@ export default class FollowListComponent extends Vue {
 #follow-artist-scroll > .follow-artist-list {
   width: 60px;
   height: 60px;
-  box-shadow: 1px 1px 1px #F5F5F5;
+  box-shadow: 1px 1px 1px #f5f5f5;
 }
 </style>

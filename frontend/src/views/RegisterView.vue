@@ -4,9 +4,7 @@
       <span>회원 가입</span>
     </section>
 
-    <progress-component
-      :progress="progress"
-    />
+    <progress-component :progress="progress" />
     <component
       :is="dynamicComponent"
       @changeComponent="changeComponent"
@@ -16,17 +14,10 @@
       @redirectHome="redirectHome"
     />
 
-    <section id="register-btn-container" >
-      <register-button
-        :buttonType="1"
-        @redirectLoginForm="redirectLoginView"
-      />
-      <register-button
-        :buttonType="2"
-        @changeComponent="changeComponent"
-      />
+    <section id="register-btn-container">
+      <register-button :buttonType="1" @redirectLoginForm="redirectLoginView" />
+      <register-button :buttonType="2" @changeComponent="changeComponent" />
     </section>
-
   </article>
 </template>
 
@@ -35,10 +26,7 @@ import { Component, Emit, Vue } from "vue-property-decorator";
 import RegisterComponent from "@/components/member/RegisterComponent.vue";
 import CompletedComponent from "@/components/member/CompletedComponent.vue";
 import PolicyComponent from "@/components/member/PolicyComponent.vue";
-import {
-  FooterComponent,
-  MenuButton
-} from "@/components/common";
+import { FooterComponent, MenuButton } from "@/components/common";
 import ProgressComponent from "@/components/member/ProgressComponent.vue";
 import RegisterButton from "@/components/member/RegisterButton.vue";
 
@@ -48,11 +36,11 @@ import RegisterButton from "@/components/member/RegisterButton.vue";
     FooterComponent,
     MenuButton,
     ProgressComponent,
-    RegisterButton
-  }
+    RegisterButton,
+  },
 })
 export default class RegisterView extends Vue {
-  type = 'PolicyComponent';
+  type = "PolicyComponent";
   progress = 1;
 
   private changeComponent(componentType: string): void {
@@ -62,44 +50,40 @@ export default class RegisterView extends Vue {
     this.type = componentType;
   }
 
-
-  @Emit('closeModal')
+  @Emit("closeModal")
   private closeForm() {
-    return true
+    return true;
   }
 
-  @Emit('redirectLoginView')
+  @Emit("redirectLoginView")
   private redirectLoginView(LOGIN: string): string {
     return LOGIN;
   }
-  @Emit('redirectHome')
+  @Emit("redirectHome")
   private redirectHome(HOME: string): string {
     return HOME;
   }
 
   private get dynamicComponent() {
     switch (this.type) {
-      case 'PolicyComponent':
+      case "PolicyComponent":
         this.progress = 1;
         return PolicyComponent;
-      case 'RegisterComponent':
+      case "RegisterComponent":
         this.progress = 2;
         return RegisterComponent;
-      case 'CompletedComponent':
+      case "CompletedComponent":
         this.progress = 3;
         return CompletedComponent;
     }
   }
-
 }
 </script>
 
 <style scoped>
-
 #register-container {
-  margin:auto;
+  margin: auto;
   height: 100%;
-
 }
 #register-title-wrapper {
   display: flex;
@@ -130,5 +114,4 @@ export default class RegisterView extends Vue {
   top: 90%;
   right: 28%;
 }
-
 </style>

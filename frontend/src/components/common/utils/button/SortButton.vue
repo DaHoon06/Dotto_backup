@@ -1,12 +1,14 @@
 <template>
-  <section id="sort-area" v-if="showSortComponent" >
+  <section id="sort-area" v-if="showSortComponent">
     <ul>
       <li v-for="(types, index) of this.filterType" :key="index">
-        <input type="radio"
-               :id="index"
-               name="type"
-               @change="sendSortType(index)"
-               :value="types" />
+        <input
+          type="radio"
+          :id="index"
+          name="type"
+          @change="sendSortType(index)"
+          :value="types"
+        />
         <label :for="index">{{ types }}</label>
       </li>
     </ul>
@@ -25,17 +27,12 @@ export default class SortComponent extends Vue {
 
   constructor() {
     super();
-    this.filterType = ['최신순', '조회순', '좋아요순', '거리순'];
+    this.filterType = ["최신순", "조회순", "좋아요순", "거리순"];
   }
 
   private sendSortType(index: number) {
-    this.$emit('typeName', this.filterType[index])
-
+    this.$emit("typeName", this.filterType[index]);
   }
-
-
-
-
 }
 </script>
 
@@ -43,7 +40,7 @@ export default class SortComponent extends Vue {
 #sort-area {
   border: 1px solid gray;
   border-radius: 10px;
-  background: #FFFFFF;
+  background: #ffffff;
   width: 120px;
   height: 120px;
   position: absolute;
@@ -56,6 +53,4 @@ export default class SortComponent extends Vue {
   padding-left: 7px;
   margin-top: 10px;
 }
-
-
 </style>

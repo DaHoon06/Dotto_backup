@@ -66,18 +66,59 @@ input[type=number] {
     color: white;
     font-weight: 700;
 }
+/* Vue Transition CSS */
+/*.fade-enter-active {*/
+/*    transition: all .3s ease;*/
+/*}*/
 
-.fade-enter-active {
-    transition: all .3s ease;
+/*.fade-leave-active {*/
+/*    transition: all 0s;*/
+/*}*/
+
+/*.fade-enter, .fade-leave-to {*/
+/*    opacity: 0;*/
+/*}*/
+
+/* .v-leave-active, */
+.v-enter-active,  .v-move {
+    transition: opacity 0.3s, transform 0.5s;
 }
 
-.fade-leave-active {
-    transition: all 0s;
+.v-leave-active {
+    position: absolute;
 }
-
-.fade-enter, .fade-leave-to {
+.v-enter {
+    opacity: 0;
+    /* 상단에서 부터 내려오는 애니메이션 */
+    /*transform: translateY(-20px);*/
+}
+.v-leave-to {
     opacity: 0;
 }
+/*-----   Vue Transition CSS END   -----*/
+
+
+/* Custom Margin */
+.c-mt-56 {
+    margin-top: 56px;
+}
+.c-mt-12 {
+    margin-top: 12px;
+}
+.c-mt-16 {
+    margin-top: 16px;
+}
+.c-mt-24 {
+    margin-top: 24px;
+}
+.c-mt-40 {
+    margin-top: 40px;
+}
+.c-mt-48 {
+    margin-top: 48px;
+}
+/*-----   Custom Margin END  -----*/
+
 
 /* 태그 */
 .tag {

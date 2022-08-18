@@ -5,10 +5,13 @@
         <section class="menu">
           <ul>
             <li>
-              <router-link to="/"
-                           class="nav-button"
-                           :class="navigationType === 'home' ? currentPage : ''" >
-                HOME</router-link>
+              <router-link
+                to="/"
+                class="nav-button"
+                :class="navigationType === 'home' ? currentPage : ''"
+              >
+                HOME</router-link
+              >
             </li>
           </ul>
         </section>
@@ -18,10 +21,12 @@
           <ul>
             <li>
               <router-link
-                  to="/"
-                  class="nav-button"
-                  :class="navigationType === 'try' ? currentPage : ''">
-                try DOTTO</router-link>
+                to="/"
+                class="nav-button"
+                :class="navigationType === 'try' ? currentPage : ''"
+              >
+                try DOTTO</router-link
+              >
             </li>
           </ul>
         </section>
@@ -31,23 +36,25 @@
           <ul>
             <li>
               <span
-                  class="nav-button"
-                  :class="navigationType === 'community' ? currentPage : ''"
-                  @mouseover="showCommunity('show')"
-                  @mouseleave="showCommunity('hide')">COMMUNITY</span>
+                class="nav-button"
+                :class="navigationType === 'community' ? currentPage : ''"
+                @mouseover="showCommunity('show')"
+                @mouseleave="showCommunity('hide')"
+                >COMMUNITY</span
+              >
             </li>
             <li v-show="menu_community">
-              <section class="nav-menu-list"
-                   @mouseover="showCommunity('show')"
-                   @mouseleave="showCommunity('hide')">
-                <router-link
-                    to="/dotto/board/index"
-                    class="sub-nav-items"
-                >닷투 게시판</router-link>
-                <router-link
-                    to="/"
-                    class="sub-nav-items"
-                >닷찾사 게시판</router-link>
+              <section
+                class="nav-menu-list"
+                @mouseover="showCommunity('show')"
+                @mouseleave="showCommunity('hide')"
+              >
+                <router-link to="/dotto/board/index" class="sub-nav-items"
+                  >닷투 게시판</router-link
+                >
+                <router-link to="/" class="sub-nav-items"
+                  >닷찾사 게시판</router-link
+                >
               </section>
             </li>
           </ul>
@@ -58,10 +65,11 @@
           <ul>
             <li>
               <router-link
-                  class="nav-button"
-                  :class="navigationType === 'feed' ? currentPage : ''"
-                  to="/dotto/feed/index"
-              >FEED</router-link>
+                class="nav-button"
+                :class="navigationType === 'feed' ? currentPage : ''"
+                to="/dotto/feed/index"
+                >FEED</router-link
+              >
             </li>
           </ul>
         </section>
@@ -71,23 +79,21 @@
           <ul>
             <li>
               <span
-                  class="nav-button"
-                  :class="navigationType === 'support' ? currentPage : ''"
-                  @mouseover="showInformation('show')"
-                  @mouseleave="showInformation('hide')">고객지원</span>
+                class="nav-button"
+                :class="navigationType === 'support' ? currentPage : ''"
+                @mouseover="showInformation('show')"
+                @mouseleave="showInformation('hide')"
+                >고객지원</span
+              >
             </li>
             <li v-show="menu_information">
-              <section class="nav-menu-list"
-                  @mouseover="showInformation('show')"
-                  @mouseleave="showInformation('hide')">
-                <router-link
-                    to="/"
-                    class="sub-nav-items"
-                >FAQ</router-link>
-                <router-link
-                    to="/"
-                    class="sub-nav-items"
-                >공지사항</router-link>
+              <section
+                class="nav-menu-list"
+                @mouseover="showInformation('show')"
+                @mouseleave="showInformation('hide')"
+              >
+                <router-link to="/" class="sub-nav-items">FAQ</router-link>
+                <router-link to="/" class="sub-nav-items">공지사항</router-link>
               </section>
             </li>
           </ul>
@@ -106,22 +112,21 @@ export default class NavigationComponent extends Vue {
 
   menu_information = false;
   menu_community = false;
-  currentPage = 'current-page';
+  currentPage = "current-page";
 
-  navType = '';
+  navType = "";
 
   constructor() {
     super();
   }
 
   private showInformation(event: string) {
-    this.menu_information = event === 'show';
+    this.menu_information = event === "show";
   }
 
   private showCommunity(event: string) {
-    this.menu_community = event === 'show';
+    this.menu_community = event === "show";
   }
-
 }
 </script>
 
@@ -197,5 +202,4 @@ export default class NavigationComponent extends Vue {
   font-weight: bold;
   text-shadow: 1px 1px #a9a9a9;
 }
-
 </style>

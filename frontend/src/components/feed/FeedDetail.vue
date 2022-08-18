@@ -1,9 +1,6 @@
 <template>
   <article id="feed-detail-container">
-
-    <section id="feed-detail-img-list">
-
-    </section>
+    <section id="feed-detail-img-list"></section>
     <section id="feed-detail-contents">
       with react
       <article>
@@ -21,9 +18,7 @@
           <button>메뉴버튼</button>
         </div>
       </article>
-      <div>
-        콘텐츠 영역
-      </div>
+      <div>콘텐츠 영역</div>
 
       <hr />
 
@@ -38,14 +33,12 @@
                 <div>1시간전</div>
               </div>
             </div>
-            <div>
-              콘텐츠 영역
-            </div>
+            <div>콘텐츠 영역</div>
           </div>
         </article>
       </perfect-scrollbar>
 
-      <article >
+      <article>
         <div>
           <span>하트 개수</span>
           <span>댓글 개수</span>
@@ -55,19 +48,12 @@
       <hr />
 
       <article>
-        <div>
-          프로필 이미지
-        </div>
+        <div>프로필 이미지</div>
         <div>
           <input type="text" placeholder="댓글을 입력하세요..." />
         </div>
       </article>
-
     </section>
-
-
-
-
   </article>
 </template>
 
@@ -75,9 +61,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class FeedDetailComponent extends Vue {
-
-}
+export default class FeedDetailComponent extends Vue {}
 </script>
 
 <style scoped>
@@ -91,7 +75,7 @@ export default class FeedDetailComponent extends Vue {
   background: #222222;
   width: 800px;
   height: 800px;
-  border-radius: 5px 0 0 5px ;
+  border-radius: 5px 0 0 5px;
 }
 
 #feed-detail-contents {

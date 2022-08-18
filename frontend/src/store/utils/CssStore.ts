@@ -3,25 +3,28 @@ import { State } from "@/store";
 import { CssControl } from "@/interfaces/common/IOptions";
 
 const cssStore: Module<CssControl, State> = {
-    namespaced: true,
-    state: {
-        SCROLL: false,
-        BLUR: false,
+  namespaced: true,
+  state: {
+    SCROLL: false,
+    BLUR: false,
+    TOPHIDE: false,
+  },
+  mutations: {
+    scrollOn(state, payload) {
+      state.SCROLL = payload;
     },
-    mutations: {
-        scrollOn(state, payload) {
-            state.SCROLL = payload
-        },
-        backgroundBlur(state, payload) {
-            state.BLUR = payload;
-        }
+    backgroundBlur(state, payload) {
+      state.BLUR = payload;
     },
-    actions: {
-
+    topMenuHide(state, payload) {
+      state.TOPHIDE = payload;
     },
-    getters: {
-        SCROLL: state => state.SCROLL,
-        BLUR: state => state.BLUR,
-    }
-}
+  },
+  actions: {},
+  getters: {
+    SCROLL: (state) => state.SCROLL,
+    BLUR: (state) => state.BLUR,
+    TOPHIDE: (state) => state.TOPHIDE,
+  },
+};
 export default cssStore;

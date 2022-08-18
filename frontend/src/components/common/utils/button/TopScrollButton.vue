@@ -12,20 +12,18 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class TopScrollButton extends Vue {
-  timeOut = '';
+  timeOut = "";
 
   private scrollHandler() {
-    window.scrollBy(0,-9999);
+    window.scrollBy(0, -9999);
   }
-
 }
-
 </script>
 
 <style scoped>
 #go-top {
   background: #222222;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 11px;
   display: flex;
   flex-direction: column;
@@ -34,7 +32,7 @@ export default class TopScrollButton extends Vue {
 }
 
 #top {
-width: 10px;
+  width: 10px;
 }
 /* side button */
 #side-button-container {
@@ -47,12 +45,11 @@ width: 10px;
   width: 56px;
   height: 56px;
   border-radius: 45px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 .right-side {
   margin-top: 10px;
   z-index: 999;
 }
-
 </style>

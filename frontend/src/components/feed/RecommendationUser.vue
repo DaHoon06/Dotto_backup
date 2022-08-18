@@ -1,18 +1,12 @@
 <template>
-  <div>
-
-  </div>
+  <div></div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class RecommendationUserComponent extends Vue {
-
-}
+export default class RecommendationUserComponent extends Vue {}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
