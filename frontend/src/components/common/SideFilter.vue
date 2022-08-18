@@ -15,7 +15,7 @@
               </button>
             </article>
 
-            <transition name="fade">
+            <transition>
               <article id="tag-list" v-if="showTagArea">
                 <span class="filter-tag">블랙앤그레이</span>
                 <span class="filter-tag">레터링</span>
@@ -44,7 +44,7 @@
               </button>
             </article>
 
-            <transition name="fade">
+            <transition>
               <article v-if="showLocationArea" id="filter-search-items">
                 <input
                   type="text"
@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Ref, Vue } from "vue-property-decorator";
 
 @Component
 export default class SearchFilterComponent extends Vue {
@@ -115,6 +115,14 @@ export default class SearchFilterComponent extends Vue {
     if (this.showLocationArea) this.$nextTick(() => this.refKeyword.focus());
     if (this.showLocationArea) this.keyword = "";
     this.showLocationArea = !this.showLocationArea;
+  }
+  @Emit("closeFilter")
+  closeFilter() {
+    return false;
+  }
+
+  beforeDestroyed(): void {
+    this.closeFilter();
   }
 }
 </script>

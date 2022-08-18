@@ -44,7 +44,6 @@ export default class EstimateView extends Vue {
 
   private changeTop(type: boolean): void {
     EventBus.$emit("topMenuHide", type);
-    this.$store.commit("cssStore/topMenuHide", type);
   }
 }
 </script>

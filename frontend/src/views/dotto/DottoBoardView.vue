@@ -4,8 +4,8 @@
     :class="dottoBoardBackground === 'main' ? '' : otherBgColor"
   >
     <article id="side-search-filter-wrapper">
-      <transition name="fade">
-        <side-filter v-show="showSearchFilter" />
+      <transition v-if="showSearchFilter">
+        <side-filter @closeFilter="closeFilter" />
       </transition>
     </article>
     <router-view
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue, Watch } from "vue-property-decorator";
 import { DottoComponent } from "@/components/dotto";
 import { SideFilter } from "@/components/common";
 
@@ -30,18 +30,28 @@ export default class DottoBoardView extends Vue {
   dottoBoardBackground = "main";
   showSearchFilter = false;
   otherBgColor = "dotto-background-other";
+  currentPath = "";
 
   created(): void {
     this.changeNavType();
   }
 
-  @Emit("changeNavType")
-  private changeNavType(): string {
-    return "community";
+  closeFilter(type: boolean): void {
+    this.showSearchFilter = type;
   }
 
   private showFilter(show: boolean): void {
     this.showSearchFilter = show;
+  }
+
+  @Watch("$route")
+  routeCheck(): void {
+    this.showSearchFilter = false;
+  }
+
+  @Emit("changeNavType")
+  private changeNavType(): string {
+    return "community";
   }
 
   private changeBackground(type: string) {

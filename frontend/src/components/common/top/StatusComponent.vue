@@ -1,6 +1,6 @@
 <template>
   <article id="status-container">
-    <article id="login-btn-wrapper" v-if="isLogin">
+    <article id="login-btn-wrapper" v-if="!isLogin">
       <button
         class="nav-icon-label login-label"
         type="button"
@@ -101,13 +101,11 @@
       </article>
     </article>
 
-    <transition>
-      <main-modal
-        :modalType="modalType"
-        @modalType="modalType"
-        @closeModal="closeModal"
-      />
-    </transition>
+    <main-modal
+      :modalType="modalType"
+      @modalType="modalType"
+      @closeModal="closeModal"
+    />
   </article>
 </template>
 
