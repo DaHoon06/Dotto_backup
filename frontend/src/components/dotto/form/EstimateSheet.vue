@@ -340,7 +340,6 @@ hr {
 }
 
 /* 닷투 게시판 본문 내용 */
-
 .estimate-sheet-container {
   padding: 56px 40px;
   border: 1px solid #f5f5f5;
@@ -352,36 +351,16 @@ hr {
   background: white;
 }
 
-/*---- 공통 부분 ----*/
+/*---- COMMON ----*/
 .estimate-items-wrapper {
   display: flex;
   flex-direction: column;
 }
-
-/* 내부 아이템 마진 */
-.c-mt-56 {
-  margin-top: 56px;
-}
-.c-mt-12 {
-  margin-top: 12px;
-}
-.c-mt-16 {
-  margin-top: 16px;
-}
-.c-mt-24 {
-  margin-top: 24px;
-}
-.c-mt-40 {
-  margin-top: 40px;
-}
-.c-mt-48 {
-  margin-top: 48px;
-}
+/*  ------- COMMON END -------  */
 
 .last-section {
   margin-bottom: 148px;
 }
-/*  ------- COMMON END -------  */
 
 .dotto-part-input {
   outline: none;

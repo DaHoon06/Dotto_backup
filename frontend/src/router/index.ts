@@ -8,6 +8,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     redirect: "/dotto",
+    meta: { unauthorized: true },
   },
   {
     name: "index",

@@ -1,8 +1,10 @@
 <template>
-  <section>
+  <section class="follow-list-container">
     <div v-if="showList">
       <article>
-        <span class="follow-artist-title">팔로우 한 아티스트</span>
+        <span class="follow-artist-title">{{
+          memberType === "artist" ? "아티스트" : "회원"
+        }}</span>
       </article>
       <article id="follow-artist-area">
         <div class="follow-artist-list">
@@ -104,7 +106,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class FollowListComponent extends Vue {
-  @Prop({ default: "" }) type?: string;
+  @Prop({ default: "" }) memberType?: string;
   showList = true;
   lastScrollPosition = 0;
   scrollValue = 0;
@@ -128,11 +130,16 @@ export default class FollowListComponent extends Vue {
 </script>
 
 <style scoped>
-#follow-artist-area {
-  height: 10em;
+.follow-list-container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin: auto;
-  max-width: 1260px;
+  background: white;
+}
+
+#follow-artist-area {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

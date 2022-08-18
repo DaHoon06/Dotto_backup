@@ -95,8 +95,30 @@ input[type=number] {
 .v-leave-to {
     opacity: 0;
 }
-
 /*-----   Vue Transition CSS END   -----*/
+
+
+/* Custom Margin */
+.c-mt-56 {
+    margin-top: 56px;
+}
+.c-mt-12 {
+    margin-top: 12px;
+}
+.c-mt-16 {
+    margin-top: 16px;
+}
+.c-mt-24 {
+    margin-top: 24px;
+}
+.c-mt-40 {
+    margin-top: 40px;
+}
+.c-mt-48 {
+    margin-top: 48px;
+}
+/*-----   Custom Margin END  -----*/
+
 
 /* 태그 */
 .tag {

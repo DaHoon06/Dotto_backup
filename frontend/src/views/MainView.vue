@@ -75,11 +75,7 @@
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import {
-  FooterComponent,
-  MenuButton,
-  TopScrollButton,
-} from "@/components/common";
+import { MenuButton, TopScrollButton } from "@/components/common";
 import FollowList from "@/components/main/FollowList.vue";
 import MainBanner from "@/components/main/MainBanner.vue";
 import { DottoComponent } from "@/components/dotto";
@@ -89,7 +85,6 @@ import { DottoComponent } from "@/components/dotto";
     MainBanner,
     FollowList,
     TopScrollButton,
-    FooterComponent,
     MenuButton,
     DottoComponent,
   },
@@ -151,6 +146,11 @@ small {
   margin-top: 144px;
 }
 
+#home-dotto-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
 #main-wrapper {
   max-width: 1200px;
   width: 100%;
@@ -160,11 +160,6 @@ small {
   flex-direction: column;
   justify-content: space-evenly;
 }
-#home-dotto-container {
-  max-width: 1200px;
-  width: 100%;
-}
-
 .main-component-wrapper {
   display: flex;
   flex-direction: row;
