@@ -1,5 +1,7 @@
 package com.dotto.app.controller.member;
 
+import com.dotto.app.aop.AssignMemberNo;
+import com.dotto.app.dto.member.MemberProfileUploadRequest;
 import com.dotto.app.dto.member.MemberUpdateRequest;
 import com.dotto.app.dto.response.Response;
 import com.dotto.app.service.member.MemberService;
@@ -61,5 +63,24 @@ public class MemberController {
             @ApiParam(value = "중복 조회할 아이디", required = true)
             @PathVariable String id){
         return Response.success(memberService.existsById(id));
+    }
+
+
+
+    @ApiOperation(value = "프로필 사진 업로드 ", notes = "프로필 사진을 업로드 한다")
+    @PostMapping("/api/member/profile")
+    @AssignMemberNo
+    @ResponseStatus(HttpStatus.OK)
+    public Response uploadProfile(MemberProfileUploadRequest req){
+        return Response.success(memberService.uploadProfile(req));
+    }
+
+    @ApiOperation(value = "프로필 사진 삭제", notes = "프로필 사진을 삭제 한다")
+    @DeleteMapping("/api/member/profile/{id}")
+    @AssignMemberNo
+    @ResponseStatus(HttpStatus.OK)
+    public Response deletedProfile(@PathVariable(value = "memberNo") Long id){
+        memberService.deletedProfile(id);
+        return Response.success();
     }
 }

@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface FeedRepository extends JpaRepository<Feed, Long> {
 
-    @Query("select f from Feed f where f.deletedYn='N'")
+    @Query("select f from Feed f where f.deletedYn='N' and f.feedNo=:feedNo" )
     Optional<Feed> findByFeedNoWithDeletedYnEqualsN(Long feedNo);
 }
