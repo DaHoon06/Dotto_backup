@@ -1,29 +1,7 @@
 <template>
   <article class="room-file-upload-wrapper">
-    <article v-if="!files.length" class="room-file-upload-example-container">
-      <div class="room-file-upload-example">
-        <div class="room-file-notice-item room-file-upload-button">
-          <div class="image-box">
-            <img
-              class="upload"
-              src="@/assets/icons/common/upload.png"
-              alt="upload"
-            />
-            <label for="file">이미지 첨부</label>
-            <input
-              type="file"
-              id="file"
-              ref="fileRef"
-              @change="imageUpload"
-              multiple
-              accept=".jpg, .jpeg, .png"
-            />
-          </div>
-        </div>
-      </div>
-    </article>
-    <article v-else class="file-preview-content-container">
-      <div class="file-preview-container">
+    <article class="file-preview-content-container">
+      <div v-if="files.length" class="file-preview-container">
         <div
           v-for="(file, index) in files"
           :key="index"
@@ -36,7 +14,7 @@
           >
             x
           </div>
-          <img :src="file.preview" />
+          <img :src="file.preview" alt="이미지 미리보기" />
         </div>
       </div>
       <div class="file-preview-wrapper-upload">
@@ -46,12 +24,12 @@
             src="@/assets/icons/common/upload.png"
             alt="upload"
           />
-          <label for="file">이미지 첨부</label>
+          <label for="addFile">이미지 첨부</label>
           <input
             type="file"
-            id="file"
+            id="addFile"
             ref="fileRef"
-            @change="imageAddUpload"
+            @change="imageUpload"
             multiple
             accept=".jpg, .jpeg, .png"
           />
@@ -66,24 +44,30 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Ref, Vue, Prop } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
 
 @Component
 export default class FileUploadComponent extends Vue {
   @Ref() readonly fileRef!: any;
+  @Prop({ default: "" }) uploadType?: string;
 
   files: IBoard.IFileUpload[] = [];
   uploadImageIndex = 0;
 
   @Emit("sendImg")
-  sendImg(img: any) {
+  sendImg(img: IBoard.IFileUpload[]) {
     return img;
   }
 
   private imageUpload(): void {
+    this.files = [];
     let num = -1;
-    for (let i = 0; i < this.fileRef.files.length; i++) {
+    let index: number;
+    if (this.uploadType === "estimateSheet") index = 1;
+    else index = 3;
+
+    for (let i = 0; i < index; i++) {
       this.files = [
         ...this.files,
         {
@@ -95,23 +79,6 @@ export default class FileUploadComponent extends Vue {
       num = i;
     }
     this.uploadImageIndex = num + 1;
-    this.sendImg(this.files);
-  }
-
-  private imageAddUpload() {
-    let num = -1;
-    for (let i = 0; i < this.fileRef.length; i++) {
-      this.files = [
-        ...this.files,
-        {
-          file: this.fileRef.files[i],
-          preview: URL.createObjectURL(this.fileRef.files[i]),
-          number: i + this.uploadImageIndex,
-        },
-      ];
-      num = i;
-    }
-    this.uploadImageIndex = this.uploadImageIndex + num + 1;
     this.sendImg(this.files);
   }
 
