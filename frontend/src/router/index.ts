@@ -66,7 +66,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/estimate/:id",
+    path: "/estimate/:postNo",
     name: "estimateSheet",
     component: () => import("@/views/dotto/EstimateView.vue"),
     meta: { unauthorized: true },

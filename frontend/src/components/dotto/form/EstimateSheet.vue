@@ -251,6 +251,20 @@ export default class EstimateSheet extends Vue {
   };
   hours = Array.from({ length: 10 }).map((_, i) => i + 10);
 
+  postNo: string = this.$route.params.postNo;
+  created(): void {
+    this.initData();
+  }
+
+  private async initData() {
+    try {
+      const { data } = await this.axios.get(`/dottopost/${this.postNo}`);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   // MARK: 버튼 활성화 할 때, 데이터도 함께
   @Emit("enabledSubmitButton")
   enabledButton(): IBoard.EstimateSheet {

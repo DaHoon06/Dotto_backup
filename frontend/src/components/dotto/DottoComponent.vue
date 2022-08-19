@@ -30,10 +30,7 @@
           <span class="discount-rate price">{{ dotto.salesPct }}</span>
         </section>
         <section class="tag-area tattoo-board-list-info location">
-          <span
-            v-for="(tag, index) of dotto.tags.split(',')"
-            :key="index"
-            class="tag"
+          <span v-for="(tag, index) of dotto.tags" :key="index" class="tag"
             ># {{ tag }}</span
           >
         </section>

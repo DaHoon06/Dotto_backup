@@ -4,7 +4,7 @@
       <article class="dotto-detail-section">
         <div>이 작업이 마음에 드시나요?</div>
         <button type="button" id="dotto-detail-like-btn">찜하기</button>
-        <button type="button">의뢰하기</button>
+        <button type="button" @click="redirectEstimateSheet">의뢰하기</button>
       </article>
       <article class="dotto-detail-flex-row">
         <div class="dotto-detail-flex" id="dotto-detail-information">
@@ -34,20 +34,17 @@
           <div>
             {{ list.content }}
           </div>
-          <div>
-            <!--            <span-->
-            <!--              class="tag-area"-->
-            <!--              v-for="(tag, index) of list.tags.split(',')"-->
-            <!--              :key="index"-->
-            <!--              >{{ tag }}</span-->
-            >
-          </div>
+          <section class="tag-area">
+            <span class="tag" v-for="(tag, index) of list.tags" :key="index">{{
+              tag
+            }}</span>
+          </section>
           <hr />
           <article class="dotto-detail-section">
             <div class="dotto-detail-flex-row">
               <div>유저프로필</div>
               <div>
-                <div>아이디</div>
+                <div>{{ list.member.nickname }}</div>
                 <div class="dotto-detail-flex-row">
                   <div>팔로워</div>
                   <div>158.8만명</div>
@@ -103,27 +100,8 @@ export default class DottoDetailComponent extends Vue {
       3 - 1. 게시글에 있는 댓글 조회
       3 - 2. 게시글에 있는 리뷰 조회
   * */
-  //list: IBoard.dottoList;
   list: IBoard.DottoDetail | [] = [];
   postNo: string = this.$route.params.postNo;
-
-  constructor() {
-    super();
-    // this.list = {
-    //   id: "",
-    //   title: "",
-    //   postNo: "",
-    //   price: "",
-    //   salesPct: "",
-    //   salesPrice: "",
-    //   salesYn: "",
-    //   tags: [],
-    //   totalTime: "",
-    //   genre: "",
-    //   location: "",
-    //   content: "",
-    // };
-  }
 
   created() {
     this.init();
@@ -131,6 +109,10 @@ export default class DottoDetailComponent extends Vue {
 
   async init() {
     await this.getBoardData();
+  }
+
+  redirectEstimateSheet() {
+    this.$router.push({ path: `/estimate/${this.postNo}` });
   }
 
   private async getBoardData() {

@@ -1,3 +1,5 @@
+import { IUser } from "@/interfaces/IUser";
+
 export namespace IBoard {
   export interface CommonProp {
     createdAt: Date;
@@ -6,17 +8,12 @@ export namespace IBoard {
     deletedYn: string;
   }
   // 닷투 게시글 불러오기
-  export interface memberTest {
-    id: string;
-    memberNo: number;
-    nickname: string;
-  }
   export interface DottoDetail {
     id?: number;
     content?: string;
     genre?: string;
-    member?: memberTest;
-    postPhoto?: any[];
+    member?: IUser.Information;
+    postPhoto?: string[];
     price?: number;
     salesPrice?: number;
     salesYn?: string;
