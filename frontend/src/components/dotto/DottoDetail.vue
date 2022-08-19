@@ -20,7 +20,7 @@
           <hr />
           <div class="dotto-detail-flex-row">
             <div>위치</div>
-            <div>{{ list.location }}</div>
+            <!--            <div>{{ list.location }}</div>-->
           </div>
           <div class="dotto-detail-flex-row">
             <div>장르</div>
@@ -35,11 +35,11 @@
             {{ list.content }}
           </div>
           <div>
-            <span
-              class="tag-area"
-              v-for="(tag, index) of list.tags.split(',')"
-              :key="index"
-              >{{ tag }}</span
+            <!--            <span-->
+            <!--              class="tag-area"-->
+            <!--              v-for="(tag, index) of list.tags.split(',')"-->
+            <!--              :key="index"-->
+            <!--              >{{ tag }}</span-->
             >
           </div>
           <hr />
@@ -103,25 +103,26 @@ export default class DottoDetailComponent extends Vue {
       3 - 1. 게시글에 있는 댓글 조회
       3 - 2. 게시글에 있는 리뷰 조회
   * */
-  list: IBoard.dottoList;
+  //list: IBoard.dottoList;
+  list: IBoard.DottoDetail | [] = [];
   postNo: string = this.$route.params.postNo;
 
   constructor() {
     super();
-    this.list = {
-      id: "",
-      title: "",
-      postNo: "",
-      price: "",
-      salesPct: "",
-      salesPrice: "",
-      salesYn: "",
-      tags: [],
-      totalTime: "",
-      genre: "",
-      location: "",
-      content: "",
-    };
+    // this.list = {
+    //   id: "",
+    //   title: "",
+    //   postNo: "",
+    //   price: "",
+    //   salesPct: "",
+    //   salesPrice: "",
+    //   salesYn: "",
+    //   tags: [],
+    //   totalTime: "",
+    //   genre: "",
+    //   location: "",
+    //   content: "",
+    // };
   }
 
   created() {
@@ -135,11 +136,11 @@ export default class DottoDetailComponent extends Vue {
   private async getBoardData() {
     try {
       const { data } = await this.axios.get(`/dottopost/${this.postNo}`);
+      console.log(data);
       const { result, success } = data;
       if (success) {
         const { data } = result;
-        const { dottoPostDtoList } = data;
-        this.list = dottoPostDtoList;
+        this.list = data;
       }
     } catch (e) {
       console.error(e);

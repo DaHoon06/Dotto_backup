@@ -13,6 +13,7 @@
           :lang="lang"
           placeholder="날짜 선택"
           :disabled-date="disabledDate"
+          @change="enabledButton"
         />
 
         <date-picker
@@ -23,6 +24,7 @@
           value-type="format"
           type="time"
           placeholder="시간 선택"
+          @change="enabledButton"
         />
       </section>
     </section>
@@ -36,12 +38,17 @@
         type="text"
         placeholder="타투 부위"
         v-model="dottoPart"
+        @change="enabledButton"
       />
       <section class="test c-mt-16"></section>
     </section>
     <section class="estimate-items-wrapper c-mt-56">
       <label>타투 사이즈</label>
-      <select class="dotto-size-select-box c-mt-16" v-model="size">
+      <select
+        class="dotto-size-select-box c-mt-16"
+        v-model="size"
+        @change="enabledButton"
+      >
         <option disabled value="">타투 사이즈를 선택해 주세요.</option>
         <option
           v-for="(size, index) of dottoSize"
@@ -86,6 +93,7 @@
             name="dotto-type"
             v-model="coverType"
             value="1"
+            @change="enabledButton"
           />
           <label for="new">새로운 타투</label>
         </div>
@@ -96,20 +104,9 @@
             name="dotto-type"
             v-model="coverType"
             value="2"
+            @change="enabledButton"
           />
           <label for="cover">커버업 타투</label>
-        </div>
-      </section>
-      <section class="c-mt-48">
-        <button class="upload-button c-mt-48" type="button">
-          <input type="file" v-on:change="selectedCoverUpDesign" />
-          이미지 업로드
-        </button>
-        <div class="c-mt-12">
-          <p class="desc">
-            커버업 부위를 첨부해주시면 더욱 자세한 상담이 가능해요.
-          </p>
-          <p class="desc">이미지 사이즈 및 포맥 ()px x ()px / jpg / 최대 1MB</p>
         </div>
       </section>
     </section>
@@ -118,10 +115,9 @@
 
     <section class="estimate-items-wrapper c-mt-40">
       <label>희망도안 (선택)</label>
-      <button class="upload-button c-mt-24" type="button">
-        <input type="file" v-on:change="selectedHopeDesign" />
-        이미지 업로드
-      </button>
+
+      <file-upload-button @sendImg="getImg" :uploadType="estimateSheet" />
+
       <div class="c-mt-12">
         <p class="desc">
           원하는 도안을 첨부해주시면 더욱 자세한 상담이 가능해요.
@@ -139,9 +135,10 @@
           <input
             id="none"
             type="radio"
-            name="dotto-type"
+            name="diseases"
             v-model="skinDiseases"
             value="1"
+            @change="enabledButton"
           />
           <label for="none">없음</label>
         </div>
@@ -149,9 +146,10 @@
           <input
             id="exist"
             type="radio"
-            name="dotto-type"
+            name="diseases"
             v-model="skinDiseases"
             value="2"
+            @change="enabledButton"
           />
           <label for="exist">있음</label>
         </div>
@@ -174,33 +172,36 @@
         class="c-mt-16"
         :placeholder="textareaPlaceholder"
         v-model="requestContents"
+        @keyup="enabledButton"
       ></textarea>
     </section>
   </article>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { IBoard } from "@/interfaces/IBoard";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import FileUploadButton from "@/components/common/utils/button/FileUploadButton.vue";
 
 @Component({
   components: {
     DatePicker,
+    FileUploadButton,
   },
 })
 export default class EstimateSheet extends Vue {
   //#TODO 본 게시물을 참조해야하기 때문에 props로 본문 데이터도 전달 받아야 한다.
   seq = this.$route.params;
 
+  estimateSheet = "estimateSheet";
   requestContents = "";
   skinDiseases = "";
-  designForm: any[] = [];
   coverType = "";
   size = "";
   dottoPart = "";
-
+  designForm: any = [];
   reference = false;
   part: IBoard.SelectOptions[] = [
     { text: "올드스쿨", value: "1" },
@@ -249,6 +250,46 @@ export default class EstimateSheet extends Vue {
     monthBeforeYear: false,
   };
   hours = Array.from({ length: 10 }).map((_, i) => i + 10);
+
+  // MARK: 버튼 활성화 할 때, 데이터도 함께
+  @Emit("enabledSubmitButton")
+  enabledButton(): IBoard.EstimateSheet {
+    const haveADisease =
+      this.skinDiseases === "2" && this.requestContents.length > 0;
+    const noDisease = this.skinDiseases === "1";
+
+    if (
+      this.date &&
+      this.time &&
+      this.dottoPart.length &&
+      this.size.length &&
+      this.coverType.length &&
+      (haveADisease || noDisease)
+    ) {
+      const sendData = {
+        date: this.date,
+        time: this.time,
+        dottoPart: this.dottoPart,
+        size: this.size,
+        coverType: this.coverType,
+        illness: this.skinDiseases,
+        requestContents: this.requestContents,
+      };
+      return {
+        result: false,
+        data: sendData,
+      };
+    } else {
+      return {
+        result: true,
+        data: {},
+      };
+    }
+  }
+
+  private getImg(img: IBoard.IFileUpload[]) {
+    this.designForm = img;
+  }
 
   private disabledDate(date: string): boolean {
     return (
@@ -341,7 +382,7 @@ hr {
 
 /* 닷투 게시판 본문 내용 */
 .estimate-sheet-container {
-  padding: 56px 40px;
+  padding: 136px 40px 56px;
   border: 1px solid #f5f5f5;
   box-shadow: 0 5px 10px 0 #e9e9e9;
   display: flex;

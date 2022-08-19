@@ -1,23 +1,24 @@
 <template>
   <article class="room-file-upload-wrapper">
     <article class="file-preview-content-container">
-      <div v-if="files.length" class="file-preview-container">
+      <section v-if="files.length" class="file-preview-container">
         <div
           v-for="(file, index) in files"
           :key="index"
           class="file-preview-wrapper"
         >
-          <div
+          <button
+            type="button"
             class="file-close-button"
             @click="fileDeleteButton"
             :id="file.number"
           >
             x
-          </div>
+          </button>
           <img :src="file.preview" alt="이미지 미리보기" />
         </div>
-      </div>
-      <div class="file-preview-wrapper-upload">
+      </section>
+      <section class="file-preview-wrapper-upload">
         <div class="image-box">
           <img
             class="upload"
@@ -34,12 +35,12 @@
             accept=".jpg, .jpeg, .png"
           />
         </div>
-      </div>
+      </section>
     </article>
-    <!--    <div>-->
-    <!--      <span>업로드 제한 : 10MB</span>-->
-    <!--      <span>최대 3장 / JPG, PNG / 10MB까지 등록</span>-->
-    <!--    </div>-->
+    <section v-show="uploadType === 'dottoPosting'">
+      <p>업로드 제한 : 10MB</p>
+      <p>최대 3장 / JPG, PNG / 10MB까지 등록</p>
+    </section>
   </article>
 </template>
 
@@ -55,18 +56,21 @@ export default class FileUploadComponent extends Vue {
   files: IBoard.IFileUpload[] = [];
   uploadImageIndex = 0;
 
-  @Emit("sendImg")
-  sendImg(img: IBoard.IFileUpload[]) {
-    return img;
+  private makeIndex(): number {
+    switch (this.uploadType) {
+      case "estimateSheet":
+        return 1;
+      case "dottoPosting":
+        return 3;
+      default:
+        return 0;
+    }
   }
 
   private imageUpload(): void {
     this.files = [];
     let num = -1;
-    let index: number;
-    if (this.uploadType === "estimateSheet") index = 1;
-    else index = 3;
-
+    const index = this.makeIndex();
     for (let i = 0; i < index; i++) {
       this.files = [
         ...this.files,
@@ -88,6 +92,11 @@ export default class FileUploadComponent extends Vue {
     this.files = this.files.filter(
       (data: IBoard.IFileUpload) => data.number !== Number(id)
     );
+  }
+
+  @Emit("sendImg")
+  sendImg(img: IBoard.IFileUpload[]): IBoard.IFileUpload[] {
+    return img;
   }
 }
 </script>
@@ -121,6 +130,7 @@ export default class FileUploadComponent extends Vue {
   color: #888888;
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
   height: 100%;
 }
 

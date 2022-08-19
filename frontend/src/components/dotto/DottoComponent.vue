@@ -14,9 +14,7 @@
       v-else
     >
       <!--TODO: 실제 변수 체크 -->
-      <router-link
-        :to="{ path: '/dotto/board/view', params: { postNo: dotto.postNo } }"
-      >
+      <router-link :to="{ path: `/dotto/board/view/${dotto.postNo}` }">
         <!--          <section>-->
         <!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
         <!--          </section>-->
@@ -87,33 +85,7 @@ export default class DottoComponent extends Vue {
 
   created(): void {
     this.changeBackground();
-    //if (!this.infiniteScroll) await this.initDottoBoard();
   }
-
-  // private async initDottoBoard() {
-  //   const { data } = await this.axios.get('/dottopost', {
-  //     params: {
-  //       size: this.limit,
-  //       page: this.page
-  //     }
-  //   });
-  //   const { result, success } = data as any;
-  //   if (success) {
-  //     this.existData = true;
-  //     const { data } = result;
-  //     const { dottoPostDtoList } = data;
-  //     const tagMaker = this.makeTags(dottoPostDtoList);
-  //
-  //   }
-  // }
-  //
-  // private makeTags(dottoPostDtoList: any) {
-  //   let tagMaker = {};
-  //   dottoPostDtoList.forEach((list: any) => {
-  //     tagMaker = list.tags.split(',');
-  //   });
-  //   return { ...tagMaker }
-  // }
 
   private async getDottoBoardList($state: any): Promise<void> {
     this.existData = false;

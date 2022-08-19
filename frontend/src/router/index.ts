@@ -58,7 +58,7 @@ const routes: Array<RouteConfig> = [
         meta: { unauthorized: true },
       },
       {
-        path: "view",
+        path: "view/:postNo",
         name: "dottoView",
         component: () => import("@/components/dotto/DottoDetail.vue"),
         meta: { unauthorized: true },

@@ -126,7 +126,7 @@
           </div>
         </div>
 
-        <file-upload-button @sendImg="getImg" />
+        <file-upload-button @sendImg="getImg" :uploadType="dottoPosting" />
       </div>
     </div>
   </div>
@@ -144,6 +144,8 @@ import { IBoard } from "@/interfaces/IBoard";
   },
 })
 export default class DottoPostingComponent extends Vue {
+  dottoPosting = "dottoPosting";
+
   title = "";
   content = "";
   originalPrice = 0;
@@ -182,7 +184,7 @@ export default class DottoPostingComponent extends Vue {
     this.changeBackground();
   }
 
-  getImg(img: any) {
+  getImg(img: IBoard.IFileUpload[]) {
     this.postPhoto = img;
   }
 
