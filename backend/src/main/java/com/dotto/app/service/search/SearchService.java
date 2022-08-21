@@ -24,8 +24,8 @@ public class SearchService {
 
 
     public SearchResponse search(String searchKeyword){
-        List<Member> normal = memberRepository.findBySearchNormalId(searchKeyword);
-        List<Member> artist = memberRepository.findBySearchArtistId(searchKeyword);
+        List<Member> normal = memberRepository.findBySearchNormalNickname(searchKeyword);
+        List<Member> artist = memberRepository.findBySearchArtistNickname(searchKeyword);
         List<DottoPost> dottoPosts = dottoPostRepository.findByTitle(searchKeyword);
 
         return SearchResponse.toDto(normal,artist,dottoPosts);
