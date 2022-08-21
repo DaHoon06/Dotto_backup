@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DottoPostRepository extends JpaRepository<DottoPost,Long>, CustomPostRepository {
@@ -22,4 +23,6 @@ public interface DottoPostRepository extends JpaRepository<DottoPost,Long>, Cust
     @Modifying(clearAutomatically = true)
     @Query("Update DottoPost p Set p.deletedYn ='Y' WHERE p.postNo = :postNo")
     void deleted(Long postNo);
+
+    List<DottoPost> findByTitle(String title);
 }

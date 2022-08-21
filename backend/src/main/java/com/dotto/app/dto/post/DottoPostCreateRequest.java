@@ -26,14 +26,14 @@ public class DottoPostCreateRequest {
 
     @ApiModelProperty(value = "가격", notes = "가격을 입력해 주세요", required = true, example = "10000")
     @NotBlank
-    private int price;
+    private String price;
 
     @ApiModelProperty(value = "할인 가격", notes = "할인 가격을 입력해 주세요", example = "9000")
-    private int salesPrice;
+    private String salesPrice;
 
     @ApiModelProperty(value = "할인 여부", notes = "할인 여부를 입력해 주세요", required = true, example = "N")
     @NotBlank
-    private char salesYn;
+    private String salesYn;
 
     @ApiModelProperty(value = "장르", notes = "장르를 입력해 주세요", required = true, example = "레터링")
     @NotBlank
@@ -41,7 +41,7 @@ public class DottoPostCreateRequest {
 
     @ApiModelProperty(value = "소요시간", notes = "소요시간을 입력해 주세요", required = true, example = "30")
     @NotBlank
-    private int totalTime;
+    private String totalTime;
 
     @ApiModelProperty(value = "이미지", notes = "게시글 이미지를 입력해 주세요")
     private List<MultipartFile> postPhoto = new ArrayList<>();

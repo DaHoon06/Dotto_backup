@@ -1,4 +1,4 @@
-package com.dotto.app.entity.post;
+package com.dotto.app.entity.member;
 
 import com.dotto.app.exception.UnsupportedImageFormatException;
 import lombok.AccessLevel;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Image {
+public class ProfileImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,21 +26,20 @@ public class Image {
     @Column(nullable = false)
     private String originName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postNo",nullable = false)
+    @OneToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private DottoPost dottoPost;
+    private Member member;
 
     private final static String[] supportedExtension = {"jpg", "jpeg", "gif", "bmp", "png"};
 
-    public Image(String originName){
+
+    public ProfileImage(String originName){
         this.name = generateName(extractExtension(originName));
         this.originName = originName;
     }
 
-    public void initDottoPost(DottoPost dottoPost){
-        if(this.dottoPost == null) this.dottoPost = dottoPost;
-
+    public void initMember(Member member){
+        if(this.member == null) this.member = member;
     }
 
     private String generateName(String extension){
@@ -50,12 +49,15 @@ public class Image {
     private String extractExtension(String originName){
         try{
             String ext = originName.substring(originName.lastIndexOf(".")+1);
-            if(isSupportedFormat(ext)) return ext;
+            if(isSuppoertedFormat(ext)) return ext;
         }catch (StringIndexOutOfBoundsException e){}
         throw new UnsupportedImageFormatException();
     }
 
-    private boolean isSupportedFormat(String ext){
+    private boolean isSuppoertedFormat(String ext){
         return Arrays.stream(supportedExtension).anyMatch(e -> e.equalsIgnoreCase(ext));
     }
+
+
+
 }

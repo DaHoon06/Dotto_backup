@@ -72,8 +72,7 @@ class MemberRepositoryTest {
 
         //when
         Member foundMember = memberRepository.findById(member.getMemberNo()).orElseThrow(MemberNotFoundException::new);
-        foundMember.updateNickName(updatedNickname);
-        foundMember.updateIntro(updatedIntro);
+        foundMember.update(updatedNickname,updatedIntro);
         clear();
 
         //then

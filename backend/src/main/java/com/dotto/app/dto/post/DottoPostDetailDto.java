@@ -17,11 +17,11 @@ public class DottoPostDetailDto {
     private Long id;
     private String title;
     private String content;
-    private int price;
-    private int salesPrice;
-    private char salesYn;
+    private String price;
+    private String salesPrice;
+    private String salesYn;
     private String genre;
-    private int totalTime;
+    private String totalTime;
     private List<ImageDto> postPhoto;
     private List<String> tags;
     private MemberDto member;
