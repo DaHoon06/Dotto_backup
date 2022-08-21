@@ -66,5 +66,7 @@ export namespace IUser {
     id?: string;
     memberNo?: number;
     nickname?: string;
+    gender?: string;
+    loginType?: string;
   }
 }

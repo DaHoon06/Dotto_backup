@@ -115,9 +115,13 @@ export default class LoginView extends Vue {
       if (this.save) this.saveId();
       this.saveState(data);
       this.$store.commit("utilsStore/closeModal", true);
-      await this.$router.push({
-        path: "/dotto",
-      });
+      const { path } = this.$router.currentRoute;
+      if (path === '/dotto') {
+        this.$router.go(0);
+      } else {
+        await this.$router.push("/dotto");
+      }
+      this.closeModal();
     } else {
       this.loginFailed = "이메일 및 패스워드를 확인해주세요.";
     }
@@ -156,12 +160,11 @@ export default class LoginView extends Vue {
     });
   }
 
-  private getKakaoAPI(userInfo: IUser.Kakao): void {
-    console.log(userInfo);
+  private async getKakaoAPI(userInfo: IUser.Kakao): Promise<void> {
     const { access_token, refresh_token } = userInfo;
     window.Kakao.API.request({
       url: "/v2/user/me",
-      success: (res: any) => {
+      success: async (res: any) => {
         const kakao_account = res.kakao_account;
         const kakao_info: IUser.KakaoUserData = {
           email: kakao_account.email,
@@ -171,23 +174,44 @@ export default class LoginView extends Vue {
           ageRange: kakao_account.age_range,
         };
         console.log(kakao_info);
-        //TODO: 정보 조회 후 존재하면 로그인
-        // 존재하지 않으면 회원가입 함수 태우기
-
-        // store update
-        const payload = {
-          accessToken: access_token,
-          refreshToken: refresh_token,
-          nickname: kakao_info.nickname,
-          roles: "admin",
-        };
-        this.$store.commit("userStore/login", payload);
+        const { email } = kakao_info;
+        const result = await this.kakaoLoginCheck(email);
+        // 회원가입
+        if (!result) {
+          const sendData = {
+            id: kakao_info.email,
+            nickname: kakao_info.nickname,
+            gender: kakao_info.gender,
+            loginType: 'kakao',
+          }
+          await this.join(sendData);
+        } else {
+          // store update
+          const payload = {
+            accessToken: access_token,
+            refreshToken: refresh_token,
+            nickname: kakao_info.nickname,
+            roles: "admin",
+          };
+          this.$store.commit("userStore/login", payload);
+        }
         this.closeModal();
       },
       fail: (error: any) => {
         console.log(error);
       },
     });
+  }
+  private async join(userInfo: IUser.Information) {
+    const { data } = await this.axios.post('/sign-up',userInfo);
+    console.log(data);
+  }
+  private async kakaoLoginCheck(email: string): Promise<boolean> {
+    const { data } = await this.axios.get(`/members/existsbyid/${email}`);
+    const { result } = data;
+    const { data: emailCheck } = result;
+    // 아이디가 존재하지 않음
+    return emailCheck;
   }
 
   private async googleLogin(): Promise<void> {

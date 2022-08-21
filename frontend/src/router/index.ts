@@ -73,7 +73,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/dotto/feed",
-    name: "feed",
+    name: "feedView",
     component: () => import("@/views/feed/FeedView.vue"),
     children: [
       {
