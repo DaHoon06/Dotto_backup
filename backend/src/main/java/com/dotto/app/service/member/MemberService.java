@@ -3,7 +3,9 @@ package com.dotto.app.service.member;
 import com.dotto.app.dto.member.*;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.ProfileImage;
+import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.exception.MemberNotFoundException;
+import com.dotto.app.exception.MemberRoleAuthorizationException;
 import com.dotto.app.repository.member.MemberRepository;
 import com.dotto.app.service.file.FileService;
 import lombok.RequiredArgsConstructor;
@@ -54,6 +56,17 @@ public class MemberService {
         member.deletedProfile(member.getProfileImage());
         deletedImage(member.getProfileImage());
 
+    }
+
+    public void roleSwitch(MemberRoleSwitchRequest req){
+        Member member = memberRepository.findWithRolesByMemberNo(req.getMemberNo()).orElseThrow(MemberNotFoundException::new);
+        if (req.getRoles().contains(String.valueOf(RoleType.ROLE_ARTIST))){
+            member.roleSwitcher();
+        }else if(req.getRoles().contains(String.valueOf(RoleType.ROLE_SWITCHER))){
+            member.roleSwitchArtist();
+        }else {
+            throw new MemberRoleAuthorizationException("권한이 없습니다.");
+        }
     }
 
 

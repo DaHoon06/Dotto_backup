@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -78,6 +79,15 @@ public class Member extends EntityDate {
         this.intro = intro;
     }
 
+    public void roleSwitcher(){
+        this.roles = roleSetSwitch();
+    }
+
+    public void roleSwitchArtist(){
+        this.roles = roleSetArtist();
+    }
+
+
     public ProfileImageUpdateResult uploadProfile(MemberProfileUploadRequest req){
         ProfileImageUpdateResult rs = findProfileUpdatedResult(req.getUploadProfile());
         addedProfileImage(convertFilesToImage(rs.getAddedImageFile()));
@@ -116,5 +126,12 @@ public class Member extends EntityDate {
     public static class ProfileImageUpdateResult{
         private MultipartFile addedImageFile;
         private ProfileImage addedImages;
+    }
+
+    private Set<MemberRole> roleSetSwitch(){
+        return Collections.unmodifiableSet((Set<MemberRole>) new MemberRole(this, new Role(RoleType.ROLE_SWITCHER)));
+    }
+    private Set<MemberRole> roleSetArtist(){
+        return  Collections.unmodifiableSet((Set<MemberRole>) new MemberRole(this, new Role(RoleType.ROLE_SWITCHER)));
     }
 }
