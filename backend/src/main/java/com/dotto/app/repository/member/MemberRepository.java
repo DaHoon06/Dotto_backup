@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
@@ -22,5 +23,12 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("select m from Member m where m.memberNo =:memberNo And m.deletedYn='N' ")
     Optional<Member>findByMemberNoAndDeletedYnEqualsN(Long memberNo);
+
+
+    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='2' and m.id like '%:id%' ")
+    List<Member> findBySearchNormalId(String id);
+
+    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='3' and m.id like '%:id%' ")
+    List<Member> findBySearchArtistId(String id);
 
 }
