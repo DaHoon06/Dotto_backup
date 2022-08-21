@@ -25,10 +25,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member>findByMemberNoAndDeletedYnEqualsN(Long memberNo);
 
 
-    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='2' and m.id like '%:id%' ")
-    List<Member> findBySearchNormalId(String id);
+    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='2' and m.nickname like concat('%',:nickname,'%') ")
+    List<Member> findBySearchNormalNickname(String nickname);
 
-    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='3' and m.id like '%:id%' ")
-    List<Member> findBySearchArtistId(String id);
+    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='3' and m.nickname like concat('%',:nickname,'%') ")
+    List<Member> findBySearchArtistNickname(String nickname);
 
 }
