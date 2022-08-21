@@ -68,7 +68,7 @@ public class MemberController {
 
 
     @ApiOperation(value = "프로필 사진 업로드 ", notes = "프로필 사진을 업로드 한다")
-    @PostMapping("/api/member/profile")
+    @PostMapping("/api/members/profile")
     @AssignMemberNo
     @ResponseStatus(HttpStatus.OK)
     public Response uploadProfile(MemberProfileUploadRequest req){
@@ -76,7 +76,7 @@ public class MemberController {
     }
 
     @ApiOperation(value = "프로필 사진 삭제", notes = "프로필 사진을 삭제 한다")
-    @DeleteMapping("/api/member/profile/{id}")
+    @DeleteMapping("/api/members/profile/{id}")
     @AssignMemberNo
     @ResponseStatus(HttpStatus.OK)
     public Response deletedProfile(@PathVariable(value = "memberNo") Long id){
