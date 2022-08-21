@@ -9,10 +9,10 @@
       <article class="dotto-detail-flex-row">
         <div class="dotto-detail-flex" id="dotto-detail-information">
           <h1>{{ list.title }}</h1>
-          <div class="dotto-detail-flex-row">
-            <div>조회수</div>
-            <div>56회</div>
-          </div>
+<!--          <div class="dotto-detail-flex-row">-->
+<!--            <div>조회수</div>-->
+<!--            <div>56회</div>-->
+<!--          </div>-->
           <div class="dotto-detail-flex-row">
             <div>{{ list.salesPrice }}</div>
             <div>{{ list.price }}</div>

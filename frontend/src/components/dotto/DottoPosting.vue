@@ -185,7 +185,12 @@ export default class DottoPostingComponent extends Vue {
   }
 
   getImg(img: IBoard.IFileUpload[]) {
-    this.postPhoto = img;
+    img.forEach((value) => {
+      const { file } = value;
+      console.log(file)
+      this.postPhoto.push(file);
+    });
+    console.log(this.postPhoto)
   }
 
   private validation(): void {
@@ -208,11 +213,15 @@ export default class DottoPostingComponent extends Vue {
     formData.append("price", String(this.price));
     formData.append("salesPrice", String(this.salesPrice));
     formData.append("salesYn", this.salesYn ? "Y" : "N");
-    formData.append("genre", String(this.genre));
-    formData.append("totalTime", String(this.totalTime));
+    formData.append("genre", this.genreDefault);
+    formData.append("totalTime", this.totalTimeDefault);
     formData.append("tags", String(this.tag));
-    formData.append("postPhoto", this.postPhoto);
 
+    if (this.postPhoto.length > 0) {
+      for (const file of this.postPhoto) {
+        formData.append('postPhoto', file);
+      }
+    }
     const { data } = await ins.post("/dottopost", formData, { headers });
     console.log(data);
     if (data) {

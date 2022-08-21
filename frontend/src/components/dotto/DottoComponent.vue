@@ -30,7 +30,7 @@
           <span class="discount-rate price">{{ dotto.salesPct }}</span>
         </section>
         <section class="tag-area tattoo-board-list-info location">
-          <span v-for="(tag, index) of dotto.tags" :key="index" class="tag"
+          <span v-for="(tag, index) of dotto.tags.split(',')" :key="index" class="tag"
             ># {{ tag }}</span
           >
         </section>
@@ -38,7 +38,7 @@
     </article>
     <infinite-loading
       @infinite="getDottoBoardList"
-      spinner="waveDots"
+      spinner="spinner"
       v-if="infiniteScroll"
     />
   </article>
@@ -93,6 +93,7 @@ export default class DottoComponent extends Vue {
           page: this.page,
         },
       });
+      console.log(data);
       const { result, success } = data as any;
       if (success) {
         const { data } = result;
