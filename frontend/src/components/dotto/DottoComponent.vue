@@ -15,10 +15,11 @@
     >
       <!--TODO: 실제 변수 체크 -->
       <router-link :to="{ path: `/dotto/board/view/${dotto.postNo}` }">
-        <!--          <section>-->
-        <!--            <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
-        <!--          </section>-->
-        <section class="tattoo-board-list-info user-name">
+        <section >
+          <div class="dotto-img"></div>
+<!--          <img class="tattoo-img" :src=`${dotto.postPhoto}` alt="sample01" />-->
+        </section>
+        <section class="tattoo-board-list-info user-name c-mt-16">
           {{ dotto.id }}
         </section>
         <section class="tattoo-board-list-info title">
@@ -30,8 +31,8 @@
           <span class="discount-rate price">{{ dotto.salesPct }}</span>
         </section>
         <section class="tag-area tattoo-board-list-info location">
-          <span v-for="(tag, index) of dotto.tags.split(',')" :key="index" class="tag"
-            ># {{ tag }}</span
+          <span v-for="(tag, index) of dotto.tags.split(',')" :key="index" class="tag c-mr-12"
+            >{{ tag }}</span
           >
         </section>
       </router-link>
@@ -175,23 +176,26 @@ export default class DottoComponent extends Vue {
 .tattoo-board-list {
   box-shadow: 0 1px 2px 1px #adadad;
   border-radius: 2px;
-  width: 260px;
-  height: 380px;
+  max-width: 288px;
+  width: 100%;
+  max-height: 432px;
+  height: 100vh;
   margin-top: 1em;
   margin-left: 1em;
 }
 
-.tattoo-img {
-  width: 240px;
-  margin-left: 10px;
-  margin-top: 8px;
+.dotto-img {
+  border: 1px solid gray;
+  max-width: 288px;
+  width: 100%;
+  max-height: 288px;
+  height: 100vh;
 }
 
 .tattoo-board-list-info {
   font-size: 10px;
   color: #919191;
-  margin-left: 0.6rem;
-  margin-top: 0.225rem;
+  margin-left: 8px;
 }
 
 .title {

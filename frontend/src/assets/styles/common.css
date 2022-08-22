@@ -100,22 +100,28 @@ input[type=number] {
 
 /* Custom Margin */
 .c-mt-56 {
-    margin-top: 56px;
+    margin-top: 56px !important;
 }
 .c-mt-12 {
-    margin-top: 12px;
+    margin-top: 12px !important;
 }
 .c-mt-16 {
-    margin-top: 16px;
+    margin-top: 16px !important;
 }
 .c-mt-24 {
-    margin-top: 24px;
+    margin-top: 24px !important;
 }
 .c-mt-40 {
-    margin-top: 40px;
+    margin-top: 40px !important;
 }
 .c-mt-48 {
-    margin-top: 48px;
+    margin-top: 48px !important;
+}
+.c-mr-12 {
+    margin-right: 12px !important;
+}
+.c-mr-16 {
+    margin-right: 16px !important;
 }
 /*-----   Custom Margin END  -----*/
 
@@ -124,19 +130,19 @@ input[type=number] {
 .tag {
     padding: 5px 8px;
     background: #F5F5F5;
-    width: 40px;
+    min-width: 40px;
     height: 23px;
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     color: #696969;
-    /* Inside auto layout */
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 0 0;
 }
 .tag-area {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
