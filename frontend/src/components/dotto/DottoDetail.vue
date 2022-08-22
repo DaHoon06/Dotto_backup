@@ -1,50 +1,55 @@
 <template>
-  <main id="dotto-detail-container">
-    <section class="dotto-detail-wrapper">
-      <article class="dotto-detail-section">
-        <div>이 작업이 마음에 드시나요?</div>
+  <article id="dotto-detail-container">
+    <article class="dotto-detail-wrapper">
+      <section class="dotto-detail-section">
+        <p>이 작업이 마음에 드시나요?</p>
         <button type="button" id="dotto-detail-like-btn">찜하기</button>
         <button type="button" @click="redirectEstimateSheet">의뢰하기</button>
-      </article>
-      <article class="dotto-detail-flex-row">
-        <div class="dotto-detail-flex" id="dotto-detail-information">
+      </section>
+      <section class="dotto-detail-flex-row">
+        <section class="dotto-detail-flex" id="dotto-detail-information">
           <h1>{{ list.title }}</h1>
 <!--          <div class="dotto-detail-flex-row">-->
 <!--            <div>조회수</div>-->
 <!--            <div>56회</div>-->
 <!--          </div>-->
-          <div class="dotto-detail-flex-row">
-            <div>{{ list.salesPrice }}</div>
-            <div>{{ list.price }}</div>
-          </div>
+          <section class="dotto-detail-flex-row">
+            <h2>{{ list.salesPrice }}</h2>
+            <small>{{ list.price }}</small>
+          </section>
+
           <hr />
-          <div class="dotto-detail-flex-row">
-            <div>위치</div>
+
+          <section class="dotto-detail-flex-row">
+            <h2>위치</h2>
             <!--            <div>{{ list.location }}</div>-->
-          </div>
-          <div class="dotto-detail-flex-row">
-            <div>장르</div>
-            <div>{{ list.genre }}</div>
-          </div>
-          <div class="dotto-detail-flex-row">
-            <div>소요시간</div>
-            <div>{{ list.totalTime }}</div>
-          </div>
+          </section>
+          <section class="dotto-detail-flex-row">
+            <h2>장르</h2>
+            <h3>{{ list.genre }}</h3>
+          </section>
+          <section class="dotto-detail-flex-row">
+            <h2>소요시간</h2>
+            <h3>{{ list.totalTime }}</h3>
+          </section>
           <hr />
-          <div>
+
+          <section>
             {{ list.content }}
-          </div>
+          </section>
           <section class="tag-area">
             <span class="tag" v-for="(tag, index) of list.tags" :key="index">{{
               tag
             }}</span>
           </section>
+
           <hr />
+
           <article class="dotto-detail-section">
             <div class="dotto-detail-flex-row">
               <div>유저프로필</div>
               <div>
-                <div>{{ list.member.nickname }}</div>
+                <div>{{ member.nickname }}</div>
                 <div class="dotto-detail-flex-row">
                   <div>팔로워</div>
                   <div>158.8만명</div>
@@ -54,15 +59,15 @@
             <button type="button" id="dotto-detail-follow-btn">팔로우</button>
           </article>
           <hr />
-        </div>
-      </article>
+        </section>
+      </section>
 
       <article class="dotto-detail-flex-row">
         <div class="dotto-detail-img-lists">이미지1</div>
         <div class="dotto-detail-img-lists">이미지2</div>
         <div class="dotto-detail-img-lists">이미지2</div>
       </article>
-    </section>
+    </article>
 
     <section id="other-works-list">
       <h3 id="other-works-list-title">이 아티스트의 다른 작품 보기</h3>
@@ -77,13 +82,14 @@
     </section>
 
     <dotto-tabs-container id="dotto-tab" />
-  </main>
+  </article>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import DottoTabsContainer from "@/components/dotto/tab/DottoTabs.vue";
 import { IBoard } from "@/interfaces/IBoard";
+import {IUser} from "@/interfaces/IUser";
 
 //TODO: 테스트 종료 후 class dotto-detail-comment-content height 수정
 
@@ -101,6 +107,7 @@ export default class DottoDetailComponent extends Vue {
       3 - 2. 게시글에 있는 리뷰 조회
   * */
   list: IBoard.DottoDetail | [] = [];
+  member: IUser.Information = {};
   postNo: string = this.$route.params.postNo;
 
   created() {
@@ -118,11 +125,12 @@ export default class DottoDetailComponent extends Vue {
   private async getBoardData() {
     try {
       const { data } = await this.axios.get(`/dottopost/${this.postNo}`);
-      console.log(data);
       const { result, success } = data;
       if (success) {
         const { data } = result;
+        const { member } = data;
         this.list = data;
+        this.member = member;
       }
     } catch (e) {
       console.error(e);
