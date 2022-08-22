@@ -80,11 +80,15 @@ export default class DottoComponent extends Vue {
     super();
   }
 
-  created(): void {
+  async created(): Promise<void> {
     this.changeBackground();
   }
 
-  private async getDottoBoardList($state: any): Promise<void> {
+  async mounted(): Promise<void> {
+    await this.init();
+  }
+
+  private async init() {
     this.existData = false;
     try {
       const { data } = await this.axios.get("/dottopost", {
@@ -93,7 +97,27 @@ export default class DottoComponent extends Vue {
           page: this.page,
         },
       });
-      console.log(data);
+      const { result, success } = data as any;
+      if (success) {
+        const { data } = result;
+        const { dottoPostDtoList } = data;
+        this.lists.push(...dottoPostDtoList);
+        this.existData = true;
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  private async getDottoBoardList($state?: any): Promise<void> {
+    this.existData = false;
+    try {
+      const { data } = await this.axios.get("/dottopost", {
+        params: {
+          size: this.limit,
+          page: this.page,
+        },
+      });
       const { result, success } = data as any;
       if (success) {
         const { data } = result;
