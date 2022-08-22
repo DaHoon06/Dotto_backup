@@ -66,7 +66,7 @@ export default class DottoBoardView extends Vue {
   height: 100%;
   min-height: 800px;
   background: white;
-  margin-top: 170px;
+  margin-top: 150px;
 }
 
 #side-search-filter-wrapper {

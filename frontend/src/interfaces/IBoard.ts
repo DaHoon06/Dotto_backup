@@ -19,7 +19,7 @@ export namespace IBoard {
     salesYn?: string;
     tags?: string[];
     title?: string;
-    totalTime?: number;
+    totalTime?: string;
   }
   export interface dottoList {
     id: string;

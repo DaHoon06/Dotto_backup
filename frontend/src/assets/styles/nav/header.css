@@ -34,6 +34,7 @@
     height: 250px;
     position: absolute;
     right: 3em;
+    top: 8rem;
 }
 
 #my-menu-items {
@@ -94,6 +95,7 @@
     display: flex;
     align-items: flex-end;
     margin-right: 3em;
+    z-index: -1;
 }
 #my {
     width: 30px;

@@ -24,9 +24,11 @@
         type="text"
         placeholder="Search"
         @click="searchLists"
+        @keypress.enter="search"
         id="navigation-search-bar"
+        v-model="keyword"
       />
-      <button id="search-btn">
+      <button id="search-btn" @click="search">
         <img
           class="side-menu-drop-btn"
           src="@/assets/icons/nav/search.svg"
@@ -70,6 +72,7 @@ export default class HeaderComponent extends Vue {
   modalType = "";
   showMessage = false;
   showMyMenu = false;
+  keyword = '';
 
   constructor() {
     super();
@@ -81,14 +84,15 @@ export default class HeaderComponent extends Vue {
     this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
-  private logout(): void {
-    console.log("logout");
-  }
-
   private searchLists(): void {
     this.showSearchList = !this.showSearchList;
     this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
     this.$store.commit("cssStore/scrollOn", this.showSearchList);
+  }
+
+  private async search() {
+    const { data } = await this.axios.get(`/search/${this.keyword}`);
+    console.log(data);
   }
 
   @Emit("notScroll")
