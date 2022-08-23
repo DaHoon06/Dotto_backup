@@ -38,7 +38,6 @@ const routes: Array<RouteConfig> = [
     path: "/my",
     name: "my",
     component: () => import("@/views/MyView.vue"),
-    meta: { unauthorized: true },
   },
   {
     path: "/dotto/board",
@@ -55,7 +54,6 @@ const routes: Array<RouteConfig> = [
         path: "post",
         name: "dottoPosting",
         component: () => import("@/components/dotto/DottoPosting.vue"),
-        meta: { unauthorized: true },
       },
       {
         path: "view/:postNo",
@@ -69,7 +67,6 @@ const routes: Array<RouteConfig> = [
     path: "/estimate/:postNo",
     name: "estimateSheet",
     component: () => import("@/views/dotto/EstimateView.vue"),
-    meta: { unauthorized: true },
   },
   {
     path: "/dotto/feed",
@@ -80,13 +77,11 @@ const routes: Array<RouteConfig> = [
         path: "index",
         name: "feed",
         component: () => import("@/components/feed/FeedComponent.vue"),
-        meta: { unauthorized: true },
       },
       {
         path: "post",
         name: "post",
         component: () => import("@/components/feed/FeedPosting.vue"),
-        meta: { unauthorized: true },
       },
     ],
   },
@@ -110,7 +105,7 @@ router.beforeEach(async (to, from, next) => {
     const { unauthorized } = meta || { unauthorized: true };
     if (unauthorized) return next();
 
-    const token = store.getters["userStore/login"];
+    const token = store.getters["userStore/accessToken"];
     const verified = await store.dispatch("userStore/verify", { token });
     if (verified) return next();
   } catch (e) {
