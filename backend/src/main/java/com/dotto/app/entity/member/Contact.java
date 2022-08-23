@@ -21,14 +21,14 @@ public class Contact {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
-    private ContectType contactType;
+    private ContactType contactType;
 
     @Column
     private String contactMethod;
 
     public Contact(Member member, ContactCreateRequest req){
         this.member = member;
-        this.contactType = ContectType.valueOf(req.getType());
+        this.contactType = ContactType.valueOf(req.getType());
         this.contactMethod = req.getContactMethod();
     }
 

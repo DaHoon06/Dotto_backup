@@ -23,7 +23,7 @@ public class ContactService {
     @Transactional
     public ContactCreateResponse create(ContactCreateRequest req){
         Member member = memberRepository.findById(req.getMemberNo()).orElseThrow(MemberNotFoundException::new);
-        Contact contect = contactRepository.save(new Contact(member, req));
+        Contact contact = contactRepository.save(new Contact(member, req));
 
         return new ContactCreateResponse(member.getMemberNo());
     }
