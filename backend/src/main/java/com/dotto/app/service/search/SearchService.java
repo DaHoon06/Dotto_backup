@@ -1,9 +1,9 @@
 package com.dotto.app.service.search;
 
+import com.dotto.app.dto.search.ArtistList;
+import com.dotto.app.dto.search.DottoPostList;
+import com.dotto.app.dto.search.MemberList;
 import com.dotto.app.dto.search.SearchResponse;
-import com.dotto.app.entity.member.Member;
-import com.dotto.app.entity.post.DottoPost;
-import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.repository.member.MemberRepository;
 import com.dotto.app.repository.post.DottoPostRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +24,10 @@ public class SearchService {
 
 
     public SearchResponse search(String searchKeyword){
-        List<Member> normal = memberRepository.findBySearchNormalNickname(searchKeyword);
-        List<Member> artist = memberRepository.findBySearchArtistNickname(searchKeyword);
-        List<DottoPost> dottoPosts = dottoPostRepository.findByTitle(searchKeyword);
+        List<MemberList> normal = memberRepository.findBySearchNormalNickname(searchKeyword);
+        List<ArtistList> artist = memberRepository.findBySearchArtistNickname(searchKeyword);
+        List<DottoPostList> dottoPosts = dottoPostRepository.findBySearchTitleToDottoPosts(searchKeyword);
 
-        return SearchResponse.toDto(normal,artist,dottoPosts);
+        return new SearchResponse( normal, artist , dottoPosts);
     }
 }
