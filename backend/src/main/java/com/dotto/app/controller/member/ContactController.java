@@ -1,8 +1,8 @@
 package com.dotto.app.controller.member;
 
-import com.dotto.app.dto.member.contect.ContectCreateRequest;
+import com.dotto.app.dto.member.contact.ContactCreateRequest;
 import com.dotto.app.dto.response.Response;
-import com.dotto.app.service.member.ContectService;
+import com.dotto.app.service.member.ContactService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Api(value = "Contect Controller", tags = "Contect")
+@Api(value = "Contact Controller", tags = "Contact")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class ContectController {
+public class ContactController {
 
-    private final ContectService contectService;
+    private final ContactService contactService;
 
 
     @ApiOperation(value = "연락 수단 생성 요청", notes = "연락 수단 생성을 요청한다")
-    @PostMapping("/api/members/contect")
+    @PostMapping("/api/members/contact")
     @ResponseStatus(HttpStatus.CREATED)
-    public Response create (ContectCreateRequest req){
-        return Response.success(contectService.create(req));
+    public Response create (ContactCreateRequest req){
+        return Response.success(contactService.create(req));
     }
 
 }

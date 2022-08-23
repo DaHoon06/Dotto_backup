@@ -1,4 +1,4 @@
-package com.dotto.app.dto.member.contect;
+package com.dotto.app.dto.member.contact;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,7 +8,7 @@ import lombok.Data;
 @ApiModel(value = "연락 생성 요청")
 @Data
 @AllArgsConstructor
-public class ContectCreateRequest {
+public class ContactCreateRequest {
 
     @ApiModelProperty(value = "회원 번호", notes = "회원 번호를 입력해 주세요", required = true)
     private Long memberNo;
@@ -17,7 +17,7 @@ public class ContectCreateRequest {
     private String type;
 
     @ApiModelProperty(value = "연락 수단", notes = "연락 수단을 입력해 주세요",required = true, example = "01012345678")
-    private String contectMethod;
+    private String contactMethod;
 
 
 }
