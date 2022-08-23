@@ -26,8 +26,8 @@
           {{ dotto.title }}
         </section>
         <section class="tattoo-board-list-info">
-          <span class="event-price price">{{ dotto.salesPrice }}</span>
-          <span class="original-price price">{{ dotto.price }}</span>
+          <span class="event-price price">{{ dotto.salesPrice.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") }}</span>
+          <span class="original-price price">{{ dotto.price.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") }}</span>
           <span class="discount-rate price">{{ dotto.salesPct }}</span>
         </section>
         <section class="tag-area tattoo-board-list-info location">

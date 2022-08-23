@@ -14,8 +14,8 @@ export namespace IBoard {
     genre?: string;
     member?: IUser.Information;
     postPhoto?: string[];
-    price?: number;
-    salesPrice?: number;
+    price?: string;
+    salesPrice?: string;
     salesYn?: string;
     tags?: string[];
     title?: string;

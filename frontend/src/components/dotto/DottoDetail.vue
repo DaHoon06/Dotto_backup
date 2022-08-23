@@ -4,21 +4,34 @@
       <section class="dotto-detail-section">
         <p class="detail-form-title">이 작업이 마음에 드시나요?</p>
         <section class="c-mb-12">
-          <button type="button" class="favorite-btn dotto-detail-common-btn c-mr-16">찜하기</button>
-          <button type="button" class="request-btn dotto-detail-common-btn" @click="redirectEstimateSheet">의뢰하기</button>
+          <button
+            type="button"
+            class="favorite-btn dotto-detail-common-btn c-mr-16"
+          >
+            찜하기
+          </button>
+          <button
+            type="button"
+            class="request-btn dotto-detail-common-btn"
+            @click="redirectEstimateSheet"
+          >
+            의뢰하기
+          </button>
         </section>
       </section>
 
       <hr class="hr-position" />
 
       <section class="dotto-detail-flex-row c-mt-32">
-        <section id="dotto-detail-img">아래 3장의 이미지 확대해서 보기 default 첫번째 이미지</section>
+        <section id="dotto-detail-img">
+          아래 3장의 이미지 확대해서 보기 default 첫번째 이미지
+        </section>
         <section class="dotto-detail-flex" id="dotto-detail-information">
           <h1 class="detail-title">{{ list.title }}</h1>
-<!--          <div class="dotto-detail-flex-row">-->
-<!--            <div>조회수</div>-->
-<!--            <div>56회</div>-->
-<!--          </div>-->
+          <!--          <div class="dotto-detail-flex-row">-->
+          <!--            <div>조회수</div>-->
+          <!--            <div>56회</div>-->
+          <!--          </div>-->
           <section class="price-container c-mt-28">
             <h2 class="event-price c-mr-12">{{ list.salesPrice }}</h2>
             <h2 class="original-price">{{ list.price }}</h2>
@@ -45,9 +58,12 @@
             <textarea :value="list.content" readonly></textarea>
           </section>
           <section class="tag-area c-mt-24">
-            <span class="tag c-mr-12" v-for="(tag, index) of list.tags" :key="index">{{
-              tag
-            }}</span>
+            <span
+              class="tag c-mr-12"
+              v-for="(tag, index) of list.tags"
+              :key="index"
+              >{{ tag }}</span
+            >
           </section>
 
           <hr class="c-mt-60" />
@@ -63,7 +79,9 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="dotto-detail-follow-btn">팔로우</button>
+            <button type="button" class="dotto-detail-follow-btn">
+              팔로우
+            </button>
           </article>
 
           <hr class="c-mt-26" />
@@ -97,7 +115,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import DottoTabsContainer from "@/components/dotto/tab/DottoTabs.vue";
 import { IBoard } from "@/interfaces/IBoard";
-import {IUser} from "@/interfaces/IUser";
+import { IUser } from "@/interfaces/IUser";
 
 //TODO: 테스트 종료 후 class dotto-detail-comment-content height 수정
 
@@ -122,16 +140,16 @@ export default class DottoDetailComponent extends Vue {
     super();
     this.list = {
       id: 0,
-      content: '',
-      genre: '',
+      content: "",
+      genre: "",
       member: [] as IUser.Information,
       postPhoto: [],
-      price: 0,
-      salesPrice: 0,
+      price: "",
+      salesPrice: "",
       tags: [],
-      title: '',
-      totalTime: '',
-    }
+      title: "",
+      totalTime: "",
+    };
   }
   created() {
     this.init();
@@ -151,13 +169,16 @@ export default class DottoDetailComponent extends Vue {
       const { result, success } = data;
       if (success) {
         const { data } = result;
-        const { member, genre: userGenre, totalTime } = data;
+        const { member, genre: userGenre, totalTime, price, salesPrice } = data;
         const time = this.convertTime(totalTime);
         const genre = this.convertGenre(userGenre);
-        //TODO: 가격 3자리 수 단위로 , 찍어주기
+        const convertOriginalPrice = this.convertPrice(price + "");
+        const covertSalesPrice = this.convertPrice(salesPrice + "");
         this.list = data;
         this.list.genre = genre;
         this.list.totalTime = time;
+        this.list.price = convertOriginalPrice;
+        this.list.salesPrice = covertSalesPrice;
         this.member = member;
       }
     } catch (e) {
@@ -165,52 +186,55 @@ export default class DottoDetailComponent extends Vue {
     }
   }
 
+  private convertPrice(price: string): string {
+    return price.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   private convertGenre(value: string): string {
     switch (value) {
-      case '1':
-        return '올드스쿨';
-      case '2':
-        return '뉴스쿨';
-      case '3':
-        return '재패니즈';
-      case '4':
-        return '블랙엔그레이';
-      case '5':
-        return '다크사이드';
-      case '6':
-        return '트래쉬플카';
-      case '7':
-        return '치카노';
-      case '8':
-        return '블랙워크';
-      case '9':
-        return '라인워크';
-      case '10':
-        return '폴리네시안';
-      case '11':
-        return '컬러';
-      case '12':
-        return '커스텀';
+      case "1":
+        return "올드스쿨";
+      case "2":
+        return "뉴스쿨";
+      case "3":
+        return "재패니즈";
+      case "4":
+        return "블랙엔그레이";
+      case "5":
+        return "다크사이드";
+      case "6":
+        return "트래쉬플카";
+      case "7":
+        return "치카노";
+      case "8":
+        return "블랙워크";
+      case "9":
+        return "라인워크";
+      case "10":
+        return "폴리네시안";
+      case "11":
+        return "컬러";
+      case "12":
+        return "커스텀";
       default:
-        return '장르';
+        return "장르";
     }
   }
 
   private convertTime(value: string): string {
     switch (value) {
-      case '1':
-        return '1 시간 이내';
-      case '2':
-        return '1 ~ 2 시간';
-      case '3':
-        return '2 ~ 3 시간';
-      case '4':
-        return '4 시간 이상';
+      case "1":
+        return "1 시간 이내";
+      case "2":
+        return "1 ~ 2 시간";
+      case "3":
+        return "2 ~ 3 시간";
+      case "4":
+        return "4 시간 이상";
       default:
-        return '소요시간';
+        return "소요시간";
     }
   }
-
 }
 </script>
 
@@ -378,7 +402,7 @@ textarea {
   font-weight: 600;
 }
 .original-price {
-  color: #BDBDBD;
+  color: #bdbdbd;
   text-decoration: line-through;
 }
 
