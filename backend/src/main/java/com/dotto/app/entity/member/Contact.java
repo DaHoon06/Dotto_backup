@@ -1,8 +1,7 @@
 package com.dotto.app.entity.member;
 
-import com.dotto.app.dto.member.contect.ContectCreateRequest;
+import com.dotto.app.dto.member.contact.ContactCreateRequest;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,26 +10,26 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Contect {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long contectNo;
+    private Long contactNo;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true)
-    private ContectType contectType;
+    private ContactType contactType;
 
     @Column
-    private String contectMethod;
+    private String contactMethod;
 
-    public Contect(Member member, ContectCreateRequest req){
+    public Contact(Member member, ContactCreateRequest req){
         this.member = member;
-        this.contectType = ContectType.valueOf(req.getType());
-        this.contectMethod = req.getContectMethod();
+        this.contactType = ContactType.valueOf(req.getType());
+        this.contactMethod = req.getContactMethod();
     }
 
 

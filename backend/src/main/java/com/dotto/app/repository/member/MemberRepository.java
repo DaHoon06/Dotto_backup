@@ -1,5 +1,7 @@
 package com.dotto.app.repository.member;
 
+import com.dotto.app.dto.search.ArtistList;
+import com.dotto.app.dto.search.MemberList;
 import com.dotto.app.entity.member.Member;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,10 +27,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member>findByMemberNoAndDeletedYnEqualsN(Long memberNo);
 
 
-    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='2' and m.nickname like concat('%',:nickname,'%') ")
-    List<Member> findBySearchNormalNickname(String nickname);
+    @Query("select new com.dotto.app.dto.search.MemberList(m.nickname, p.originName) from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role.no = 2 and m.nickname like concat('%',:nickname,'%') left join ProfileImage p on m.memberNo = p.member.memberNo ")
+    List<MemberList> findBySearchNormalNickname(String nickname);
 
-    @Query("select m from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role ='3' and m.nickname like concat('%',:nickname,'%') ")
-    List<Member> findBySearchArtistNickname(String nickname);
+    @Query("select new com.dotto.app.dto.search.ArtistList(m.nickname, p.originName) from Member m join MemberRole r on m.memberNo = r.member.memberNo and r.role.no = 3 and m.nickname like concat('%',:nickname,'%') left join ProfileImage p on m.memberNo = p.member.memberNo ")
+    List<ArtistList> findBySearchArtistNickname(String nickname);
 
 }
