@@ -49,10 +49,6 @@ export default class MainBannerComponent extends Vue {
     ];
   }
 
-  created(): void {
-    console.log("배너 이미지 불러오기");
-  }
-
   private async init(): Promise<void> {
     const { data } = await this.axios.get("/api/banner");
     console.log(data);

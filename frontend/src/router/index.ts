@@ -106,8 +106,9 @@ router.beforeEach(async (to, from, next) => {
     if (unauthorized) return next();
 
     const token = store.getters["userStore/accessToken"];
-    const verified = await store.dispatch("userStore/verify", { token });
-    if (verified) return next();
+    if (token) return next();
+
+    //TODO: 게시글 편집에 대한 권한 검사 로직 추가.
   } catch (e) {
     return next("/401");
   }

@@ -76,14 +76,6 @@
     margin-right: 30px;
 }
 
-#menu-button-container > button > img {
-    width: 24px;
-    margin-top: 0.4em;
-}
-
-#menu-button-container {
-    display: none;
-}
 
 #empty-search-lists {
     margin-top: 1rem;

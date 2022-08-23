@@ -180,8 +180,7 @@ export default class DottoComponent extends Vue {
   width: 100%;
   max-height: 432px;
   height: 100vh;
-  margin-top: 1em;
-  margin-left: 1em;
+  margin-top: 10px;
 }
 
 .dotto-img {

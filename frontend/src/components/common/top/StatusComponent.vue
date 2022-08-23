@@ -216,14 +216,11 @@ export default class StatusComponent extends Vue {
   font-size: 24px;
 }
 
-@media screen and (max-width: 1260px) {
-  #menu-button-container {
-    display: inline;
-  }
+@media screen and (max-width: 1023px) {
 }
-
-@media screen and (max-width: 869px) {
-  #search-container {
+/* 모바일 대응 */
+@media screen and (max-width: 767px) {
+  #status-container {
     display: none;
   }
 }

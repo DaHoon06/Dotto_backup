@@ -202,4 +202,14 @@ export default class NavigationComponent extends Vue {
   font-weight: bold;
   text-shadow: 1px 1px #a9a9a9;
 }
+
+/* 테블릿 대응 */
+@media screen and (max-width: 1023px) {
+}
+/* 모바일 대응 */
+@media screen and (max-width: 767px) {
+  #navigation-container {
+    display: none;
+  }
+}
 </style>

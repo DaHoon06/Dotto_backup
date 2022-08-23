@@ -2,15 +2,6 @@
   <article id="nav-bar-container">
     <article>
       <ul>
-        <li id="menu-button-container">
-          <button>
-            <img
-              class="menu-icon"
-              src="@/assets/icons/nav/menu.png"
-              alt="menu"
-            />
-          </button>
-        </li>
         <li>
           <router-link to="/"
             ><img id="logo" src="@/assets/img/dotto.svg" alt="logo"
@@ -72,7 +63,7 @@ export default class HeaderComponent extends Vue {
   modalType = "";
   showMessage = false;
   showMyMenu = false;
-  keyword = '';
+  keyword = "";
 
   constructor() {
     super();
@@ -194,5 +185,25 @@ hr {
 a:hover {
   color: #8d8d8d;
   font-weight: 700;
+}
+
+/* 테블릿 대응 */
+@media screen and (max-width: 1023px) {
+}
+/* 모바일 대응 */
+@media screen and (max-width: 767px) {
+  ul {
+    padding: 0;
+  }
+  #nav-bar-container {
+    margin-top: 0;
+  }
+  #logo {
+    margin-left: 15px;
+    width: 85px;
+  }
+  #search-container {
+    display: none;
+  }
 }
 </style>
