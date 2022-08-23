@@ -1,5 +1,6 @@
 package com.dotto.app.repository.post;
 
+import com.dotto.app.dto.search.DottoPostList;
 import com.dotto.app.entity.post.DottoPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,5 +25,6 @@ public interface DottoPostRepository extends JpaRepository<DottoPost,Long>, Cust
     @Query("Update DottoPost p Set p.deletedYn ='Y' WHERE p.postNo = :postNo")
     void deleted(Long postNo);
 
-    List<DottoPost> findByTitle(String title);
+    @Query("select new com.dotto.app.dto.search.DottoPostList(p.title, p.member.nickname, p.price, p.salesPrice, p.salesYn, p.salesPct, p.tags, i.originName) from DottoPost p join Image i on p.postNo = i.dottoPost.postNo and p.title like concat('%',:title,'%') ")
+    List<DottoPostList> findBySearchTitleToDottoPosts(String title);
 }
