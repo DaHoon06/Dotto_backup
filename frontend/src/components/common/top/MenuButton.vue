@@ -1,7 +1,7 @@
 <template>
   <article id="menu-button-container">
     <section class="menu-button-wrapper">
-      <button type="button" @click="showMenu">
+      <button type="button" @click="showMenu" id="menu-btn">
         <img src="@/assets/icons/nav/menu.png" alt="메뉴" />
       </button>
     </section>
@@ -30,14 +30,22 @@ export default class MenuButton extends Vue {
   #menu-button-container {
     display: flex;
     flex-direction: column;
+    width: 100% !important;
   }
 
   nav {
     margin-top: 50px;
   }
-
+  #menu-btn {
+    width: 100% !important;
+  }
   .menu-button-wrapper {
     margin-right: 15px;
+    width: 100% !important;
+  }
+
+  button > img {
+    width: 100% !important;
   }
 }
 </style>

@@ -98,6 +98,8 @@ export default class HeaderView extends Vue {
   }
   #menu-button {
     display: inline-block;
+    width: 30px;
+    margin-right: 15px;
   }
   #menu-list {
     display: inline-block;

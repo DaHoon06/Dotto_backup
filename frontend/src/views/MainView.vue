@@ -7,7 +7,7 @@
         <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h1 class="main-items-title">닷투 게시판</h1>
-            <small
+            <small class="main-items-sub-title"
               >타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small
             >
           </section>
@@ -29,7 +29,7 @@
         <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h1 class="main-items-title">닷찾사 게시판</h1>
-            <small
+            <small class="main-items-sub-title"
               >내가 원하는 도안을 제시하고 타투이스트에게 답변
               받아보세요!</small
             >
@@ -52,7 +52,7 @@
         <article class="main-component-wrapper">
           <section class="main-items-wrapper">
             <h1 class="main-items-title">FEED</h1>
-            <small>자유롭게 이야기를 나눠요!</small>
+            <small class="main-items-sub-title">자유롭게 이야기를 나눠요!</small>
           </section>
           <section>
             <router-link to="" class="show-all-lists"
@@ -136,9 +136,9 @@ small {
   width: 100%;
   margin: 0 auto 10em auto;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-evenly;*/
 }
 .main-component-wrapper {
   display: flex;
@@ -174,11 +174,32 @@ small {
 /* 모바일 대응 */
 @media screen and (max-width: 767px) {
   #main-home-container {
-    margin-top: 80px;
+    margin-top: 60px;
   }
   /* 배너 삭제 */
   .banner {
     display: none;
+  }
+
+  .main-component-wrapper {
+    background: #222222;
+    color: #F5F5F5;
+    margin: 0;
+    padding: 5px 10px;
+  }
+  /* 각 행 라벨 */
+  .main-items-title {
+    width: 100%;
+  }
+  /* 부제목 */
+  .main-items-sub-title {
+    display: none;
+  }
+
+  /* 전체보기 */
+  .show-all-lists {
+    color: #F5F5F5;
+    font-size: 12px;
   }
 }
 </style>

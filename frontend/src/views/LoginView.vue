@@ -94,10 +94,6 @@ export default class LoginView extends Vue {
     client_id: process.env.VUE_APP_GOOGLE_KEY,
   };
 
-  constructor() {
-    super();
-  }
-
   created(): void {
     this.getCookie();
   }

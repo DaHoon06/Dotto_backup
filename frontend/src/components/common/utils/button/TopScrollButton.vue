@@ -14,7 +14,7 @@ import { Component, Vue } from "vue-property-decorator";
 export default class TopScrollButton extends Vue {
   timeOut = "";
 
-  private scrollHandler() {
+  private scrollHandler(): void {
     window.scrollBy(0, -9999);
   }
 }
@@ -34,12 +34,6 @@ export default class TopScrollButton extends Vue {
 #top {
   width: 10px;
 }
-/* side button */
-#side-button-container {
-  position: fixed;
-  top: 50%;
-  right: 48px;
-}
 
 .right-side-btn {
   width: 56px;
@@ -49,7 +43,23 @@ export default class TopScrollButton extends Vue {
 }
 
 .right-side {
-  margin-top: 10px;
-  z-index: 999;
+  position: fixed;
+  top: 50%;
+  right: 5px;
+  z-index: 10;
+}
+
+@media screen and (max-width: 1023px) {
+  .right-side-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+/* 모바일 대응 */
+@media screen and (max-width: 767px) {
+  .right-side-btn {
+    width: 36px;
+    height: 36px;
+  }
 }
 </style>

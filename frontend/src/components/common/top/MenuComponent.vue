@@ -1,6 +1,24 @@
 <template>
   <nav class="menu-list-container">
     <section>
+      <h1 class="menu-title">로그인</h1>
+    </section>
+    <section>
+      <h1 class="menu-title">My</h1>
+      <ul>
+        <li class="menu-list-items">타투도안</li>
+        <li class="menu-list-items">내 예약목록</li>
+        <li class="menu-list-items">내 댓글 / 리뷰</li>
+        <li class="menu-list-items">찜한 목록</li>
+      </ul>
+
+      <ul>
+        <li class="menu-list-items">보안 / 계정</li>
+        <li class="menu-list-items">일반회원 계정</li>
+        <li class="menu-list-items">로그아웃</li>
+      </ul>
+    </section>
+    <section>
       <h1 class="menu-title">My</h1>
       <ul>
         <li class="menu-list-items">타투도안</li>
