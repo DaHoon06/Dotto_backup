@@ -18,8 +18,6 @@ public class WorkPlace {
     private Long wNo;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberNo")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Member member;
 
     @Column

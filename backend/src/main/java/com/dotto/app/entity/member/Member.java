@@ -63,6 +63,10 @@ public class Member extends EntityDate {
     @JoinColumn(name = "policyAgreeNo")
     private PolicyAgree policyAgree;
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "wNo")
+    private WorkPlace workPlace;
+
     public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
         this.id = id;
         this.password = password;
