@@ -89,6 +89,10 @@
     margin-right: 3em;
     z-index: -1;
 }
+#isLoginTrue:hover {
+    cursor: pointer;
+}
+
 #my {
     width: 30px;
 }

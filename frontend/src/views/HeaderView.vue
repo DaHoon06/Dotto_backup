@@ -37,9 +37,6 @@ export default class HeaderView extends Vue {
   private blurBackground(isBlur: boolean) {
     this.$emit("blurBackground", isBlur);
   }
-  private notScrollBody(scrollEvent: boolean) {
-    this.$emit("notScrollBody", scrollEvent);
-  }
 
   private get menuComputed() {
     return this.menuList;

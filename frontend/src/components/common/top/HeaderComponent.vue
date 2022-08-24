@@ -71,12 +71,14 @@ export default class HeaderComponent extends Vue {
 
   private closeSearchList() {
     this.showSearchList = !this.showSearchList;
+    this.$common.scrollHidden(this.showSearchList);
     this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
     this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
   private searchLists(): void {
     this.showSearchList = !this.showSearchList;
+    this.$common.scrollHidden(this.showSearchList);
     this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
     this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }

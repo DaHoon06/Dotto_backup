@@ -5,14 +5,10 @@ import { CssControl } from "@/interfaces/common/IOptions";
 const cssStore: Module<CssControl, State> = {
   namespaced: true,
   state: {
-    SCROLL: false,
     BLUR: false,
     TOPHIDE: false,
   },
   mutations: {
-    scrollOn(state, payload) {
-      state.SCROLL = payload;
-    },
     backgroundBlur(state, payload) {
       state.BLUR = payload;
     },
@@ -22,7 +18,6 @@ const cssStore: Module<CssControl, State> = {
   },
   actions: {},
   getters: {
-    SCROLL: (state) => state.SCROLL,
     BLUR: (state) => state.BLUR,
     TOPHIDE: (state) => state.TOPHIDE,
   },

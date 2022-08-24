@@ -17,6 +17,7 @@ export default class MenuButton extends Vue {
 
   @Emit("showMenu")
   private showMenu() {
+    this.$common.scrollHidden(!this.showMenuList);
     return (this.showMenuList = !this.showMenuList);
   }
 }

@@ -131,14 +131,14 @@ export default class StatusComponent extends Vue {
 
   private closeModal(payload: boolean) {
     this.$store.commit("utilsStore/showModal", payload);
-    this.$store.commit("cssStore/scrollOn", payload);
+    this.$common.scrollHidden(payload);
     this.modalType = MODAL.INIT;
   }
 
   private showLoginView() {
     this.modalType = MODAL.LOGIN;
+    this.$common.scrollHidden(true);
     this.$store.commit("utilsStore/showModal", true);
-    this.$store.commit("cssStore/scrollOn", true);
   }
 
   private logout(): void {
@@ -184,11 +184,6 @@ export default class StatusComponent extends Vue {
   private searchLists() {
     this.showSearchList = !this.showSearchList;
     return this.showSearchList;
-  }
-
-  @Emit("notScroll")
-  private notScrollBody() {
-    return true;
   }
 }
 </script>

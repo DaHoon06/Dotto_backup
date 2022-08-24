@@ -123,7 +123,6 @@ export default class DottoComponent extends Vue {
       if (success) {
         const { data } = result;
         const { dottoPostDtoList } = data;
-        console.log(dottoPostDtoList)
         const { totalPage } = data;
         if (totalPage === this.page) {
           $state.complete();

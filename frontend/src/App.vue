@@ -5,7 +5,7 @@
       :class="topHide ? 'hide' : ''"
     />
     <router-view
-      :class="[Blur ? 'setBlur' : '', Scroll ? 'notScroll' : '']"
+      :class="[Blur ? 'setBlur' : '']"
       @changeNavType="changeNavType"
     />
     <footer-component />
@@ -26,7 +26,6 @@ import EventBus from "@/utils/eventBus";
 })
 export default class App extends Vue {
   blurCss = "";
-  scroll = "";
   navigationType = "";
 
   changeTopMenu = false;
@@ -41,7 +40,9 @@ export default class App extends Vue {
   private set topHide(type: boolean) {
     this.changeTopMenu = type;
   }
+  // EventBus Listen
   private eventListener(): void {
+    // 상단 네비게이션 메뉴 변경
     EventBus.$on("topMenuHide", (payload: boolean) => {
       this.topHide = payload;
     });
@@ -65,9 +66,6 @@ export default class App extends Vue {
   private get Blur() {
     return (this.blurCss = this.$store.getters["cssStore/BLUR"]);
   }
-  private get Scroll() {
-    return (this.scroll = this.$store.getters["cssStore/SCROLL"]);
-  }
 }
 </script>
 
@@ -80,16 +78,5 @@ export default class App extends Vue {
 
 .hide {
   display: none !important;
-}
-
-/*.notScroll {*/
-/*  position: fixed;*/
-/*  width: 100%;*/
-/*  -ms-overflow-style: none;*/
-/*  scrollbar-width: none;*/
-/*}*/
-
-.notScroll {
-  -ms-overflow-style: none;
 }
 </style>
