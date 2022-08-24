@@ -103,7 +103,21 @@ export default class PolicyComponent extends Vue {
   }
 
   created(): void {
+    this.init();
     this.handleClickAllCheckBox();
+  }
+
+  private async init() {
+    try {
+      const { data: policyData } = await this.axios.get("/policy");
+      const { result } = policyData;
+      const { data } = result;
+      const { dottoPolicyContent, privatePolicyContent } = data;
+      this.terms.dottoPolicyContent = dottoPolicyContent;
+      this.terms.privatePolicyContent = privatePolicyContent;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   private handleClickAllCheckBox() {
