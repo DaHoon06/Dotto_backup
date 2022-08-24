@@ -37,7 +37,7 @@ export default class RegisterButton extends Vue {
         this.buttonLabelComputed = "이전";
         break;
       case "2":
-        this.buttonLabelComputed = "가입";
+        this.buttonLabelComputed = "다음";
         break;
       case "3":
         this.buttonLabelComputed = "다음";
@@ -102,7 +102,7 @@ export default class RegisterButton extends Vue {
   color: #eeeeee !important;
 }
 .register-common-btn:nth-child(1) {
-  border: 3px solid #f3f3f3;
+  border: 1px solid #f3f3f3;
   margin-right: 1em;
 }
 .register-common-btn:nth-child(2) {

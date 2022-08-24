@@ -135,7 +135,7 @@ export default class ModalComponent extends Vue {
   width: 680px;
   height: 800px;
   top: 50%;
-  padding: 24px 40px 39px 40px;
+  padding: 0;
 }
 
 @media (max-width: 1439px) {

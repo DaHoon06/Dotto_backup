@@ -141,6 +141,9 @@ input[type=number] {
 }
 
 /* RIGHT */
+.c-mr-8 {
+    margin-right: 8px !important;
+}
 .c-mr-12 {
     margin-right: 12px !important;
 }

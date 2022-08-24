@@ -1,10 +1,12 @@
 <template>
   <article id="register-container">
-    <section id="register-title-wrapper">
-      <span>회원 가입</span>
+    <section id="register-form-top-container">
+      <h1 class="register-title">회원가입</h1>
+      <progress-component :progress="progress" />
     </section>
 
-    <progress-component :progress="progress" />
+    <hr />
+
     <component
       :is="dynamicComponent"
       @changeComponent="changeComponent"
@@ -81,21 +83,26 @@ export default class RegisterView extends Vue {
 </script>
 
 <style scoped>
+hr {
+  border: 1px solid #e2e2e2;
+}
 #register-container {
   margin: auto;
   height: 100%;
 }
-#register-title-wrapper {
+#register-form-top-container {
   display: flex;
-  margin-bottom: 41px;
-
-  justify-content: flex-start;
+  margin: 24px 32px;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 #tab-wrapper span {
   margin-left: 0.5em;
   text-shadow: 1px 1px 1px #c9c9c9;
 }
-
+.register-title {
+  font-size: 20px;
+}
 .register-tabs span {
   color: #eeeeee;
 }
