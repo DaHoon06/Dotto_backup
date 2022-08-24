@@ -68,6 +68,7 @@ ul li:hover {
 .menu-list-container {
   color: #222222;
   text-align: center;
+  overflow-y: auto;
 }
 .menu-list-items {
   border-bottom: 1px solid #e2e2e2;

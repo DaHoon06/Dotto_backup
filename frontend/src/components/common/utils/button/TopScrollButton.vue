@@ -1,5 +1,5 @@
 <template>
-  <article class="right-side">
+  <article class="right-side" v-show="scrollControl">
     <button id="go-top" class="right-side-btn" @click="scrollHandler">
       <img id="top" src="@/assets/icons/main/go-top.svg" alt="top" />
       <span>TOP</span>
@@ -9,10 +9,27 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import EventBus from "@/utils/eventBus";
 
 @Component
 export default class TopScrollButton extends Vue {
-  timeOut = "";
+  isScrollButton = true;
+
+  created() {
+    this.eventListener();
+  }
+  eventListener(): void {
+    EventBus.$on("topScrollButtonControl", (payload: boolean) => {
+      this.scrollControl = payload;
+    });
+  }
+
+  get scrollControl() {
+    return this.isScrollButton;
+  }
+  set scrollControl(type: boolean) {
+    this.isScrollButton = type;
+  }
 
   private scrollHandler(): void {
     window.scrollBy(0, -9999);

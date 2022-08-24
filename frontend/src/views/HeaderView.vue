@@ -18,6 +18,7 @@ import HeaderComponent from "@/components/common/top/HeaderComponent.vue";
 import NavigationComponent from "@/components/common/top/NavigationComponent.vue";
 import StatusComponent from "@/components/common/top/StatusComponent.vue";
 import MenuComponent from "@/components/common/top/MenuComponent.vue";
+import EventBus from "@/utils/eventBus";
 
 @Component({
   components: {
@@ -46,7 +47,12 @@ export default class HeaderView extends Vue {
   }
 
   private showMenu(type: boolean): void {
+    this.hideTopScrollButton(type);
     this.menuComputed = type;
+  }
+  // 메뉴 오픈 시에 맨 위로 버튼 가리기
+  hideTopScrollButton(type: boolean): void {
+    EventBus.$emit("topScrollButtonControl", !type);
   }
 }
 </script>
