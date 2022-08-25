@@ -57,7 +57,6 @@ export default class RegisterView extends Vue {
   buttonType = "policy";
 
   private changeComponent(componentType: string): void {
-    console.log(componentType, "들어오냐?");
     this.type = componentType;
   }
   private prev(componentType: string): void {
