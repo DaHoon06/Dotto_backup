@@ -48,13 +48,13 @@ export default class ProgressComponent extends Vue {
 #progress-container {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
 }
 
 .progress-items-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .progress-items-title {

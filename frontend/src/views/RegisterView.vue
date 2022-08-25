@@ -132,8 +132,7 @@ hr {
 }
 
 #register-btn-container {
-  position: absolute;
-  top: 90%;
-  right: 28%;
+  width: 100%;
+  max-height: 100px;
 }
 </style>

@@ -369,6 +369,8 @@ export default class MemberRegisterComponent extends Vue {
 #register-form-container {
   display: flex;
   justify-content: flex-start;
+  width: 100%;
+  max-height: 839px;
 }
 
 #member-register-form {

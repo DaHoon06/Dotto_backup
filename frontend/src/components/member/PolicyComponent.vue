@@ -153,9 +153,10 @@ export default class PolicyComponent extends Vue {
 #policy-container {
   display: flex;
   overflow-y: auto;
-  justify-content: space-between;
   flex-direction: column;
-  margin: 40px;
+  max-height: 839px;
+  height: 67%;
+  margin: 44px 40px;
 }
 #policy-container section {
 }

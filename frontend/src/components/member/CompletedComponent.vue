@@ -1,5 +1,5 @@
 <template>
-  <section id="complete_container">
+  <section id="complete-container">
     <article>
       <img
         id="complete_img"
@@ -42,6 +42,10 @@ export default class CompletedComponent extends Vue {
 </script>
 
 <style scoped>
+#complete-container {
+  width: 100%;
+  max-height: 839px;
+}
 #register-login-btn {
   background: #222222;
   color: white;
