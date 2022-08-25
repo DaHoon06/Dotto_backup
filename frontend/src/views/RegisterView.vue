@@ -17,8 +17,18 @@
     />
 
     <section id="register-btn-container">
-      <register-button :buttonType="1" @redirectLoginForm="redirectLoginView" />
-      <register-button :buttonType="2" @changeComponent="changeComponent" />
+      <register-button
+        :button-label="'1'"
+        :button-type="buttonType"
+        @redirectLoginForm="redirectLoginView"
+        @closeModal="closeForm"
+        @changeComponent="changeComponent"
+      />
+      <register-button
+        :button-label="'2'"
+        :button-type="buttonType"
+        @changeComponent="changeComponent"
+      />
     </section>
   </article>
 </template>
@@ -44,8 +54,10 @@ import RegisterButton from "@/components/member/RegisterButton.vue";
 export default class RegisterView extends Vue {
   type = "PolicyComponent";
   progress = 1;
+  buttonType = "policy";
 
   private changeComponent(componentType: string): void {
+    console.log(componentType, "들어오냐?");
     this.type = componentType;
   }
   private prev(componentType: string): void {
@@ -69,12 +81,15 @@ export default class RegisterView extends Vue {
   private get dynamicComponent() {
     switch (this.type) {
       case "PolicyComponent":
+        this.buttonType = "policy";
         this.progress = 1;
         return PolicyComponent;
       case "RegisterComponent":
+        this.buttonType = "register";
         this.progress = 2;
         return RegisterComponent;
       case "CompletedComponent":
+        this.buttonType = "completed";
         this.progress = 3;
         return CompletedComponent;
     }

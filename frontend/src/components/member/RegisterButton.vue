@@ -15,7 +15,8 @@ import EventBus from "@/utils/eventBus";
 
 @Component
 export default class RegisterButton extends Vue {
-  @Prop() buttonType?: string;
+  @Prop({ default: "0" }) buttonLabel?: string;
+  @Prop({ default: "" }) buttonType!: string;
 
   activeBtn = "register-common-btn-active";
   registerProcess = false;
@@ -28,11 +29,11 @@ export default class RegisterButton extends Vue {
 
   private nextProcess(next: boolean) {
     // 가입 버튼만 active
-    if (this.buttonType + "" === "2") this.registerProcessComputed = next;
+    if (this.buttonLabel === "2") this.registerProcessComputed = next;
   }
 
   private buttonName() {
-    switch (this.buttonType + "") {
+    switch (this.buttonLabel) {
       case "1":
         this.buttonLabelComputed = "이전";
         break;
@@ -61,27 +62,26 @@ export default class RegisterButton extends Vue {
 
   // 화면 전환
   private pageController() {
-    switch (this.buttonType + "") {
-      case "1":
-        this.redirectLoginForm();
+    switch (this.buttonType) {
+      case "policy":
+        if (this.buttonLabel === "1") this.$emit("closeModal");
+        else this.$emit("changeComponent", "RegisterComponent");
         break;
-      case "2":
-        this.redirectRegisterForm();
+      case "register":
+        if (this.buttonLabel === "1") {
+          this.$emit("changeComponent", "PolicyComponent");
+        } else this.$emit("changeComponent", "CompletedComponent");
         break;
-      case "3":
+      case "completed":
+        if (this.buttonLabel === "1")
+          this.$emit("changeComponent", "RegisterComponent");
+        else this.redirectLoginForm();
         break;
     }
   }
-
-  // 약관 동의 화면
-  @Emit("changeComponent")
-  private redirectRegisterForm(): string {
-    if (this.registerProcess) {
-      //'PolicyComponent';
-      return "RegisterComponent";
-    } else {
-      return "RegisterComponent";
-    }
+  @Emit("closeModal")
+  closeModal(): boolean {
+    return true;
   }
 
   @Emit("redirectLoginView")
