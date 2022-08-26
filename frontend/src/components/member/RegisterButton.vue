@@ -30,6 +30,8 @@ export default class RegisterButton extends Vue {
   private nextProcess(next: boolean) {
     // 가입 버튼만 active
     if (this.buttonLabel === "2" && next) this.registerProcessComputed = next;
+    else if (this.buttonLabel === "2" && !next)
+      this.registerProcessComputed = next;
   }
 
   private buttonName() {
@@ -58,7 +60,8 @@ export default class RegisterButton extends Vue {
       case "policy":
         if (this.buttonLabel === "1") this.$emit("closeModal");
         else {
-          if (this.registerProcessComputed) this.$emit("changeComponent", "RegisterComponent");
+          if (this.registerProcessComputed)
+            this.$emit("changeComponent", "RegisterComponent");
         }
         break;
       case "register":
