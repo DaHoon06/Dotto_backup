@@ -1,8 +1,8 @@
 <template>
   <article id="login-container">
-    <article id="logo-wrapper" class="login-info-section">
+    <section id="logo-wrapper" class="login-info-section">
       <img src="@/assets/img/dotto.svg" alt="logo" id="logo" />
-    </article>
+    </section>
 
     <article class="login-info-section">
       <form @submit.prevent="login">
@@ -112,7 +112,7 @@ export default class LoginView extends Vue {
       this.saveState(data);
       this.$store.commit("utilsStore/closeModal", true);
       const { path } = this.$router.currentRoute;
-      if (path === '/dotto') {
+      if (path === "/dotto") {
         this.$router.go(0);
       } else {
         await this.$router.push("/dotto");
@@ -178,8 +178,8 @@ export default class LoginView extends Vue {
             id: kakao_info.email,
             nickname: kakao_info.nickname,
             gender: kakao_info.gender,
-            loginType: 'kakao',
-          }
+            loginType: "kakao",
+          };
           await this.join(sendData);
         } else {
           // store update
@@ -199,7 +199,7 @@ export default class LoginView extends Vue {
     });
   }
   private async join(userInfo: IUser.Information) {
-    const { data } = await this.axios.post('/sign-up',userInfo);
+    const { data } = await this.axios.post("/sign-up", userInfo);
     console.log(data);
   }
   private async kakaoLoginCheck(email: string): Promise<boolean> {

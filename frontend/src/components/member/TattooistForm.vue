@@ -1,7 +1,7 @@
 <template>
-  <section id="tattooist-register-wrapper">
+  <article id="tattooist-register-wrapper">
     <form id="tattooist-register-from" @submit.prevent="register">
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <input
           @blur="validationId"
           type="text"
@@ -12,10 +12,10 @@
         <button class="register-btn input-text" @click="idCheck" type="button">
           중복확인
         </button>
-      </div>
-      <div class="warning-msg">{{ IdMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ IdMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <input
           type="password"
           autocomplete="off"
@@ -24,10 +24,10 @@
           placeholder="비밀번호"
           class="input-text"
         />
-      </div>
-      <div class="warning-msg">{{ PasswordMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ PasswordMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <input
           type="password"
           autocomplete="off"
@@ -36,10 +36,10 @@
           placeholder="비밀번호 확인"
           class="input-text"
         />
-      </div>
-      <div class="warning-msg">{{ PasswordCheckMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ PasswordCheckMessage }}</p>
 
-      <div class="input-wrapper">
+      <section class="input-wrapper">
         <input
           type="text"
           @focus="msgClear"
@@ -50,50 +50,10 @@
         <b-button @click="nickNameCheck" class="register-btn" type="button"
           >중복확인</b-button
         >
-      </div>
-      <div class="warning-msg">{{ NickNameMessage }}</div>
+      </section>
+      <p class="warning-msg">{{ NickNameMessage }}</p>
 
-      <div class="input-wrapper">
-        <input
-          v-model="address"
-          class="input-text"
-          readonly
-          placeholder="작업실 주소를 검색해주세요."
-        />
-        <b-button v-b-modal.modal-1 class="register-btn input-text"
-          >주소찾기</b-button
-        >
-      </div>
-
-      <b-modal id="modal-1" class="address_modal" hide-footer>
-        <template #modal-title> 주소 검색 </template>
-        <vue-daum-postcode @complete="oncomplete" />
-      </b-modal>
-
-      <div class="address_detail">
-        <input
-          class="input-text address_detail"
-          v-model="detail_address"
-          placeholder="작업실 상세주소를 입력해주세요."
-        />
-      </div>
-
-      <div class="input-wrapper register-submit">
-        <button type="button" class="register-btn" id="img-registration-btn">
-          작업실 및 소개 이미지 등록
-        </button>
-      </div>
-      <div id="file">
-        <input
-          type="file"
-          class="file-input"
-          @change="uploadFiles"
-          multiple
-          accept=".jpg, .jpeg, .png"
-        />
-      </div>
-
-      <div class="input-wrapper phone-wrapper" id="first-phone-wrapper">
+      <section class="input-wrapper phone-wrapper" id="first-phone-wrapper">
         <input
           class="input-text"
           type="text"
@@ -101,14 +61,14 @@
           placeholder="휴대폰번호 입력"
         />
         <button class="register-btn">인증번호받기</button>
-      </div>
+      </section>
 
-      <div class="input-wrapper phone-wrapper">
+      <section class="input-wrapper phone-wrapper">
         <input class="input-text" type="text" placeholder="인증번호입력" />
         <button class="register-btn">인증하기</button>
-      </div>
+      </section>
 
-      <div id="gender-wrapper">
+      <section id="gender-wrapper">
         <input
           class="selected-gender"
           type="radio"
@@ -127,24 +87,50 @@
           name="female"
         />
         <label for="female">여성</label>
-        <input
-          class="selected-gender"
-          type="radio"
-          id="empty"
-          v-model="gender"
-          value="empty"
-          name="empty"
-        />
-        <label for="empty">선택안함</label>
-      </div>
+      </section>
 
-      <div class="register-submit">
-        <button class="register-btn" id="register-submit-btn" type="submit">
-          가입하기
+      <section class="input-wrapper">
+        <label>작업실 주소</label>
+        <input
+          v-model="address"
+          class="input-text"
+          readonly
+          placeholder="주소찾기"
+        />
+        <b-button v-b-modal.modal-1 class="register-btn input-text"
+          >주소검색</b-button
+        >
+      </section>
+
+      <b-modal id="modal-1" class="address_modal" hide-footer>
+        <template #modal-title> 주소 검색 </template>
+        <vue-daum-postcode @complete="oncomplete" />
+      </b-modal>
+
+      <section class="address_detail">
+        <input
+          class="input-text address_detail"
+          v-model="detail_address"
+          placeholder="상세주소"
+        />
+      </section>
+
+      <section class="input-wrapper register-submit">
+        <button type="button" class="register-btn" id="img-registration-btn">
+          이미지 첨부
         </button>
-      </div>
+      </section>
+      <section id="file">
+        <input
+          type="file"
+          class="file-input"
+          @change="uploadFiles"
+          multiple
+          accept=".jpg, .jpeg, .png"
+        />
+      </section>
     </form>
-  </section>
+  </article>
 </template>
 
 <script lang="ts">

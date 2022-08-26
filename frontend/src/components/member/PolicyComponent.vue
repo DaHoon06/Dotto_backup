@@ -158,8 +158,6 @@ export default class PolicyComponent extends Vue {
   height: 67%;
   margin: 44px 40px;
 }
-#policy-container section {
-}
 
 #policy-title {
   text-align: left;

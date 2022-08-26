@@ -74,7 +74,7 @@
       <p class="warning-msg">{{ NickNameMessage }}</p>
 
       <section class="input-wrapper">
-        <div class="label-division"></div>
+        <label class="label">휴대폰</label>
         <input
           @keydown.enter.prevent
           @keydown="validationPhoneNumber"
@@ -87,21 +87,9 @@
           ref="refPhone"
           tabindex="10"
         />
-        <button class="register-btn">인증번호받기</button>
-      </section>
-      <p class="warning-msg">{{ PhoneMessage }}</p>
-
-      <section class="input-wrapper">
-        <div class="label-division"></div>
-        <input
-          @keydown.enter.prevent
-          type="text"
-          class="input-text"
-          placeholder="인증번호 입력"
-          tabindex="10"
-        />
         <button class="register-btn">인증하기</button>
       </section>
+      <p class="warning-msg">{{ PhoneMessage }}</p>
 
       <section id="gender-wrapper">
         <label class="label">성별</label>
@@ -131,6 +119,31 @@
         </div>
         <div class="label-division"></div>
       </section>
+      <hr />
+      <section>
+        <p>타투이스트와 연락할 수단을 입력해 주세요.</p>
+        <input
+          type="radio"
+          name="phone"
+          value="phone"
+          v-model="contact"
+          id="phone-number"
+        />
+        <label for="phone-number">전화번호</label>
+        <input
+          type="radio"
+          name="email"
+          value="email"
+          v-model="contact"
+          id="email"
+        />
+        <label for="email">이메일</label>
+        <input
+          type="text"
+          placeholder="이메일을 입력해 주세요."
+          v-model="email"
+        />
+      </section>
     </form>
   </article>
 </template>
@@ -156,7 +169,8 @@ export default class MemberForm extends Vue {
   phone = "";
   idVerification = false;
   nicknameVerification = false;
-
+  contact = "";
+  email = "";
   authentication = true;
   // ERROR MSG
   nickNameMessage = "";
@@ -184,7 +198,6 @@ export default class MemberForm extends Vue {
 
   private validationId(): void {
     const reg = /^[a-z0-9_]{4,20}$/;
-
     if (!reg.test(this.id)) {
       this.IdMessage = EMessageRegister.ID_NOT_ENTERED;
       this.id = "";
@@ -434,7 +447,7 @@ select::-ms-expand {
   font-weight: bold;
   background: #ffffff;
   font-size: 14px;
-  height: 52px;
+  height: 44px;
   width: 120px;
   padding: 6px 6px 6px 6px;
 }

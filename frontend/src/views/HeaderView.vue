@@ -6,7 +6,11 @@
 
     <menu-button id="menu-button" @showMenu="showMenu" />
     <transition>
-      <menu-component v-show="menuComputed" id="menu-list" />
+      <menu-component
+        @closeMenu="showMenu"
+        v-show="menuComputed"
+        id="menu-list"
+      />
     </transition>
   </header>
 </template>
@@ -47,6 +51,7 @@ export default class HeaderView extends Vue {
   }
 
   private showMenu(type: boolean): void {
+    console.log(type);
     this.hideTopScrollButton(type);
     this.menuComputed = type;
   }
