@@ -120,9 +120,10 @@ export default class ModalComponent extends Vue {
   top: 50%;
   left: 50%;
   max-width: 600px;
-  max-height: 756px;
-  width: 100%;
-  height: 100%;
+  min-height: 700px;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   padding: 30px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -130,11 +131,8 @@ export default class ModalComponent extends Vue {
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   transform: translateX(-50%) translateY(-50%);
 }
-
+/* 기본 700 , 일반 최대 1019  타투이스트 최대 1112, 완료 700 */
 .modal-body-register {
-  width: 680px;
-  height: 1019px;
-  top: 50%;
   padding: 0;
 }
 
