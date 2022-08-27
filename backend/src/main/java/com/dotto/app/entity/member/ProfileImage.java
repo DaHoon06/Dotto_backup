@@ -1,5 +1,6 @@
 package com.dotto.app.entity.member;
 
+import com.dotto.app.entity.common.ImageCreateSupport;
 import com.dotto.app.exception.UnsupportedImageFormatException;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProfileImage {
+public class ProfileImage extends ImageCreateSupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +31,6 @@ public class ProfileImage {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Member member;
 
-    private final static String[] supportedExtension = {"jpg", "jpeg", "gif", "bmp", "png"};
-
-
     public ProfileImage(String originName){
         this.name = generateName(extractExtension(originName));
         this.originName = originName;
@@ -42,20 +40,15 @@ public class ProfileImage {
         if(this.member == null) this.member = member;
     }
 
-    private String generateName(String extension){
-        return UUID.randomUUID().toString()+"."+extension;
+    @Override
+    protected String extractExtension(String originName) {
+        return super.extractExtension(originName);
     }
 
-    private String extractExtension(String originName){
-        try{
-            String ext = originName.substring(originName.lastIndexOf(".")+1);
-            if(isSuppoertedFormat(ext)) return ext;
-        }catch (StringIndexOutOfBoundsException e){}
-        throw new UnsupportedImageFormatException();
-    }
 
-    private boolean isSuppoertedFormat(String ext){
-        return Arrays.stream(supportedExtension).anyMatch(e -> e.equalsIgnoreCase(ext));
+    @Override
+    protected String generateName(String extension) {
+        return super.generateName(extension);
     }
 
 

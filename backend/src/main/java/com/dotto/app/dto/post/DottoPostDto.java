@@ -18,8 +18,10 @@ public class DottoPostDto {
     private String salesPct;
     private String tags;
 
+    private String originName;
+
     @QueryProjection
-    public DottoPostDto(Long postNo, String title, String id, String price, String salesPrice, String salesYn, String salesPct, String tags){
+    public DottoPostDto(Long postNo, String title, String id, String price, String salesPrice, String salesYn, String salesPct, String tags, String originName){
         this.postNo = postNo;
         this.title = title;
         this.id = id;
@@ -28,6 +30,7 @@ public class DottoPostDto {
         this.salesYn = salesYn;
         this.salesPct = salesPct;
         this.tags = tags;
+        this.originName = originName;
     }
 
 }

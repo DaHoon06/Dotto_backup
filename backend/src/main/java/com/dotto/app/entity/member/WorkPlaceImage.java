@@ -1,7 +1,6 @@
-package com.dotto.app.entity.post;
+package com.dotto.app.entity.member;
 
 import com.dotto.app.entity.common.ImageCreateSupport;
-import com.dotto.app.exception.UnsupportedImageFormatException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,47 +8,44 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.UUID;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Image extends ImageCreateSupport {
+public class WorkPlaceImage extends ImageCreateSupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imgNo;
+    private Long workPlaceImgNo;
 
-    @Column(nullable = false)
-    private String name;
 
-    @Column(nullable = false)
     private String originName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postNo",nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private DottoPost dottoPost;
+    private String name;
 
-    public Image(String originName){
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private WorkPlace workPlace;
+
+
+    public WorkPlaceImage(String originName){
         this.name = generateName(extractExtension(originName));
         this.originName = originName;
     }
 
-    public void initDottoPost(DottoPost dottoPost){
-        if(this.dottoPost == null) this.dottoPost = dottoPost;
-
+    public void initWorkPlace(WorkPlace workPlace ) {
+        if(this.workPlace == null) this.workPlace = workPlace;
     }
+
 
     @Override
     protected String extractExtension(String originName) {
         return super.extractExtension(originName);
     }
 
+
     @Override
     protected String generateName(String extension) {
         return super.generateName(extension);
     }
-
 }
