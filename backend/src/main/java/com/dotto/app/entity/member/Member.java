@@ -63,6 +63,12 @@ public class Member extends EntityDate {
     @JoinColumn(name = "policyAgreeNo")
     private PolicyAgree policyAgree;
 
+    @OneToMany(mappedBy = "following")
+    private List<Follow> following;
+
+    @OneToMany(mappedBy = "follower")
+    private List<Follow> follower;
+
     public Member(String id, String password, String nickname, String gender, String phone, List<Role> roles, String loginType){
         this.id = id;
         this.password = password;
