@@ -4,6 +4,7 @@ import com.dotto.app.dto.post.DottoPostDto;
 import com.dotto.app.dto.post.PostReadCondition;
 import com.dotto.app.dto.post.QDottoPostDto;
 import com.dotto.app.entity.post.DottoPost;
+import com.dotto.app.entity.post.QImage;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -45,9 +46,11 @@ public class CustomPostRepositoryImpl extends QuerydslRepositorySupport implemen
         return Objects.requireNonNull(getQuerydsl()).applyPagination(
                 pageable,
                 jpaqueryFactory
-                        .select(new QDottoPostDto(dottoPost.postNo, dottoPost.title, dottoPost.member.id, dottoPost.price, dottoPost.salesPrice, dottoPost.salesYn, dottoPost.salesPct ,dottoPost.tags ))
+                        .select(new QDottoPostDto(dottoPost.postNo, dottoPost.title, dottoPost.member.id, dottoPost.price, dottoPost.salesPrice, dottoPost.salesYn, dottoPost.salesPct ,dottoPost.tags, QImage.image.originName))
                         .from(dottoPost)
                         .join(dottoPost.member)
+                        .leftJoin(QImage.image)
+                        .on(dottoPost.postNo.eq(QImage.image.dottoPost.postNo))
                         .where(predicate)
                         .orderBy(dottoPost.postNo.desc()))
                 .fetch();
