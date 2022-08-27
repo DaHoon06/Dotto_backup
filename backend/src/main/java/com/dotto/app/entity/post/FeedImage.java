@@ -1,5 +1,6 @@
 package com.dotto.app.entity.post;
 
+import com.dotto.app.entity.common.ImageCreateSupport;
 import com.dotto.app.exception.UnsupportedImageFormatException;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class FeedImage {
+public class FeedImage extends ImageCreateSupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +32,6 @@ public class FeedImage {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Feed feed;
 
-    private final static String[] supportedExtension = {"jpg", "jpeg", "gif", "bmp", "png"};
-
     public FeedImage(String originName){
         this.name = generateName(extractExtension(originName));
         this.originName = originName;
@@ -43,20 +42,15 @@ public class FeedImage {
 
     }
 
-    private String generateName(String extension){
-        return UUID.randomUUID().toString()+"."+extension;
+    @Override
+    protected String extractExtension(String originName) {
+        return super.extractExtension(originName);
     }
 
-    private String extractExtension(String originName){
-        try{
-            String ext = originName.substring(originName.lastIndexOf(".")+1);
-            if(isSupportedFormat(ext)) return ext;
-        }catch (StringIndexOutOfBoundsException e){}
-        throw new UnsupportedImageFormatException();
-    }
 
-    private boolean isSupportedFormat(String ext){
-        return Arrays.stream(supportedExtension).anyMatch(e -> e.equalsIgnoreCase(ext));
+    @Override
+    protected String generateName(String extension) {
+        return super.generateName(extension);
     }
 
 
