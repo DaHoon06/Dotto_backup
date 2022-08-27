@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(value = "Follow Controller", tags = "Follow")
 @RestController
@@ -55,5 +52,21 @@ public class FollowController {
         return Response.success(followService.followCheck(followingNo, followerNo));
     }
 
+    @ApiOperation(value = "팔로잉 수 확인", notes = "팔로잉 수 확인을 한다")
+    @GetMapping("/api/following/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response following(
+            @ApiParam(value = "memberNo")
+            @PathVariable(value = "id") Long memberNo){
+        return Response.success(followService.followingCheck(memberNo));
+    }
 
+    @ApiOperation(value = "팔로우 수 확인", notes = "팔로우 수 확인을 한다")
+    @GetMapping("/api/follower/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response follower(
+            @ApiParam(value = "memberNo")
+            @PathVariable(value = "id")Long memberNo){
+        return Response.success(followService.followerCheck(memberNo));
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly = true)
 public class FollowService {
 
     private final FollowRepository followRepository;
@@ -43,5 +44,14 @@ public class FollowService {
         return true;       //팔로우 되어 있음
     }
 
+    public int followingCheck(Long memberNo){
+
+        return followRepository.followingCheck(memberNo);
+
+    }
+
+    public int followerCheck(Long memberNo){
+        return followRepository.followerCheck(memberNo);
+    }
 
 }
