@@ -1,10 +1,13 @@
 <template>
   <div id="my-feed-container" :class="fixed ? backgroundFixedCss : ''">
-
     <div id="my-feed-list-container">
       <div class="my-feed-user-info-wrapper my-feed-items">
         <span>
-          <img src="@/assets/icons/default.svg" class="my-feed-profile" alt="profile" />
+          <img
+            src="@/assets/icons/default.svg"
+            class="my-feed-profile"
+            alt="profile"
+          />
         </span>
         <div class="my-feed-user-info my-feed-items">
           <span class="my-feed-nickName">닉네임</span>
@@ -13,16 +16,28 @@
       </div>
       <div>
         <div>
-          <img class="my-feed-img" src="@/assets/icons/main/sample/sample_img07.png" alt="sample07" />
+          <img
+            class="my-feed-img"
+            src="@/assets/icons/main/sample/sample_img07.png"
+            alt="sample07"
+          />
         </div>
         <div style="text-align: center">여러장일 경우 슬라이드</div>
       </div>
       <div class="my-feed-items">
         <span>
-          <img class="my-feed-icons" src="@/assets/icons/myfeed/like-icons.svg" alt="like-icons" />
+          <img
+            class="my-feed-icons"
+            src="@/assets/icons/myfeed/like-icons.svg"
+            alt="like-icons"
+          />
         </span>
         <span>
-          <img class="my-feed-icons my-feed-message" src="@/assets/icons/myfeed/message.svg" alt="message" />
+          <img
+            class="my-feed-icons my-feed-message"
+            src="@/assets/icons/myfeed/message.svg"
+            alt="message"
+          />
         </span>
       </div>
       <div class="like-count-wrapper my-feed-items">
@@ -38,31 +53,37 @@
         <span>
           <img src="@/assets/icons/default.svg" class="my-feed-my" alt="my" />
         </span>
-        <input type="text" class="my-feed-comment" placeholder="댓글을 입력하세요..." />
+        <input
+          type="text"
+          class="my-feed-comment"
+          placeholder="댓글을 입력하세요..."
+        />
         <button class="my-feed-comment-postingBtn">게시</button>
       </div>
     </div>
     <button @click="test">TEST</button>
 
     <transition name="fade">
-      <FullScreenModalComponent
-          :showModal="showModal"
-          @modalClose="modalClose"
-          @backgroundFixed="backgroundFixed"
+      <feed-modal
+        :showModal="showModal"
+        @modalClose="modalClose"
+        @backgroundFixed="backgroundFixed"
       />
     </transition>
-
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import FullScreenModalComponent from "@/components/common/utils/modal/FullScreenModalComponent.vue";
+import FeedModal from "@/components/common/utils/modal/FeedModal.vue";
+
 @Component({
-  components: {FullScreenModalComponent}
+  components: {
+    FeedModal,
+  },
 })
 export default class FeedComponent extends Vue {
-  backgroundFixedCss = 'backgroundFixed';
+  backgroundFixedCss = "backgroundFixed";
   fixed = false;
   showModal = false;
 
@@ -77,7 +98,6 @@ export default class FeedComponent extends Vue {
   private backgroundFixed(type: boolean) {
     this.fixed = type;
   }
-
 }
 </script>
 
@@ -102,7 +122,8 @@ export default class FeedComponent extends Vue {
   margin: 3em auto auto auto;
 }
 
-.my-feed-profile, .my-feed-my {
+.my-feed-profile,
+.my-feed-my {
   width: 30px;
 }
 
@@ -112,7 +133,7 @@ export default class FeedComponent extends Vue {
 }
 
 .my-feed-comment-postingBtn {
-  color: #2E82FF;
+  color: #2e82ff;
   font-size: 12px;
 }
 .my-feed-comment {
@@ -153,7 +174,7 @@ export default class FeedComponent extends Vue {
   margin-left: 10px;
 }
 .like-count::after {
-  content: '개'
+  content: "개";
 }
 /* 하단 닉네임, 제목 */
 .my-feed-title {
@@ -167,7 +188,7 @@ export default class FeedComponent extends Vue {
 /* 마이피드 아이콘 */
 .my-feed-icons {
   width: 15px;
-  color: #9E9E9E;
+  color: #9e9e9e;
 }
 .my-feed-message {
   margin-left: 10px;

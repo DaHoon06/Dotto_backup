@@ -1,22 +1,36 @@
 <template>
-  <main id="register-container">
-    <section id="tab-wrapper">
-      <span>회원 가입</span>
+  <article id="register-container">
+    <section id="register-form-top-container">
+      <h1 class="register-title">회원가입</h1>
+      <progress-component :progress="progress" />
     </section>
 
-    <progress-component
-        :progress="progress"
-    />
+    <hr />
+
     <component
-        :is="dynamicComponent"
-        @changeComponent="changeComponent"
-        @redirectLoginView="redirectLoginView"
-        @prev="prev"
-        @closeModal="closeForm"
-        @redirectHome="redirectHome"
+      :is="dynamicComponent"
+      @changeComponent="changeComponent"
+      @redirectLoginView="redirectLoginView"
+      @prev="prev"
+      @closeModal="closeForm"
+      @redirectHome="redirectHome"
     />
 
-  </main>
+    <section id="register-btn-container">
+      <register-button
+        :button-label="'1'"
+        :button-type="buttonType"
+        @redirectLoginForm="redirectLoginView"
+        @closeModal="closeForm"
+        @changeComponent="changeComponent"
+      />
+      <register-button
+        :button-label="'2'"
+        :button-type="buttonType"
+        @changeComponent="changeComponent"
+      />
+    </section>
+  </article>
 </template>
 
 <script lang="ts">
@@ -24,23 +38,23 @@ import { Component, Emit, Vue } from "vue-property-decorator";
 import RegisterComponent from "@/components/member/RegisterComponent.vue";
 import CompletedComponent from "@/components/member/CompletedComponent.vue";
 import PolicyComponent from "@/components/member/PolicyComponent.vue";
-import {
-  FooterComponent,
-  MenuButton
-} from "@/components/common";
+import { FooterComponent, MenuButton } from "@/components/common";
 import ProgressComponent from "@/components/member/ProgressComponent.vue";
+import RegisterButton from "@/components/member/RegisterButton.vue";
 
 @Component({
   components: {
     RegisterComponent,
     FooterComponent,
     MenuButton,
-    ProgressComponent
-  }
+    ProgressComponent,
+    RegisterButton,
+  },
 })
 export default class RegisterView extends Vue {
-  type = 'PolicyComponent';
+  type = "PolicyComponent";
   progress = 1;
+  buttonType = "policy";
 
   private changeComponent(componentType: string): void {
     this.type = componentType;
@@ -49,56 +63,60 @@ export default class RegisterView extends Vue {
     this.type = componentType;
   }
 
-
-  @Emit('closeModal')
+  @Emit("closeModal")
   private closeForm() {
-    return true
+    return true;
   }
 
-  @Emit('redirectLoginView')
+  @Emit("redirectLoginView")
   private redirectLoginView(LOGIN: string): string {
     return LOGIN;
   }
-  @Emit('redirectHome')
+  @Emit("redirectHome")
   private redirectHome(HOME: string): string {
     return HOME;
   }
 
   private get dynamicComponent() {
     switch (this.type) {
-      case 'PolicyComponent':
+      case "PolicyComponent":
+        this.buttonType = "policy";
         this.progress = 1;
         return PolicyComponent;
-      case 'RegisterComponent':
+      case "RegisterComponent":
+        this.buttonType = "register";
         this.progress = 2;
         return RegisterComponent;
-      case 'CompletedComponent':
+      case "CompletedComponent":
+        this.buttonType = "completed";
         this.progress = 3;
         return CompletedComponent;
     }
   }
-
 }
 </script>
 
 <style scoped>
-
-#register-container {
-  margin:auto;
-  height: 100%;
-
+hr {
+  border: 1px solid #e2e2e2;
 }
-#tab-wrapper {
+#register-container {
+  margin: auto;
+  height: 100%;
+}
+#register-form-top-container {
   display: flex;
-  margin-bottom: 3em;
-  padding-bottom: 10px;
-  justify-content: flex-start;
+  margin: 24px 32px;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 #tab-wrapper span {
   margin-left: 0.5em;
   text-shadow: 1px 1px 1px #c9c9c9;
 }
-
+.register-title {
+  font-size: 20px;
+}
 .register-tabs span {
   color: #eeeeee;
 }
@@ -112,4 +130,8 @@ export default class RegisterView extends Vue {
   color: #606060 !important;
 }
 
+#register-btn-container {
+  width: 100%;
+  max-height: 100px;
+}
 </style>

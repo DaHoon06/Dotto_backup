@@ -1,17 +1,20 @@
 <template>
-  <section >
+  <article>
     <router-link to="/dotto/board/post">
-      <img id='posting-btn-img' src="@/assets/icons/board/dotto/plus.png" alt="posting" />
+      <img
+        id="posting-btn-img"
+        src="@/assets/icons/board/dotto/plus.png"
+        alt="posting"
+      />
     </router-link>
-  </section>
+  </article>
 </template>
 
 <script lang="ts">
-import { Component,Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class DottoPostingButton extends Vue {
-}
+export default class DottoPostingButton extends Vue {}
 </script>
 
 <style scoped>

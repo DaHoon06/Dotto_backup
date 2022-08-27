@@ -1,46 +1,38 @@
 <template>
-  <section id="progress-container">
-    <div class="progress-items-wrapper">
-      <span
-          class="progress-items"
-          :class="progress === 1 ? 'active-progress' : ''">1</span>
-      <span
-          class="progress-items-title"
-          :class="progress === 1 ? 'active-progress-title' : ''"
-      >약관동의</span>
-    </div>
-    <div class="progress-items-dot-wrapper">
+  <article id="progress-container">
+    <section class="progress-items-wrapper">
+      <h1
+        class="progress-items-title"
+        :class="progress === 1 ? 'active-progress-title' : ''"
+      >
+        약관동의
+      </h1>
+    </section>
+
+    <section class="progress-items-dot-wrapper">
       <span class="progress-items-dot"></span>
-    </div>
-    <div class="progress-items-dot-wrapper">
+    </section>
+    <section class="progress-items-wrapper">
+      <h1
+        class="progress-items-title"
+        :class="progress === 2 ? 'active-progress-title' : ''"
+      >
+        본인인증
+      </h1>
+    </section>
+
+    <section class="progress-items-dot-wrapper">
       <span class="progress-items-dot"></span>
-    </div>
-    <div class="progress-items-wrapper">
-      <span
-          class="progress-items"
-          :class="progress === 2 ? 'active-progress' : ''">2</span>
-      <span
-          class="progress-items-title"
-          :class="progress === 2 ? 'active-progress-title' : ''"
-      >본인인증</span>
-    </div>
-    <div class="progress-items-dot-wrapper">
-      <span class="progress-items-dot"></span>
-    </div>
-    <div class="progress-items-dot-wrapper">
-      <span class="progress-items-dot"></span>
-    </div>
-    <div class="progress-items-wrapper">
-      <span
-          class="progress-items"
-          :class="progress === 3 ? 'active-progress' : ''">3</span>
-      <span
-          class="progress-items-title"
-          :class="progress === 3 ? 'active-progress-title' : ''"
-      >가입완료
-      </span>
-    </div>
-  </section>
+    </section>
+    <section class="progress-items-wrapper">
+      <h1
+        class="progress-items-title"
+        :class="progress === 3 ? 'active-progress-title' : ''"
+      >
+        가입완료
+      </h1>
+    </section>
+  </article>
 </template>
 
 <script lang="ts">
@@ -49,7 +41,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class ProgressComponent extends Vue {
   @Prop() private progress?: number;
-
 }
 </script>
 
@@ -63,39 +54,28 @@ export default class ProgressComponent extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
 }
 
-.progress-items {
-  color: #919191;
-  font-size: 12px;
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #E2E2E2;
-  border-radius: 30px;
-  padding-top: 10px;
-}
 .progress-items-title {
-  color: #919191;
-  font-size: 12px;
+  color: #bdbdbd;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .progress-items-dot-wrapper {
-  margin: 4px 4px 0 4px;
+  margin: 8px 8px 0 8px;
 }
 .progress-items-dot {
   display: inline-block;
   width: 4px;
   height: 4px;
-  background: #E2E2E2;
+  background: #e2e2e2;
   border-radius: 30px;
-}
-.active-progress {
-  background: #222222;
-  color: #FFFFFF;
 }
 
 .active-progress-title {
   color: #222222;
+  font-weight: bold;
 }
 </style>

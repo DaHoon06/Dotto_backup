@@ -1,69 +1,69 @@
 <template>
-  <section id="navBar-container" >
-
+  <article id="nav-bar-container">
     <article>
       <ul>
-        <li id="menu-button-container">
-          <button>
-            <img class="menu-icon" src="@/assets/icons/nav/menu.png" alt="menu"  />
-          </button>
-        </li>
         <li>
-          <span>
-            <a href="/"><img id="logo" src="@/assets/img/dotto.svg" alt="logo" /></a>
-          </span>
+          <router-link to="/"
+            ><img id="logo" src="@/assets/img/dotto.svg" alt="logo"
+          /></router-link>
         </li>
       </ul>
     </article>
 
     <article id="search-container">
-      <input type="text" placeholder="Search" @click="searchLists" id="navigation-search-bar" />
-      <button id="search-btn" >
-        <img class="side-menu-drop-btn" src="@/assets/icons/nav/search.svg" alt="search" />
+      <input
+        type="text"
+        placeholder="Search"
+        @click="searchLists"
+        @keypress.enter="search"
+        id="navigation-search-bar"
+        v-model="keyword"
+      />
+      <button id="search-btn" @click="search">
+        <img
+          class="side-menu-drop-btn"
+          src="@/assets/icons/nav/search.svg"
+          alt="search"
+        />
       </button>
 
       <transition name="fade">
-        <article v-show="showSearchList" id="search-list">
-          <div id="search-list-wrapper">
+        <section v-show="showSearchList" id="search-list">
+          <section id="search-list-wrapper">
             <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
             <ul>
-              <li>
-              </li>
+              <li></li>
             </ul>
-          </div>
-          <div id="outer" @click="closeSearchList"/>
-        </article>
+          </section>
+          <section id="outer" @click="closeSearchList" />
+        </section>
       </transition>
     </article>
 
     <article class="close-search-list-none" v-if="!showSearchList"></article>
-    <article v-else>
-      <div class="close-search-list" >
-        <button @click="closeSearchList">
-          <img src="@/assets/icons/nav/close.png" id="close-img" alt="close" />
-        </button>
-      </div>
+    <article class="close-search-list" v-else>
+      <button @click="closeSearchList">
+        <img src="@/assets/icons/nav/close.png" id="close-img" alt="close" />
+      </button>
     </article>
-
-  </section>
+  </article>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
 import LoginView from "@/views/LoginView.vue";
-import ModalComponent from "@/components/common/utils/modal/ModalComponent.vue";
 
 @Component({
   components: {
-    ModalComponent,
     LoginView,
-  }
+  },
 })
 export default class HeaderComponent extends Vue {
   showSearchList = false;
-  modalType = '';
+  modalType = "";
   showMessage = false;
   showMyMenu = false;
+  keyword = "";
 
   constructor() {
     super();
@@ -71,29 +71,32 @@ export default class HeaderComponent extends Vue {
 
   private closeSearchList() {
     this.showSearchList = !this.showSearchList;
-    this.$emit('blurBackground', false);
+    this.$common.scrollHidden(this.showSearchList);
+    this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
+    this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
-  private logout(): void {
-    console.log('logout')
-  }
-
-  @Emit('blurBackground')
-  private searchLists() {
+  private searchLists(): void {
     this.showSearchList = !this.showSearchList;
-    return this.showSearchList
+    this.$common.scrollHidden(this.showSearchList);
+    this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
+    this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
-  @Emit('notScroll')
+  private async search() {
+    const { data } = await this.axios.get(`/search/${this.keyword}`);
+    console.log(data);
+  }
+
+  @Emit("notScroll")
   private notScrollBody() {
     return true;
   }
-
 }
 </script>
 
 <style scoped>
-#navBar-container {
+#nav-bar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,7 +134,7 @@ export default class HeaderComponent extends Vue {
   height: 100%;
   border: 1px solid #ececec;
   outline: none;
-  background: #F5F5F5;
+  background: #f5f5f5;
   padding-left: 10px;
   padding-right: 10px;
   font-size: 18px;
@@ -148,13 +151,13 @@ export default class HeaderComponent extends Vue {
   display: inline-block;
   width: 100vw;
   height: 30vh;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 #outer {
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3)
+  background: rgba(0, 0, 0, 0.3);
 }
 #search-btn {
   position: relative;
@@ -184,8 +187,25 @@ hr {
 a:hover {
   color: #8d8d8d;
   font-weight: 700;
-
 }
 
-
+/* 테블릿 대응 */
+@media screen and (max-width: 1023px) {
+}
+/* 모바일 대응 */
+@media screen and (max-width: 767px) {
+  ul {
+    padding: 0;
+  }
+  #nav-bar-container {
+    margin-top: 0;
+  }
+  #logo {
+    margin-left: 15px;
+    width: 85px;
+  }
+  #search-container {
+    display: none;
+  }
+}
 </style>

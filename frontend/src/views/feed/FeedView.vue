@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <router-view />
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -9,19 +9,15 @@ import { Component, Emit, Vue } from "vue-property-decorator";
 
 @Component
 export default class FeedView extends Vue {
-
   created(): void {
     this.changeNavType();
   }
 
-  @Emit('changeNavType')
+  @Emit("changeNavType")
   private changeNavType(): string {
-    return 'feed';
+    return "feed";
   }
-
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

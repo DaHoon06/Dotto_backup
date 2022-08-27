@@ -1,105 +1,100 @@
 <template>
-  <div id="main-home-container">
-    <section>
-      <main-banner-component />
-    </section>
+  <main id="main-home-container">
+    <main-banner class="banner" />
 
-    <main id="main-wrapper" >
-
-      <section id="home-dotto-wrapper" >
-        <div class="main-component-wrapper">
-          <div class="main-items-wrapper">
-            <h5>닷투 게시판</h5>
-            <small>타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small>
-          </div>
-          <div>
-            <router-link
-                to="/dotto/board/index"
-                class="show-all-lists"
-            >전체보기
-              <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
+    <article id="main-wrapper">
+      <article id="home-dotto-container">
+        <article class="main-component-wrapper">
+          <section class="main-items-wrapper">
+            <h1 class="main-items-title">닷투 게시판</h1>
+            <small class="main-items-sub-title"
+              >타투이스트가 올린 다양한 작품 중 내 취향을 찾아보세요!</small
+            >
+          </section>
+          <section>
+            <router-link to="/dotto/board/index" class="show-all-lists"
+              >전체보기
+              <img
+                src="@/assets/icons/main/redirect-arrow.png"
+                class="redirect-arrow"
+                alt="dotto-board"
+              />
             </router-link>
-          </div>
-        </div>
-        <dotto-component
-            :limit="limit"
-        />
-      </section>
+          </section>
+        </article>
+        <dotto-component :limit="limit" :infinite-scroll="false" />
+      </article>
 
-      <section id="home-seekers-wrapper" >
-        <div class="main-component-wrapper">
-          <div class="main-items-wrapper">
-            <h5>닷찾사 게시판</h5>
-            <small>내가 원하는 도안을 제시하고 타투이스트에게 답변 받아보세요!</small>
-          </div>
-          <div>
-            <router-link
-                to=""
-                class="show-all-lists"
-            >전체보기
-              <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
+      <article id="home-seekers-wrapper">
+        <article class="main-component-wrapper">
+          <section class="main-items-wrapper">
+            <h1 class="main-items-title">닷찾사 게시판</h1>
+            <small class="main-items-sub-title"
+              >내가 원하는 도안을 제시하고 타투이스트에게 답변
+              받아보세요!</small
+            >
+          </section>
+          <section>
+            <router-link to="" class="show-all-lists"
+              >전체보기
+              <img
+                src="@/assets/icons/main/redirect-arrow.png"
+                class="redirect-arrow"
+                alt="dotto-board"
+              />
             </router-link>
-          </div>
-        </div>
+          </section>
+        </article>
         닷찾사 게시판 컴포넌트 위치 ( limit: 8개 )
-      </section>
+      </article>
 
-      <section id="home-feed-wrapper" >
-        <div class="main-component-wrapper">
-          <div class="main-items-wrapper">
-            <h5>FEED</h5>
-            <small>자유롭게 이야기를 나눠요!</small>
-          </div>
-          <div>
-            <router-link
-                to=""
-                class="show-all-lists"
-            >전체보기
-              <img src="@/assets/icons/main/redirect-arrow.png" class="redirect-arrow" alt="dotto-board" />
+      <article id="home-feed-container">
+        <article class="main-component-wrapper">
+          <section class="main-items-wrapper">
+            <h1 class="main-items-title">FEED</h1>
+            <small class="main-items-sub-title">자유롭게 이야기를 나눠요!</small>
+          </section>
+          <section>
+            <router-link to="" class="show-all-lists"
+              >전체보기
+              <img
+                src="@/assets/icons/main/redirect-arrow.png"
+                class="redirect-arrow"
+                alt="dotto-board"
+              />
             </router-link>
-          </div>
-        </div>
+          </section>
+        </article>
         FEED 게시판 컴포넌트 위치 ( limit: 8개 )
-      </section>
+      </article>
+    </article>
 
-    </main>
-
-    <aside id="side-button-container">
-      <top-scroll-button />
-    </aside>
-
-  </div>
+    <top-scroll-button />
+  </main>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import {
-  FooterComponent,
-  MenuButton,
-  TopScrollButton,
-} from "@/components/common";
-import FollowListComponent from "@/components/main/FollowListComponent.vue";
-import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
+import { MenuButton, TopScrollButton } from "@/components/common";
+import FollowList from "@/components/main/FollowList.vue";
+import MainBanner from "@/components/main/MainBanner.vue";
 import { DottoComponent } from "@/components/dotto";
 
 @Component({
   components: {
-    MainBannerComponent,
-    FollowListComponent,
+    MainBanner,
+    FollowList,
     TopScrollButton,
-    FooterComponent,
     MenuButton,
-    DottoComponent
-  }
+    DottoComponent,
+  },
 })
 export default class MainView extends Vue {
   limit = 8;
   //TODO: 3가지 항목 변수 및 인터페이스 정의
 
-
-  created() {
+  created(): void {
     this.changeNavType();
-    this.init();
   }
 
   private init() {
@@ -108,30 +103,11 @@ export default class MainView extends Vue {
        2. 닷찻사 게시판 리스트 불러오기 limit 8
        3. FEED 리스트 불러오기 limit 8
     */
-    this.setData();
   }
 
-  private async setData(): Promise<void> {
-    await this.getDottoBoardData();
-    await this.getDottoSeekersData();
-    await this.getFeedData();
-  }
-
-  private async getDottoBoardData(): Promise<void> {
-    console.log('닷투');
-  }
-
-  private async getDottoSeekersData(): Promise<void> {
-    console.log('닷찾사');
-  }
-
-  private async getFeedData(): Promise<void> {
-    console.log('피드');
-  }
-
-  @Emit('changeNavType')
+  @Emit("changeNavType")
   private changeNavType(): string {
-    return 'home';
+    return "home";
   }
 }
 </script>
@@ -150,31 +126,35 @@ small {
   margin-top: 144px;
 }
 
+#home-dotto-container {
+  max-width: 1200px;
+  width: 100%;
+}
+
 #main-wrapper {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto 10em auto;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-evenly;*/
 }
-#home-dotto-wrapper {
-  max-width: 1200px;
-  width: 100%;
-}
-
 .main-component-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 15px 15px;
 }
 
 .main-items-wrapper {
   display: flex;
   align-items: center;
 }
-
+.main-items-title {
+  font-weight: 600;
+  font-size: 14px;
+}
 .show-all-lists {
   color: #222222;
   font-weight: bold;
@@ -188,23 +168,38 @@ small {
   height: 5px;
 }
 
-/* side button */
-#side-button-container {
-  position: fixed;
-  top: 50%;
-  right: 48px;
+/* 테블릿 대응 */
+@media screen and (max-width: 1023px) {
 }
-
-@media screen and (max-width: 1260px){
-  #navigation-container {
+/* 모바일 대응 */
+@media screen and (max-width: 767px) {
+  #main-home-container {
+    margin-top: 60px;
+  }
+  /* 배너 삭제 */
+  .banner {
     display: none;
   }
+
+  .main-component-wrapper {
+    background: #222222;
+    color: #F5F5F5;
+    margin: 0;
+    padding: 5px 10px;
+  }
+  /* 각 행 라벨 */
+  .main-items-title {
+    width: 100%;
+  }
+  /* 부제목 */
+  .main-items-sub-title {
+    display: none;
+  }
+
+  /* 전체보기 */
+  .show-all-lists {
+    color: #F5F5F5;
+    font-size: 12px;
+  }
 }
-
-@media screen and (max-width: 500px){
-
-
-
-}
-
 </style>

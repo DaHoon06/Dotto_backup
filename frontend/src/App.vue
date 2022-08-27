@@ -1,13 +1,14 @@
 <template>
-  <div id="app" :class='`${scrollPrevent}`'>
+  <div id="app">
     <header-view
-        @notScrollBody="notScrollBody"
-        :navigationType="navigationTypeComputed"
+      :navigationType="navigationTypeComputed"
+      :class="topHide ? 'hide' : ''"
     />
     <router-view
-        :class='`${BLUR} ${SCROLL}`'
-        @changeNavType="changeNavType" />
-    <footer-component :class='`${BLUR} ${SCROLL}`' />
+      :class="[Blur ? 'setBlur' : '']"
+      @changeNavType="changeNavType"
+    />
+    <footer-component />
   </div>
 </template>
 
@@ -15,25 +16,42 @@
 import { Component, Vue } from "vue-property-decorator";
 import HeaderView from "@/views/HeaderView.vue";
 import { FooterComponent } from "@/components/common";
-import { BLUR, SCROLL } from "@/interfaces/common/ICommon";
+import EventBus from "@/utils/eventBus";
 
 @Component({
   components: {
     FooterComponent,
-    HeaderView
-  }
+    HeaderView,
+  },
 })
 export default class App extends Vue {
-  blurCss = '';
-  scrollPrevent = this.$store.getters["utilsStore/SCROLL"];
-  navigationType = '';
+  blurCss = "";
+  navigationType = "";
 
-  BLUR = this.scrollPrevent ? this.blurCss = BLUR.ON : this.blurCss = BLUR.OFF
-  SCROLL = this.scrollPrevent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
+  changeTopMenu = false;
 
-  private notScrollBody(scrollEvent: boolean) {
-    scrollEvent ? this.scrollPrevent = SCROLL.OFF : this.scrollPrevent = SCROLL.ON;
+  created(): void {
+    this.kakaoInit();
+    this.eventListener();
   }
+  private get topHide() {
+    return this.changeTopMenu;
+  }
+  private set topHide(type: boolean) {
+    this.changeTopMenu = type;
+  }
+  // EventBus Listen
+  private eventListener(): void {
+    // 상단 네비게이션 메뉴 변경
+    EventBus.$on("topMenuHide", (payload: boolean) => {
+      this.topHide = payload;
+    });
+  }
+
+  private kakaoInit(): void {
+    window.Kakao.init(process.env.VUE_APP_KAKAO_KEY);
+  }
+
   private changeNavType(type: string): void {
     this.navigationTypeComputed = type;
   }
@@ -45,24 +63,20 @@ export default class App extends Vue {
     return this.navigationType;
   }
 
+  private get Blur() {
+    return (this.blurCss = this.$store.getters["cssStore/BLUR"]);
+  }
 }
 </script>
 
 <style>
-
 /* 아래 항목 : 이벤트에 따른 CSS 적용 */
 .setBlur {
   filter: blur(4px);
   width: 100%;
 }
-.notScroll {
-  position: fixed;
-  width: 100%;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.notScroll::-webkit-scrollbar {
-  display: none;
-  width: 0 !important;
+
+.hide {
+  display: none !important;
 }
 </style>

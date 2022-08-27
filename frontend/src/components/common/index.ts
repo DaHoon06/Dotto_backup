@@ -1,13 +1,7 @@
-import SearchFilterComponent from "@/components/common/SearchFilterComponent.vue";
-import SortComponent from "@/components/common/SortComponent.vue";
+import SideFilter from "@/components/common/SideFilter.vue";
+import SortButton from "@/components/common/utils/button/SortButton.vue";
 import FooterComponent from "@/components/common/FooterComponent.vue";
-import TopScrollButton from "@/components/common/utils/TopScrollButton.vue";
-import MenuButton from "@/components/common/MenuButton.vue";
+import TopScrollButton from "@/components/common/utils/button/TopScrollButton.vue";
+import MenuButton from "@/components/common/top/MenuButton.vue";
 
-export {
-    SearchFilterComponent,
-    SortComponent,
-    FooterComponent,
-    TopScrollButton,
-    MenuButton
-}
+export { SideFilter, SortButton, FooterComponent, TopScrollButton, MenuButton };

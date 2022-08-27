@@ -1,40 +1,40 @@
 <template>
-  <div id="my-feed-view-container">
-    <section id="my-information-wrapper" >
-      <my-information-component />
-    </section>
-
-    <section id="my-follow-wrapper" >
-      <my-follow-component />
-    </section>
+  <article id="my-feed-view-container">
+    <my-information-component />
 
     <section id="my-category">
       <ul>
-        <li @click="changeType('MyFeed')" :class="{ 'currentPage' : myTabsComputed === 'MyFeed' }">마이피드</li>
-        <li @click="changeType('MyLikes')" :class="{ 'currentPage' : myTabsComputed === 'MyLikes' }">좋아요</li>
+        <li
+          @click="changeType('MyFeed')"
+          :class="{ currentPage: myTabsComputed === 'MyFeed' }"
+        >
+          마이피드
+        </li>
+        <li
+          @click="changeType('MyLikes')"
+          :class="{ currentPage: myTabsComputed === 'MyLikes' }"
+        >
+          좋아요
+        </li>
       </ul>
     </section>
 
     <section id="my-tabs-area">
-      <component
-          :is="dynamicView" />
+      <component :is="dynamicView" />
     </section>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import MainComponent from "@/components/MainComponent.vue";
-import {
-  FooterComponent,
-  MenuButton
-} from "@/components/common";
-import FollowListComponent from "@/components/main/FollowListComponent.vue";
-import MainBannerComponent from "@/components/main/MainBannerComponent.vue";
-import MyInformationComponent from "@/components/my/MyInformationComponent.vue";
-import MyFollowComponent from "@/components/my/MyFollowComponent.vue";
-import MyFeedComponent from "@/components/my/tabs/MyFeedComponent.vue";
-import MyLikeListsComponent from "@/components/my/tabs/MyLikeListsComponent.vue";
+import { FooterComponent, MenuButton } from "@/components/common";
+import FollowListComponent from "@/components/main/FollowList.vue";
+import MainBannerComponent from "@/components/main/MainBanner.vue";
+import MyInformationComponent from "@/components/my/MyInformation.vue";
+import MyFollowComponent from "@/components/my/MyFollow.vue";
+import MyFeedComponent from "@/components/my/tabs/MyFeed.vue";
+import MyLikeListsComponent from "@/components/my/tabs/MyLikeLists.vue";
 
 @Component({
   components: {
@@ -44,11 +44,11 @@ import MyLikeListsComponent from "@/components/my/tabs/MyLikeListsComponent.vue"
     FollowListComponent,
     FooterComponent,
     MainComponent,
-    MenuButton
-  }
+    MenuButton,
+  },
 })
 export default class MyView extends Vue {
-  type = 'MyFeed';
+  type = "MyFeed";
 
   private changeType(type: string) {
     this.myTabsComputed = type;
@@ -64,14 +64,12 @@ export default class MyView extends Vue {
 
   private get dynamicView() {
     switch (this.myTabsComputed) {
-      case 'MyFeed':
+      case "MyFeed":
         return MyFeedComponent;
-      case 'MyLikes':
+      case "MyLikes":
         return MyLikeListsComponent;
     }
   }
-
-
 }
 </script>
 
@@ -83,10 +81,6 @@ export default class MyView extends Vue {
 #my-information-wrapper {
   margin: 10em auto 4em auto;
   width: 50vw;
-}
-#my-follow-wrapper {
-  width: 50vw;
-  margin: auto;
 }
 
 #my-category {
@@ -108,7 +102,7 @@ export default class MyView extends Vue {
   border-bottom: 2px solid gray;
 }
 #my-tabs-area {
-  border-top: 1px solid #E2E2E2;
+  border-top: 1px solid #e2e2e2;
   background: #f6f6f6;
 }
 
@@ -116,7 +110,6 @@ export default class MyView extends Vue {
   font-weight: 700;
   color: #d5d5d5 !important;
   padding-bottom: 10px;
-  border-bottom: 1px solid #E2E2E2;
+  border-bottom: 1px solid #e2e2e2;
 }
-
 </style>
