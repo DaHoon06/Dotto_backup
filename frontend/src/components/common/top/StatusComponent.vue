@@ -100,40 +100,21 @@
         </section>
       </article>
     </article>
-
-    <main-modal
-      :modalType="modalType"
-      @modalType="modalType"
-      @closeModal="closeModal"
-    />
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Vue } from "vue-property-decorator";
-import MainModal from "@/components/common/utils/modal/MainModal.vue";
 import { MODAL } from "@/interfaces/common/ICommon";
 
 @Component({
   components: {
-    MainModal,
   },
 })
 export default class StatusComponent extends Vue {
   showSearchList = false;
-  modalType = "";
   showMessage = false;
   showMyMenu = false;
-
-  constructor() {
-    super();
-  }
-
-  private closeModal(payload: boolean) {
-    this.$store.commit("utilsStore/showModal", payload);
-    this.$common.scrollHidden(payload);
-    this.modalType = MODAL.INIT;
-  }
 
   private showLoginView() {
     this.modalType = MODAL.LOGIN;

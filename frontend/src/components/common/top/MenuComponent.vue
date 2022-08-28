@@ -1,9 +1,9 @@
 <template>
   <nav class="menu-list-container">
     <section>
-      <router-link to="/login">
+      <a>
         <h1 class="menu-list-items" @click="closeMenu">로그인</h1>
-      </router-link>
+      </a>
     </section>
     <section>
       <h1 class="menu-title">My</h1>
@@ -62,6 +62,8 @@ import { Component, Emit, Vue } from "vue-property-decorator";
 export default class MenuComponent extends Vue {
   @Emit("closeMenu")
   closeMenu(): boolean {
+    this.$common.scrollHidden(true);
+    this.$store.commit("utilsStore/showModal", true);
     return false;
   }
 }

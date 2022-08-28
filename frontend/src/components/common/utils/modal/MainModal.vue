@@ -122,8 +122,8 @@ export default class ModalComponent extends Vue {
   max-width: 600px;
   min-height: 700px;
   max-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 50%;
   padding: 30px;
   text-align: center;
   background-color: rgb(255, 255, 255);
@@ -136,9 +136,16 @@ export default class ModalComponent extends Vue {
   padding: 0;
 }
 
-@media (max-width: 1439px) {
+@media (max-width: 1023px) {
+
+}
+@media screen and (max-width: 767px) {
   .modal-body {
-    width: 70%;
+    max-width: none;
+    max-height:  none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
   }
 }
 </style>

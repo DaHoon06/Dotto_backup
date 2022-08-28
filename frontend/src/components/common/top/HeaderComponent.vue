@@ -73,14 +73,12 @@ export default class HeaderComponent extends Vue {
     this.showSearchList = !this.showSearchList;
     this.$common.scrollHidden(this.showSearchList);
     this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
-    this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
   private searchLists(): void {
     this.showSearchList = !this.showSearchList;
     this.$common.scrollHidden(this.showSearchList);
     this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
-    this.$store.commit("cssStore/scrollOn", this.showSearchList);
   }
 
   private async search() {
@@ -88,10 +86,7 @@ export default class HeaderComponent extends Vue {
     console.log(data);
   }
 
-  @Emit("notScroll")
-  private notScrollBody() {
-    return true;
-  }
+
 }
 </script>
 

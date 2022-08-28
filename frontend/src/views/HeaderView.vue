@@ -4,6 +4,11 @@
     <status-component />
     <navigation-component :navigationType="navigationType" />
 
+    <modal-component
+        :modalType="modalType"
+        @modalType="modalType"
+        @closeModal="closeModal"
+    />
     <menu-button id="menu-button" @showMenu="showMenu" />
     <transition>
       <menu-component
@@ -23,7 +28,8 @@ import NavigationComponent from "@/components/common/top/NavigationComponent.vue
 import StatusComponent from "@/components/common/top/StatusComponent.vue";
 import MenuComponent from "@/components/common/top/MenuComponent.vue";
 import EventBus from "@/utils/eventBus";
-
+import ModalComponent from "@/components/common/utils/modal/MainModal.vue";
+import {MODAL} from "@/interfaces/common/ICommon";
 @Component({
   components: {
     HeaderComponent,
@@ -31,11 +37,13 @@ import EventBus from "@/utils/eventBus";
     NavigationComponent,
     StatusComponent,
     MenuComponent,
+    ModalComponent
+
   },
 })
 export default class HeaderView extends Vue {
   @Prop({ default: "home" }) navigationType?: string;
-
+  modalType = '';
   menuList = false;
 
   //CSS 적용
@@ -58,6 +66,11 @@ export default class HeaderView extends Vue {
   // 메뉴 오픈 시에 맨 위로 버튼 가리기
   hideTopScrollButton(type: boolean): void {
     EventBus.$emit("topScrollButtonControl", !type);
+  }
+  private closeModal(payload: boolean) {
+    this.$store.commit("utilsStore/showModal", payload);
+    this.$common.scrollHidden(payload);
+    this.modalType = MODAL.INIT;
   }
 }
 </script>

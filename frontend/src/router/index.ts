@@ -17,12 +17,6 @@ const routes: Array<RouteConfig> = [
     meta: { unauthorized: true },
   },
   {
-    name: "login",
-    path: "/login",
-    component: () => import("@/views/LoginView.vue"),
-    meta: { unauthorized: true },
-  },
-  {
     path: "/401",
     name: "401",
     component: () => import("@/views/error/401.vue"),
