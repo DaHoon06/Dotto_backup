@@ -24,7 +24,7 @@ public class ApiParamAop {
 
         Object[] args = joinPoint.getArgs();
         for(Object obj : args){
-            log.info("AOP --- Request value " + obj);
+            log.info("AOP --- Request value :: " + obj);
         }
     }
 
