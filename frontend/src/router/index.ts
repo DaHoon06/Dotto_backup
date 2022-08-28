@@ -80,7 +80,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/search/result",
+    path: "/search/result/:keyword",
     name: "result",
     component: () => import("@/views/search/SearchResultView.vue"),
     meta: { unauthorized: true },

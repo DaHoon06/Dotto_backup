@@ -1,5 +1,5 @@
 <template>
-  <article class="right-side" v-show="scrollControl">
+  <article class="right-side" v-show="scrollControl && !this.isModal">
     <button id="go-top" class="right-side-btn" @click="scrollHandler">
       <img id="top" src="@/assets/icons/main/go-top.svg" alt="top" />
       <span>TOP</span>

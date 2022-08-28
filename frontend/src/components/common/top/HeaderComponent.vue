@@ -14,7 +14,7 @@
       <input
         type="text"
         placeholder="Search"
-        @click="searchLists"
+        @click="closeSearchList"
         @keypress.enter="search"
         id="navigation-search-bar"
         v-model="keyword"
@@ -28,7 +28,7 @@
       </button>
 
       <transition name="fade">
-        <section v-show="showSearchList" id="search-list">
+        <section v-show="showSearchList && !this.isModal" id="search-list">
           <section id="search-list-wrapper">
             <p id="empty-search-lists">검색된 검색어가 존재하지 않습니다.</p>
             <ul>
@@ -65,25 +65,27 @@ export default class HeaderComponent extends Vue {
   showMyMenu = false;
   keyword = "";
 
-  constructor() {
-    super();
-  }
-
   private closeSearchList() {
     this.showSearchList = !this.showSearchList;
     this.$common.scrollHidden(this.showSearchList);
     this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
   }
 
-  private searchLists(): void {
-    this.showSearchList = !this.showSearchList;
-    this.$common.scrollHidden(this.showSearchList);
-    this.$store.commit("cssStore/backgroundBlur", this.showSearchList);
-  }
-
-  private async search() {
-    const { data } = await this.axios.get(`/search/${this.keyword}`);
-    console.log(data);
+  private search() {
+    this.closeSearchList();
+    const { path } = this.$router.currentRoute;
+    if (path !== `/search/result/${this.keyword}`) {
+      this.$router.push({
+        path: `/search/result/${this.keyword}`,
+      });
+    }
+    // if (path.includes(`/search/result`)) {
+    //
+    // } else {
+    //   this.$router.push({
+    //     path: `/search/result/${this.keyword}`,
+    //   });
+    // }
   }
 
 

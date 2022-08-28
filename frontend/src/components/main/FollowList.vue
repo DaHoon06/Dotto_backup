@@ -1,116 +1,62 @@
 <template>
-  <section class="follow-list-container">
-    <div v-if="showList">
-      <article>
-        <span class="follow-artist-title">{{
-          memberType === "artist" ? "아티스트" : "회원"
-        }}</span>
-      </article>
-      <article id="follow-artist-area">
-        <div class="follow-artist-list">
+  <article class="follow-list-container">
+    <section v-if="showList">
+      <p>
+        <label class="follow-artist-title">{{
+            memberType === "artist" ? "아티스트" : "회원"
+        }}</label>
+      </p>
+      <section id="follow-artist-area" v-if="this.userList.length">
+        <div class="follow-artist-list" v-for="(user, index) of userList" :key="index">
           <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
+              class="follow-artist-list"
+              src="@/assets/icons/main/sample/sample-follow-artist.png"
+              alt="sample1"
           />
-          <span class="follow-artist-nickname">닉네임</span>
+          <span class="follow-artist-nickname">{{ user.nickname }}</span>
         </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
-          <img
-            class="follow-artist-list"
-            src="@/assets/icons/main/sample/sample-follow-artist.png"
-            alt="sample1"
-          />
-          <span class="follow-artist-nickname">닉네임</span>
-        </div>
-        <div class="follow-artist-list">
+        {{memberProps}}
+        <section class="follow-artist-list">
           <button class="follow-more">+</button>
           <span class="follow-artist-nickname">MORE</span>
-        </div>
-      </article>
-    </div>
-    <div v-else id="follow-artist-scroll">
+        </section>
+      </section>
+      <section v-else>
+        <p class="text-center">검색 결과가 존재하지 않습니다.</p>
+      </section>
+    </section>
+    <section v-else id="follow-artist-scroll">
       <div class="follow-artist-list">
         <button class="follow-more">+</button>
       </div>
-    </div>
-  </section>
+    </section>
+  </article>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
+export interface UserListsData {
+  src?: string,
+  nickname?: string,
+  originName?: string,
+}
+
 @Component
 export default class FollowListComponent extends Vue {
   @Prop({ default: "" }) memberType?: string;
+  @Prop() memberProps?: UserListsData[];
+
   showList = true;
   lastScrollPosition = 0;
   scrollValue = 0;
   OFFSET = 200;
+
+  userList: UserListsData[] = [];
+
+  created() {
+    if (this.memberProps?.length) this.userList = this.memberProps;
+  }
 
   mounted(): void {
     this.lastScrollPosition = window.pageXOffset;

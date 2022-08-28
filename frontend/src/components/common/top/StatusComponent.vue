@@ -115,6 +115,7 @@ export default class StatusComponent extends Vue {
   showSearchList = false;
   showMessage = false;
   showMyMenu = false;
+  modalType = '';
 
   private showLoginView() {
     this.modalType = MODAL.LOGIN;
