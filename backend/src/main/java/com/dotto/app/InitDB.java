@@ -6,6 +6,7 @@ import com.dotto.app.entity.member.RoleType;
 import com.dotto.app.entity.policy.Policy;
 import com.dotto.app.entity.post.DottoPost;
 import com.dotto.app.entity.post.Feed;
+import com.dotto.app.entity.post.Image;
 import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.exception.RoleNotFoundException;
 import com.dotto.app.repository.member.MemberRepository;
@@ -91,20 +92,23 @@ public class InitDB {
 
         dottoPostRepository.saveAll(
                 List.of(new DottoPost(memberRepository.findById("member1").orElseThrow(MemberNotFoundException::new),
-                                "title1","content1","10000","9000","Y","블랙엔그레이","30",tags,"10%", List.of()),
+                                "title1","content1","10000","9000","Y","블랙엔그레이","30",tags,"10%", List.of(new Image("test1.jpeg"))),
                         new DottoPost(memberRepository.findById("member2").orElseThrow(MemberNotFoundException::new),
-                                "title2","content2","20000", "18000", "N","올드스쿨","180",tags,"",List.of()),
+                                "title2","content2","20000", "18000", "N","올드스쿨","180",tags,"",List.of(new Image("test2-1.jpeg"), new Image("test2-2.jpg"))),
                         new DottoPost(memberRepository.findById("member3").orElseThrow(MemberNotFoundException::new),
-                                "title3","content3","30000","27000","N","이레즈미","270","","",List.of())
+                                "title3","content3","30000","27000","N","이레즈미","270","","",List.of(new Image("test3-1.jpeg"), new Image("test3-2.jpg"), new Image("test3-3.png")))
 
-                        )
-                );
+                )
+
+        );
+
 
         //dummy post
         IntStream.range(0, 24)
                 .forEach(i-> dottoPostRepository.save(
                         new DottoPost(memberRepository.findById("member10"+i).orElseThrow(MemberNotFoundException::new),
-                                "title10"+i,"content10"+i, "10000","9000","Y","레터링", "111", "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of())));
+                                "title10"+i,"content10"+i, "10000","9000","Y","레터링", "111", "멋져"+i+", 훈남"+i+", 최고"+i,"10%", List.of(new Image("dummy"+i+".jpg"
+                                )))));
     };
 
     private void initFeed(){
@@ -116,9 +120,9 @@ public class InitDB {
     }
 
     private void initPolicy() throws IOException {
-        String dottoPolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/dottoPolicyContent.txt");
-        String marketingPolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/marketingPolicyContent.txt");
-        String privatePolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/privatePolicyContent.txt");
+        String dottoPolicyContent = readFileAsString("/intellij/Dotto/backend/src/main/resources/policy/dottoPolicyContent.txt");
+        String marketingPolicyContent = readFileAsString("/intellij/Dotto/backend/src/main/resources/policy/marketingPolicyContent.txt");
+        String privatePolicyContent = readFileAsString("/intellij/Dotto/backend/src/main/resources/policy/privatePolicyContent.txt");
 
         policyRepository.save(new Policy(dottoPolicyContent, privatePolicyContent, marketingPolicyContent));
 
