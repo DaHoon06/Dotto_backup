@@ -13,7 +13,7 @@ public class Policy extends EntityDate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long termsNo;
+    private Long policyNo;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)

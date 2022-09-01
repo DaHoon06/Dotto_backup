@@ -55,12 +55,12 @@ public class Member extends EntityDate {
     @Column
     private String deletedYn;
 
-    @OneToOne(mappedBy = "member",fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
-    @JoinColumn(name = "imgNo")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JoinColumn(name = "memberNo")
     private ProfileImage profileImage;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "policyAgreeNo")
+    @JoinColumn(name = "memberNo")
     private PolicyAgree policyAgree;
 
     @OneToMany(mappedBy = "following")
