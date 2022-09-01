@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "PolicyAgree Controller", tags = "PolicyAgree")
 @RestController
 @RequiredArgsConstructor
-public class PolciyAgreeController {
+public class PolicyAgreeController {
 
-    private PolicyAgreeService policyAgreeService;
+    private final PolicyAgreeService policyAgreeService;
 
     @ApiOperation(value = "이용약관 동의", notes = "이용약관을 동의 한다")
     @PostMapping("/api/policyAgree")
