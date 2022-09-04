@@ -23,9 +23,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -120,29 +122,20 @@ public class InitDB {
     }
 
     private void initPolicy() throws IOException {
-        String dottoPolicyContent = readFileAsString("/intellij/Dotto/backend/src/main/resources/policy/dottoPolicyContent.txt");
-        String marketingPolicyContent = readFileAsString("/intellij/Dotto/backend/src/main/resources/policy/marketingPolicyContent.txt");
-        String privatePolicyContent = readFileAsString("/intellij/Dotto/backend/src/main/resources/policy/privatePolicyContent.txt");
+        String dottoPolicyContent = readFileAsString("policy/dottoPolicyContent.txt");
+        String marketingPolicyContent = readFileAsString("policy/marketingPolicyContent.txt");
+        String privatePolicyContent = readFileAsString("policy/privatePolicyContent.txt");
 
         policyRepository.save(new Policy(dottoPolicyContent, privatePolicyContent, marketingPolicyContent));
 
     }
 
 
-
-    private String readFileAsString(String filePath) throws java.io.IOException {
-        StringBuffer fileData = new StringBuffer();
-        BufferedReader reader = new BufferedReader(
-                new FileReader(filePath));
-        char[] buf = new char[1024];
-        int numRead=0;
-        while((numRead=reader.read(buf)) != -1){
-            String readData = String.valueOf(buf, 0, numRead);
-            fileData.append(readData);
-            buf = new char[1024];
-        }
-        reader.close();
-        return fileData.toString();
+    private String readFileAsString(String fileName) throws IOException {
+        URL resources = getClass().getClassLoader().getResource(fileName);
+        assert resources != null;
+        Path path = new File(resources.getPath()).toPath();
+        return Files.readAllLines(path).toString();
     }
 
 }
