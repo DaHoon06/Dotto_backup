@@ -20,7 +20,7 @@ public class FeedUpdateRequest {
     @ApiModelProperty(value = "추가할 피드 이미지")
     private List<MultipartFile> addedImg = new ArrayList<>();
 
-    @ApiModelProperty(value = "제거할 피드 번호")
+    @ApiModelProperty(value = "제거할 피드 이미지 번호")
     private List<Long> deletedImg = new ArrayList<>();
 
 }
