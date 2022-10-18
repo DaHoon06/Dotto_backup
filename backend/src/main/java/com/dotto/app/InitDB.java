@@ -1,5 +1,6 @@
 package com.dotto.app;
 
+import com.dotto.app.entity.member.Follow;
 import com.dotto.app.entity.member.Member;
 import com.dotto.app.entity.member.Role;
 import com.dotto.app.entity.member.RoleType;
@@ -9,6 +10,7 @@ import com.dotto.app.entity.post.Feed;
 import com.dotto.app.entity.post.Image;
 import com.dotto.app.exception.MemberNotFoundException;
 import com.dotto.app.exception.RoleNotFoundException;
+import com.dotto.app.repository.member.FollowRepository;
 import com.dotto.app.repository.member.MemberRepository;
 import com.dotto.app.repository.policy.PolicyRepository;
 import com.dotto.app.repository.post.DottoPostRepository;
@@ -31,6 +33,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @Component
 @RequiredArgsConstructor
@@ -41,11 +44,10 @@ public class InitDB {
     private final RoleRepository roleRepository;
     private final MemberRepository memberRepository;
     private final DottoPostRepository dottoPostRepository;
-
     private final FeedRepository feedRepository;
-
     private final PolicyRepository policyRepository;
     private final PasswordEncoder passwordEncoder;
+    private final FollowRepository followRepository;
 
     @EventListener(ApplicationReadyEvent.class)
     @Transactional
@@ -55,6 +57,7 @@ public class InitDB {
         initDottoPost();
         initFeed();
         initPolicy();
+        initFollow();
         log.info("initialize database");
     }
 
@@ -130,6 +133,26 @@ public class InitDB {
 
     }
 
+    private void initFollow(){
+        LongStream.range(1,11).forEach(i -> followRepository.saveAll(
+                List.of(
+                        new Follow(memberRepository.findByMemberNoAndDeletedYnEqualsN(i).orElseThrow(MemberNotFoundException::new),
+                                memberRepository.findByMemberNoAndDeletedYnEqualsN(i+1).orElseThrow(MemberNotFoundException::new)
+                        )
+                )
+        ));
+
+        followRepository.saveAll(
+                List.of(
+                        new Follow(memberRepository.findByMemberNoAndDeletedYnEqualsN(3L).orElseThrow(MemberNotFoundException::new),
+                                memberRepository.findByMemberNoAndDeletedYnEqualsN(2L).orElseThrow(MemberNotFoundException::new)
+                        ),
+                        new Follow(memberRepository.findByMemberNoAndDeletedYnEqualsN(4L).orElseThrow(MemberNotFoundException::new),
+                                memberRepository.findByMemberNoAndDeletedYnEqualsN(2L).orElseThrow(MemberNotFoundException::new)
+                        )
+        ));
+
+    }
 
     private String readFileAsString(String fileName) throws IOException {
         URL resources = getClass().getClassLoader().getResource(fileName);
