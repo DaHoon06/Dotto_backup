@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class MemberProfileUploadRequest {
 
     @ApiModelProperty(value = "사용자 id", notes = "인증 토큰의 사용자 id를 자동 주입 해줍니다.")
-    private String memberNo;
+    private Long memberNo;
 
     @ApiModelProperty(value = "업로드할 프로필 사진 ", notes = "업로드할 프로필 사진을 첨부 합니다.")
     @NotBlank
