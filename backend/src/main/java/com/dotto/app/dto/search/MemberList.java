@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class MemberList {
 
+     Long memberNo;
      String nickname;
      String originName;
 

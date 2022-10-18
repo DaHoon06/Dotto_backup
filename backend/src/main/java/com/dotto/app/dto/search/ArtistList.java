@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ArtistList{
 
+     Long memberNo;
      String nickname;
      String originName;
 }
