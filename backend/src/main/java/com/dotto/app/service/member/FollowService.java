@@ -21,24 +21,38 @@ public class FollowService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void follow(Long followingNo, Long followerNo){
+    public boolean follow(Long followingNo, Long followerNo){
         Member following = memberRepository.findByMemberNoAndDeletedYnEqualsN(followingNo).orElseThrow(MemberNotFoundException::new);
         Member follower = memberRepository.findByMemberNoAndDeletedYnEqualsN(followerNo).orElseThrow(MemberNotFoundException::new);
+        int i = followRepository.countFollowByFollowingAndFollower(following,follower);
+        if(i==0){   //사전 팔로우/팔로잉 중복 체크
+            followRepository.save(new Follow(following, follower));
+            return true;
+        }else {
+            return false;
+        }
 
-        followRepository.save(new Follow(following, follower));
     }
 
     @Transactional
-    public void unfollow(Long followingNo, Long followerNo){
+    public boolean unfollow(Long followingNo, Long followerNo){
         Member following = memberRepository.findByMemberNoAndDeletedYnEqualsN(followingNo).orElseThrow(MemberNotFoundException::new);
         Member follower = memberRepository.findByMemberNoAndDeletedYnEqualsN(followerNo).orElseThrow(MemberNotFoundException::new);
+        int i = followRepository.countFollowByFollowingAndFollower(following,follower);
+        if(i==1){   //사전 팔로우/팔로잉 체크
             followRepository.deleteByFollowingAndFollower(following, follower);
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     public boolean followCheck(Long followingNo, Long followerNo){
         Member following = memberRepository.findByMemberNoAndDeletedYnEqualsN(followingNo).orElseThrow(MemberNotFoundException::new);
         Member follower = memberRepository.findByMemberNoAndDeletedYnEqualsN(followerNo).orElseThrow(MemberNotFoundException::new);
-        if(followRepository.countFollowByFollowingAndFollower(following, follower)==0){
+        int i = followRepository.countFollowByFollowingAndFollower(following, follower);
+        if(i==0){
             return false;   //팔로우 안되어 있음
         }
         return true;       //팔로우 되어 있음

@@ -24,8 +24,7 @@ public class FollowController {
             Long followingNo,
             @ApiParam(value = "follow 당한 사람")
             Long followerNo) {
-        followService.follow(followingNo, followerNo);
-        return Response.success();
+        return Response.success(followService.follow(followingNo, followerNo));
 
     }
 
@@ -33,12 +32,11 @@ public class FollowController {
     @DeleteMapping("/api/unfollow")
     @ResponseStatus(HttpStatus.OK)
     public Response unfollow(
-            @ApiParam(value = "follow 하는 사람")
+            @ApiParam(value = "unfollow 하는 사람")
             Long followingNo,
-            @ApiParam(value = "follow 당한 사람")
+            @ApiParam(value = "unfollow 당한 사람")
             Long followerNo){
-        followService.unfollow(followingNo, followerNo);
-        return Response.success();
+        return Response.success(followService.unfollow(followingNo, followerNo));
     }
 
     @ApiOperation(value = "팔로우 상태 확인", notes = "팔로우/팔로잉 상태 확인 한다")
