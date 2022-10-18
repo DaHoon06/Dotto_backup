@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class DottoPostList {
 
+    Long postNo;
     String title;
     String nickname;
     String price;
