@@ -44,7 +44,9 @@ public class MemberService {
     public MemberProfileUploadResponse uploadProfile( MemberProfileUploadRequest req){
         Member member = memberRepository.findById(req.getMemberNo()).orElseThrow(MemberNotFoundException::new);
         Member.ProfileImageUpdateResult rs = member.uploadProfile(req);
-        deletedImage(member.getProfileImage());
+        if(member.getProfileImage()!=null){
+            deletedImage(member.getProfileImage());
+        }
         uploadImage(rs.getAddedImageFile(), rs.getAddedImages());
         return new MemberProfileUploadResponse(member.getMemberNo());
     }
