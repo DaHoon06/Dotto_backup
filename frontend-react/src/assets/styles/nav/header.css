@@ -1,0 +1,129 @@
+/*
+    HeaderView.vue 에 사용된 CSS파일
+    HeaderComponent.vue 에 사용되었습니다.
+*/
+#alarm-wrapper:hover {
+    cursor: pointer;
+}
+
+#alarm-container {
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    background: white;
+    overflow-y: auto;
+    z-index: 10;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 6em;
+}
+
+/* My menu List CSS */
+#my-page-container {
+    display: flex;
+    align-items: flex-end;
+    z-index: 0;
+}
+
+#my-menu-list {
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    background: white;
+    z-index: 10;
+    width: 190px;
+    height: 250px;
+    position: absolute;
+    right: 3em;
+    top: 8rem;
+}
+
+#my-menu-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1em 0 0 1.25em;
+}
+
+#my-menu-items > div > span {
+    margin-right: 15px;
+}
+#my-menu-items > div:hover {
+    cursor: pointer;
+}
+
+.my-menu-icons {
+    width: 30px;
+}
+
+/* DROP DOWN ITEMS */
+#drop-down-btn {
+    width: 0.7rem;
+}
+#drop-down-btn:hover {
+    font-size: 1em;
+    cursor: pointer;
+}
+#drop-down-btn-container {
+    margin-left: 15px;
+}
+
+
+.nav-menu-icon {
+    width: 25px;
+}
+
+.nav-menu-icon:nth-child(1) {
+    margin-right: 30px;
+}
+
+
+#empty-search-lists {
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+/* 로그인 시 생성되는 nav icons*/
+#isLoginTrue {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 3em;
+    z-index: -1;
+}
+#isLoginTrue:hover {
+    cursor: pointer;
+}
+
+#my {
+    width: 30px;
+}
+#my:hover {
+    cursor: pointer;
+}
+#my-page {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 14px;
+}
+#my_name {
+    font-size: 5px;
+}
+#alarm {
+    width: 30px;
+    margin-right: 1em;
+}
+
+.close-search-list {
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    background: #F5F5F5;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    text-align: center;
+    padding-top: 3px;
+    color: #696969;
+
+}
+
