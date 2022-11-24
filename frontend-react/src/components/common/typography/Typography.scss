@@ -1,0 +1,89 @@
+@import '@/assets/styles/colors.scss';
+
+.h1 {
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: 0.15px;
+}
+.h2 {
+  font-size: 28px;
+  line-height: 34px;
+  letter-spacing: 0.15px;
+}
+.h3 {
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+.sub1 {
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.15px;
+}
+.sub2 {
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.15px;
+}
+.body1 {
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.15px;
+}
+.body2 {
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.15px;
+}
+.caption {
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.15px;
+}
+
+.regular {
+  font-weight: 400;
+}
+.medium {
+  font-weight: 500;
+}
+.semibold {
+  font-weight: 600;
+}
+.bold {
+  font-weight: 700;
+}
+
+.gray1 {
+  color: $system_gray01;
+}
+.gray2 {
+  color: $system_gray02;
+}
+.gray3 {
+  color: $system_gray03;
+}
+.gray4 {
+  color: $system_gray04;
+}
+.gray5 {
+  color: $system_gray05;
+}
+.gray6 {
+  color: $system_gray06;
+}
+.primary {
+  color: $primary;
+}
+.red {
+  color: $system_red;
+}
+.blue {
+  color: $system_blue;
+}
+.black {
+  color: $system_black;
+}
+.white {
+  color: $system_white;
+}

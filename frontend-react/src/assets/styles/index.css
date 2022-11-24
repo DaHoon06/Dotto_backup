@@ -2,3 +2,4 @@
 @import './registerForm.css';
 @import './common.css';
 @import './nav/header.css';
+@import '~pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
