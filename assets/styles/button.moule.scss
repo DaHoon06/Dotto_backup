@@ -29,10 +29,7 @@
   cursor: default;
 }
 
-/*================
-    기본 버튼
-================*/
-.default__button {
+.primary__button {
   @include buttonType($black, $black, $white);
 
   &:hover {
@@ -44,25 +41,7 @@
   }
 }
 
-/*================
-    확인 버튼
-================*/
-.confirm__button {
-  @include buttonType($black, $black, $white);
-
-  &:hover {
-    background-color: $black;
-  }
-
-  &:disabled {
-    @include disabled();
-  }
-}
-
-/*================
-    취소 버튼
-================*/
-.cancel__button {
+.secondary__button {
   @include buttonType($disabled, $black, $white);
 
   &:hover {

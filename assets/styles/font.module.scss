@@ -29,9 +29,6 @@ $pretendard: 'Pretendard-Regular';
   font-family: $pretendard;
 }
 
-/*
-======   SAMPLE   ======
-*/
 .button__text {
   @include font-style(16, 500, $black);
 }
