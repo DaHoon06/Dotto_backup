@@ -3,7 +3,7 @@
     <article>
       <section class="dotto-detail-section">
         <p class="detail-form-title">이 작업이 마음에 드시나요?</p>
-        <section class="c-mb-12">
+        <section class="c-mb-12 c-mr-20">
           <button
             type="button"
             class="favorite-btn dotto-detail-common-btn c-mr-16"
@@ -22,16 +22,12 @@
 
       <hr class="hr-position" />
 
-      <section class="dotto-detail-flex-row c-mt-32">
+      <section class="dotto-detail-flex-row dotto-detail-media-1300 c-mt-32">
         <section id="dotto-detail-img">
           아래 3장의 이미지 확대해서 보기 default 첫번째 이미지
         </section>
         <section class="dotto-detail-flex" id="dotto-detail-information">
           <h1 class="detail-title">{{ list.title }}</h1>
-          <!--          <div class="dotto-detail-flex-row">-->
-          <!--            <div>조회수</div>-->
-          <!--            <div>56회</div>-->
-          <!--          </div>-->
           <section class="price-container c-mt-28">
             <h2 class="event-price c-mr-12">{{ list.salesPrice }}</h2>
             <h2 class="original-price">{{ list.price }}</h2>
@@ -151,19 +147,19 @@ export default class DottoDetailComponent extends Vue {
       totalTime: "",
     };
   }
-  created() {
+  created(): void {
     this.init();
   }
 
-  async init() {
+  async init(): Promise<void> {
     await this.getBoardData();
   }
 
-  redirectEstimateSheet() {
+  redirectEstimateSheet(): void {
     this.$router.push({ path: `/estimate/${this.postNo}` });
   }
 
-  private async getBoardData() {
+  private async getBoardData(): Promise<void> {
     try {
       const { data } = await this.axios.get(`/dottopost/${this.postNo}`);
       const { result, success } = data;
@@ -186,11 +182,11 @@ export default class DottoDetailComponent extends Vue {
     }
   }
 
-  private convertPrice(price: string): string {
+  convertPrice(price: string): string {
     return price.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  private convertGenre(value: string): string {
+  convertGenre(value: string): string {
     switch (value) {
       case "1":
         return "올드스쿨";
@@ -221,7 +217,7 @@ export default class DottoDetailComponent extends Vue {
     }
   }
 
-  private convertTime(value: string): string {
+  convertTime(value: string): string {
     switch (value) {
       case "1":
         return "1 시간 이내";
@@ -410,5 +406,25 @@ textarea {
   font-size: 14px;
   color: #919191;
   margin-right: 16px;
+}
+@media screen and (max-width: 1300px) {
+  .detail-form-title {
+    margin-left: 20px;
+  }
+}
+@media screen and (max-width: 1023px) {
+  #dotto-detail-information {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+  .dotto-detail-media-1300 {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #other-works-list {
+    display: none;
+  }
 }
 </style>

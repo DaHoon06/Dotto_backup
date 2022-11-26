@@ -1,0 +1,36 @@
+@import "../../../assets/styles/common/colors";
+
+.footer {
+  position: relative;
+  bottom: 0;
+  background: $black;
+  color: $white;
+  width: 100%;
+  font-size: 12px;
+
+  section {
+    height: 10em;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  &-top {
+    display: flex;
+    justify-content: space-around;
+    height: 16em;
+    flex-direction: row;
+    align-items: center;
+    color: $line;
+    font-size: 0.9em;
+  }
+
+  &-bottom {
+    height: 5em;
+    text-align: center;
+    color: $line;
+    font-size: 8px;
+  }
+}
+

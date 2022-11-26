@@ -116,9 +116,9 @@ public class InitDB {
     }
 
     private void initPolicy() throws IOException {
-        String dottoPolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/dottoPolicyContent.txt");
-        String marketingPolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/marketingPolicyContent.txt");
-        String privatePolicyContent = readFileAsString("/Users/jaeeeh/Documents/intelij/sideProject/Dotto/backend/src/main/resources/policy/privatePolicyContent.txt");
+        String dottoPolicyContent = readFileAsString("/Users/dahoon/git_local/Dotto/backend/src/main/resources/policy/dottoPolicyContent.txt");
+        String marketingPolicyContent = readFileAsString("/Users/dahoon/git_local/Dotto/backend/src/main/resources/policy/marketingPolicyContent.txt");
+        String privatePolicyContent = readFileAsString("/Users/dahoon/git_local/Dotto/backend/src/main/resources/policy/privatePolicyContent.txt");
 
         policyRepository.save(new Policy(dottoPolicyContent, privatePolicyContent, marketingPolicyContent));
 
