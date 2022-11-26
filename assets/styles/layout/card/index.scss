@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+@import "../../palette";
+@import "../../font.module";
+
+/*
+  각 컴포넌트 CARD 형 Layout
+*/
+.card-layout__article {
+  border: 1px solid $label-gray;
+  height: 100%;
+  max-height: 432px;
+  min-height: 400px;
+  max-width: 288px;
+  min-width: 270px;
+  width: 100%;
+
+  .card-layout__img {
+    background: $label-gray;
+    width: 100%;
+    max-width: 288px;
+    height: 288px;
+    object-fit: cover;
+  }
+
+  .card-layout__content {
+    .card-layout__items--writer {
+      color: $label-gray;
+      font-weight: 400;
+      height: 14px;
+    }
+
+    .card-layout__items--title {
+      color: $black;
+      font-weight: 700;
+      height: 20px;
+      line-height: 21px;
+      white-space: nowrap;
+    }
+
+    .card-layout__items--price {
+      &.--event {
+        color:$black;
+        font-weight: 700;
+        line-height: 19px;
+        white-space: nowrap;
+        width: fit-content;
+      }
+
+      &.--origin {
+        color: $label-gray;
+        font-weight: 400;
+        width: fit-content;
+      }
+
+      &.--percent {
+        color: $point-red;
+        font-weight: 700;
+        width: fit-content;
+      }
+    }
+  }
+}
+
+/* 태그 */
+.tag-container {
+  display: flex;
+
+  &.--item {
+    background-color: $disabled;
+    border: 1px none;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 4px 8px;
+    width: fit-content;
+
+    @include font-style(400, 12, $sub-label-gray);
+  }
+}
