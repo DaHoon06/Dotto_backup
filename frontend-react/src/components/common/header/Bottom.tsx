@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export const Bottom = () => {
   //TODO ROUTER 따라 currentPath 바꾸기
-  const [currentPath, setCurrentPath] = useState('')
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
   const [dropListCommunity, setDropListCommunity] = useState(false)
   const [dropListService, setDropListService] = useState(false)
+
+  useEffect(() => {
+    const path = window.location.pathname
+    setCurrentPath(path)
+  }, [currentPath])
 
   const showDropdwonCommunity = () => {
     setDropListCommunity(!dropListCommunity)
@@ -17,22 +23,16 @@ export const Bottom = () => {
       <ul>
         <li>
           <a
-            href="/"
-            className={
-              'nav-title text-light-18px-p ' +
-              (currentPath === '/' ? 'active' : '')
-            }
+            href={'/'}
+            className={'nav-title' + (currentPath === '/' ? 'active' : '')}
           >
             HOME
           </a>
         </li>
         <li>
           <a
-            href="/"
-            className={
-              'nav-title text-light-18px-p ' +
-              (currentPath === '/try' ? 'active' : '')
-            }
+            href={'/'}
+            className={'nav-title' + (currentPath === '/try' ? 'active' : '')}
           >
             try DOTTO
           </a>
@@ -40,7 +40,7 @@ export const Bottom = () => {
         <li onMouseEnter={showDropdwonCommunity}>
           <span
             className={
-              'nav-title text-light-18px-p ' +
+              'nav-title' +
               (currentPath === '/dotto' || currentPath === '/dotto-board'
                 ? 'active'
                 : '')
@@ -54,19 +54,17 @@ export const Bottom = () => {
               className={'drop-down-container'}
             >
               <a
-                href="/dotto"
+                href={'/dotto/board'}
                 className={
-                  'nav-title text-light-18px-p test ' +
-                  (currentPath === '/dotto' ? 'active' : '')
+                  'nav-title' + (currentPath === '/dotto' ? 'active' : '')
                 }
               >
                 닷투 게시판
               </a>
               <a
-                href="/"
+                href={'/'}
                 className={
-                  'nav-title text-light-18px-p ' +
-                  (currentPath === '/dotto-board' ? 'active' : '')
+                  'nav-title' + (currentPath === '/dotto-board' ? 'active' : '')
                 }
               >
                 닷찾사 게시판
@@ -78,22 +76,16 @@ export const Bottom = () => {
         </li>
         <li>
           <a
-            href="/"
-            className={
-              'nav-title text-light-18px-p ' +
-              (currentPath === '/feed' ? 'active' : '')
-            }
+            href={'/'}
+            className={'nav-title' + (currentPath === '/feed' ? 'active' : '')}
           >
             Feed
           </a>
         </li>
         <li onMouseEnter={showDropdwonService}>
           <a
-            href="/"
-            className={
-              'nav-title text-light-18px-p ' +
-              (currentPath === '/faq' ? 'active' : '')
-            }
+            href={'/'}
+            className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
           >
             고객지원
           </a>
@@ -103,19 +95,17 @@ export const Bottom = () => {
               className={'drop-down-container'}
             >
               <a
-                href="/"
+                href={'/'}
                 className={
-                  'nav-title text-light-18px-p ' +
-                  (currentPath === '/faq' ? 'active' : '')
+                  'nav-title' + (currentPath === '/faq' ? 'active' : '')
                 }
               >
                 FAQ
               </a>
               <a
-                href="/"
+                href={'/'}
                 className={
-                  'nav-title text-light-18px-p ' +
-                  (currentPath === '/notice' ? 'active' : '')
+                  'nav-title' + (currentPath === '/notice' ? 'active' : '')
                 }
               >
                 공지사항

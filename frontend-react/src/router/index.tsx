@@ -4,13 +4,14 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
+import { Dotto } from '@/components/dotto'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="dotto">
         <Route path="board">
-          <Route index />
+          <Route index element={<Dotto />} />
           <Route path="post" />
           <Route path="view/:postNo" />
         </Route>

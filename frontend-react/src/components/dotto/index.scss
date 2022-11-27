@@ -1,0 +1,87 @@
+@import "../../assets/styles/common/colors";
+
+/* 게시판 레이아웃 */
+.dotto {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+
+  /* 게시판 카드형 */
+  .card-layout {
+    border: 1px solid gray;
+    height: 100%;
+    max-height: 432px;
+    min-height: 400px;
+    max-width: 288px;
+    min-width: 270px;
+    width: 100%;
+  }
+
+  .board-info {
+    padding: 16px 8px;
+    border: 1px none;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: flex-start;
+  }
+
+  .board-img-wrapper {
+    background: #8a8a8a;
+    width: 100%;
+    max-width: 288px;
+    height: 288px;
+    object-fit: cover;
+  }
+  .board-writer {
+    color: $label-gray;
+    font-weight: 400;
+    height: 14px;
+  }
+  .board-title {
+    color: $black;
+    font-weight: 700;
+    height: 20px;
+    line-height: 21px;
+    white-space: nowrap;
+  }
+
+  .event-price {
+    color:$black;
+    font-weight: 700;
+    line-height: 19px;
+    white-space: nowrap;
+    width: fit-content;
+  }
+
+  .original-price {
+    color: $label-gray;
+    font-weight: 400;
+    width: fit-content;
+  }
+
+  .percent {
+    color: $point-red;
+    font-weight: 700;
+    width: fit-content;
+  }
+
+  .tag-container {
+    display: flex;
+
+    .tag {
+      background-color: $line;
+      border: 1px none;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 4px 8px;
+      width: fit-content;
+      color: $sub-label-gray;
+      font-weight: 400;
+      font-family: var(--font-family-pretendard-regular);
+      font-size: 12px;
+      font-style: normal;
+    }
+  }
+}
