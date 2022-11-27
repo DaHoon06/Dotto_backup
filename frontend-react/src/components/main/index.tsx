@@ -2,6 +2,7 @@ import './index.scss'
 import { Dotto } from '@/components/dotto'
 import { Outlet } from 'react-router'
 import { useEffect, useState } from 'react'
+import { Banner } from '@/components/banner'
 
 export const Main = () => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname)

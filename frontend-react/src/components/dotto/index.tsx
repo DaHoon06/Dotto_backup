@@ -1,14 +1,16 @@
+import '../../assets/styles/common/card/index.scss'
 import './index.scss'
-
 export const Dotto = () => {
   return (
     <article className="dotto mt-32">
       <section className="card-layout mb-32">
-        <figure className="board-img-wrapper"></figure>
-        <section className="board-info">
-          <p className="board-writer">tattoist</p>
-          <p className="board-title mt-16">반짝이와 패턴 (도안 수정 가능)</p>
-          <p className="mt-8">
+        <figure className="card-layout__img"></figure>
+        <section className="card-layout__content">
+          <p className="card-layout__content__items--writer">tattoist</p>
+          <p className="card-layout__content__items--title mt-16">
+            반짝이와 패턴 (도안 수정 가능)
+          </p>
+          <p className=" price-container mt-8">
             <span className="event-price">5만원</span>
             <span className="origin-price">10만</span>
             <span className="percent">50%</span>
