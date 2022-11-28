@@ -25,15 +25,15 @@
 }
 
 @mixin disabled() {
-  @include buttonType($disabled, $disabled, $disabled);
+  @include buttonType($system_gray06, $system_gray06, $system_gray06);
   cursor: default;
 }
 
 .primary__button {
-  @include buttonType($black, $black, $white);
+  @include buttonType($system_gray01, $system_gray01, $system_white);
 
   &:hover {
-    background-color: $black;
+    background-color: $system_gray01;
   }
 
   &:disabled {
@@ -42,14 +42,22 @@
 }
 
 .secondary__button {
-  @include buttonType($disabled, $black, $white);
+  @include buttonType($system_gray06, $system_gray01, $system_white);
 
   &:hover {
-    border-color: $black;
+    border-color: $system_gray01;
   }
 
   &:disabled {
     @include disabled();
+  }
+}
+
+.black__button {
+  @include buttonType($system_white,$system_white, $system_gray01);
+
+  &:hover {
+    background: #363636;
   }
 }
 
@@ -65,14 +73,14 @@
       width: 100%;
       max-width: 588px;
       height: 40px;
-      border: 1px solid $line;
+      border: 1px solid $system_gray03;
       outline: none;
-      background: $disabled;
+      background: $system_gray06;
       padding: 5px 10px;
       font-size: 18px;
 
       &:focus {
-        border-color: $black;
+        border-color: $system_gray01;
       }
     }
 

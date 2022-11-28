@@ -3,8 +3,8 @@
 .footer {
   position: relative;
   bottom: 0;
-  background: $black;
-  color: $white;
+  background: $system_gray01;
+  color: $system_white;
   width: 100%;
   font-size: 12px;
 
@@ -22,14 +22,14 @@
     height: 16em;
     flex-direction: row;
     align-items: center;
-    color: $line;
+    color: $system_gray05;
     font-size: 0.9em;
   }
 
   &-bottom {
     height: 5em;
     text-align: center;
-    color: $line;
+    color: $system_gray05;
     font-size: 8px;
   }
 }

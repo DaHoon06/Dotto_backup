@@ -1,4 +1,6 @@
-@import '@/assets/styles/colors.scss';
+// 파일에서 에러가 나서 일단 아래와 같이 수정했습니다.
+//@import '@/assets/styles/common/colors.scss';
+@import "../../../assets/styles/common/colors";
 
 .h1 {
   font-size: 32px;

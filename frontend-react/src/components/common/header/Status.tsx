@@ -1,7 +1,14 @@
+import Modal from '@/components/common/modal/Modal'
+import { useState } from 'react'
+import { Login } from '@/components/login'
+
 export const Status = () => {
+  const [open, setOpen] = useState(false)
+
   const openModal = () => {
-    console.log('모달')
+    setOpen(true)
   }
+
   return (
     <article className="nav-status-container">
       <section className="button--wrapper">
@@ -12,6 +19,10 @@ export const Status = () => {
           Login
         </button>
       </section>
+
+      <Modal isOpen={open}>
+        <Login />
+      </Modal>
     </article>
   )
 }

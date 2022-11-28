@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LOGO from '@/assets/img/dotto.svg'
+import LOGO from '@/assets/icons/logo/dotto.svg'
 import SEARCH from '@/assets/icons/nav/search.svg'
 import CLOSE from '@/assets/icons/nav/x-button.svg'
 
