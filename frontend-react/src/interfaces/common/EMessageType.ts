@@ -1,5 +1,9 @@
-export enum EMessageRegister {
+export enum ERROR_MESSAGE {
   BLANK = '',
+  // 로그인 상태 메세지
+  LOGIN_FAIL = '로그인 정보를 다시 확인해주세요.',
+
+  // 회원 가입 상태 메세지
   ID_NOT_ENTERED = '아이디를 입력해주세요.',
   AVAILABLE_ID = '사용가능한 아이디 입니다.',
   AVAILABLE_NICKNAME = '사용가능한 닉네임 입니다.',

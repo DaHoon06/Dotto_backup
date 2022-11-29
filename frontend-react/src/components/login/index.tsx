@@ -3,19 +3,37 @@ import LOGO from '@/assets/icons/logo/dotto.svg'
 import { KAKAO, GOOGLE, LINE } from '@/assets/icons/social'
 import React, { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
+import { useCookies } from 'react-cookie'
+import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
+import { LOGIN } from '@/interfaces/login'
 
-export const Login = () => {
+export const Login = (props: LOGIN.PROP) => {
   const [loginInfo, setLoginInfo] = useState({
     id: '',
     password: '',
   })
   const [loginErrorMsg, setLoginErrorMsg] = useState('')
   const [saveId, setSaveId] = useState(false)
+  const [cookies, setCookie, removeCookie] = useCookies(['id'])
   const { id, password } = loginInfo
+  const { closeModal } = props
+  const sessionStorage = window.sessionStorage
 
   useEffect(() => {
     setLoginErrorMsg('')
   }, [loginInfo])
+
+  useEffect(() => {
+    getCookie()
+  })
+  // 아이디 저장하는지 확인
+  const getCookie = () => {
+    const getId = cookies['id']
+    if (getId !== undefined) {
+      loginInfo.id = getId
+      setSaveId(true)
+    }
+  }
 
   const onChangeHandler = async (e: { target: HTMLInputElement }) => {
     const { name, value } = e.target
@@ -31,24 +49,35 @@ export const Login = () => {
       const { data } = await axios.post('/sign-in', loginInfo)
       const { success } = data
       if (success) {
-        //TODO: 토큰 저장
-        setLoginErrorMsg('')
-      } else setLoginErrorMsg('로그인에 실패했습니다. 다시 입력해주세요.')
+        saveState(data) // session 저장
+        setLoginErrorMsg(ERROR_MESSAGE.BLANK)
+        close(false) // modal Close
+      } else setLoginErrorMsg(ERROR_MESSAGE.LOGIN_FAIL)
     } catch (e) {
       console.log(e)
     }
   }
 
+  const saveState = (payload: LOGIN.STATE) => {
+    const { accessToken, refreshToken, nickname, roles } = payload
+    sessionStorage.setItem('accessToken', accessToken)
+    sessionStorage.setItem('refreshToken', refreshToken)
+    sessionStorage.setItem('nickname', nickname)
+    sessionStorage.setItem('roles', roles)
+  }
+
+  const close = (payload: boolean) => {
+    closeModal(payload)
+  }
+
   const checkBoxHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(saveId)
     setSaveId(!saveId)
     checkedItemHandler(target.checked)
   }
 
   const checkedItemHandler = (checked: boolean) => {
-    if (checked) {
-      console.log('아이디 저장')
-    }
+    if (checked) setCookie('id', id)
+    else removeCookie('id')
   }
 
   return (

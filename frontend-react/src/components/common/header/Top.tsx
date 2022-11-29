@@ -18,9 +18,9 @@ export const Top = () => {
   }
 
   const handleClickSearchBar = (e: IEvent.handleClick) => {
-    console.log('??????????')
     setShowSearch(!showSearch)
   }
+
   const handleKeyPressEnter = (e: IEvent.handleKeyPressEnter) => {
     if (e.key === 'Enter') search()
   }

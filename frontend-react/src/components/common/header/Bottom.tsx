@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 export const Bottom = () => {
   //TODO ROUTER 따라 currentPath 바꾸기
