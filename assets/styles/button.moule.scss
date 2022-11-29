@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+@import "palette";
+
+@function borderType($border-color) {
+  @if $border-color == none {
+    @return none;
+  } @else {
+    @return 1px solid $border-color;
+  }
+}
+/*================
+   버튼 타입 설정
+================*/
+@mixin buttonType($border-color, $color, $background) {
+  border: borderType($border-color);
+  font-weight: 400;
+  font-style: normal;
+  color: $color;
+  background: $background;
+  font-family: var(--font-family-nanum_gothic);
+  width: 122px;
+  height: 44px;
+  border-radius: 4px;
+}
+
+@mixin disabled() {
+  @include buttonType($disabled, $disabled, $disabled);
+  cursor: default;
+}
+
+.primary__button {
+  @include buttonType($black, $black, $white);
+
+  &:hover {
+    background-color: $black;
+  }
+
+  &:disabled {
+    @include disabled();
+  }
+}
+
+.secondary__button {
+  @include buttonType($disabled, $black, $white);
+
+  &:hover {
+    border-color: $black;
+  }
+
+  &:disabled {
+    @include disabled();
+  }
+}
+
+/*================
+    검색창
+================*/
+.search-form {
+  width: 100%;
+  text-align: center;
+
+  .search-form__container {
+    .search-form__input {
+      width: 100%;
+      max-width: 588px;
+      height: 40px;
+      border: 1px solid $line;
+      outline: none;
+      background: $disabled;
+      padding: 5px 10px;
+      font-size: 18px;
+
+      &:focus {
+        border-color: $black;
+      }
+    }
+
+    .search-form__button {
+      position: relative;
+      right: 30px;
+      bottom: -6px;
+      width: 25px;
+    }
+  }
+}
