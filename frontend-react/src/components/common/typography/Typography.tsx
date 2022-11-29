@@ -36,6 +36,7 @@ export default function Typography(props: ITypography) {
     fontWeight = 'regular',
     fontColor = 'black',
     children,
+    className,
     ...rest
   } = props
 
@@ -52,7 +53,10 @@ export default function Typography(props: ITypography) {
 
   return React.createElement(
     element[variant],
-    { className: classNames(variant, fontWeight, fontColor), ...rest },
+    {
+      className: classNames(variant, fontWeight, fontColor, className),
+      ...rest,
+    },
     children
   )
 }
