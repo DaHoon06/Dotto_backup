@@ -1,0 +1,61 @@
+@import '@//assets/styles/colors.scss';
+
+.default {
+  border: 1px solid $system_gray04;
+}
+
+.disabled {
+  border: 1px solid $system_gray05;
+  color: $system_gray05;
+
+  .input {
+    &::placeholder {
+      color: $system_gray05;
+    }
+  }
+}
+
+.blue {
+  border: 1px solid $system_blue;
+}
+
+.red {
+  border: 1px solid $system_red;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  gap: 0.25rem;
+  padding: 9px 11px;
+  color: $system_gray01;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: 0.3s;
+
+  &:focus-within {
+    border: 1px solid $primary;
+  }
+
+  .input {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $system_gray04;
+    }
+  }
+
+  .input_reset {
+    fill: $system_gray04;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      fill: $system_gray03;
+    }
+  }
+}
