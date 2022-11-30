@@ -1,0 +1,63 @@
+@import '@/assets/styles/colors.scss';
+@import '@/assets/styles/typography.scss';
+
+.white-button {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
+  border-radius: 4px;
+  transition: all 0.3s ease-in;
+  background: $system_white;
+  border: 1px solid $system_gray05;
+  color: $system_gray01;
+  @include body2;
+  @include medium;
+  &:hover {
+    border-color: $system_gray04;
+  }
+  &:disabled {
+    color: $system_gray05;
+  }
+  &:active {
+    border-color: $system_gray04;
+    background-color: $system_gray06;
+  }
+}
+
+.black-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 8px;
+  background: $system_gray01;
+  border-radius: 4px;
+  transition: all 0.3s ease-in;
+  color: $system_white;
+  @include body2;
+  @include medium;
+  &:hover {
+    background-color: rgba($color: $system_gray01, $alpha: 0.8);
+  }
+  &:disabled {
+    background-color: none;
+    color: $system_gray04;
+  }
+  &:active {
+    color: $system_gray04;
+  }
+}
+
+.primary-button {
+  &:hover {
+  }
+  &:disabled {
+  }
+  &:active {
+  }
+}
