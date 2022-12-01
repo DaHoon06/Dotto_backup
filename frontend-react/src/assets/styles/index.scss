@@ -1,5 +1,4 @@
 /* CSS를 젼역으로 import 시키기 위한 파일 main.ts에 import 되어있습니다. */
-@import './registerForm.css';
-@import './common.css';
-@import './nav/header.css';
+@import '@/assets/styles/reset.scss';
+@import '@/assets/styles/common.scss';
 @import '~pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
