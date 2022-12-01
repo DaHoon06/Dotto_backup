@@ -25,7 +25,7 @@
 }
 
 @mixin disabled() {
-  @include buttonType($system_gray06, $system_gray06, $system_gray06);
+  @include buttonType($system_gray06, $system_gray05, $system_gray06);
   cursor: default;
 }
 
@@ -34,6 +34,7 @@
 
   &:hover {
     background-color: $system_gray01;
+    color: $system_white;
   }
 
   &:disabled {

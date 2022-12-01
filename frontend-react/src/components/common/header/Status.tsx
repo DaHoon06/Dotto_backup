@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Login } from '@/components/login'
 import { Register } from '@/components/register'
 
-export const Status = () => {
+export const Status = (props: any) => {
+  const { changeComponent } = props
   const [open, setOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [componentType, setComponentType] = useState('login')
@@ -26,7 +27,7 @@ export const Status = () => {
     window.sessionStorage.clear()
   }
 
-  const changeComponent = (type: string) => {
+  const components = (type: string) => {
     setComponentType(type)
   }
 
@@ -63,9 +64,9 @@ export const Status = () => {
         isOpen={open}
       >
         {componentType === 'login' ? (
-          <Login closeModal={closeModal} changeComponent={changeComponent} />
+          <Login closeModal={closeModal} changeComponent={components} />
         ) : componentType === 'register' ? (
-          <Register />
+          <Register changeComponent={components} />
         ) : null}
       </Modal>
     </article>

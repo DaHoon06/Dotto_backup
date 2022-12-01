@@ -2,13 +2,14 @@ import { CheckBox } from '@/components/register/icon/CheckBox'
 import React, { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
 import { DropIcon } from '@/components/register/icon/DropIcon'
+import { IRegister } from '@/interfaces/register'
 
 interface IPolicy {
   dottoPolicyContent: string
   privatePolicyContent: string
 }
 
-export const Policy = (props: any) => {
+export const Policy = (props: IRegister.PROPS) => {
   const [showPolicyContent1, setShowPolicyContent1] = useState(false)
   const [showPolicyContent2, setShowPolicyContent2] = useState(false)
   const [isCheckAll, setIsCheckAll] = useState(false)
@@ -18,6 +19,7 @@ export const Policy = (props: any) => {
   })
   const [checkedItems, setCheckedItems] = useState(new Set())
   const [isChecked, setIsChecked] = useState(false)
+  const { changeComponent } = props
 
   useEffect(() => {
     const data = async (): Promise<void> => {
@@ -73,10 +75,6 @@ export const Policy = (props: any) => {
     }
   }
 
-  const changeView = (type: string) => {
-    return props.modalType(type)
-  }
-
   const onClickHandleShowContent = () => {
     setShowPolicyContent1(!showPolicyContent1)
   }
@@ -84,12 +82,12 @@ export const Policy = (props: any) => {
     setShowPolicyContent2(!showPolicyContent2)
   }
 
-  const onClickHandlerNext = () => {
-    changeView('register')
+  const onClickHandler = (type: string) => {
+    changeComponent(type)
   }
 
   const onClickHandlerPrev = () => {
-    changeView('login')
+    changeComponent('login')
   }
 
   const onClickCheckBox = (type: string) => {
@@ -110,7 +108,7 @@ export const Policy = (props: any) => {
 
   return (
     <article className={'policy'}>
-      <section className={'policy--check-box'}>
+      <section className={'pt-10 policy__check-box--all'}>
         <button type={'button'} onClick={() => onClickCheckBox('all')}>
           <CheckBox checkActive={isCheckAll} />
         </button>
@@ -127,10 +125,9 @@ export const Policy = (props: any) => {
           전체 동의 합니다.
         </label>
       </section>
-      <hr />
       <section className={'policy-content--container'}>
         <section className={'policy-contents'}>
-          <section className={'policy--check-box'}>
+          <section className={'policy__check-box'}>
             <button type={'button'} onClick={() => onClickCheckBox('policy')}>
               <CheckBox
                 checkActive={isCheckAll || checkedItems.has('policy')}
@@ -153,7 +150,7 @@ export const Policy = (props: any) => {
             <DropIcon />
           </button>
         </section>
-        <hr />
+
         {showPolicyContent1 ? (
           <section className={'policy-contents--wrapper'}>
             {policyContent.dottoPolicyContent}
@@ -162,7 +159,7 @@ export const Policy = (props: any) => {
           ''
         )}
         <section className={'policy-contents'}>
-          <section className={'policy--check-box'}>
+          <section className={'policy__check-box'}>
             <button type={'button'} onClick={() => onClickCheckBox('private')}>
               <CheckBox
                 checkActive={isCheckAll || checkedItems.has('private')}
@@ -186,7 +183,7 @@ export const Policy = (props: any) => {
             <DropIcon />
           </button>
         </section>
-        <hr />
+
         {showPolicyContent2 ? (
           <section className={'policy-contents--wrapper'}>
             {policyContent.privatePolicyContent}
@@ -196,9 +193,9 @@ export const Policy = (props: any) => {
         )}
       </section>
 
-      <section className={'policy-button-container mt-20'}>
+      <section className={'policy__button--container pb-40'}>
         <button
-          onClick={onClickHandlerPrev}
+          onClick={() => onClickHandler('login')}
           className={'secondary__button mr-16'}
           type={'button'}
         >
@@ -206,7 +203,7 @@ export const Policy = (props: any) => {
         </button>
         <button
           disabled={!isCheckAll}
-          onClick={onClickHandlerNext}
+          onClick={() => onClickHandler('register')}
           className={!isCheckAll ? 'secondary__button' : 'primary__button'}
           type={'button'}
         >
