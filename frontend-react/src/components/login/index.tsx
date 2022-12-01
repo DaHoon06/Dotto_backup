@@ -16,7 +16,7 @@ export const Login = (props: LOGIN.PROP) => {
   const [saveId, setSaveId] = useState(false)
   const [cookies, setCookie, removeCookie] = useCookies(['id'])
   const { id, password } = loginInfo
-  const { closeModal } = props
+  const { closeModal, changeComponent } = props
   const sessionStorage = window.sessionStorage
 
   useEffect(() => {
@@ -78,6 +78,17 @@ export const Login = (props: LOGIN.PROP) => {
   const checkedItemHandler = (checked: boolean) => {
     if (checked) setCookie('id', id)
     else removeCookie('id')
+  }
+
+  const modalType = (type: string) => {
+    reset()
+    changeComponent(type)
+  }
+  // 로그인 정보 초기화
+  const reset = () => {
+    setLoginInfo({
+      ...loginInfo,
+    })
   }
 
   return (
@@ -165,7 +176,7 @@ export const Login = (props: LOGIN.PROP) => {
         </article>
       </article>
 
-      <article className="login-route--group">
+      <article className="login-route--group pt-20">
         <section className="find-password">
           <a className="route-text" href="/">
             비밀번호 찾기
@@ -173,7 +184,11 @@ export const Login = (props: LOGIN.PROP) => {
         </section>
         <section className="division ml-23 mr-28">|</section>
         <section className="join">
-          <button type={'button'} className="route-text">
+          <button
+            type={'button'}
+            className="route-text"
+            onClick={() => modalType('register')}
+          >
             회원가입 하기
           </button>
         </section>

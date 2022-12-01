@@ -1,0 +1,75 @@
+@import "src/assets/styles/common/colors";
+
+.register {
+  // TAB Layer
+  .tab {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 32px;
+
+    &--progress {
+      display: flex;
+      align-items: center;
+
+      .progress-dot {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: #e2e2e2;
+        border-radius: 30px;
+        margin: 0 8px;
+      }
+
+      .active {
+        color: $system_gray01;
+      }
+
+      .tab-title {
+        color: $system_gray04;
+      }
+
+    }
+  }
+
+  // POLICY LAYER
+  .policy {
+    padding: 20px 40px;
+    max-height: 420px;
+    height: 100%;
+
+    hr {
+      margin: 0 !important;
+    }
+
+    &-content--container {
+      height: 490px;
+    }
+
+    &-contents {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &--check-box {
+      display: flex;
+      align-items: center;
+      padding-bottom: 3px;
+      margin-top: 10px;
+    }
+
+    &-contents--wrapper {
+      overflow-y: auto;
+      border: 1px solid gray;
+      height: 200px;
+    }
+
+    input[type='checkbox'] {
+      display: none;
+    }
+
+  }
+
+
+
+}

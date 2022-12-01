@@ -8,5 +8,6 @@ export namespace LOGIN {
 
   export interface PROP {
     closeModal: (payload: boolean) => void
+    changeComponent: (type: string) => void
   }
 }
