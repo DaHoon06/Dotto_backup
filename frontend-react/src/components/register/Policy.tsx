@@ -196,7 +196,7 @@ export const Policy = (props: IRegister.PROPS) => {
       <section className={'policy__button--container pb-40'}>
         <button
           onClick={() => onClickHandler('login')}
-          className={'secondary__button mr-16'}
+          className={'secondary__button button mr-16'}
           type={'button'}
         >
           이전
@@ -204,7 +204,9 @@ export const Policy = (props: IRegister.PROPS) => {
         <button
           disabled={!isCheckAll}
           onClick={() => onClickHandler('register')}
-          className={!isCheckAll ? 'secondary__button' : 'primary__button'}
+          className={
+            !isCheckAll ? 'secondary__button button' : 'primary__button button'
+          }
           type={'button'}
         >
           다음
