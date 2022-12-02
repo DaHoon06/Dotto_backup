@@ -33,6 +33,7 @@ interface ITypography extends ComponentProps<'p'> {
 }
 export default function Typography(props: ITypography) {
   const {
+    className,
     variant = 'body1',
     fontWeight = 'regular',
     fontColor = 'black',
@@ -54,7 +55,10 @@ export default function Typography(props: ITypography) {
 
   return React.createElement(
     as || element[variant],
-    { className: classNames(variant, fontWeight, fontColor), ...rest },
+    {
+      className: classNames(variant, fontWeight, fontColor, className),
+      ...rest,
+    },
     children
   )
 }
