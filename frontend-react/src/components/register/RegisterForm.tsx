@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   TATTOOIST,
   TATTOOIST_ACTIVE,
@@ -8,6 +8,8 @@ import {
 import { UserForm } from '@/components/register/form/UserForm'
 import { TattoistForm } from '@/components/register/form/TattoistForm'
 import { ins as axios } from '@/lib/axios'
+import { Button } from '@/components/register/button/Button'
+import Typography from '@/components/common/typography/Typography'
 
 export const RegisterForm = (props: any) => {
   const [formType, setFormType] = useState(true)
@@ -269,20 +271,28 @@ export const RegisterForm = (props: any) => {
     setFormType(type)
   }
 
+  const style = {
+    button: {
+      width: '120px',
+    } as React.CSSProperties,
+    redirectButton: {
+      width: '104px',
+    } as React.CSSProperties,
+  }
   return (
     <article>
-      <form className={'register-form-container'}>
+      <form className={'register__form scroll scroll-type'}>
         <section className={'register-items-top'}>
-          <label className={'text text-regular-16px'}>이용목적</label>
-          <div className={'flex-layout'}>
+          <label>이용목적</label>
+          <section className={'flex-layout'}>
             <button
               onClick={() => onClickUserType(true)}
               type={'button'}
               name={'user'}
               className={
                 formType
-                  ? 'register-type-button-active  mr-16'
-                  : 'register-type-button  mr-16'
+                  ? 'register__button--tab-active  mr-16'
+                  : 'register__button--tab  mr-16'
               }
             >
               {formType ? (
@@ -293,7 +303,7 @@ export const RegisterForm = (props: any) => {
                   alt={'일반회원'}
                 />
               ) : (
-                <img src={USER} width={80} height={80} alt={'일반회원'} />
+                <img src={USER} width={72} height={72} alt={'일반회원'} />
               )}
 
               <span>일반</span>
@@ -304,8 +314,8 @@ export const RegisterForm = (props: any) => {
               name={'tattoist'}
               className={
                 formType
-                  ? 'register-type-button'
-                  : 'register-type-button-active'
+                  ? 'register__button--tab'
+                  : 'register__button--tab-active'
               }
             >
               {formType ? (
@@ -325,46 +335,46 @@ export const RegisterForm = (props: any) => {
               )}
               <span>타투이스트</span>
             </button>
-          </div>
+          </section>
         </section>
-        {/*이 아래 부분 탭으로 컴포넌트로 관리*/}
-        <section className={'register-items'}>
-          <label className={'text text-regular-16px'}>아이디</label>
+
+        <section className={'register-items pt-40'}>
+          <label>아이디</label>
           <div className={'flex-justify-between'}>
             <input
               name={'id'}
               placeholder={'6자리이상의 영문 혹은 영문과 숫자 조합'}
-              className={'register-input text-label text-regular-16px'}
+              className={'register__input'}
               type={'text'}
               onChange={onChangeHandler}
               onKeyUp={formValidation}
               value={id}
               tabIndex={10}
             />
-            <button
-              disabled={!idCheck}
-              onClick={duplicateIdCheck}
-              type={'button'}
-              className={idCheck ? 'button' : 'disabled-button'}
-            >
-              중복확인
-            </button>
+            <Button
+              label={'중복확인'}
+              active={true}
+              onClickEvent={duplicateIdCheck}
+              className={'primary__button'}
+              buttonStyle={style.button}
+            />
           </div>
         </section>
 
-        <section className={'register-items'}>
-          <div />
-          <span>{idMessage}</span>
+        <section className={'error'}>
+          <Typography variant={'caption'} fontColor={'red'}>
+            {idMessage}
+          </Typography>
         </section>
 
-        <section className={'register-items'}>
-          <label className={'text text-regular-16px'}>비밀번호</label>
+        <section className={'register-items pt-12'}>
+          <label>비밀번호</label>
           <div className={'flex-justify-between'}>
             <input
               name={'password'}
               autoComplete="false"
               placeholder={'비밀번호를 입력해주세요.'}
-              className={'register-input text-label text-regular-16px'}
+              className={'register__input'}
               type={'password'}
               onChange={onChangeHandler}
               onKeyUp={formValidation}
@@ -373,18 +383,19 @@ export const RegisterForm = (props: any) => {
             />
           </div>
         </section>
-        <section className={'register-items'}>
-          <div />
-          <span>{passwordMessage1}</span>
+        <section className={'error'}>
+          <Typography variant={'caption'} fontColor={'red'}>
+            {passwordMessage1}
+          </Typography>
         </section>
-        <section className={'register-items'}>
-          <label className={'text text-regular-16px'}>비밀번호 확인</label>
+        <section className={'register-items  pt-12'}>
+          <label>비밀번호 확인</label>
           <div className={'flex-justify-between'}>
             <input
               name={'password2'}
               autoComplete="false"
               placeholder={'비밀번호를 한번 더 입력해주세요.'}
-              className={'register-input text-label text-regular-16px'}
+              className={'register__input'}
               type={'password'}
               value={password2}
               onChange={onChangeHandler}
@@ -393,65 +404,67 @@ export const RegisterForm = (props: any) => {
             />
           </div>
         </section>
-        <section className={'register-items'}>
-          <div />
-          <span>{passwordMessage2}</span>
+        <section className={'error'}>
+          <Typography variant={'caption'} fontColor={'red'}>
+            {passwordMessage2}
+          </Typography>
         </section>
-        <section className={'register-items'}>
-          <label className={'text text-regular-16px'}>닉네임</label>
+        <section className={'register-items  pt-12'}>
+          <label>닉네임</label>
           <div className={'flex-justify-between'}>
             <input
               name={'nickname'}
               placeholder={'닉네임을 입력해주세요.'}
-              className={'register-input text-label text-regular-16px'}
+              className={'register__input'}
               type={'text'}
               onChange={onChangeHandler}
               onKeyUp={formValidation}
               value={nickname}
               tabIndex={10}
             />
-            <button
-              disabled={!nicknameCheck}
-              onClick={duplicateNicknameCheck}
-              className={nicknameCheck ? 'button' : 'disabled-button'}
-            >
-              중복확인
-            </button>
+            <Button
+              label={'중복확인'}
+              active={true}
+              className={'primary__button'}
+              buttonStyle={style.button}
+              onClickEvent={duplicateNicknameCheck}
+            />
           </div>
         </section>
-        <section className={'register-items'}>
-          <div />
-          <span>{nicknameMessage}</span>
+        <section className={'error'}>
+          <Typography variant={'caption'} fontColor={'red'}>
+            {nicknameMessage}
+          </Typography>
         </section>
-        <section className={'register-items'}>
-          <label className={'text text-regular-16px'}>휴대폰</label>
+        <section className={'register-items pt-12'}>
+          <label>휴대폰</label>
           <div className={'flex-justify-between'}>
             <input
               name={'phone'}
               placeholder={'숫자만 입력해주세요.'}
-              className={'register-input text-label text-regular-16px'}
+              className={'register__input'}
               type={'tel'}
               onChange={onChangeHandler}
               onKeyUp={formValidation}
               value={phone}
               tabIndex={10}
             />
-            <button
-              disabled={!phoneCheck}
-              type={'button'}
-              className={phoneCheck ? 'button' : 'disabled-button'}
-            >
-              인증번호 받기
-            </button>
+            <Button
+              className={'primary__button'}
+              buttonStyle={style.button}
+              label={'인증번호 받기'}
+              active={true}
+            />
           </div>
         </section>
-        <section className={'register-items'}>
-          <div />
-          <span>{phoneMessage}</span>
+        <section className={'error'}>
+          <Typography variant={'caption'} fontColor={'red'}>
+            {phoneMessage}
+          </Typography>
         </section>
-        <section className={'register-items'}>
-          <label className={'text text-regular-16px'}>성별</label>
-          <div>
+        <section className={'register-items pt-12'}>
+          <label>성별</label>
+          <div className={'flex-layout'}>
             <input
               checked={gender === 'male'}
               name={'gender'}
@@ -462,10 +475,7 @@ export const RegisterForm = (props: any) => {
               value={'male'}
               id={'male'}
             />
-            <label
-              htmlFor={'male'}
-              className={'text-label text-regular-16px mr-40'}
-            >
+            <label htmlFor={'male'} className={'mr-40'}>
               남자
             </label>
             <input
@@ -477,12 +487,7 @@ export const RegisterForm = (props: any) => {
               value={'female'}
               id={'female'}
             />
-            <label
-              htmlFor={'female'}
-              className={'text-label text-regular-16px'}
-            >
-              여자
-            </label>
+            <label htmlFor={'female'}>여자</label>
           </div>
         </section>
       </form>
@@ -495,22 +500,21 @@ export const RegisterForm = (props: any) => {
         <TattoistForm additionalData={additionalDataTattoist} />
       )}
 
-      <section className={'policy-button-container'}>
-        <button
-          onClick={onClickHandlerPrev}
-          className={'cancel-button mr-16'}
-          type={'button'}
-        >
-          이전
-        </button>
-        <button
-          disabled={!validateCheck.next}
-          onClick={onClickHandlerNext}
-          className={!validateCheck.next ? 'disabled-button' : 'button'}
-          type={'button'}
-        >
-          다음
-        </button>
+      <section className={'register__button--container pt-20 pb-40 pr-32'}>
+        <Button
+          className={'primary__button mr-16'}
+          buttonStyle={style.redirectButton}
+          label={'이전'}
+          active={true}
+          onClickEvent={onClickHandlerPrev}
+        />
+        <Button
+          className={'primary__button'}
+          buttonStyle={style.redirectButton}
+          label={'다음'}
+          active={false}
+          onClickEvent={onClickHandlerNext}
+        />
       </section>
     </article>
   )

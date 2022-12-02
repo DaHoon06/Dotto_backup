@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Typography from '@/components/common/typography/Typography'
 
 export const UserForm = (props: any) => {
   const [additionalInfo, setAdditionalInfo] = useState({
@@ -17,11 +18,11 @@ export const UserForm = (props: any) => {
   }
 
   return (
-    <section className={'p-40'}>
-      <p className={'text text-regular-16px'}>
+    <section className={'register-options'}>
+      <Typography className={'text-left'}>
         타투이스트와 연락할 수단을 선택해 주세요.
-      </p>
-      <div className={'mt-40'}>
+      </Typography>
+      <div className={'mt-20 text-left'}>
         <input
           checked={contactType === 'phone'}
           id={'phone'}
@@ -56,7 +57,7 @@ export const UserForm = (props: any) => {
           value={email}
           placeholder={'이메일을 입력해 주세요.'}
           type={'text'}
-          className={'register-input w-100 text-label text-regular-16px'}
+          className={'register__input mt-20'}
         />
       )}
     </section>

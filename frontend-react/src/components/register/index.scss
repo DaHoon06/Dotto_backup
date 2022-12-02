@@ -1,6 +1,14 @@
 @import "src/assets/styles/common/colors";
 
 .register {
+  overflow-y: auto;
+  height: 100%;
+
+  &__button--container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   // TAB Layer
   .tab {
     display: flex;
@@ -34,13 +42,8 @@
 
   // POLICY LAYER
   .policy {
-    padding: 20px 40px;
+    padding: 40px;
     height: 100%;
-
-    &__button--container {
-      display: flex;
-      justify-content: flex-end;
-    }
 
     &-content--container {
       height: 470px;
@@ -85,9 +88,99 @@
     input[type='checkbox'] {
       display: none;
     }
-
   }
 
+  // 회원가입 폼
+  &__input {
+    background-color: $system_white;
+    border: 1px solid $system_gray05;
+    border-radius: 4px;
+    height: 22px;
+    padding: 10px 16px;
+    width: 314px;
+    overflow: hidden;
+
+    &:focus {
+      border-color: $system_gray01;
+      color: $system_gray01;
+    }
+  }
+
+  &__form {
+    padding: 20px 40px;
+
+    .register-items-top {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      align-items: start;
+    }
+
+    .register-items {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      align-items: center;
+    }
 
 
+    // 탭
+    .register__button--tab {
+      background-color: $system_white;
+      border: 1px solid $system_gray05;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      height: 152px;
+      overflow: hidden;
+      padding: 21px 0;
+      width: 164px;
+    }
+
+    .register__button--tab-active {
+      background-color: $system_white;
+      border: 1px solid $system_gray03;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      height: 152px;
+      overflow: hidden;
+      padding: 21px 0;
+      width: 164px;
+    }
+  }
+
+  .error {
+    padding-top: 8px;
+    padding-left: 17%;
+    height: 10px;
+    text-align: left;
+  }
+  // 유저 탭
+  &-options {
+    padding: 20px 40px 0 40px;
+
+    input[type='text'] {
+      display: flex;
+      width: 566px;
+    }
+  }
 }
+
+
+.flex-layout {
+  display: flex;
+}
+
+.flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-left {
+  text-align: left;
+}
+
+

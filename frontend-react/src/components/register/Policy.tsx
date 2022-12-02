@@ -193,7 +193,7 @@ export const Policy = (props: IRegister.PROPS) => {
         )}
       </section>
 
-      <section className={'policy__button--container pb-40'}>
+      <section className={'register__button--container pb-40'}>
         <button
           onClick={() => onClickHandler('login')}
           className={'secondary__button button mr-16'}
