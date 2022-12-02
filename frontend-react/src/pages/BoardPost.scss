@@ -1,0 +1,198 @@
+@import '@/assets/styles/colors.scss';
+
+.main {
+  display: flex;
+  margin-top: 68px;
+
+  & hr {
+    all: unset;
+    width: 100%;
+    border-top: 1px solid $system_gray06;
+  }
+
+  & .filter-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 296px;
+
+    & .filter-menu__tag-filter {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      padding: 24px 40px;
+
+      & .tag-filter__tag-list {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+    }
+
+    & .filter-menu__location-filter {
+      padding: 24px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+
+      & .location-filter__tag-list {
+        display: flex;
+        gap: 8px;
+        overflow: hidden;
+        position: relative;
+
+        & .fade-out-filter {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 20px;
+          height: 100%;
+          background: linear-gradient(
+            270deg,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0) 50%
+          );
+        }
+      }
+
+      & .location-search-form {
+        padding: 6px 8px;
+        border-bottom: 1px solid $system_gray02;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & input {
+          border: none;
+          font-size: 14px;
+
+          &::placeholder {
+            color: $system_gray04;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  & .button-wrapper {
+    display: flex;
+    flex: 1;
+    gap: 12px;
+    padding: 0 32px;
+    margin-top: 248px;
+
+    & .reset-buutton {
+      width: 64px;
+      height: 44px;
+      padding: 0;
+    }
+    & .result-button {
+      flex: 1;
+      height: 44px;
+    }
+  }
+}
+
+.dotto-section {
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+  max-width: 1200px;
+}
+
+.artist-list {
+  display: flex;
+  padding: 24px 20px;
+  gap: 40px;
+
+  & li {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    word-break: break-all;
+  }
+
+  & .followed-artists__artist {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
+
+.more-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: $system_gray06;
+  border: 1px solid $system_gray05;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 29px 16px;
+  & .post-list__post {
+    display: flex;
+    flex-direction: column;
+  }
+  & .post-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  & .prices {
+    display: flex;
+    align-items: flex-end;
+  }
+  & .post-info {
+    padding: 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  & .tagchip {
+    padding: 4px 8px;
+    background-color: $system_gray06;
+  }
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+
+  & .select-dropdown {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+  }
+}
+
+.filter-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  margin-bottom: 16px;
+  width: fit-content;
+  margin-left: auto;
+
+  & .select__options {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #fff;
+    padding: 16px 8px 12px 8px;
+  }
+}

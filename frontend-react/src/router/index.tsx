@@ -1,17 +1,19 @@
 import App from '@/App'
+import BoardPost from '@/pages/BoardPost'
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
+import '@/assets/styles/index.scss'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route>
       <Route path="dotto">
         <Route path="board">
           <Route index />
-          <Route path="post" />
+          <Route path="post" element={<BoardPost />} />
           <Route path="view/:postNo" />
         </Route>
 
