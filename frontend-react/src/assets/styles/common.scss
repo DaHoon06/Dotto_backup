@@ -10,39 +10,101 @@ $total: 100;
 */
 @for $size from 1 to $total {
   .mt-#{$size} {
-    margin-top: $size+px !important;
+    margin-top: $size + px !important;
   }
   .ml-#{$size} {
-    margin-left: $size+px !important;
+    margin-left: $size + px !important;
   }
   .mr-#{$size} {
-    margin-right: $size+px !important;
+    margin-right: $size + px !important;
   }
   .mb-#{$size} {
-    margin-bottom: $size+px !important;
+    margin-bottom: $size + px !important;
+  }
+  .m-#{$size} {
+    margin: $size + px !important;
+  }
+  .mx-#{$size} {
+    margin-left: $size + px !important;
+    margin-right: $size + px !important;
+  }
+  .my-#{$size} {
+    margin-top: $size + px !important;
+    margin-bottom: $size + px !important;
   }
 
   .pt-#{$size} {
-    padding-top: $size+px !important;
+    padding-top: $size + px !important;
   }
   .pl-#{$size} {
-    padding-left: $size+px !important;
+    padding-left: $size + px !important;
   }
   .pr-#{$size} {
-    padding-right: $size+px !important;
+    padding-right: $size + px !important;
   }
   .pb-#{$size} {
-    padding-bottom: $size+px !important;
+    padding-bottom: $size + px !important;
+  }
+  .p-#{$size} {
+    margin: $size + px !important;
+  }
+  .px-#{$size} {
+    padding-left: $size + px !important;
+    padding-right: $size + px !important;
+  }
+  .py-#{$size} {
+    padding-top: $size + px !important;
+    padding-bottom: $size + px !important;
+  }
+
+  .gap-#{$size} {
+    gap: $size + px !important;
   }
 }
 
+.flex {
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.items-baseline {
+  align-items: baseline;
+}
 
 /*
 ========================
   SCROLLBAR 스크롤바 설정
 ========================
 */
-.scroll{
+.scroll {
   width: 100%;
   padding: 0;
   overflow-y: auto;
@@ -59,7 +121,7 @@ $total: 100;
   }
   /* 스크롤바 막대 설정*/
   &::-webkit-scrollbar-thumb {
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
     /* 스크롤바 둥글게 설정  */
     border-radius: 10px;
   }
