@@ -3,22 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
 import { DropIcon } from '@/components/register/icon/DropIcon'
 import { IRegister } from '@/interfaces/register'
-
-interface IPolicy {
-  dottoPolicyContent: string
-  privatePolicyContent: string
-}
+import { Button } from '@/components/register/button/Button'
 
 export const Policy = (props: IRegister.PROPS) => {
   const [showPolicyContent1, setShowPolicyContent1] = useState(false)
   const [showPolicyContent2, setShowPolicyContent2] = useState(false)
-  const [isCheckAll, setIsCheckAll] = useState(false)
   const [policyContent, setPolicyContent] = useState({
     dottoPolicyContent: '',
     privatePolicyContent: '',
   })
-  const [checkedItems, setCheckedItems] = useState(new Set())
-  const [isChecked, setIsChecked] = useState(false)
+  const [checkItems, setCheckItems] = useState<string[]>([])
   const { changeComponent } = props
 
   useEffect(() => {
@@ -36,42 +30,10 @@ export const Policy = (props: IRegister.PROPS) => {
     try {
       const { data: policyData } = await axios.get('/policy')
       const { result } = policyData
-      const { data } = result as { data: IPolicy }
+      const { data } = result as { data: IRegister.Policy }
       return { ...data }
     } catch (e) {
       console.log(e)
-    }
-  }
-
-  const checkedItemHandler = (id: string, checked: boolean) => {
-    if (checked) {
-      checkedItems.add(id)
-      setCheckedItems(checkedItems)
-      if (checkedItems.size === 2) setIsCheckAll(true)
-    } else if (!checked && checkedItems.has(id)) {
-      checkedItems.delete(id)
-      setCheckedItems(checkedItems)
-      setIsCheckAll(false)
-    }
-  }
-
-  const checkedHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(!isChecked)
-    checkedItemHandler(target.id, target.checked)
-  }
-
-  const checkAll = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = target
-    if (checked) {
-      setIsCheckAll(true)
-      checkedItems.add('policy')
-      checkedItems.add('private')
-      setCheckedItems(checkedItems)
-    } else {
-      setIsCheckAll(false)
-      checkedItems.delete('policy')
-      checkedItems.delete('private')
-      setCheckedItems(checkedItems)
     }
   }
 
@@ -86,36 +48,52 @@ export const Policy = (props: IRegister.PROPS) => {
     changeComponent(type)
   }
 
-  const onClickHandlerPrev = () => {
-    changeComponent('login')
+  const onClickCheckBox = (type: string) => {
+    if (type === 'all') {
+      if (checkItems.length === 2) {
+        setCheckItems([])
+      } else {
+        const initialData = ['policy', 'private']
+        setCheckItems([...initialData])
+      }
+    } else {
+      if (checkItems.includes(type)) {
+        setCheckItems(checkItems.filter((el) => el !== type))
+      } else {
+        setCheckItems((item) => [...item, type])
+      }
+    }
   }
 
-  const onClickCheckBox = (type: string) => {
-    switch (type) {
-      case 'all':
-        setIsCheckAll(!isCheckAll)
-        checkedItems.delete('policy')
-        checkedItems.delete('private')
-        break
-      case 'policy':
-      case 'private':
-        if (checkedItems.has(type)) checkedItems.delete(type)
-        else checkedItems.add(type)
-        break
+  const allCheck = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = target
+    if (checked) {
+      const initialData = ['policy', 'private']
+      setCheckItems([...initialData])
+    } else {
+      setCheckItems([])
     }
-    setCheckedItems(checkedItems)
+  }
+
+  const singleCheck = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, id } = target
+    if (checked) {
+      setCheckItems((item) => [...item, id])
+    } else {
+      setCheckItems(checkItems.filter((el) => el !== id))
+    }
   }
 
   return (
     <article className={'policy'}>
       <section className={'pt-10 policy__check-box--all'}>
         <button type={'button'} onClick={() => onClickCheckBox('all')}>
-          <CheckBox checkActive={isCheckAll} />
+          <CheckBox checkActive={checkItems.length === 2} />
         </button>
         <input
           readOnly
-          checked={isCheckAll}
-          onChange={(e) => checkAll(e)}
+          checked={checkItems.length === 2}
+          onChange={allCheck}
           type="checkbox"
           value={'all'}
           id={'all'}
@@ -129,16 +107,14 @@ export const Policy = (props: IRegister.PROPS) => {
         <section className={'policy-contents'}>
           <section className={'policy__check-box'}>
             <button type={'button'} onClick={() => onClickCheckBox('policy')}>
-              <CheckBox
-                checkActive={isCheckAll || checkedItems.has('policy')}
-              />
+              <CheckBox checkActive={checkItems.includes('policy')} />
             </button>
             <input
-              checked={checkedItems.has('policy')}
+              checked={checkItems.includes('policy')}
               readOnly
               id="policy"
               type="checkbox"
-              onChange={(e) => checkedHandler(e)}
+              onChange={singleCheck}
               value={'policy'}
               name={'policy'}
             />
@@ -161,16 +137,14 @@ export const Policy = (props: IRegister.PROPS) => {
         <section className={'policy-contents'}>
           <section className={'policy__check-box'}>
             <button type={'button'} onClick={() => onClickCheckBox('private')}>
-              <CheckBox
-                checkActive={isCheckAll || checkedItems.has('private')}
-              />
+              <CheckBox checkActive={checkItems.includes('private')} />
             </button>
             <input
-              checked={checkedItems.has('private')}
+              checked={checkItems.includes('private')}
               readOnly
               id="private"
               type="checkbox"
-              onChange={(e) => checkedHandler(e)}
+              onChange={singleCheck}
               value={'private'}
               name={'private'}
             />
@@ -194,23 +168,21 @@ export const Policy = (props: IRegister.PROPS) => {
       </section>
 
       <section className={'register__button--container pb-40'}>
-        <button
-          onClick={() => onClickHandler('login')}
+        <Button
+          onClickEvent={() => onClickHandler('login')}
           className={'secondary__button button mr-16'}
-          type={'button'}
-        >
-          이전
-        </button>
-        <button
-          disabled={!isCheckAll}
-          onClick={() => onClickHandler('register')}
+          label={'이전'}
+        />
+        <Button
+          disabled={checkItems.length !== 2}
+          onClickEvent={() => onClickHandler('register')}
           className={
-            !isCheckAll ? 'secondary__button button' : 'primary__button button'
+            checkItems.length !== 2
+              ? 'secondary__button button'
+              : 'primary__button button'
           }
-          type={'button'}
-        >
-          다음
-        </button>
+          label={'다음'}
+        />
       </section>
     </article>
   )
