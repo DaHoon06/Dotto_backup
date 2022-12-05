@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router'
 import { router } from '@/router'
 import { CookiesProvider } from 'react-cookie'
 import { AuthProvider } from './stores/AuthProvieder'
+import '@/assets/styles/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

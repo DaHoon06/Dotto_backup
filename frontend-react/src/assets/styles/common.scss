@@ -86,6 +86,11 @@ $total: 100;
   justify-content: space-between;
 }
 
+.flex-justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 .items-start {
   align-items: flex-start;
 }
@@ -98,7 +103,9 @@ $total: 100;
 .items-baseline {
   align-items: baseline;
 }
-
+.pointer {
+  cursor: pointer;
+}
 /*
 ========================
   SCROLLBAR 스크롤바 설정
@@ -126,3 +133,31 @@ $total: 100;
     border-radius: 10px;
   }
 }
+
+/* Radio Button */
+[type="radio"] {
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid #222222;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  transition: border 0.3s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 5px solid #222222;
+  //background: #222222;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted #222222;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(2px, 0.1em) #bebebe;
+  cursor: pointer;
+}
+
+

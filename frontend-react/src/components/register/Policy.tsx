@@ -49,23 +49,29 @@ export const Policy = (props: IRegister.PROPS) => {
   }
 
   const onClickCheckBox = (type: string) => {
-    if (type === 'all') {
-      if (checkItems.length === 2) {
-        setCheckItems([])
-      } else {
-        const initialData = ['policy', 'private']
-        setCheckItems([...initialData])
-      }
-    } else {
-      if (checkItems.includes(type)) {
-        setCheckItems(checkItems.filter((el) => el !== type))
-      } else {
-        setCheckItems((item) => [...item, type])
-      }
+    switch (type) {
+      case 'all':
+        if (checkItems.length === 2) {
+          setCheckItems([])
+        } else {
+          const initialData = ['policy', 'private']
+          setCheckItems([...initialData])
+        }
+        break
+      case 'policy':
+      case 'private':
+        if (checkItems.includes(type)) {
+          setCheckItems(checkItems.filter((el) => el !== type))
+        } else {
+          setCheckItems((item) => [...item, type])
+        }
+        break
     }
   }
 
-  const allCheck = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandlerAllCheck = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = target
     if (checked) {
       const initialData = ['policy', 'private']
@@ -75,7 +81,9 @@ export const Policy = (props: IRegister.PROPS) => {
     }
   }
 
-  const singleCheck = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandlerSingleCheck = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, id } = target
     if (checked) {
       setCheckItems((item) => [...item, id])
@@ -87,26 +95,32 @@ export const Policy = (props: IRegister.PROPS) => {
   return (
     <article className={'policy'}>
       <section className={'pt-10 policy__check-box--all'}>
-        <button type={'button'} onClick={() => onClickCheckBox('all')}>
+        <button
+          type={'button'}
+          onClick={() => onClickCheckBox('all')}
+          className={'mr-14'}
+        >
           <CheckBox checkActive={checkItems.length === 2} />
         </button>
         <input
           readOnly
           checked={checkItems.length === 2}
-          onChange={allCheck}
+          onChange={onChangeHandlerAllCheck}
           type="checkbox"
           value={'all'}
           id={'all'}
           name={'all'}
         />
-        <label htmlFor={'all'} className={'pl-4'}>
-          전체 동의 합니다.
-        </label>
+        <label htmlFor={'all'}>전체 동의 합니다.</label>
       </section>
       <section className={'policy-content--container'}>
         <section className={'policy-contents'}>
           <section className={'policy__check-box'}>
-            <button type={'button'} onClick={() => onClickCheckBox('policy')}>
+            <button
+              type={'button'}
+              onClick={() => onClickCheckBox('policy')}
+              className={'mr-14'}
+            >
               <CheckBox checkActive={checkItems.includes('policy')} />
             </button>
             <input
@@ -114,12 +128,12 @@ export const Policy = (props: IRegister.PROPS) => {
               readOnly
               id="policy"
               type="checkbox"
-              onChange={singleCheck}
+              onChange={onChangeHandlerSingleCheck}
               value={'policy'}
               name={'policy'}
             />
-            <label htmlFor={'policy'} className={'pl-4'}>
-              이용약관 동의<span className={'essential'}>(필수)</span>
+            <label htmlFor={'policy'}>
+              이용약관 동의<span className={'essential ml-4'}>(필수)</span>
             </label>
           </section>
           <button onClick={onClickHandleShowContent} type={'button'}>
@@ -136,7 +150,11 @@ export const Policy = (props: IRegister.PROPS) => {
         )}
         <section className={'policy-contents'}>
           <section className={'policy__check-box'}>
-            <button type={'button'} onClick={() => onClickCheckBox('private')}>
+            <button
+              type={'button'}
+              onClick={() => onClickCheckBox('private')}
+              className={'mr-14'}
+            >
               <CheckBox checkActive={checkItems.includes('private')} />
             </button>
             <input
@@ -144,13 +162,13 @@ export const Policy = (props: IRegister.PROPS) => {
               readOnly
               id="private"
               type="checkbox"
-              onChange={singleCheck}
+              onChange={onChangeHandlerSingleCheck}
               value={'private'}
               name={'private'}
             />
             <label htmlFor={'private'} className={'pl-4'}>
               개인 정보 수집. 이용동의
-              <span className={'essential'}>(필수)</span>
+              <span className={'essential ml-4'}>(필수)</span>
             </label>
           </section>
           <button onClick={onClickHandleShowPrivate} type={'button'}>

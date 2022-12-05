@@ -7,10 +7,9 @@ import { RegisterForm } from '@/components/register/RegisterForm'
 
 export const Register = (props: IRegister.PROPS) => {
   const [componentType, setComponentType] = useState(1)
-
   const { changeComponent } = props
 
-  const redirectLogin = (payload: string) => {
+  const redirectController = (payload: string) => {
     switch (payload) {
       case 'login': {
         changeComponent('login')
@@ -30,9 +29,9 @@ export const Register = (props: IRegister.PROPS) => {
     <article className={'register'}>
       <Tabs currentTab={componentType} />
       {componentType === 1 ? (
-        <Policy changeComponent={redirectLogin} />
+        <Policy changeComponent={redirectController} />
       ) : componentType === 2 ? (
-        <RegisterForm />
+        <RegisterForm changeComponent={redirectController} />
       ) : null}
     </article>
   )

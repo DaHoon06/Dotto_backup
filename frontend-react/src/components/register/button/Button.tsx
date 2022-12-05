@@ -1,14 +1,9 @@
-import cn from 'classnames/bind'
 import React, { ComponentProps } from 'react'
-import Typography from '@/components/common/typography/Typography'
-
-// const classNames = cn.bind(styles)
 
 interface RegisterButton extends ComponentProps<'button'> {
   onClickEvent?: () => void
   className?: string
   label: string
-  active: boolean
   buttonStyle?: React.CSSProperties
 }
 
@@ -22,7 +17,7 @@ export const Button = (props: RegisterButton) => {
       disabled={disabled}
       style={buttonStyle}
     >
-      <Typography>{label}</Typography>
+      {label}
     </button>
   )
 }

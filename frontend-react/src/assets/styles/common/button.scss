@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import "colors";
+@import "src/assets/styles/colors";
 
 @function borderType($border-color) {
   @if $border-color == none {

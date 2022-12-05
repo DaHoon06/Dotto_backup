@@ -1,8 +1,19 @@
-@import "src/assets/styles/common/colors";
+@import "../../assets/styles/colors";
 
 .register {
-  overflow-y: auto;
   height: 100%;
+
+  &-items {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+  }
+
+  .form-container {
+    height: 100%;
+    max-height: 628px;
+    overflow-y: auto;
+  }
 
   &__button--container {
     display: flex;
@@ -43,7 +54,6 @@
   // POLICY LAYER
   .policy {
     padding: 40px;
-    height: 100%;
 
     &-content--container {
       height: 470px;
@@ -88,6 +98,14 @@
     input[type='checkbox'] {
       display: none;
     }
+
+    .essential {
+      font-style: normal;
+      font-weight: 500;
+      color: $system_gray03;
+      width: fit-content;
+      font-size: 14px;
+    }
   }
 
   // 회원가입 폼
@@ -114,13 +132,6 @@
       grid-template-columns: 100px 1fr;
       align-items: start;
     }
-
-    .register-items {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      align-items: center;
-    }
-
 
     // 탭
     .register__button--tab {
@@ -153,34 +164,63 @@
   }
 
   .error {
-    padding-top: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     padding-left: 17%;
     height: 10px;
     text-align: left;
   }
-  // 유저 탭
+  // 회원가입 탭
   &-options {
     padding: 20px 40px 0 40px;
 
-    input[type='text'] {
+    .input--email {
       display: flex;
       width: 566px;
     }
+
+    .upload {
+      width: 13px;
+      margin-right: 12px;
+    }
+
+    .upload-container {
+      width: 150px;
+      height: 90px;
+    }
+
+    .upload__button {
+      display: flex;
+      align-items: center;
+      height: 44px;
+      width: 144px;
+    }
+
+    .upload__button input[type="file"] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+    }
+
+    .upload__button label {
+      background-color: white;
+      border: 1px solid #e2e2e2;
+      vertical-align: middle;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #222222;
+      cursor: pointer;
+      border-radius: 4px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .upload__button label:hover {
+      border: 1px solid $system_gray01;
+    }
   }
 }
-
-
-.flex-layout {
-  display: flex;
-}
-
-.flex-justify-between {
-  display: flex;
-  justify-content: space-between;
-}
-
-.text-left {
-  text-align: left;
-}
-
 

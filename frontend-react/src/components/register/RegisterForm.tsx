@@ -10,8 +10,11 @@ import { TattoistForm } from '@/components/register/form/TattoistForm'
 import { ins as axios } from '@/lib/axios'
 import { Button } from '@/components/register/button/Button'
 import Typography from '@/components/common/typography/Typography'
+import { IRegister, RegisterOptions } from '@/interfaces/register'
+import { Regex } from '@/constants/regex'
 
-export const RegisterForm = (props: any) => {
+export const RegisterForm = (props: IRegister.PROPS) => {
+  const { changeComponent } = props
   const [formType, setFormType] = useState(true)
   const [inputValue, setInputValue] = useState({
     userType: '1',
@@ -88,6 +91,16 @@ export const RegisterForm = (props: any) => {
       next: false,
     })
   }
+
+  const style = {
+    button: {
+      width: '120px',
+    } as React.CSSProperties,
+    redirectButton: {
+      width: '104px',
+    } as React.CSSProperties,
+  }
+
   // change key event
   const onChangeHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = target
@@ -98,7 +111,7 @@ export const RegisterForm = (props: any) => {
   }
 
   const changeView = (type: string) => {
-    return props.modalType(type)
+    return changeComponent(type)
   }
 
   const onClickHandlerNext = async () => {
@@ -110,7 +123,7 @@ export const RegisterForm = (props: any) => {
     changeView('policy')
   }
   // 일반 유저 추가 정보
-  const additionalDataUser = (userData: any) => {
+  const additionalDataUser = (userData: RegisterOptions) => {
     const { contactType: type, email: mail } = userData
     const contactType = type || ''
     const email = mail || ''
@@ -121,7 +134,7 @@ export const RegisterForm = (props: any) => {
     })
   }
   // 타투이스트 추가 정보
-  const additionalDataTattoist = (userData: any) => {
+  const additionalDataTattoist = (userData: RegisterOptions) => {
     const {
       address: addressData,
       addressDetail: detailData,
@@ -138,40 +151,26 @@ export const RegisterForm = (props: any) => {
     })
   }
 
-  const regularExpression = () => {
-    const idReg = /^[a-z0-9_]{5,20}$/
-    const passwordReg =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-    const nicknameReg = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/
-    const phoneReg = /^01([016789])-?([0-9]{4})-?([0-9]{4})$/
-    const emailReg =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
-    return {
-      idReg,
-      passwordReg,
-      nicknameReg,
-      phoneReg,
-      emailReg,
-    }
-  }
-
   const formValidation = (): void => {
-    const { idReg, passwordReg, nicknameReg, phoneReg, emailReg } =
-      regularExpression()
-
     correctPassword() // 비밀번호가 일치하는지 확인
 
-    const idCheck = idReg.test(id)
-    const nicknameCheck = nicknameReg.test(nickname)
-    const phoneCheck = phoneReg.test(phone)
-    const passwordCheck = passwordReg.test(password)
-    const passwordCheck2 = passwordReg.test(password2)
+    const idCheck = Regex.ID.test(id)
+    const nicknameCheck = Regex.NICKNAME.test(nickname)
+    const phoneCheck = Regex.PHONE.test(phone)
+    const passwordCheck = Regex.PASSWORD.test(password)
+    const passwordCheck2 = Regex.PASSWORD.test(password2)
 
-    if (!passwordCheck || !passwordCheck2)
+    if (!passwordCheck && password.length !== 0)
       systemMessage({
         passwordMessage1: '형식에 맞춰서 비밀번호를 다시 입력해주세요.',
       })
     else systemMessage({ passwordMessage1: '' })
+
+    if (!passwordCheck2 && password2.length !== 0)
+      systemMessage({
+        passwordMessage2: '형식에 맞춰서 비밀번호를 다시 입력해주세요.',
+      })
+    else systemMessage({ passwordMessage2: '' })
 
     setValidateCheck({
       ...validateCheck,
@@ -227,7 +226,6 @@ export const RegisterForm = (props: any) => {
   // 비밀번호 일치하는지 확인
   const correctPassword = () => {
     let sentence = ''
-
     if (password !== password2) sentence = '비밀번호가 일치하지 않습니다.'
     else sentence = ''
 
@@ -271,20 +269,12 @@ export const RegisterForm = (props: any) => {
     setFormType(type)
   }
 
-  const style = {
-    button: {
-      width: '120px',
-    } as React.CSSProperties,
-    redirectButton: {
-      width: '104px',
-    } as React.CSSProperties,
-  }
   return (
-    <article>
-      <form className={'register__form scroll scroll-type'}>
+    <article className={'form-container'}>
+      <form className={'register__form'}>
         <section className={'register-items-top'}>
           <label>이용목적</label>
-          <section className={'flex-layout'}>
+          <section className={'flex'}>
             <button
               onClick={() => onClickUserType(true)}
               type={'button'}
@@ -353,7 +343,6 @@ export const RegisterForm = (props: any) => {
             />
             <Button
               label={'중복확인'}
-              active={true}
               onClickEvent={duplicateIdCheck}
               className={'primary__button'}
               buttonStyle={style.button}
@@ -424,7 +413,6 @@ export const RegisterForm = (props: any) => {
             />
             <Button
               label={'중복확인'}
-              active={true}
               className={'primary__button'}
               buttonStyle={style.button}
               onClickEvent={duplicateNicknameCheck}
@@ -453,7 +441,6 @@ export const RegisterForm = (props: any) => {
               className={'primary__button'}
               buttonStyle={style.button}
               label={'인증번호 받기'}
-              active={true}
             />
           </div>
         </section>
@@ -464,7 +451,7 @@ export const RegisterForm = (props: any) => {
         </section>
         <section className={'register-items pt-12'}>
           <label>성별</label>
-          <div className={'flex-layout'}>
+          <div className={'flex'}>
             <input
               checked={gender === 'male'}
               name={'gender'}
@@ -475,7 +462,7 @@ export const RegisterForm = (props: any) => {
               value={'male'}
               id={'male'}
             />
-            <label htmlFor={'male'} className={'mr-40'}>
+            <label htmlFor={'male'} className={'mr-40 pointer'}>
               남자
             </label>
             <input
@@ -487,7 +474,9 @@ export const RegisterForm = (props: any) => {
               value={'female'}
               id={'female'}
             />
-            <label htmlFor={'female'}>여자</label>
+            <label htmlFor={'female'} className={'pointer'}>
+              여자
+            </label>
           </div>
         </section>
       </form>
@@ -500,19 +489,18 @@ export const RegisterForm = (props: any) => {
         <TattoistForm additionalData={additionalDataTattoist} />
       )}
 
-      <section className={'register__button--container pt-20 pb-40 pr-32'}>
+      <section className={'register__button--container pt-20 pb-20 pr-40'}>
         <Button
-          className={'primary__button mr-16'}
+          className={'secondary__button mr-16'}
           buttonStyle={style.redirectButton}
           label={'이전'}
-          active={true}
           onClickEvent={onClickHandlerPrev}
         />
         <Button
           className={'primary__button'}
           buttonStyle={style.redirectButton}
           label={'다음'}
-          active={false}
+          disabled={true}
           onClickEvent={onClickHandlerNext}
         />
       </section>
