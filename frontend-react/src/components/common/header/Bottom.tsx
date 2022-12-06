@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export const Bottom = () => {
-  //TODO ROUTER 따라 currentPath 바꾸기
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const location = useLocation()
+  const [currentPath, setCurrentPath] = useState(location.pathname)
   const [dropListCommunity, setDropListCommunity] = useState(false)
   const [dropListService, setDropListService] = useState(false)
 
   useEffect(() => {
-    const path = window.location.pathname
-    setCurrentPath(path)
-  }, [currentPath])
+    setCurrentPath(location.pathname)
+  }, [location])
 
   const showDropdwonCommunity = () => {
     setDropListCommunity(!dropListCommunity)

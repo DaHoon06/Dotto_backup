@@ -3,13 +3,16 @@ import { Footer } from '@/components/common/footer/Footer'
 import { Main } from '@/components/main'
 import { Banner } from '@/components/banner'
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router'
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const location = useLocation()
+  const [currentPath, setCurrentPath] = useState(location.pathname)
+
   useEffect(() => {
-    const path = window.location.pathname
-    setCurrentPath(path)
-  }, [currentPath])
+    setCurrentPath(location.pathname)
+  }, [location])
+
   return (
     <>
       <Header />
