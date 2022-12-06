@@ -21,11 +21,7 @@ export const Top = () => {
   const handleClickSearchBar = (e: IEvent.handleClick) => {
     setShowSearch(!showSearch)
   }
-
-  const handleKeyPressEnter = (e: IEvent.handleKeyPressEnter) => {
-    if (e.key === 'Enter') search()
-  }
-
+  // 검색 추가
   const search = () => {}
 
   return (
@@ -36,7 +32,7 @@ export const Top = () => {
         </Link>
       </section>
 
-      <section className="search-bar--container">
+      <form className="search-bar--container">
         <input
           type="text"
           placeholder="Search"
@@ -44,10 +40,9 @@ export const Top = () => {
           value={keyword}
           name="keyword"
           onClick={handleClickSearchBar}
-          onKeyPress={handleKeyPressEnter}
           onChange={onChangeKeyword}
         />
-        <button type="button" className="search__button" onClick={search}>
+        <button type="submit" className="search__button" onClick={search}>
           <img alt="검색 버튼" src={SEARCH} width={20} height={20} />
         </button>
         {showSearch ? (
@@ -68,7 +63,7 @@ export const Top = () => {
         ) : (
           ''
         )}
-      </section>
+      </form>
       {showSearch ? (
         <section className="search-bar__button--close">
           <button type="button" onClick={handleClickSearchBar}>
