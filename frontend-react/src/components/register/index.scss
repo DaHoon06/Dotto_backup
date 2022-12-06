@@ -222,5 +222,29 @@
       border: 1px solid $system_gray01;
     }
   }
+
+  /* 회원가입 완료 */
+
+  .completed {
+    &-container {
+      width: 100%;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button {
+      width: 120px;
+      height: 44px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+      height: 100px;
+      padding: 16px 32px;
+    }
+  }
 }
 

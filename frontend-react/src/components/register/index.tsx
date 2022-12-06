@@ -4,6 +4,7 @@ import { Tabs } from '@/components/register/Tabs'
 import './index.scss'
 import { IRegister } from '@/interfaces/register'
 import { RegisterForm } from '@/components/register/RegisterForm'
+import { RegisterCompleted } from '@/components/register/RegisterCompleted'
 
 export const Register = (props: IRegister.PROPS) => {
   const [componentType, setComponentType] = useState(1)
@@ -23,6 +24,13 @@ export const Register = (props: IRegister.PROPS) => {
         setComponentType(1)
         break
       }
+      case 'completed': {
+        setComponentType(3)
+        break
+      }
+      case 'close': {
+        break
+      }
     }
   }
   return (
@@ -32,6 +40,8 @@ export const Register = (props: IRegister.PROPS) => {
         <Policy changeComponent={redirectController} />
       ) : componentType === 2 ? (
         <RegisterForm changeComponent={redirectController} />
+      ) : componentType === 3 ? (
+        <RegisterCompleted changeComponent={redirectController} />
       ) : null}
     </article>
   )
