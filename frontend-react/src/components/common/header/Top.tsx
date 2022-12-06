@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LOGO from '@/assets/icons/logo/dotto.svg'
 import SEARCH from '@/assets/icons/nav/search.svg'
 import CLOSE from '@/assets/icons/nav/x-button.svg'
+import { Link } from 'react-router-dom'
 
 export namespace IEvent {
   export type handleClick = React.MouseEvent<HTMLElement>
@@ -30,9 +31,9 @@ export const Top = () => {
   return (
     <article className="top-container">
       <section className="logo-wrapper">
-        <a href="/">
+        <Link to="/">
           <img width={103} height={40} alt="닷투 로고" src={LOGO} />
-        </a>
+        </Link>
       </section>
 
       <section className="search-bar--container">

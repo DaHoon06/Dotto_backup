@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export const Bottom = () => {
   //TODO ROUTER 따라 currentPath 바꾸기
@@ -21,20 +22,20 @@ export const Bottom = () => {
     <nav className="navigation">
       <ul>
         <li>
-          <a
-            href={'/'}
+          <Link
+            to={'/'}
             className={'nav-title' + (currentPath === '/' ? 'active' : '')}
           >
             HOME
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href={'/'}
+          <Link
+            to={'/'}
             className={'nav-title' + (currentPath === '/try' ? 'active' : '')}
           >
             try DOTTO
-          </a>
+          </Link>
         </li>
         <li onMouseEnter={showDropdwonCommunity}>
           <span
@@ -52,63 +53,63 @@ export const Bottom = () => {
               onMouseLeave={showDropdwonCommunity}
               className={'drop-down-container'}
             >
-              <a
-                href={'/dotto/board'}
+              <Link
+                to={'/dotto/board'}
                 className={
                   'nav-title' + (currentPath === '/dotto' ? 'active' : '')
                 }
               >
                 닷투 게시판
-              </a>
-              <a
-                href={'/'}
+              </Link>
+              <Link
+                to={'/'}
                 className={
                   'nav-title' + (currentPath === '/dotto-board' ? 'active' : '')
                 }
               >
                 닷찾사 게시판
-              </a>
+              </Link>
             </section>
           ) : (
             ''
           )}
         </li>
         <li>
-          <a
-            href={'/'}
+          <Link
+            to={'/'}
             className={'nav-title' + (currentPath === '/feed' ? 'active' : '')}
           >
             Feed
-          </a>
+          </Link>
         </li>
         <li onMouseEnter={showDropdwonService}>
-          <a
-            href={'/'}
+          <Link
+            to={'/'}
             className={'nav-title' + (currentPath === '/faq' ? 'active' : '')}
           >
             고객지원
-          </a>
+          </Link>
           {dropListService ? (
             <section
               onMouseLeave={showDropdwonService}
               className={'drop-down-container'}
             >
-              <a
-                href={'/'}
+              <Link
+                to={'/'}
                 className={
                   'nav-title' + (currentPath === '/faq' ? 'active' : '')
                 }
               >
                 FAQ
-              </a>
-              <a
-                href={'/'}
+              </Link>
+              <Link
+                to={'/'}
                 className={
                   'nav-title' + (currentPath === '/notice' ? 'active' : '')
                 }
               >
                 공지사항
-              </a>
+              </Link>
             </section>
           ) : (
             ''
