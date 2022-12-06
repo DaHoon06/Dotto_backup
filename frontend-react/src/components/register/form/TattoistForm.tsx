@@ -62,7 +62,7 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
         <label>작업실 사진</label>
         <section className="upload-container">
           <div className="upload__button mt-20">
-            <label htmlFor="addFile">
+            <label htmlFor="addFile" className={'flex justify-center'}>
               <img
                 className="upload"
                 src={Upload}
