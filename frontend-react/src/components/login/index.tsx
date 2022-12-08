@@ -6,6 +6,8 @@ import { ins as axios } from '@/lib/axios'
 import { useCookies } from 'react-cookie'
 import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
 import { LOGIN } from '@/interfaces/login'
+import { useMutation, useQueryClient } from 'react-query'
+import { AxiosResponse } from 'axios'
 
 export const Login = (props: LOGIN.PROP) => {
   const [loginInfo, setLoginInfo] = useState({
@@ -44,19 +46,17 @@ export const Login = (props: LOGIN.PROP) => {
   }
 
   const login = async (e: React.FormEvent) => {
-    try {
-      e.preventDefault()
-      const { data } = await axios.post('/sign-in', loginInfo)
-      const { success } = data
-      if (success) {
-        saveState(data) // session 저장
-        setLoginErrorMsg(ERROR_MESSAGE.BLANK)
-        close(false) // modal Close
-      } else setLoginErrorMsg(ERROR_MESSAGE.LOGIN_FAIL)
-    } catch (e) {
-      console.log(e)
-    }
+    e.preventDefault()
+    return await axios.post('/sign-in', loginInfo)
+    // const { success } = data
+    // if (success) {
+    //   saveState(data) // session 저장
+    //   setLoginErrorMsg(ERROR_MESSAGE.BLANK)
+    //   close(false) // modal Close
+    // } else setLoginErrorMsg(ERROR_MESSAGE.LOGIN_FAIL)
   }
+
+  const { mutate, isLoading, isError, error, isSuccess } = useMutation(login)
 
   const saveState = (payload: LOGIN.STATE) => {
     const { accessToken, refreshToken, nickname, roles } = payload
