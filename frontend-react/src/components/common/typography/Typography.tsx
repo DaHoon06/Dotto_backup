@@ -25,12 +25,13 @@ type FontColor =
   | 'black'
   | 'white'
 
-interface ITypography extends ComponentProps<'p'> {
+export interface ITypography extends ComponentProps<'p'> {
   variant?: Variant
   fontWeight?: FontWeight
   fontColor?: FontColor
   as?: keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
 }
+
 export default function Typography(props: ITypography) {
   const {
     className,

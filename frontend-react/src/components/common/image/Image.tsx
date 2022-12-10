@@ -7,7 +7,13 @@ interface IImage extends ComponentProps<'img'> {
 }
 
 export default function Image(props: IImage) {
-  const { src, fallbackkImageSrc, alt, className, ...rest } = props
+  const {
+    src = 'https://picsum.photos/400/400',
+    fallbackkImageSrc,
+    alt,
+    className,
+    ...rest
+  } = props
 
   const [isError, setIsError] = useState(false)
 

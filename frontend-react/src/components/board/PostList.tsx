@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Image from '@/components/common/image/Image'
 import Typography from '@/components/common/typography/Typography'
+import TagChip from './TagChip'
 
 export default function PostList({ list }: { list: any[] }) {
   return (
@@ -53,14 +54,7 @@ export default function PostList({ list }: { list: any[] }) {
                 <span className="flex gap-8">
                   {/* {post?.tags?.map((tag: any) => { */}
                   {[...new Array(3)].map((tag: any) => {
-                    return (
-                      <Typography
-                        className="tagchip"
-                        fontColor="gray2"
-                        variant="caption"
-                        key={tag?.id}
-                      >{`태그 1`}</Typography>
-                    )
+                    return <TagChip key={tag?.id}>{`태그 1`}</TagChip>
                   })}
                 </span>
               </div>
