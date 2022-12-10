@@ -17,7 +17,7 @@
   padding: 12px 0;
 }
 
-button {
+.button {
   width: 136px;
   height: 48px;
   padding: 12px 0 !important;
@@ -103,9 +103,32 @@ button {
   }
 }
 .commentProfileImage {
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+}
+.menu {
+  position: relative;
 }
 .meatball {
-  margin-left: 148px;
-  //   width: 24px;
-  //   height: 24px;
+  cursor: pointer;
+}
+.reveiwImage {
+  width: 288px;
+  height: 288px;
+  cursor: pointer;
+}
+.menuItems {
+  position: absolute;
+  right: 0;
+  width: 144px;
+  height: 116px;
+  background: $system_white;
+  border: 1px solid $system_gray05;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

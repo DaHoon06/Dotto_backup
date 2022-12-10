@@ -8,7 +8,7 @@ import { ReactComponent as MeatballIcon } from '@/assets/icons/board/dotto/meatb
 import Image from '@/components/common/image/Image'
 import TagChip from '@/components/board/TagChip'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Tab } from '@headlessui/react'
+import { Menu, Tab } from '@headlessui/react'
 import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles)
@@ -16,6 +16,12 @@ const cx = classNames.bind(styles)
 export default function BoardPostDetail() {
   const { postNo } = useParams()
   const { post } = usePost(postNo)
+
+  const commentMenus = [
+    { name: '수정', action() {} },
+    { name: '삭제', action() {} },
+    { name: '신고', action() {} },
+  ]
 
   return (
     <>
@@ -193,51 +199,79 @@ export default function BoardPostDetail() {
             <Tab.Panels>
               <Tab.Panel>
                 <ul className="flex-col gap-20">
-                  <li className="flex-col">
-                    <div className="flex items-center px-16 py-24">
-                      <Image className={styles.commentProfileImage} alt="" />
-                      <span className="flex-col gap-12">
-                        <span className="flex gap-8">
-                          <Typography
-                            variant="sub2"
-                            fontColor="gray1"
-                            fontWeight="medium"
-                          >
-                            닉네임 123
-                          </Typography>
-                          <Typography
-                            variant="sub2"
-                            fontColor="gray3"
-                            fontWeight="medium"
-                          >
-                            {new Date().toLocaleDateString()}
-                          </Typography>
-                        </span>
-                        <Typography
-                          variant="sub2"
-                          fontColor="gray1"
-                          fontWeight="medium"
-                        >
-                          엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용
-                        </Typography>
-                      </span>
-                      <MeatballIcon
-                        width={32}
-                        height={32}
-                        className={styles.meatball}
-                      />
-                    </div>
-                    {true &&
-                      [...new Array(3)].map((v, i) => {
-                        return (
+                  {[...new Array(5)].map((comment) => {
+                    return (
+                      <li key={comment?.id} className="flex-col">
+                        <div className="flex items-start px-16 py-24 gap-32">
                           <Image
-                            className={styles.reveiwImage}
-                            key={i}
-                            alt="review thumbnail"
+                            className={styles.commentProfileImage}
+                            alt=""
                           />
-                        )
-                      })}
-                  </li>
+                          <span className="flex-col flex-1 gap-12">
+                            <span className="flex gap-8">
+                              <Typography
+                                variant="sub2"
+                                fontColor="gray1"
+                                fontWeight="medium"
+                              >
+                                닉네임 123
+                              </Typography>
+                              <Typography
+                                variant="sub2"
+                                fontColor="gray3"
+                                fontWeight="medium"
+                              >
+                                {new Date().toLocaleDateString()}
+                              </Typography>
+                            </span>
+                            <Typography
+                              variant="sub2"
+                              fontColor="gray1"
+                              fontWeight="medium"
+                            >
+                              엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용엄청긴댓글내용
+                            </Typography>
+                          </span>
+                          <Menu as="div" className={styles.menu}>
+                            <Menu.Button>
+                              <MeatballIcon
+                                width={32}
+                                height={32}
+                                className={styles.meatball}
+                              />
+                            </Menu.Button>
+                            <Menu.Items className={styles.menuItems}>
+                              {commentMenus.map((menu) => {
+                                return (
+                                  <Menu.Item key={menu.name}>
+                                    {({ active }) => {
+                                      return (
+                                        <div onClick={menu.action}>
+                                          {menu.name}
+                                        </div>
+                                      )
+                                    }}
+                                  </Menu.Item>
+                                )
+                              })}
+                            </Menu.Items>
+                          </Menu>
+                        </div>
+                        <div className="flex gap-16">
+                          {true &&
+                            [...new Array(3)].map((v, i) => {
+                              return (
+                                <Image
+                                  className={styles.reveiwImage}
+                                  key={i}
+                                  alt="review thumbnail"
+                                />
+                              )
+                            })}
+                        </div>
+                      </li>
+                    )
+                  })}
                 </ul>
               </Tab.Panel>
               <Tab.Panel>sdfasd2</Tab.Panel>
