@@ -1,14 +1,14 @@
-import App from '@/App'
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
 import { Dotto } from '@/components/dotto'
+import MainLayout from '@/components/layout/MainLayout'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route element={<MainLayout />}>
       <Route path="dotto">
         <Route path="board">
           <Route index element={<Dotto />} />

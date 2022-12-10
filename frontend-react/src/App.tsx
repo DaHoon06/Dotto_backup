@@ -1,26 +1,10 @@
-import { Header } from '@/components/common/header/Header'
-import { Footer } from '@/components/common/footer/Footer'
-import { Main } from '@/components/main'
-import { Banner } from '@/components/banner'
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router'
+import { RouterProvider } from 'react-router'
+import { router } from './router'
+import '@/assets/styles/index.scss'
+import 'swiper/css'
 
 function App() {
-  const location = useLocation()
-  const [currentPath, setCurrentPath] = useState(location.pathname)
-
-  useEffect(() => {
-    setCurrentPath(location.pathname)
-  }, [location])
-
-  return (
-    <>
-      <Header />
-      {currentPath === '/' ? <Banner /> : ''}
-      <Main />
-      <Footer />
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
