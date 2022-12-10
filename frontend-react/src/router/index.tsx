@@ -1,8 +1,8 @@
-import App from '@/App'
 import BoardPost from '@/pages/BoardPost'
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from 'react-router-dom'
 import { Dotto } from '@/components/dotto'

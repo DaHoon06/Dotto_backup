@@ -6,6 +6,8 @@ import { router } from '@/router'
 import { CookiesProvider } from 'react-cookie'
 import { AuthProvider } from './stores/AuthProvieder'
 import '@/assets/styles/index.scss'
+import 'swiper/css'
+import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
