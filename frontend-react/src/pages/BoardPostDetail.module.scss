@@ -1,134 +1,16 @@
 @import '@/assets/styles/index.scss';
 
-.stickyHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 72px;
-  border-bottom: 1px solid $system_gray06;
-}
-
-.headerWrapper {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-}
-
-.button {
-  width: 136px;
-  height: 48px;
-  padding: 12px 0 !important;
-}
-
 .main {
   padding-top: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 207px;
 
   & section {
     width: 100%;
     max-width: 1200px;
     min-width: 1200px;
   }
-}
-
-.mainImage {
-  width: 640px;
-  height: 640px;
-  object-fit: cover;
-}
-
-.mainInfo {
-  display: flex;
-  justify-content: space-between;
-  gap: 56px;
-}
-
-.imageItem {
-  width: 80px;
-  height: 80px;
-}
-.info {
-  width: auto;
-  max-width: 500px;
-}
-
-.stroke {
-  text-decoration: line-through;
-}
-
-.artistImage {
-  width: 56px;
-  height: 56px;
-  border-radius: 100%;
-}
-
-.recommendSection {
-  margin-top: 160px;
-  margin-bottom: 160px;
-  display: flex;
-  flex-direction: column;
-  gap: 19px;
-}
-
-.recommendPost {
-  width: 288px;
-  height: 288px;
-}
-
-.communitySection {
-}
-.tab {
-  display: flex;
-  width: fit-content;
-  gap: 8px;
-  background-color: $system_white;
-  border: none;
-  color: $system_gray04;
-  padding: 22px 48px;
-  align-items: center;
-  &:focus {
-    outline: none;
-  }
-}
-.selected {
-  border-bottom: 4px solid $system_gray01;
-  & span {
-    color: $system_gray01 !important;
-  }
-}
-.commentProfileImage {
-  width: 64px;
-  height: 64px;
-  border-radius: 100%;
-}
-.menu {
-  position: relative;
-}
-.meatball {
-  cursor: pointer;
-}
-.reveiwImage {
-  width: 288px;
-  height: 288px;
-  cursor: pointer;
-}
-.menuItems {
-  position: absolute;
-  right: 0;
-  width: 144px;
-  height: 116px;
-  background: $system_white;
-  border: 1px solid $system_gray05;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }

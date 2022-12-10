@@ -1,0 +1,14 @@
+@import '@/assets/styles/index.scss';
+
+.recommendSection {
+  margin-top: 160px;
+  margin-bottom: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.recommendPost {
+  width: 288px;
+  height: 288px;
+}

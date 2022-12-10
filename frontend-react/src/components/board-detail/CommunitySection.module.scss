@@ -1,0 +1,51 @@
+@import '@/assets/styles/index.scss';
+
+.tab {
+  display: flex;
+  width: fit-content;
+  gap: 8px;
+  background-color: $system_white;
+  border: none;
+  color: $system_gray04;
+  padding: 22px 48px;
+  align-items: center;
+  &:focus {
+    outline: none;
+  }
+}
+.selected {
+  border-bottom: 4px solid $system_gray01;
+  & span {
+    color: $system_gray01 !important;
+  }
+}
+.commentProfileImage {
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+}
+.menu {
+  position: relative;
+}
+.meatball {
+  cursor: pointer;
+}
+.reveiwImage {
+  width: 288px;
+  height: 288px;
+  cursor: pointer;
+}
+.menuItems {
+  position: absolute;
+  right: 0;
+  width: 144px;
+  height: 116px;
+  background: $system_white;
+  border: 1px solid $system_gray05;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
