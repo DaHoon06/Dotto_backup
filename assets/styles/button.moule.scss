@@ -25,12 +25,12 @@
 }
 
 @mixin disabled() {
-  @include buttonType($disabled, $disabled, $disabled);
+  @include buttonType($disabled, $black, $disabled);
   cursor: default;
 }
 
 .primary__button {
-  @include buttonType($black, $black, $white);
+  @include buttonType($black, $white, $black, );
 
   &:hover {
     background-color: $black;

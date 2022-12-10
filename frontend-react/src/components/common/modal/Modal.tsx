@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import React, { ComponentProps } from 'react'
 import ReactDOM from 'react-dom'
 import './Modal.scss'
 

@@ -5,15 +5,15 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
-import '@/assets/styles/index.scss'
+import { Dotto } from '@/components/dotto'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="dotto">
         <Route path="board">
-          <Route index />
-          <Route path="post" element={<BoardPost />} />
+          <Route index element={<Dotto />} />
+          <Route path="post" />
           <Route path="view/:postNo" />
         </Route>
 

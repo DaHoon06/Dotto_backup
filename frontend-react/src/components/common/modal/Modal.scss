@@ -1,16 +1,30 @@
+@import "../../../assets/styles/colors";
+//@import "@/assets/styles/common/colors";
+
 .modal__layer {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  background: rgba($color: #000000, $alpha: 0.7);
+  background: rgba($color: $system_black, $alpha: 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20;
 
   & .modal__card {
-    background-color: white;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 470px;
+    min-height: 620px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: $system_white;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    transform: translateX(-50%) translateY(-50%);
   }
 }

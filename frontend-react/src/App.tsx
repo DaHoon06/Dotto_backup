@@ -1,22 +1,25 @@
-import '@/assets/styles/index.scss'
+import { Header } from '@/components/common/header/Header'
+import { Footer } from '@/components/common/footer/Footer'
+import { Main } from '@/components/main'
+import { Banner } from '@/components/banner'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router'
 
 function App() {
+  const location = useLocation()
+  const [currentPath, setCurrentPath] = useState(location.pathname)
+
+  useEffect(() => {
+    setCurrentPath(location.pathname)
+  }, [location])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      {currentPath === '/' ? <Banner /> : ''}
+      <Main />
+      <Footer />
+    </>
   )
 }
 
