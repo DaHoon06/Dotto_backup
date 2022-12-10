@@ -1,4 +1,3 @@
-import Typography from '@/components/common/typography/Typography'
 import { ComponentProps } from 'react'
 import { ReactComponent as CloseIcon } from '@/assets/icons/common/close_big.svg'
 import './FilterChip.scss'
