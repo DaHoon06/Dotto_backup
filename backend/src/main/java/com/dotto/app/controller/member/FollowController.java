@@ -67,4 +67,21 @@ public class FollowController {
             @PathVariable(value = "id")Long memberNo){
         return Response.success(followService.followerCheck(memberNo));
     }
+
+    @ApiOperation(value = "팔로워 하는 사람 프로필 조회", notes = "팔로워하는 사람의 프로필 정보를 조회 한다.(프로필 이미지 미구현)")
+    @GetMapping("/api/followlists/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response FollowerLists(@PathVariable(value = "id") Long memberNo){
+
+        return Response.success(followService.followerLists(memberNo));
+    }
+
+    @ApiOperation(value = "팔로잉 하는 사람 프로필 조회", notes = "팔로잉하는 사람의 프로필 정보를 조회 한다.(프로필 이미지 미구현)")
+    @GetMapping("/api/followinglists/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Response FollowingLists(@PathVariable(value = "id") Long memberNo){
+
+        return Response.success(followService.followingLists(memberNo));
+    }
+
 }
