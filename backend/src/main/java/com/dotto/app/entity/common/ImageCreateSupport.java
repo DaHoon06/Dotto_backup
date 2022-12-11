@@ -1,6 +1,5 @@
 package com.dotto.app.entity.common;
 
-import com.dotto.app.entity.member.WorkPlace;
 import com.dotto.app.exception.UnsupportedImageFormatException;
 
 import java.util.Arrays;
