@@ -43,10 +43,10 @@ public class MemberService {
     @Transactional
     public MemberProfileUploadResponse uploadProfile( MemberProfileUploadRequest req){
         Member member = memberRepository.findById(req.getMemberNo()).orElseThrow(MemberNotFoundException::new);
-        Member.ProfileImageUpdateResult rs = member.uploadProfile(req);
         if(member.getProfileImage()!=null){
             deletedImage(member.getProfileImage());
         }
+        Member.ProfileImageUpdateResult rs = member.uploadProfile(req);
         uploadImage(rs.getAddedImageFile(), rs.getAddedImages());
         return new MemberProfileUploadResponse(member.getMemberNo());
     }
