@@ -4,6 +4,7 @@ import { ins as axios } from '@/lib/axios'
 import { DropIcon } from '@/components/register/icon/DropIcon'
 import { IRegister } from '@/interfaces/register'
 import { Button } from '@/components/register/button/Button'
+import { useQuery } from 'react-query'
 
 export const Policy = (props: IRegister.PROPS) => {
   const [showPolicyContent1, setShowPolicyContent1] = useState(false)
@@ -15,17 +16,6 @@ export const Policy = (props: IRegister.PROPS) => {
   const [checkItems, setCheckItems] = useState<string[]>([])
   const { changeComponent } = props
 
-  useEffect(() => {
-    const data = async (): Promise<void> => {
-      const getData = await getPolicyContent()
-      setPolicyContent({
-        ...policyContent,
-        ...getData,
-      })
-    }
-    data()
-  }, [])
-
   const getPolicyContent = async (): Promise<any> => {
     try {
       const { data: policyData } = await axios.get('/policy')
@@ -36,6 +26,15 @@ export const Policy = (props: IRegister.PROPS) => {
       console.log(e)
     }
   }
+  const query = useQuery('policy', getPolicyContent)
+
+  useEffect(() => {
+    const { data } = query
+    setPolicyContent({
+      ...policyContent,
+      ...data,
+    })
+  }, [])
 
   const onClickHandleShowContent = () => {
     setShowPolicyContent1(!showPolicyContent1)
