@@ -11,7 +11,7 @@ export const Tabs = (props: IRegister) => {
       <Typography>회원가입</Typography>
 
       <div className={'tab--progress'}>
-        <Typography className={currentTab === 3 ? 'active' : 'tab-title'}>
+        <Typography className={currentTab === 1 ? 'active' : 'tab-title'}>
           약관동의
         </Typography>
         <span className={'progress-dot'} />
@@ -19,7 +19,7 @@ export const Tabs = (props: IRegister) => {
           본인인증
         </Typography>
         <span className={'progress-dot'} />
-        <Typography className={currentTab === 1 ? 'active' : 'tab-title'}>
+        <Typography className={currentTab === 3 ? 'active' : 'tab-title'}>
           가입완료
         </Typography>
       </div>
