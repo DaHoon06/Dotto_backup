@@ -122,6 +122,13 @@
       border-color: $system_gray01;
       color: $system_gray01;
     }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      border-color: #f5f5f5;
+      color: $system_gray04;
+
+    }
   }
 
   &__form {
@@ -249,4 +256,5 @@
     }
   }
 }
+
 
