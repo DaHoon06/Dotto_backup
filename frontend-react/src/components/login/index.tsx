@@ -4,19 +4,26 @@ import { KAKAO, GOOGLE, LINE } from '@/assets/icons/social'
 import React, { useEffect, useState } from 'react'
 import { ins as axios } from '@/lib/axios'
 import { useCookies } from 'react-cookie'
-import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
 import { LOGIN } from '@/interfaces/login'
-import { useMutation, useQueryClient } from 'react-query'
-import { AxiosResponse } from 'axios'
+import { useAuthContext } from '@/stores/AuthProvieder'
+import { useMutation } from 'react-query'
+import { ERROR_MESSAGE } from '@/interfaces/common/EMessageType'
+
+interface ILogin {
+  id: string
+  password: string
+}
 
 export const Login = (props: LOGIN.PROP) => {
-  const [loginInfo, setLoginInfo] = useState({
+  const [loginInfo, setLoginInfo] = useState<ILogin>({
     id: '',
     password: '',
   })
   const [loginErrorMsg, setLoginErrorMsg] = useState('')
   const [saveId, setSaveId] = useState(false)
   const [cookies, setCookie, removeCookie] = useCookies(['id'])
+  const { setUserInfo, setLoggedIn } = useAuthContext()
+
   const { id, password } = loginInfo
   const { closeModal, changeComponent } = props
   const sessionStorage = window.sessionStorage
@@ -44,30 +51,38 @@ export const Login = (props: LOGIN.PROP) => {
       [name]: value,
     })
   }
+  // 로그인 정보 전역 상태 변수로 저장
+  const loginApi = async () => {
+    const { data } = await axios.post('/sign-in', loginInfo)
+    const { success } = data
+    return success
+  }
+  // react-query
+  const { mutate } = useMutation(loginApi, {
+    onSuccess: (data: LOGIN.STATE) => {
+      saveState(data)
+      setUserInfo(data)
+      setLoggedIn()
+      setLoginErrorMsg(ERROR_MESSAGE.BLANK)
+      close(false) // modal Close
+    },
+    onError: (error) => {
+      setLoginErrorMsg(ERROR_MESSAGE.LOGIN_FAIL)
+      console.log(error)
+    },
+  })
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault()
-    return await axios.post('/sign-in', loginInfo)
-    // const { success } = data
-    // if (success) {
-    //   saveState(data) // session 저장
-    //   setLoginErrorMsg(ERROR_MESSAGE.BLANK)
-    //   close(false) // modal Close
-    // } else setLoginErrorMsg(ERROR_MESSAGE.LOGIN_FAIL)
+    mutate()
   }
-
-  const { mutate, isLoading, isError, error, isSuccess } = useMutation(login)
-
+  // 로그인 정보 세션에 저장
   const saveState = (payload: LOGIN.STATE) => {
     const { accessToken, refreshToken, nickname, roles } = payload
     sessionStorage.setItem('accessToken', accessToken)
     sessionStorage.setItem('refreshToken', refreshToken)
     sessionStorage.setItem('nickname', nickname)
     sessionStorage.setItem('roles', roles)
-  }
-
-  const close = (payload: boolean) => {
-    closeModal(payload)
   }
 
   const checkBoxHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +93,10 @@ export const Login = (props: LOGIN.PROP) => {
   const checkedItemHandler = (checked: boolean) => {
     if (checked) setCookie('id', id)
     else removeCookie('id')
+  }
+
+  const close = (payload: boolean) => {
+    closeModal(payload)
   }
 
   const modalType = (type: string) => {

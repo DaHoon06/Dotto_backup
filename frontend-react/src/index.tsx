@@ -4,13 +4,18 @@ import reportWebVitals from '@/reportWebVitals'
 import { CookiesProvider } from 'react-cookie'
 import { AuthProvider } from './stores/AuthProvieder'
 import App from './App'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <CookiesProvider>
       <AuthProvider>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </AuthProvider>
     </CookiesProvider>
   </React.StrictMode>

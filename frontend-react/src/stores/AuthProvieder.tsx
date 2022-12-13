@@ -1,8 +1,24 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 export interface IAuthContext {
-  handleLogin?: () => Promise<void>
-  handleLogout?: () => void
+  isLogin: boolean
+  userInfo: IUserProp
+  setUserInfo: (data: IUserProp) => void
+  setLoggedIn: () => void
+}
+
+export interface IUserProp {
+  nickname: string
+  accessToken: string
+  refreshToken: string
+  roles: string
+}
+
+const setUserInitialData = {
+  nickname: '',
+  accessToken: '',
+  refreshToken: '',
+  roles: '',
 }
 
 const AuthContext = createContext<IAuthContext | undefined>(undefined)
@@ -17,11 +33,28 @@ export const useAuthContext = () => {
 }
 
 export function AuthProvider({ children }: { children?: JSX.Element }) {
-  const handleLogout = () => {}
+  const setUserInfo = (data: IUserProp) => {
+    setState((prevState) => ({
+      ...prevState,
+      userInfo: data,
+    }))
+  }
 
-  const handleLogin = async () => {}
+  const setLoggedIn = () => {
+    setState((prevState) => ({
+      ...prevState,
+      isLogin: !prevState.isLogin,
+    }))
+  }
 
-  const value = {}
+  const initialSate = {
+    userInfo: setUserInitialData,
+    isLogin: false,
+    setUserInfo,
+    setLoggedIn,
+  }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  const [state, setState] = useState(initialSate)
+
+  return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>
 }
