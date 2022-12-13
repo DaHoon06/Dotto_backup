@@ -1,4 +1,5 @@
 import './index.scss'
+import style from '@/assets/styles/common/button.module.scss'
 import LOGO from '@/assets/icons/logo/dotto.svg'
 import { KAKAO, GOOGLE, LINE } from '@/assets/icons/social'
 import React, { useEffect, useState } from 'react'
@@ -156,7 +157,11 @@ export const Login = (props: LOGIN.PROP) => {
             </div>
           </section>
           <section className="login__items-wrapper mt-24">
-            <button className="black__button" type="submit" onClick={login}>
+            <button
+              className={style.black__button}
+              type="submit"
+              onClick={login}
+            >
               로그인
             </button>
           </section>

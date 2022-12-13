@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IRegister } from '@/interfaces/register'
 import { Button } from '@/components/register/button/Button'
 import Upload from '@/assets/icons/common/upload.svg'
+import style from '@/assets/styles/common/button.module.scss'
 
 export const TattoistForm = (props: IRegister.OPTIONS) => {
   const { additionalData } = props
@@ -12,7 +13,7 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
   })
   const { address, addressDetail, workspaceImg } = additionalInfo
 
-  const style = {
+  const customStyle = {
     button: {
       width: '120px',
     } as React.CSSProperties,
@@ -42,8 +43,8 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
           />
           <Button
             label={'주소검색'}
-            className={'primary__button'}
-            buttonStyle={style.button}
+            className={style.primary__button}
+            buttonStyle={customStyle.button}
           />
         </div>
       </section>

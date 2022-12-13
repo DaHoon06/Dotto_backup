@@ -3,6 +3,8 @@ import React from 'react'
 import { IRegister } from '@/interfaces/register'
 import { WELCOME } from '@/assets/icons/register'
 import Typography from '@/components/common/typography/Typography'
+import style from '@/assets/styles/common/button.module.scss'
+import cn from 'classnames'
 
 export const RegisterCompleted = (props: IRegister.PROPS) => {
   const { changeComponent } = props
@@ -23,12 +25,12 @@ export const RegisterCompleted = (props: IRegister.PROPS) => {
       <section className={'button-group'}>
         <Button
           onClickEvent={() => onClickHandler('close')}
-          className={'secondary__button button mr-16'}
+          className={cn(style.secondary__button, 'button mr-16')}
           label={'메인으로'}
         />
         <Button
           onClickEvent={() => onClickHandler('login')}
-          className={'black__button button'}
+          className={cn(style.black__button, 'button')}
           label={'로그인'}
         />
       </section>

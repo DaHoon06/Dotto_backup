@@ -5,6 +5,8 @@ import { DropIcon } from '@/components/register/icon/DropIcon'
 import { IRegister } from '@/interfaces/register'
 import { Button } from '@/components/register/button/Button'
 import { useQuery } from 'react-query'
+import style from '@/assets/styles/common/button.module.scss'
+import cn from 'classnames'
 
 export const Policy = (props: IRegister.PROPS) => {
   const [showPolicyContent1, setShowPolicyContent1] = useState(false)
@@ -132,7 +134,7 @@ export const Policy = (props: IRegister.PROPS) => {
               name={'policy'}
             />
             <label htmlFor={'policy'}>
-              이용약관 동의<span className={'essential ml-4'}>(필수)</span>
+              이용약관 동의<span className={cn('essential ml-4')}>(필수)</span>
             </label>
           </section>
           <button onClick={onClickHandleShowContent} type={'button'}>
@@ -167,7 +169,7 @@ export const Policy = (props: IRegister.PROPS) => {
             />
             <label htmlFor={'private'} className={'pl-4'}>
               개인 정보 수집. 이용동의
-              <span className={'essential ml-4'}>(필수)</span>
+              <span className={cn('essential ml-4')}>(필수)</span>
             </label>
           </section>
           <button onClick={onClickHandleShowPrivate} type={'button'}>
@@ -184,20 +186,21 @@ export const Policy = (props: IRegister.PROPS) => {
         )}
       </section>
 
-      <section className={'register__button--container pb-40'}>
+      <section className={cn('register__button--container pb-40')}>
         <Button
           onClickEvent={() => onClickHandler('login')}
-          className={'secondary__button button mr-16'}
+          className={cn(style.secondary__button, 'button mr-16')}
           label={'이전'}
         />
         <Button
           disabled={checkItems.length !== 2}
           onClickEvent={() => onClickHandler('register')}
-          className={
+          className={cn(
             checkItems.length !== 2
-              ? 'secondary__button button'
-              : 'primary__button button'
-          }
+              ? style.secondary__button
+              : style.primary__button,
+            'button'
+          )}
           label={'다음'}
         />
       </section>

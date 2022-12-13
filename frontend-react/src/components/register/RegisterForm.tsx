@@ -12,6 +12,8 @@ import { Button } from '@/components/register/button/Button'
 import Typography from '@/components/common/typography/Typography'
 import { IRegister, RegisterOptions } from '@/interfaces/register'
 import { Regex } from '@/constants/regex'
+import style from '@/assets/styles/common/button.module.scss'
+import cn from 'classnames'
 
 export const RegisterForm = (props: IRegister.PROPS) => {
   const { changeComponent } = props
@@ -92,7 +94,7 @@ export const RegisterForm = (props: IRegister.PROPS) => {
     })
   }
 
-  const style = {
+  const customStyle = {
     button: {
       width: '120px',
     } as React.CSSProperties,
@@ -279,11 +281,11 @@ export const RegisterForm = (props: IRegister.PROPS) => {
               onClick={() => onClickUserType(true)}
               type={'button'}
               name={'user'}
-              className={
+              className={cn(
                 formType
                   ? 'register__button--tab-active  mr-16'
                   : 'register__button--tab  mr-16'
-              }
+              )}
             >
               {formType ? (
                 <img
@@ -344,8 +346,8 @@ export const RegisterForm = (props: IRegister.PROPS) => {
             <Button
               label={'중복확인'}
               onClickEvent={duplicateIdCheck}
-              className={'primary__button'}
-              buttonStyle={style.button}
+              className={style.primary__button}
+              buttonStyle={customStyle.button}
             />
           </div>
         </section>
@@ -413,8 +415,8 @@ export const RegisterForm = (props: IRegister.PROPS) => {
             />
             <Button
               label={'중복확인'}
-              className={'primary__button'}
-              buttonStyle={style.button}
+              className={style.primary__button}
+              buttonStyle={customStyle.button}
               onClickEvent={duplicateNicknameCheck}
             />
           </div>
@@ -438,8 +440,8 @@ export const RegisterForm = (props: IRegister.PROPS) => {
               tabIndex={10}
             />
             <Button
-              className={'primary__button'}
-              buttonStyle={style.button}
+              className={style.primary__button}
+              buttonStyle={customStyle.button}
               label={'인증번호 받기'}
             />
           </div>
@@ -449,7 +451,7 @@ export const RegisterForm = (props: IRegister.PROPS) => {
             {phoneMessage}
           </Typography>
         </section>
-        <section className={'register-items pt-12'}>
+        <section className={cn('register-items pt-12')}>
           <label>성별</label>
           <div className={'flex'}>
             <input
@@ -489,16 +491,16 @@ export const RegisterForm = (props: IRegister.PROPS) => {
         <TattoistForm additionalData={additionalDataTattoist} />
       )}
 
-      <section className={'register__button--container pt-20 pb-20 pr-40'}>
+      <section className={cn('register__button--container pt-20 pb-20 pr-40')}>
         <Button
-          className={'secondary__button mr-16'}
-          buttonStyle={style.redirectButton}
+          className={cn(style.secondary__button, 'mr-16')}
+          buttonStyle={customStyle.redirectButton}
           label={'이전'}
           onClickEvent={onClickHandlerPrev}
         />
         <Button
-          className={'primary__button'}
-          buttonStyle={style.redirectButton}
+          className={style.primary__button}
+          buttonStyle={customStyle.redirectButton}
           label={'다음'}
           disabled={true}
           onClickEvent={onClickHandlerNext}
