@@ -37,7 +37,7 @@ export default function Typography(props: ITypography) {
     className,
     variant = 'body1',
     fontWeight = 'regular',
-    fontColor = 'black',
+    fontColor = 'gray1',
     children,
     as,
     ...rest
