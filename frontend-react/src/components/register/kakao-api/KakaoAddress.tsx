@@ -23,12 +23,10 @@ export const KakaoAddress = (props: AddressProp) => {
     } as React.CSSProperties,
   }
 
-  // 버튼 클릭 이벤트
   const clickButton = () => {
     setOpenPostcode((current) => !current)
   }
 
-  // 주소 선택 이벤트
   const selectAddress = (data: any) => {
     const address = data.address
     const jibunAddress = data.jibunAddress
