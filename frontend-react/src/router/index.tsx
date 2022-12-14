@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from 'react-router-dom'
 import { Dotto } from '@/components/dotto'
@@ -12,6 +13,7 @@ import BoardWrite from '@/pages/BoardWrite'
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<MainLayout />}>
+      <Route index element={<Navigate to="/dotto/board" />} />
       <Route path="dotto">
         <Route path="board">
           <Route index element={<Dotto />} />
