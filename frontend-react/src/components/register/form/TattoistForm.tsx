@@ -6,6 +6,7 @@ import {
   KakaoAddress,
 } from '@/components/register/kakao-api/KakaoAddress'
 import cn from 'classnames'
+import Image from '@/components/common/image/Image'
 
 export const TattoistForm = (props: IRegister.OPTIONS) => {
   const { additionalData } = props
@@ -16,19 +17,13 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
   })
   const { address, addressDetail, workspaceImg } = additionalInfo
 
-  const customStyle = {
-    button: {
-      width: '120px',
-    } as React.CSSProperties,
-  }
-
   const sendData = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = target
     setAdditionalInfo({
       ...additionalInfo,
       [name]: value,
     })
-    return additionalData(additionalInfo)
+    additionalData(additionalInfo)
   }
 
   const addressInfo = (props: IAddressInfo) => {
@@ -71,7 +66,7 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
         <section className="upload-container">
           <div className="upload__button mt-20">
             <label htmlFor="addFile" className={'flex justify-center'}>
-              <img
+              <Image
                 className="upload"
                 src={Upload}
                 alt="upload"

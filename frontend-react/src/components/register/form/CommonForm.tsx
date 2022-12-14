@@ -14,9 +14,8 @@ import useRegister from '@/lib/hooks/useRegister'
 import { IRegister } from '@/interfaces/register'
 
 export const CommonForm = (props: IRegister.PROPS) => {
-  const { registerState, registerEvent } = useRegister()
-  const { inputValue, validateCheck, message, formType } =
-    registerState.getState
+  const { registerState, registerEvent } = useRegister(props)
+  const { inputValue, message, formType } = registerState.getState
 
   const {
     idMessage,

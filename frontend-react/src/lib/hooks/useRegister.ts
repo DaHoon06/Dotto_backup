@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Regex } from '@/constants/regex'
 import { ins as axios } from '@/lib/axios'
-import { RegisterOptions } from '@/interfaces/register'
+import { IRegister, RegisterOptions } from '@/interfaces/register'
 
-export default function useRegister() {
+export default function useRegister(props: IRegister.PROPS) {
+  const { onChange, onClickTab } = props
   const [formType, setFormType] = useState(true)
   const [inputValue, setInputValue] = useState({
     userType: '1',
@@ -106,6 +107,7 @@ export default function useRegister() {
       ...inputValue,
       [name]: value,
     })
+    if (onChange) onChange(inputValue)
   }
 
   // 비밀번호 일치하는지 확인
@@ -126,9 +128,9 @@ export default function useRegister() {
     })
   }
   // 회원가입
-  const join = async () => {
+  const join = async (data: IRegister.Data) => {
     try {
-      console.log(inputValue)
+      console.log(data)
       // const { data } = await axios.post('/users/sign-up', inputValue)
       // const { result } = data
     } catch (e) {
@@ -181,7 +183,6 @@ export default function useRegister() {
       })
       const { result } = data
       let sentence = ''
-      // true 사용가능
       if (!result) sentence = '중복된 아이디 입니다.'
       else sentence = ''
 
@@ -223,39 +224,7 @@ export default function useRegister() {
         })
     initData(type)
     setFormType(type)
-  }
-
-  const additionalDataUser = (userData: RegisterOptions) => {
-    const { contactType: type, email: mail } = userData
-    const contactType = type || ''
-    const email = mail || ''
-    setInputValue({
-      ...inputValue,
-      contactType,
-      email,
-    })
-  }
-  // 타투이스트 추가 정보
-  const additionalDataTattoist = (userData: RegisterOptions) => {
-    const {
-      address: addressData,
-      addressDetail: detailData,
-      workspaceImg: wkImg,
-    } = userData
-    const address = addressData || ''
-    const addressDetail = detailData || ''
-    const workspaceImg = wkImg || ''
-    setInputValue({
-      ...inputValue,
-      address,
-      addressDetail,
-      workspaceImg,
-    })
-  }
-
-  const onClickHandlerNext = async () => {
-    formValidation()
-    await join()
+    if (onClickTab) onClickTab(type)
   }
 
   const registerEvent = {
@@ -265,9 +234,6 @@ export default function useRegister() {
     duplicateIdCheck,
     duplicateNicknameCheck,
     join,
-    additionalDataUser,
-    additionalDataTattoist,
-    onClickHandlerNext,
   }
 
   return {

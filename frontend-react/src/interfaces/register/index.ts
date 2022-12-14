@@ -1,4 +1,18 @@
 export namespace IRegister {
+  export interface Data {
+    userType: string
+    id: string
+    password: string
+    nickname: string
+    gender: string
+    contactType?: string
+    phone?: string
+    email?: string
+    address?: string
+    addressDetail?: string
+    workspaceImg?: string
+  }
+
   export interface Policy {
     dottoPolicyContent: string
     privatePolicyContent: string
@@ -6,6 +20,8 @@ export namespace IRegister {
 
   export interface PROPS {
     changeComponent: (payload: string) => void
+    onChange?: (data: Data) => void
+    onClickTab?: (payload: boolean) => void
   }
 
   export interface OPTIONS {

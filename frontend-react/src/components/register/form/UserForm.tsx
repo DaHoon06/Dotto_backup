@@ -16,7 +16,7 @@ export const UserForm = (props: IRegister.OPTIONS) => {
       ...additionalInfo,
       [name]: value,
     })
-    return additionalData(additionalInfo)
+    additionalData(additionalInfo)
   }
 
   return (
