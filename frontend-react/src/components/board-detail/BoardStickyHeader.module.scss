@@ -1,17 +1,5 @@
 @import '@/assets/styles/index.scss';
 
-.stickyHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 72px;
-  border-bottom: 1px solid $system_gray06;
-  position: sticky;
-  top: 144px;
-  background-color: $system_white;
-  z-index: 10;
-}
-
 .headerWrapper {
   width: 100%;
   max-width: 1200px;
