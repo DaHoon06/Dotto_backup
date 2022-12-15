@@ -1,0 +1,10 @@
+@import '@/assets/styles/index.scss';
+
+.tagInput {
+  padding: 0 16px;
+  height: 40px;
+  border: none;
+  outline: none;
+  flex: 1;
+  @include body1;
+}

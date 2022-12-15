@@ -1,0 +1,43 @@
+@import '@/assets/styles/index.scss';
+
+.listbox {
+  border: 1px solid $system_gray05;
+  border-radius: 4px;
+  width: 376px;
+  height: 52px;
+  position: relative;
+}
+.listboxButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+  height: 100%;
+}
+.dropdown {
+  transition: all 0.2s ease-in;
+  transform: rotate(180deg);
+}
+.opened {
+  transition: all 0.2s ease-in;
+  transform: none;
+}
+.options {
+  position: absolute;
+  width: 100%;
+  margin-top: 12px;
+  outline: none;
+  border: 1px solid $system_gray05;
+  border-radius: 4px;
+}
+.option {
+  background-color: $system_white;
+  padding: 12px 20px;
+}
+.selected {
+  background-color: $primary_700;
+}
+.active {
+  background-color: $system_blue_700;
+}

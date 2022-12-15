@@ -72,6 +72,9 @@ $total: 100;
 .flex-1 {
   flex: 1 1 0%;
 }
+.relative {
+  position: relative;
+}
 
 .justify-start {
   justify-content: flex-start;
@@ -135,7 +138,7 @@ $total: 100;
 }
 
 /* Radio Button */
-[type="radio"] {
+[type='radio'] {
   vertical-align: middle;
   appearance: none;
   border: max(2px, 0.1em) solid #222222;
@@ -145,19 +148,17 @@ $total: 100;
   transition: border 0.3s ease-in-out;
 }
 
-[type="radio"]:checked {
+[type='radio']:checked {
   border: 5px solid #222222;
   //background: #222222;
 }
 
-[type="radio"]:focus-visible {
+[type='radio']:focus-visible {
   outline-offset: max(2px, 0.1em);
   outline: max(2px, 0.1em) dotted #222222;
 }
 
-[type="radio"]:hover {
+[type='radio']:hover {
   box-shadow: 0 0 0 max(2px, 0.1em) #bebebe;
   cursor: pointer;
 }
-
-

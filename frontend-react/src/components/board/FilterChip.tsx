@@ -17,7 +17,11 @@ export default function FilterChip({
   return (
     <span role="button" className={classNames(variant, 'filter-chip')}>
       {children}
-      {onClcikCloseButton && <CloseIcon />}
+      {onClcikCloseButton && (
+        <button onClick={onClcikCloseButton}>
+          <CloseIcon />
+        </button>
+      )}
     </span>
   )
 }
