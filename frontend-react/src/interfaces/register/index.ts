@@ -22,10 +22,12 @@ export namespace IRegister {
     changeComponent: (payload: string) => void
     onChange?: (data: Data) => void
     onClickTab?: (payload: boolean) => void
+    validation?: (data: any) => void
   }
 
   export interface OPTIONS {
     additionalData: (payload: RegisterOptions) => void
+    validation: (data: any) => void
   }
 }
 

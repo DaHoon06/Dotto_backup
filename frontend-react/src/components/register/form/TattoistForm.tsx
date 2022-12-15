@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IRegister } from '@/interfaces/register'
 import Upload from '@/assets/icons/common/upload.svg'
 import {
   IAddressInfo,
   KakaoAddress,
-} from '@/components/register/kakao-api/KakaoAddress'
+} from '@/components/utils/kakao-api/KakaoAddress'
 import cn from 'classnames'
 import Image from '@/components/common/image/Image'
 
 export const TattoistForm = (props: IRegister.OPTIONS) => {
-  const { additionalData } = props
+  const { additionalData, validation } = props
   const [additionalInfo, setAdditionalInfo] = useState({
     address: '',
     addressDetail: '',
@@ -26,6 +26,15 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
     additionalData(additionalInfo)
   }
 
+  useEffect(() => {
+    addressCheck()
+  }, [additionalInfo])
+
+  const addressCheck = () => {
+    const check = address.length > 0 && addressDetail.length > 0
+    validation({ additional: check })
+  }
+
   const addressInfo = (props: IAddressInfo) => {
     const { address, jibunAddress } = props
     setAdditionalInfo({
@@ -33,6 +42,9 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
       address: address || jibunAddress,
     })
   }
+
+  //TODO
+  // 파일 업로드
 
   return (
     <section className={'register-options'}>

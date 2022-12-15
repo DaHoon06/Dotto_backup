@@ -12,11 +12,14 @@ import Typography from '@/components/common/typography/Typography'
 import React from 'react'
 import useRegister from '@/lib/hooks/useRegister'
 import { IRegister } from '@/interfaces/register'
+import { PLACEHOLDERS } from '@/constants/placeholders'
 
 export const CommonForm = (props: IRegister.PROPS) => {
-  const { registerState, registerEvent } = useRegister(props)
-  const { inputValue, message, formType } = registerState.getState
-
+  const { registerState, registerEvent, customStyle } = useRegister(props)
+  const { inputValue, message, formType, validateCheck } =
+    registerState.getState
+  const { id, password, password2, nickname, phone, gender } = inputValue
+  const { idCheck, nicknameCheck, phoneCheck } = validateCheck
   const {
     idMessage,
     passwordMessage1,
@@ -24,7 +27,6 @@ export const CommonForm = (props: IRegister.PROPS) => {
     nicknameMessage,
     phoneMessage,
   } = message
-  const { id, password, password2, nickname, phone, gender } = inputValue
 
   const {
     onClickUserType,
@@ -33,15 +35,6 @@ export const CommonForm = (props: IRegister.PROPS) => {
     duplicateIdCheck,
     duplicateNicknameCheck,
   } = registerEvent
-
-  const customStyle = {
-    button: {
-      width: '120px',
-    } as React.CSSProperties,
-    redirectButton: {
-      width: '104px',
-    } as React.CSSProperties,
-  }
 
   return (
     <form className={'register__form'}>
@@ -106,7 +99,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
         <div className={'flex-justify-between'}>
           <input
             name={'id'}
-            placeholder={'6자리이상의 영문 혹은 영문과 숫자 조합'}
+            placeholder={PLACEHOLDERS.id}
             className={'register__input'}
             type={'text'}
             onChange={onChangeHandler}
@@ -116,6 +109,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
           />
           <Button
             label={'중복확인'}
+            disabled={!idCheck}
             onClickEvent={duplicateIdCheck}
             className={style.primary__button}
             buttonStyle={customStyle.button}
@@ -135,7 +129,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
           <input
             name={'password'}
             autoComplete="false"
-            placeholder={'비밀번호를 입력해주세요.'}
+            placeholder={PLACEHOLDERS.password1}
             className={'register__input'}
             type={'password'}
             onChange={onChangeHandler}
@@ -156,7 +150,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
           <input
             name={'password2'}
             autoComplete="false"
-            placeholder={'비밀번호를 한번 더 입력해주세요.'}
+            placeholder={PLACEHOLDERS.password2}
             className={'register__input'}
             type={'password'}
             value={password2}
@@ -176,7 +170,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
         <div className={'flex-justify-between'}>
           <input
             name={'nickname'}
-            placeholder={'닉네임을 입력해주세요.'}
+            placeholder={PLACEHOLDERS.nickname}
             className={'register__input'}
             type={'text'}
             onChange={onChangeHandler}
@@ -186,6 +180,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
           />
           <Button
             label={'중복확인'}
+            disabled={!nicknameCheck}
             className={style.primary__button}
             buttonStyle={customStyle.button}
             onClickEvent={duplicateNicknameCheck}
@@ -202,7 +197,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
         <div className={'flex-justify-between'}>
           <input
             name={'phone'}
-            placeholder={'숫자만 입력해주세요.'}
+            placeholder={PLACEHOLDERS.phone}
             className={'register__input'}
             type={'tel'}
             onChange={onChangeHandler}
@@ -211,6 +206,7 @@ export const CommonForm = (props: IRegister.PROPS) => {
             tabIndex={10}
           />
           <Button
+            disabled={!phoneCheck}
             className={style.primary__button}
             buttonStyle={customStyle.button}
             label={'인증번호 받기'}

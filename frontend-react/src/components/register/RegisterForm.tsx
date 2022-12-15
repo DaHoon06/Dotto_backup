@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserForm } from '@/components/register/form/UserForm'
 import { TattoistForm } from '@/components/register/form/TattoistForm'
 import { Button } from '@/components/register/button/Button'
@@ -11,6 +11,9 @@ import { CommonForm } from '@/components/register/form/CommonForm'
 export const RegisterForm = (props: IRegister.PROPS) => {
   const { changeComponent } = props
   const [formType, setFormType] = useState(true)
+  const [commonValidation, setCommonValidation] = useState(true)
+  const [additionalValidation, setAdditionalValidation] = useState(true)
+
   const [inputValue, setInputValue] = useState({
     userType: '1',
     id: '',
@@ -25,21 +28,20 @@ export const RegisterForm = (props: IRegister.PROPS) => {
     addressDetail: '',
     workspaceImg: '',
   })
-
-  const customStyle = {
-    button: {
-      width: '120px',
-    } as React.CSSProperties,
-    redirectButton: {
-      width: '104px',
-    } as React.CSSProperties,
-  }
-
-  const { registerEvent } = useRegister(props)
+  const { registerEvent, customStyle } = useRegister(props)
   const { join } = registerEvent
 
+  useEffect(() => {
+    const initData = {
+      common: false,
+      additional: false,
+    }
+    return () => validation(initData)
+  }, [inputValue])
+
   const onClickHandlerNext = async () => {
-    await join(inputValue)
+    const data = await join(inputValue)
+    console.log(data)
   }
 
   const onClickHandlerPrev = () => {
@@ -68,19 +70,30 @@ export const RegisterForm = (props: IRegister.PROPS) => {
     })
   }
 
+  const validation = (data: { common?: boolean; additional?: boolean }) => {
+    const { common, additional } = data
+    if (common) setCommonValidation(!common)
+    if (additional) setAdditionalValidation(!additional)
+  }
+
   return (
-    <article className={'form-container'}>
+    <article className={'form-container scroll scroll-type'}>
       <CommonForm
+        validation={validation}
         onClickTab={onClickTab}
         onChange={onChangeHandler}
         changeComponent={changeView}
       />
+
       <hr className={'hr'} />
 
       {formType ? (
-        <UserForm additionalData={userAdditionalData} />
+        <UserForm validation={validation} additionalData={userAdditionalData} />
       ) : (
-        <TattoistForm additionalData={userAdditionalData} />
+        <TattoistForm
+          validation={validation}
+          additionalData={userAdditionalData}
+        />
       )}
 
       <section className={cn('register__button--container pt-20 pb-20 pr-40')}>
@@ -94,7 +107,7 @@ export const RegisterForm = (props: IRegister.PROPS) => {
           className={style.primary__button}
           buttonStyle={customStyle.redirectButton}
           label={'다음'}
-          disabled={false}
+          disabled={commonValidation && additionalValidation}
           onClickEvent={onClickHandlerNext}
         />
       </section>
