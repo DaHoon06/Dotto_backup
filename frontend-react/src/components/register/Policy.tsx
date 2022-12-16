@@ -28,6 +28,7 @@ export const Policy = (props: IRegister.PROPS) => {
       console.log(e)
     }
   }
+
   const query = useQuery('policy', getPolicyContent)
 
   useEffect(() => {

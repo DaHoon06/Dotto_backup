@@ -3,7 +3,7 @@ import { Regex } from '@/constants/regex'
 import { ins as axios } from '@/lib/axios'
 import { IRegister } from '@/interfaces/register'
 import { MESSAGE } from '@/constants/message'
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 
 type TMessage = {
   [key: string]: string
@@ -239,6 +239,7 @@ export default function useRegister(props: IRegister.PROPS) {
       console.log(e)
     }
   }
+  useQuery('idCheck', duplicateIdCheck)
 
   const duplicateNicknameCheck = async (): Promise<void> => {
     try {
@@ -258,6 +259,7 @@ export default function useRegister(props: IRegister.PROPS) {
       console.log(e)
     }
   }
+  useQuery('nicknameCheck', duplicateNicknameCheck)
 
   const onClickUserType = (type: boolean): void => {
     type
