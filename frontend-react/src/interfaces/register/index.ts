@@ -10,7 +10,7 @@ export namespace IRegister {
     email?: string
     address?: string
     addressDetail?: string
-    workspaceImg?: string
+    workspaceImg?: any
   }
 
   export interface Policy {
@@ -26,7 +26,7 @@ export namespace IRegister {
   }
 
   export interface OPTIONS {
-    additionalData: (payload: RegisterOptions) => void
+    userAdditionalInformation: (payload: RegisterOptions) => void
     validation: (data: any) => void
   }
 }
@@ -36,5 +36,14 @@ export interface RegisterOptions {
   email?: string
   address?: string
   addressDetail?: string
-  workspaceImg?: string
+  workspaceImg?: any
+}
+
+export interface FileUpload {
+  lastModified: number
+  lastModifiedDate: Date
+  name: string
+  size: number
+  type: string
+  webkitRelativePath: string
 }

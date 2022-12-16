@@ -1,4 +1,4 @@
-import DaumPostcode from 'react-daum-postcode'
+import DaumPostcodeEmbed from 'react-daum-postcode'
 import React, { useState } from 'react'
 import style from '@/assets/styles/common/button.module.scss'
 import { Button } from '@/components/register/button/Button'
@@ -27,7 +27,7 @@ export const KakaoAddress = (props: AddressProp) => {
     setOpenPostcode((current) => !current)
   }
 
-  const selectAddress = (data: any) => {
+  const selectedAddress = (data: any) => {
     const address = data.address
     const jibunAddress = data.jibunAddress
     const sendData = {
@@ -50,13 +50,13 @@ export const KakaoAddress = (props: AddressProp) => {
         buttonStyle={customStyle.button}
         onClickEvent={clickButton}
       />
-      {openPostcode && (
+      {openPostcode ? (
         <article className={'kakao-address--modal'}>
-          <DaumPostcode
-            onComplete={selectAddress}
-            autoClose={false}
-            defaultQuery="판교역로 235"
+          <DaumPostcodeEmbed
+            onComplete={selectedAddress}
+            autoClose={true}
             className={'address-body'}
+            animation={true}
           />
           <section className={'address-footer'}>
             <Button
@@ -66,7 +66,7 @@ export const KakaoAddress = (props: AddressProp) => {
             />
           </section>
         </article>
-      )}
+      ) : null}
     </>
   )
 }

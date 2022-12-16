@@ -5,6 +5,10 @@ import { IRegister } from '@/interfaces/register'
 import { MESSAGE } from '@/constants/message'
 import { useMutation } from 'react-query'
 
+type TMessage = {
+  [key: string]: string
+}
+
 export default function useRegister(props: IRegister.PROPS) {
   const { onChange, onClickTab, validation } = props
   const [formType, setFormType] = useState<boolean>(true)
@@ -112,7 +116,9 @@ export default function useRegister(props: IRegister.PROPS) {
     })
   }
 
-  const onChangeHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = target
     setInputValue({
       ...inputValue,
@@ -122,7 +128,7 @@ export default function useRegister(props: IRegister.PROPS) {
   }
 
   // 비밀번호 일치하는지 확인
-  const correctPassword = () => {
+  const correctPassword = (): void => {
     let sentence = ''
     if (password !== password2) sentence = MESSAGE.NOT_CORRECT_PASSWORD
     else sentence = MESSAGE.BLANK
@@ -132,14 +138,14 @@ export default function useRegister(props: IRegister.PROPS) {
   }
 
   // 양식에 안맞을 경우 경고 메세지
-  const systemMessage = (sendMessage: any) => {
-    return setMessage({
+  const systemMessage = (sendMessage: TMessage): void => {
+    setMessage({
       ...message,
       ...sendMessage,
     })
   }
-  // 회원가입
-  const joinApi = async (userInfo: IRegister.Data) => {
+
+  const joinApi = async (userInfo: IRegister.Data): Promise<any> => {
     const { data } = await axios.post('/users/sign-up', userInfo)
     const { result } = data
     return result
@@ -154,7 +160,8 @@ export default function useRegister(props: IRegister.PROPS) {
       console.log(e)
     },
   })
-  const join = async (userInfo: IRegister.Data) => {
+
+  const join = async (userInfo: IRegister.Data): Promise<any> => {
     try {
       return mutate(userInfo)
     } catch (e) {
@@ -162,7 +169,7 @@ export default function useRegister(props: IRegister.PROPS) {
     }
   }
 
-  const onlyNumberPhoneCheck = (str: string) => {
+  const onlyNumberPhoneCheck = (str: string): void => {
     let phoneNumber = ''
     if (str) phoneNumber = str.replace(Regex.ONLY_NUMBER, '')
     else phoneNumber = ''
@@ -189,11 +196,7 @@ export default function useRegister(props: IRegister.PROPS) {
       systemMessage({ passwordMessage2: MESSAGE.PASSWORD_NOT_PATTERN })
     else if (secondPassword) systemMessage({ passwordMessage2: MESSAGE.BLANK })
 
-    // if (password !== password2)
-    //   systemMessage({ passwordMessage1: MESSAGE.NOT_CORRECT_PASSWORD })
-    // else if (password === password2)
-    //   systemMessage({ passwordMessage1: MESSAGE.BLANK })
-
+    if (firstPassword && secondPassword) correctPassword()
     if (validation)
       validation({
         common:
@@ -217,7 +220,7 @@ export default function useRegister(props: IRegister.PROPS) {
     })
   }
 
-  const duplicateIdCheck = async () => {
+  const duplicateIdCheck = async (): Promise<void> => {
     try {
       const sendData = {
         id,
@@ -237,7 +240,7 @@ export default function useRegister(props: IRegister.PROPS) {
     }
   }
 
-  const duplicateNicknameCheck = async () => {
+  const duplicateNicknameCheck = async (): Promise<void> => {
     try {
       const sendData = {
         nickname,
@@ -256,7 +259,7 @@ export default function useRegister(props: IRegister.PROPS) {
     }
   }
 
-  const onClickUserType = (type: boolean) => {
+  const onClickUserType = (type: boolean): void => {
     type
       ? setInputValue({
           ...inputValue,

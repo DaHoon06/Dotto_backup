@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IRegister } from '@/interfaces/register'
+import { FileUpload, IRegister } from '@/interfaces/register'
 import Upload from '@/assets/icons/common/upload.svg'
 import {
   IAddressInfo,
@@ -9,33 +9,33 @@ import cn from 'classnames'
 import Image from '@/components/common/image/Image'
 
 export const TattoistForm = (props: IRegister.OPTIONS) => {
-  const { additionalData, validation } = props
+  const { userAdditionalInformation, validation } = props
   const [additionalInfo, setAdditionalInfo] = useState({
     address: '',
     addressDetail: '',
-    workspaceImg: '',
+    workspaceImg: [],
   })
-  const { address, addressDetail, workspaceImg } = additionalInfo
+  const { address, addressDetail } = additionalInfo
 
-  const sendData = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const sendData = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = target
     setAdditionalInfo({
       ...additionalInfo,
       [name]: value,
     })
-    additionalData(additionalInfo)
+    userAdditionalInformation(additionalInfo)
   }
 
   useEffect(() => {
     addressCheck()
   }, [additionalInfo])
 
-  const addressCheck = () => {
+  const addressCheck = (): void => {
     const check = address.length > 0 && addressDetail.length > 0
     validation({ additional: check })
   }
 
-  const addressInfo = (props: IAddressInfo) => {
+  const addressInfo = (props: IAddressInfo): void => {
     const { address, jibunAddress } = props
     setAdditionalInfo({
       ...additionalInfo,
@@ -45,6 +45,13 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
 
   //TODO
   // 파일 업로드
+  const upload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileArr: Array<FileUpload[]> = []
+    const { target } = e
+    if (target.files) {
+      const files = target.files
+    }
+  }
 
   return (
     <section className={'register-options'}>
@@ -90,6 +97,7 @@ export const TattoistForm = (props: IRegister.OPTIONS) => {
             <input
               type="file"
               id="addFile"
+              onChange={upload}
               multiple
               accept=".jpg, .jpeg, .png"
             />

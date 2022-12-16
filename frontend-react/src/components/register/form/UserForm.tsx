@@ -4,7 +4,7 @@ import { IRegister } from '@/interfaces/register'
 import { Regex } from '@/constants/regex'
 
 export const UserForm = (props: IRegister.OPTIONS) => {
-  const { additionalData, validation } = props
+  const { userAdditionalInformation, validation } = props
   const [additionalInfo, setAdditionalInfo] = useState({
     contactType: 'phone',
     email: '',
@@ -22,7 +22,7 @@ export const UserForm = (props: IRegister.OPTIONS) => {
       ...additionalInfo,
       [name]: value,
     })
-    additionalData(additionalInfo)
+    userAdditionalInformation(additionalInfo)
   }
 
   const emailCheck = () => {

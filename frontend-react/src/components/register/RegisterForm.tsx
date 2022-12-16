@@ -13,7 +13,6 @@ export const RegisterForm = (props: IRegister.PROPS) => {
   const [formType, setFormType] = useState(true)
   const [commonValidation, setCommonValidation] = useState(true)
   const [additionalValidation, setAdditionalValidation] = useState(true)
-
   const [inputValue, setInputValue] = useState({
     userType: '1',
     id: '',
@@ -26,7 +25,7 @@ export const RegisterForm = (props: IRegister.PROPS) => {
     email: '',
     address: '',
     addressDetail: '',
-    workspaceImg: '',
+    workspaceImg: [],
   })
   const { registerEvent, customStyle } = useRegister(props)
   const { join } = registerEvent
@@ -39,9 +38,11 @@ export const RegisterForm = (props: IRegister.PROPS) => {
     return () => validation(initData)
   }, [inputValue])
 
+  //TODO BACK 연동 후 이동 테스트
   const onClickHandlerNext = async () => {
     const data = await join(inputValue)
-    console.log(data)
+    const { result } = data
+    if (result) changeComponent('completed')
   }
 
   const onClickHandlerPrev = () => {
@@ -52,25 +53,28 @@ export const RegisterForm = (props: IRegister.PROPS) => {
     return changeComponent(type)
   }
 
-  const onChangeHandler = (data: IRegister.Data) => {
+  const onChangeHandler = (data: IRegister.Data): void => {
     setInputValue({
       ...inputValue,
       ...data,
     })
   }
 
-  const onClickTab = (payload: boolean) => {
+  const onClickTab = (payload: boolean): void => {
     setFormType(payload)
   }
 
-  const userAdditionalData = (data: RegisterOptions) => {
+  const userAdditionalInformation = (data: RegisterOptions): void => {
     setInputValue({
       ...inputValue,
       ...data,
     })
   }
 
-  const validation = (data: { common?: boolean; additional?: boolean }) => {
+  const validation = (data: {
+    common?: boolean
+    additional?: boolean
+  }): void => {
     const { common, additional } = data
     if (common) setCommonValidation(!common)
     if (additional) setAdditionalValidation(!additional)
@@ -88,14 +92,16 @@ export const RegisterForm = (props: IRegister.PROPS) => {
       <hr className={'hr'} />
 
       {formType ? (
-        <UserForm validation={validation} additionalData={userAdditionalData} />
+        <UserForm
+          validation={validation}
+          userAdditionalInformation={userAdditionalInformation}
+        />
       ) : (
         <TattoistForm
           validation={validation}
-          additionalData={userAdditionalData}
+          userAdditionalInformation={userAdditionalInformation}
         />
       )}
-
       <section className={cn('register__button--container pt-20 pb-20 pr-40')}>
         <Button
           className={cn(style.secondary__button, 'mr-16')}
