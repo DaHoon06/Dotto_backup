@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.white-button {
+.white {
   padding: 12px 24px;
   border-radius: 4px;
   background: $system_white;
@@ -33,7 +33,7 @@
   }
 }
 
-.black-button {
+.black {
   padding: 12px 24px;
   background: $system_gray01;
   border-radius: 4px;
@@ -53,7 +53,7 @@
   }
 }
 
-.primary-button {
+.primary {
   padding: 12px 32px;
   background: $system_white;
   background-color: $primary;
@@ -71,7 +71,7 @@
   }
 }
 
-.primary-outline-button {
+.primary-outline {
   padding: 12px 32px;
   background-color: $system_white;
   color: $primary;
@@ -88,11 +88,31 @@
   }
 }
 
-.gray-button {
+.gray {
   padding: 12px 24px;
   background-color: $system_gray06;
   color: $system_gray01;
   border: none;
+  border-radius: 80px;
+  @include body1;
+  @include medium;
+  @include button-base;
+  &:hover {
+    border-color: $system_gray04;
+  }
+  &:disabled {
+    color: $system_gray05;
+  }
+  &:active {
+    border-color: $system_gray04;
+    background-color: $system_gray06;
+  }
+}
+
+.gray-outline {
+  padding: 12px 24px;
+  color: $system_gray04;
+  border: 1px solid $system_gray04;
   border-radius: 80px;
   @include body1;
   @include medium;

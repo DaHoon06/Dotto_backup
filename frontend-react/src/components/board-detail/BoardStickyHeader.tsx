@@ -3,6 +3,8 @@ import styles from './BoardStickyHeader.module.scss'
 import { ReactComponent as PinIcon } from '@/assets/icons/board/dotto/pin.svg'
 import Button from '../common/button/Button'
 import StickyHeader from '../layout/StickyHeader'
+import { Link } from 'react-router-dom'
+import { buttonStyles } from '../common'
 
 interface IBoardStickyHeader {
   postId: string
@@ -23,9 +25,9 @@ export default function BoardStickyHeader({ postId }: IBoardStickyHeader) {
           >
             찜하기
           </Button>
-          <Button className={styles.button} variant="primary">
+          <Link className={buttonStyles.primary} to={`/request/${postId}`}>
             의뢰하기
-          </Button>
+          </Link>
         </span>
       </div>
     </StickyHeader>

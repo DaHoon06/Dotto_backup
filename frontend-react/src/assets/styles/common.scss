@@ -109,6 +109,9 @@ $total: 100;
 .pointer {
   cursor: pointer;
 }
+.rotate-180 {
+  transform: rotate(180deg);
+}
 /*
 ========================
   SCROLLBAR 스크롤바 설정
