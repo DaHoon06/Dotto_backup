@@ -1225,6 +1225,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@h6s/calendar@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@h6s/calendar/-/calendar-1.0.7.tgz#1c4c1742b8f8719db26da828b86adfce1b76aeb5"
+  integrity sha512-Yvcnw/TYbj3jyfHALvEyHBzn9WUYbHN55kELO5b0OOS1Ap9Y9HIxCOvNi1gJyWcMSfpMKYQ4IR5+TXv1dnhpFQ==
+
 "@headlessui/react@^1.7.4":
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.4.tgz#ba7f50fda20667276ee84fcd4c2a459aa26187e3"
@@ -3643,6 +3648,11 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
+
+date-fns@^2.29.3:
+  version "2.29.3"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
+  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
 debug@2.6.9, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
