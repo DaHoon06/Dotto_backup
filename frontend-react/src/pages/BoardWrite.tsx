@@ -4,15 +4,15 @@ import Typography from '@/components/common/typography/Typography'
 import StickyHeader from '@/components/layout/StickyHeader'
 import { CheckBox } from '@/components/register/icon/CheckBox'
 import { Switch } from '@headlessui/react'
-import { useCallback, useId, useState } from 'react'
+import { ChangeEventHandler, useCallback, useId, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { ReactComponent as UploadIcon } from '@/assets/icons/common/upload.svg'
 import styles from './BoardWrite.module.scss'
-import Image from '@/components/common/image/Image'
 import PriceInput from '@/components/board-write/PriceInput'
 import TagInput from '@/components/board-write/TagInput'
-import { BlogImage, fileToDataURL } from '@/lib/utils/fileToDataURL'
 import { PLACEHOLDERS } from '@/constants/placeholders'
+import FileInput from '@/components/common/file-input/FileInput'
+import { useFileInput } from '@/lib/hooks/useFileInput'
+import Textarea from '@/components/common/textarea/Textarea'
 
 const GENRE_SELECT = [
   {
@@ -63,7 +63,7 @@ export default function BoardWrite() {
     formState: { errors },
   } = useForm<Inputs>()
   const [tags, setTags] = useState<string[]>([])
-  const [images, setImages] = useState<BlogImage[]>([])
+  const { handleFileInput, imageFileList } = useFileInput()
 
   const handleDelete = (i: number) => {
     setTags(tags.filter((_, index) => index !== i))
@@ -75,10 +75,10 @@ export default function BoardWrite() {
 
   const onSubmit = useCallback(
     (data: Inputs) => {
-      console.log(tags, images)
+      console.log(tags, imageFileList)
       console.log(data)
     },
-    [images, tags]
+    [imageFileList, tags]
   )
 
   return (
@@ -253,66 +253,13 @@ export default function BoardWrite() {
                 name="plainText"
                 render={({ field }) => {
                   return (
-                    <textarea
-                      {...field}
-                      placeholder={PLACEHOLDERS.plainText}
-                      className={styles.textArea}
-                    />
+                    <Textarea {...field} placeholder={PLACEHOLDERS.plainText} />
                   )
                 }}
               />
             </div>
 
-            <div className="flex-col">
-              {images.length > 0 && (
-                <ul className="flex gap-16 mt-32">
-                  {images.map(({ source }, i) => {
-                    return (
-                      <Image
-                        key={i}
-                        className={styles.uploadImage}
-                        src={source}
-                        alt="upload image"
-                      />
-                    )
-                  })}
-                </ul>
-              )}
-
-              <label className={styles.uploadButton}>
-                <UploadIcon width={18} height={18} />
-                <Typography variant="body2" fontWeight="medium">
-                  이미지 첨부
-                </Typography>
-                <input
-                  type="file"
-                  multiple
-                  accept=".jpg, .jpeg, .png"
-                  onChange={async (e) => {
-                    const localFiles = e.target.files
-                    if (localFiles == null) return
-
-                    const blobImages = await Promise.all(
-                      Array.from(localFiles).map(fileToDataURL)
-                    )
-                    setImages((prev) => [...prev, ...blobImages])
-                    const formData = new FormData()
-                    Array.from(localFiles).forEach((f) =>
-                      formData.append('images', f)
-                    )
-                  }}
-                />
-              </label>
-
-              <span className="flex-col">
-                <Typography variant="body1" fontColor="gray3">
-                  업로드 제한
-                </Typography>
-                <Typography variant="body1" fontColor="gray3">
-                  최대 3장 / JPG / PNG / 5MB까지 등록가능
-                </Typography>
-              </span>
-            </div>
+            <FileInput onChange={handleFileInput} />
           </form>
         </section>
       </main>

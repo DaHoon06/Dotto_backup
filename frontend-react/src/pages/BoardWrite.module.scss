@@ -54,35 +54,3 @@
   border-radius: 4px;
   border: 1px solid $system_gray05;
 }
-
-.textArea {
-  all: unset;
-  @include sub1;
-  border: none;
-  outline: none;
-  width: 100%;
-  min-height: 480px;
-}
-
-.uploadImage {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-}
-
-.uploadButton {
-  display: flex;
-  gap: 16px;
-  height: 40px;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 4px;
-  border: 1px solid $system_gray05;
-  padding: 0 16px;
-  width: 137px;
-  margin: 32px 0;
-  cursor: pointer;
-  input {
-    display: none;
-  }
-}
