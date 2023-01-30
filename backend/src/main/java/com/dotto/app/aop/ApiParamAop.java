@@ -28,10 +28,9 @@ public class ApiParamAop {
         }
     }
 
-    @AfterReturning(value = "cut()", returning = "returnObj")
-    public void afterReturn(JoinPoint joinPoint, Object returnObj){
-        log.info("AOP --- Response obj  " + returnObj.toString());
-
-    }
-
+//    @AfterReturning(value = "cut()", returning = "returnObj")
+//    public void afterReturn(JoinPoint joinPoint, Object returnObj){
+//        log.info("AOP --- Response obj  " + returnObj.toString());
+//
+//    }
 }

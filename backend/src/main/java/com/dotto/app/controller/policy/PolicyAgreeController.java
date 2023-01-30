@@ -20,7 +20,7 @@ public class PolicyAgreeController {
     private final PolicyAgreeService policyAgreeService;
 
     @ApiOperation(value = "이용약관 동의", notes = "이용약관을 동의 한다")
-    @PostMapping("/api/policyAgree")
+    @PostMapping("/api/policyAgree2")
     @ResponseStatus(HttpStatus.OK)
     public Response create (PolicyAgreeRequest req){
         return Response.success(policyAgreeService.create(req));

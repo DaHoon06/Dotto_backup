@@ -56,7 +56,7 @@ public class InitDB {
         initMember();
         initDottoPost();
         initFeed();
-        initPolicy();
+//        initPolicy();
         initFollow();
         log.info("initialize database");
     }
@@ -125,9 +125,9 @@ public class InitDB {
     }
 
     private void initPolicy() throws IOException {
-        String dottoPolicyContent = readFileAsString("policy/dottoPolicyContent.txt");
-        String marketingPolicyContent = readFileAsString("policy/marketingPolicyContent.txt");
-        String privatePolicyContent = readFileAsString("policy/privatePolicyContent.txt");
+        String dottoPolicyContent = readFileAsString("/policy/dottoPolicyContent.txt");
+        String marketingPolicyContent = readFileAsString("/policy/marketingPolicyContent.txt");
+        String privatePolicyContent = readFileAsString("/policy/privatePolicyContent.txt");
 
         policyRepository.save(new Policy(dottoPolicyContent, privatePolicyContent, marketingPolicyContent));
 

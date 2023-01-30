@@ -6,6 +6,7 @@ import com.dotto.app.entity.member.Member;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member>findWithRolesByMemberNo(Long memberNo);
 
     @Query("select m from Member m where m.memberNo =:memberNo And m.deletedYn='N' ")
-    Optional<Member>findByMemberNoAndDeletedYnEqualsN(Long memberNo);
+    Optional<Member>findByMemberNoAndDeletedYnEqualsN(@Param("memberNo") Long memberNo);
 
 
     @Query("select new com.dotto.app.dto.search.MemberList(m.memberNo, m.nickname, p.originName) from Member m " +

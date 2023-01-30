@@ -43,6 +43,7 @@ application-secret.yml
 application.yml
 application-local.yml
 application-test.yml
+application-oauth.yml
 build.gradle
 **/src/test/**
 **/resources/**
