@@ -3,10 +3,10 @@ import {Router} from "@src/router";
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 export const Layout = () => {
-  const height = getStatusBarHeight();
+  const height = getStatusBarHeight()+20;
 
   return (
-    <>
+    <View style={{backgroundColor: '#2D2D2D', width: '100%', height: '100%'}}>
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={'#2D2D2D'}
@@ -20,6 +20,6 @@ export const Layout = () => {
       }}>
         <Router/>
       </View>
-    </>
+    </View>
   )
 }
