@@ -1,17 +1,14 @@
 import {
   Dimensions,
-  FlatList,
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text, TouchableNativeFeedback,
-  TouchableOpacity, TouchableWithoutFeedback,
+  TouchableOpacity,
   View
 } from "react-native";
-import {useState} from "react";
-import SAMPLE from '@src/assets/images/sample.png';
 import {TextFont} from "@src/components/common/TextFonts/TextFont";
+import {ThumbnailCard} from "@src/components/dotto/ThumbnailCard";
+import SAMPLE from "@src/assets/images/sample.png";
 
 const DATA = [
   {
@@ -79,28 +76,6 @@ const DATA = [
   },
 ];
 
-export const Card = ({title, width}) => {
-  return (
-    <View style={{
-      width: '100%',
-      borderRadius: 6,
-    }}>
-      <View>
-        <Image source={SAMPLE} />
-      </View>
-      <TextFont color={'white'} weight={700} size={18}>
-        닷투 게시글 - {title}
-      </TextFont>
-      <TextFont color={'gray'} size={14}>
-        2023. 08. 20
-      </TextFont>
-      <View style={CardStyles.tags}>
-        <TextFont color={'gray'}>홍대</TextFont>
-      </View>
-    </View>
-  )
-}
-
 export const DottoLists = () => {
   const windowWidth = Dimensions.get('window').width;
 
@@ -136,14 +111,22 @@ export const DottoLists = () => {
                 <TouchableOpacity
                   activeOpacity={1}
                   onPress={onClickHandlerDottoItem}
-                  key={index}
+                  key={index+"-container"}
                   style={{
                   width: windowWidth - 200,
                   marginVertical: 4,
                   paddingHorizontal: 16,
                   paddingVertical: 10,
                 }}>
-                  <Card title={value.title} width={windowWidth - 200} />
+                  <ThumbnailCard
+                    thumbnailInfo={
+                      {
+                        title: value.title,
+                        thumbnail: SAMPLE,
+                        date: '2023.08.22',
+                        tags:[{label: '홍대', _id: 'tags1'}, {label: '홍대', _id: 'tags2'}]
+                      }
+                    }/>
                 </TouchableOpacity>
               )
             })}
@@ -154,18 +137,6 @@ export const DottoLists = () => {
     </View>
   )
 }
-
-const CardStyles = StyleSheet.create({
-  tags: {
-    backgroundColor: '#ededed',
-    width: 40,
-    height: 20,
-    flexDirection: 'row',
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 4
-  }
-})
 
 const styles = StyleSheet.create({
   DottoContainer: {

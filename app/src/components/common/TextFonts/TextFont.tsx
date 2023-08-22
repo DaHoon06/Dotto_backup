@@ -1,13 +1,8 @@
 import {Text} from "react-native";
 import {ReactNode} from "react";
+import {Color} from "@src/styles/Color";
 
-type FontColor = 'white' | 'black' | 'gray'
-
-enum Color {
-  white = '#fff',
-  black = '#000',
-  gray = '#C5C5C5'
-}
+type FontColor = 'white' | 'black' | 'black100' | 'gray' | 'gray100' | 'gray200' | 'gray300'| 'gray400' | 'gray500' | 'darkGray100' | 'darkGray200'
 
 interface Props {
   color: FontColor;

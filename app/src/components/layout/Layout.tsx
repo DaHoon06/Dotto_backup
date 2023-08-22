@@ -1,15 +1,16 @@
 import {StatusBar, View} from "react-native";
 import {Router} from "@src/router";
 import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {Color} from "@src/styles/Color";
 
 export const Layout = () => {
   const height = getStatusBarHeight()+20;
 
   return (
-    <View style={{backgroundColor: '#2D2D2D', width: '100%', height: '100%'}}>
+    <View style={{backgroundColor: Color.bgColorDark, width: '100%', height: '100%'}}>
       <StatusBar
         barStyle={'light-content'}
-        backgroundColor={'#2D2D2D'}
+        backgroundColor={Color.bgColorDark}
         translucent={true}
       />
       <View style={{
