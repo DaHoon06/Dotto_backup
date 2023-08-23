@@ -21,8 +21,8 @@ export const ThumbnailCard = (props: Props) => {
   const {thumbnailInfo} = props;
   return (
     <View>
-      <View>
-        <Image source={thumbnailInfo.thumbnail} />
+      <View style={{width: '100%'}}>
+        <Image style={{width: '100%'}} source={thumbnailInfo.thumbnail} />
       </View>
       <TextFont color={'white'} weight={700} size={18}>
         닷투 게시글 - {thumbnailInfo.title}

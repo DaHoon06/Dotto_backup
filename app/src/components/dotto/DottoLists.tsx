@@ -103,7 +103,11 @@ export const DottoLists = () => {
               flex: 1,
               flexDirection: 'row',
               flexWrap: "wrap",
-              width: '100%'
+              width: '100%',
+              justifyContent: 'space-between',
+              paddingHorizontal: 10,
+              marginVertical: 10,
+              columnGap: 2,
             }}
           >
             {DATA.map((value, index) => {
@@ -113,9 +117,8 @@ export const DottoLists = () => {
                   onPress={onClickHandlerDottoItem}
                   key={index+"-container"}
                   style={{
-                  width: windowWidth - 200,
+                  width: '48%',
                   marginVertical: 4,
-                  paddingHorizontal: 16,
                   paddingVertical: 10,
                 }}>
                   <ThumbnailCard
