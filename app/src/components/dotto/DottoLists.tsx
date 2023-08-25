@@ -4,11 +4,12 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-import {TextFont} from "@src/components/common/TextFonts/TextFont";
-import {ThumbnailCard} from "@src/components/dotto/ThumbnailCard";
+import { TextFont } from "@src/components/common/TextFonts/TextFont";
+import { ThumbnailCard } from "@src/components/dotto/ThumbnailCard";
 import SAMPLE from "@src/assets/images/sample.png";
+import { Color } from "@src/styles/Color";
 
 const DATA = [
   {
@@ -77,34 +78,34 @@ const DATA = [
 ];
 
 export const DottoLists = () => {
-  const windowWidth = Dimensions.get('window').width;
+  const windowWidth = Dimensions.get("window").width;
 
   const onClickHandlerDottoItem = () => {
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
+    const windowWidth = Dimensions.get("window").width;
+    const windowHeight = Dimensions.get("window").height;
 
-    alert(`width: ${windowWidth} height: ${windowHeight}`)
-  }
+    alert(`width: ${windowWidth} height: ${windowHeight}`);
+  };
 
   return (
     <View style={styles.DottoContainer}>
       <SafeAreaView style={styles.DottoItemScroll}>
-        <ScrollView>
+        <ScrollView style={styles.DottoScrollView}>
           <View style={styles.LabelWrapper}>
-            <TextFont color={'white'} weight={700} size={24}>
-              닷투
+            <TextFont color={"black"} weight={700} size={24}>
+              Desgin
             </TextFont>
-            <TextFont color={'gray'}>
+            <TextFont color={"gray"}>
               타투이스가 올린 다양한 작품 중 내 취향을 찾아보세요!
             </TextFont>
           </View>
           <View
             style={{
               flex: 1,
-              flexDirection: 'row',
+              flexDirection: "row",
               flexWrap: "wrap",
-              width: '100%',
-              justifyContent: 'space-between',
+              width: "100%",
+              justifyContent: "space-between",
               paddingHorizontal: 10,
               marginVertical: 10,
               columnGap: 2,
@@ -115,45 +116,52 @@ export const DottoLists = () => {
                 <TouchableOpacity
                   activeOpacity={1}
                   onPress={onClickHandlerDottoItem}
-                  key={index+"-container"}
+                  key={index + "-container"}
                   style={{
-                  width: '48%',
-                  marginVertical: 4,
-                  paddingVertical: 10,
-                }}>
+                    width: "48%",
+                    marginVertical: 4,
+                    paddingVertical: 10,
+                  }}
+                >
                   <ThumbnailCard
-                    thumbnailInfo={
-                      {
-                        title: value.title,
-                        thumbnail: SAMPLE,
-                        date: '2023.08.22',
-                        tags:[{label: '홍대', _id: 'tags1'}, {label: '홍대', _id: 'tags2'}]
-                      }
-                    }/>
+                    thumbnailInfo={{
+                      title: "제목",
+                      thumbnail: SAMPLE,
+                      date: "2023.08.22",
+                      tags: [
+                        { label: "홍대", _id: "tags1" },
+                        { label: "홍대", _id: "tags2" },
+                      ],
+                    }}
+                  />
                 </TouchableOpacity>
-              )
+              );
             })}
           </View>
         </ScrollView>
-
       </SafeAreaView>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   DottoContainer: {
-    width: '100%',
-    height: '100%',
-    paddingVertical: 12,
-    flex: 1
+    width: "100%",
+    height: "100%",
+    paddingTop: 12,
+    flex: 1,
   },
   LabelWrapper: {
-    paddingHorizontal: 14
+    paddingHorizontal: 14,
+  },
+  DottoScrollView: {
+    paddingVertical: 30,
   },
   DottoItemScroll: {
-    width: '100%',
-    height: '100%',
-    paddingBottom: 100
+    width: "100%",
+    height: "100%",
+    backgroundColor: Color.white,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
   },
 });
