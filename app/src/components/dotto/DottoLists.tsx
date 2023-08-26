@@ -89,8 +89,12 @@ export const DottoLists = () => {
 
   return (
     <View style={styles.DottoContainer}>
-      <SafeAreaView style={styles.DottoItemScroll}>
-        <ScrollView style={styles.DottoScrollView}>
+      <View style={styles.DottoItemScroll}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          stickyHeaderIndices={[0]}
+          style={styles.DottoScrollView}
+        >
           <View style={styles.LabelWrapper}>
             <TextFont color={"black"} weight={700} size={24}>
               Desgin
@@ -139,7 +143,7 @@ export const DottoLists = () => {
             })}
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 };
@@ -147,21 +151,22 @@ export const DottoLists = () => {
 const styles = StyleSheet.create({
   DottoContainer: {
     width: "100%",
-    height: "100%",
-    paddingTop: 12,
+    height: 680,
     flex: 1,
-  },
-  LabelWrapper: {
-    paddingHorizontal: 14,
-  },
-  DottoScrollView: {
-    paddingVertical: 30,
-  },
-  DottoItemScroll: {
-    width: "100%",
-    height: "100%",
     backgroundColor: Color.white,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
+  LabelWrapper: {
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    backgroundColor: Color.white,
+  },
+  DottoScrollView: {
+    marginVertical: 30,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    backgroundColor: Color.white,
+  },
+  DottoItemScroll: {},
 });

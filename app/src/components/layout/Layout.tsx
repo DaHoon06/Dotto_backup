@@ -1,4 +1,4 @@
-import { StatusBar, View } from "react-native";
+import { SafeAreaView, StatusBar, View } from "react-native";
 import { Router } from "@src/router";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import { Color } from "@src/styles/Color";
@@ -20,16 +20,15 @@ export const Layout = () => {
         backgroundColor={Color.bgColorDark}
         translucent={true}
       />
-      <View
+      <SafeAreaView
         style={{
           flex: 3,
           width: "100%",
           height: "100%",
-          paddingTop: height,
         }}
       >
         <Router />
-      </View>
+      </SafeAreaView>
       <BottomNavigation />
     </View>
   );
