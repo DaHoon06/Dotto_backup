@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TextFont } from "@src/components/common/TextFonts/TextFont";
+import { TextFont } from "@src/components/common/text-fonts/TextFont";
 import { ThumbnailCard } from "@src/components/dotto/ThumbnailCard";
 import SAMPLE from "@src/assets/images/sample.png";
 import { Color } from "@src/styles/Color";

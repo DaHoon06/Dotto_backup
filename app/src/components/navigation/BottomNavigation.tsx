@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Button, StyleSheet, TouchableOpacity, View } from "react-native";
 import { HomeIcon } from "@src/components/common/icons/HomeIcon";
 import { CommunityIcon } from "@src/components/common/icons/CommunityIco";
 import { HeartIcon } from "@src/components/common/icons/HeartIcon";
@@ -6,7 +6,15 @@ import { MessageIcon } from "@src/components/common/icons/MessageIcon";
 import { MyPageIcon } from "@src/components/common/icons/MyPageIcon";
 import { Color } from "@src/styles/Color";
 
-export const BottomNavigation = () => {
+interface Props {
+  showLoginModal: (payload: boolean) => void;
+}
+
+export const BottomNavigation = (props: Props) => {
+  const { showLoginModal } = props;
+  const showModal = () => {
+    showLoginModal(true);
+  };
   return (
     <View style={styles.NavigationContainer}>
       <View style={styles.NavigationItemsContainer}>
@@ -14,7 +22,9 @@ export const BottomNavigation = () => {
         <CommunityIcon />
         <HeartIcon />
         <MessageIcon />
-        <MyPageIcon />
+        <TouchableOpacity onPress={showModal}>
+          <MyPageIcon />
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -3,9 +3,16 @@ import { Router } from "@src/router";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import { Color } from "@src/styles/Color";
 import { BottomNavigation } from "@src/components/navigation/BottomNavigation";
+import { SignInModal } from "../common/modal/SignInModal";
+import { useState } from "react";
 
 export const Layout = () => {
+  const [showModal, setShowModal] = useState<boolean>(false);
   const height = getStatusBarHeight() + 20;
+
+  const showLoginModal = (payload: boolean) => {
+    setShowModal(payload);
+  };
 
   return (
     <View
@@ -29,7 +36,8 @@ export const Layout = () => {
       >
         <Router />
       </SafeAreaView>
-      <BottomNavigation />
+      <BottomNavigation showLoginModal={showLoginModal} />
+      <SignInModal showModal={showModal} />
     </View>
   );
 };

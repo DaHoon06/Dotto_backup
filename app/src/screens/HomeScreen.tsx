@@ -11,7 +11,7 @@ import { DottoLists } from "@src/components/dotto/DottoLists";
 import { Color } from "@src/styles/Color";
 import sampleGif from "@src/assets/images/intro.gif";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TextFont } from "@src/components/common/TextFonts/TextFont";
+import { TextFont } from "@src/components/common/text-fonts/TextFont";
 import { ThumbnailCard } from "@src/components/dotto/ThumbnailCard";
 import SAMPLE from "@src/assets/images/sample.png";
 
