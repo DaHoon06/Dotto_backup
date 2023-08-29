@@ -1,6 +1,7 @@
 import { Image, StyleSheet, View } from "react-native";
 import { TextFont } from "@src/components/common/text-fonts/TextFont";
 import { Color } from "@src/styles/Color";
+import { Card } from "../ui/card/Card";
 
 interface Tag {
   label: string;
@@ -17,17 +18,11 @@ interface ThumbnailInfo {
 interface Props {
   thumbnailInfo: ThumbnailInfo;
 }
-export const ThumbnailCard = (props: Props) => {
+export const DesignCard = (props: Props) => {
   const { thumbnailInfo } = props;
   return (
-    <View>
-      <View style={{ width: "100%" }}>
-        <Image
-          style={{ width: "100%", borderRadius: 4 }}
-          source={thumbnailInfo.thumbnail}
-        />
-      </View>
-      <TextFont color={"white"} weight={700} size={18}>
+    <Card imageSource={thumbnailInfo.thumbnail}>
+      <TextFont color={"black"} weight={700} size={18}>
         닷투 게시글 - {thumbnailInfo.title}
       </TextFont>
       <TextFont color={"gray"} size={14}>
@@ -43,7 +38,7 @@ export const ThumbnailCard = (props: Props) => {
             );
           })}
       </View>
-    </View>
+    </Card>
   );
 };
 

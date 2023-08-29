@@ -12,7 +12,7 @@ import { Color } from "@src/styles/Color";
 import sampleGif from "@src/assets/images/intro.gif";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextFont } from "@src/components/common/text-fonts/TextFont";
-import { ThumbnailCard } from "@src/components/dotto/ThumbnailCard";
+import { DesignCard } from "@src/components/dotto/DesignCard";
 import SAMPLE from "@src/assets/images/sample.png";
 
 const DATA = [
@@ -75,7 +75,7 @@ export const HomeScreen = () => {
                   marginRight: 16,
                 }}
               >
-                <ThumbnailCard
+                <DesignCard
                   thumbnailInfo={{
                     title: "제목",
                     thumbnail: SAMPLE,

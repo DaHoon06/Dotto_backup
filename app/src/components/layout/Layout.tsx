@@ -37,7 +37,7 @@ export const Layout = () => {
         <Router />
       </SafeAreaView>
       <BottomNavigation showLoginModal={showLoginModal} />
-      <SignInModal showModal={showModal} />
+      <SignInModal showModal={showModal} onRequestClose={showLoginModal} />
     </View>
   );
 };

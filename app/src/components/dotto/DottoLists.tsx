@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import { TextFont } from "@src/components/common/text-fonts/TextFont";
-import { ThumbnailCard } from "@src/components/dotto/ThumbnailCard";
+import { DesignCard } from "@src/components/dotto/DesignCard";
 import SAMPLE from "@src/assets/images/sample.png";
 import { Color } from "@src/styles/Color";
 
@@ -124,10 +124,9 @@ export const DottoLists = () => {
                   style={{
                     width: "48%",
                     marginVertical: 4,
-                    paddingVertical: 10,
                   }}
                 >
-                  <ThumbnailCard
+                  <DesignCard
                     thumbnailInfo={{
                       title: "제목",
                       thumbnail: SAMPLE,

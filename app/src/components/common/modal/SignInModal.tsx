@@ -1,47 +1,48 @@
 import { useEffect, useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { TextFont } from "../text-fonts/TextFont";
 
 interface Props {
   showModal: boolean;
+  onRequestClose: (payload: boolean) => void;
 }
 
 export const SignInModal = (props: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { showModal } = props;
+  const { showModal, onRequestClose } = props;
 
   useEffect(() => {
     setModalVisible(showModal);
   }, [showModal]);
 
-  const closeModal = () => {
-    alert("modal close");
+  const kakaoLogin = () => {
+    onRequestClose(false);
   };
+
   return (
-    <View style={styles.ModalContainer}>
+    <View onTouchEnd={() => onRequestClose(false)}>
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
+        style={styles.ModalContainer}
       >
         <View style={styles.ModalBody}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Login</Text>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <View style={styles.modalTextContainer}>
+              <TextFont size={20} color="black" weight={500}>
+                Dotto Login
+              </TextFont>
+              <TextFont size={16} weight={400} color="gray">
+                Hello World!
+              </TextFont>
+            </View>
+
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={kakaoLogin}
             >
-              <Text style={styles.textStyle}>일반 회원 로그인</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>타투이스트 로그인</Text>
+              <Text style={styles.textStyle}>카카오 로그인</Text>
             </Pressable>
           </View>
         </View>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   },
   ModalBody: {
     flex: 1,
-    backgroundColor: "rgba(69,69,69,0.6)",
+    backgroundColor: "rgba(69,69,69,0.4)",
     width: "100%",
     justifyContent: "flex-end",
     alignItems: "center",
@@ -67,8 +68,8 @@ const styles = StyleSheet.create({
   modalView: {
     width: "100%",
     backgroundColor: "white",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
     padding: 35,
     shadowColor: "#000",
     shadowOffset: {
@@ -78,6 +79,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  modalTextContainer: {
+    alignItems: "flex-start",
+    marginBottom: 16,
   },
   button: {
     borderRadius: 4,
@@ -93,10 +98,6 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
     textAlign: "center",
   },
 });
