@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View } from "react-native";
 import { TextFont } from "@src/components/common/text-fonts/TextFont";
 import { Color } from "@src/styles/Color";
-import { Card } from "../ui/card/Card";
+import { Card } from "../../ui/card/Card";
 
 interface Tag {
   label: string;

@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   View,
-  Text,
   Image,
   ScrollView,
   TouchableOpacity,
@@ -12,7 +11,7 @@ import { Color } from "@src/styles/Color";
 import sampleGif from "@src/assets/images/intro.gif";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextFont } from "@src/components/common/text-fonts/TextFont";
-import { DesignCard } from "@src/components/dotto/DesignCard";
+import { DesignCard } from "@src/components/dotto/card/DesignCard";
 import SAMPLE from "@src/assets/images/sample.png";
 
 const DATA = [
@@ -38,6 +37,7 @@ export const HomeScreen = () => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       stickyHeaderIndices={[0, 3]}
+      bounces={false}
       style={styles.HomeContainer}
     >
       <Header />
@@ -101,12 +101,6 @@ const tattoistStyels = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     marginVertical: 10,
-  },
-  test: {
-    flex: 1,
-    width: 100,
-    height: 100,
-    backgroundColor: "beige",
   },
 });
 
