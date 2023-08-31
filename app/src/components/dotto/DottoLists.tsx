@@ -77,9 +77,9 @@ const DATA = [
   },
 ];
 
-export const DottoLists = () => {
-  const windowWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get("window").height;
 
+export const DottoLists = () => {
   const onClickHandlerDottoItem = () => {
     const windowWidth = Dimensions.get("window").width;
     const windowHeight = Dimensions.get("window").height;
@@ -88,22 +88,22 @@ export const DottoLists = () => {
   };
 
   return (
-    <View style={styles.DottoContainer}>
+    <SafeAreaView style={styles.DottoContainer}>
+      <View style={styles.LabelWrapper}>
+        <TextFont color={"black"} weight={700} size={24}>
+          Desgin
+        </TextFont>
+        <TextFont color={"gray"}>
+          타투이스가 올린 다양한 작품 중 내 취향을 찾아보세요!
+        </TextFont>
+      </View>
+      {/* FlatList로 변경 */}
       <ScrollView
         bounces={false}
         centerContent={true}
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[0]}
         style={styles.DottoScrollView}
       >
-        <View style={styles.LabelWrapper}>
-          <TextFont color={"black"} weight={700} size={24}>
-            Desgin
-          </TextFont>
-          <TextFont color={"gray"}>
-            타투이스가 올린 다양한 작품 중 내 취향을 찾아보세요!
-          </TextFont>
-        </View>
         <View
           style={{
             flex: 1,
@@ -143,21 +143,23 @@ export const DottoLists = () => {
           })}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   DottoContainer: {
     width: "100%",
-    height: 650,
+    height: deviceHeight - 220,
     backgroundColor: Color.white,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   LabelWrapper: {
     paddingHorizontal: 10,
     paddingVertical: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     backgroundColor: Color.white,
   },
   DottoScrollView: {
