@@ -1,9 +1,11 @@
 import { Layout } from "@src/components/layout/Layout";
 import * as Font from "expo-font";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SplashScreen from "react-native-splash-screen";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const preloadAssets = () => {
     return Font.loadAsync({
       "Pretendard-Light": require("./assets/fonts/Pretendard-Light.ttf"),
@@ -20,9 +22,10 @@ export default function App() {
 
   useEffect(() => {
     preload().then((context) => {
+      setIsLoading(true);
       if (SplashScreen) SplashScreen.hide();
     });
   }, []);
 
-  return <Layout />;
+  return isLoading && <Layout />;
 }
