@@ -1,5 +1,5 @@
 import {
-  Dimensions,
+  Dimensions, FlatList,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -34,46 +34,46 @@ const DATA = [
     title: 7,
   },
   {
-    title: 1,
+    title: 11,
   },
   {
-    title: 2,
+    title: 12,
   },
   {
-    title: 3,
+    title: 13,
   },
   {
-    title: 4,
+    title: 14,
   },
   {
-    title: 5,
+    title: 15,
   },
   {
-    title: 6,
+    title: 16,
   },
   {
-    title: 7,
+    title: 17,
   },
   {
-    title: 1,
+    title: 21,
   },
   {
-    title: 2,
+    title: 22,
   },
   {
-    title: 3,
+    title: 23,
   },
   {
-    title: 4,
+    title: 24,
   },
   {
-    title: 5,
+    title: 25,
   },
   {
-    title: 6,
+    title: 26,
   },
   {
-    title: 7,
+    title: 27,
   },
 ];
 
@@ -87,73 +87,71 @@ export const DottoLists = () => {
     alert(`width: ${windowWidth} height: ${windowHeight}`);
   };
 
-  return (
-    <SafeAreaView style={styles.DottoContainer}>
+  const listsHeader = () => {
+    return (
       <View style={styles.LabelWrapper}>
-        <TextFont color={"black"} weight={700} size={24}>
-          Desgin
+        <TextFont color={"black"} weight={700} size={20}>
+          Design
         </TextFont>
-        <TextFont color={"gray"}>
+        <TextFont color={"gray"} size={14}>
           타투이스가 올린 다양한 작품 중 내 취향을 찾아보세요!
         </TextFont>
       </View>
-      {/* FlatList로 변경 */}
-      <ScrollView
-        bounces={false}
-        centerContent={true}
-        showsVerticalScrollIndicator={false}
-        style={styles.DottoScrollView}
+    )
+  }
+
+  const renderItems = (item) => {
+    return (
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={onClickHandlerDottoItem}
+        key={item + "-container"}
+        style={{
+          width: "48%",
+          marginVertical: 4,
+        }}
       >
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            flexWrap: "wrap",
-            width: "100%",
-            justifyContent: "space-between",
-            paddingHorizontal: 10,
-            marginVertical: 10,
-            columnGap: 2,
+        <DesignCard
+          thumbnailInfo={{
+            title: "제목",
+            thumbnail: SAMPLE,
+            date: "2023.08.22",
+            tags: [
+              { label: "홍대", _id: "tags1" },
+              { label: "홍대", _id: "tags2" },
+            ],
           }}
-        >
-          {DATA.map((value, index) => {
-            return (
-              <TouchableOpacity
-                activeOpacity={1}
-                onPress={onClickHandlerDottoItem}
-                key={index + "-container"}
-                style={{
-                  width: "48%",
-                  marginVertical: 4,
-                }}
-              >
-                <DesignCard
-                  thumbnailInfo={{
-                    title: "제목",
-                    thumbnail: SAMPLE,
-                    date: "2023.08.22",
-                    tags: [
-                      { label: "홍대", _id: "tags1" },
-                      { label: "홍대", _id: "tags2" },
-                    ],
-                  }}
-                />
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </ScrollView>
+        />
+      </TouchableOpacity>
+    )
+  }
+
+  return (
+    <SafeAreaView style={styles.DottoContainer}>
+      <FlatList
+        ListHeaderComponent={listsHeader}
+        data={DATA}
+        renderItem={renderItems}
+        keyExtractor={(item) => String(item.title)}
+        columnWrapperStyle={styles.DottoScrollView}
+        horizontal={false}
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        overScrollMode="never"
+        bounces={false}
+      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   DottoContainer: {
+    flex: 1,
     width: "100%",
-    height: deviceHeight - 220,
+    height: deviceHeight - 130, // IOS: -220, Android: -130
     backgroundColor: Color.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
   LabelWrapper: {
     paddingHorizontal: 10,
@@ -163,6 +161,8 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
   },
   DottoScrollView: {
-    marginTop: 30,
+    flex: 1,
+    height: '100%',
+    columnGap: 4
   },
 });

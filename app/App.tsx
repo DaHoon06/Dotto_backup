@@ -1,4 +1,4 @@
-import { Layout } from "./src/components/layout/Layout";
+import { Layout } from "@src/components/layout/Layout";
 import * as Font from "expo-font";
 import { useEffect } from "react";
 import SplashScreen from "react-native-splash-screen";
@@ -20,9 +20,9 @@ export default function App() {
 
   useEffect(() => {
     preload().then((context) => {
-      SplashScreen.hide();
+      if (SplashScreen) SplashScreen.hide();
     });
-  });
+  }, []);
 
   return <Layout />;
 }

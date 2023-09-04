@@ -39,7 +39,6 @@ export const BottomNavigation = (props: Props) => {
 
 const styles = StyleSheet.create({
   NavigationContainer: {
-    flex: 0.25,
     width: "100%",
     height: 60,
     backgroundColor: Color.bgColorDark,
