@@ -1,0 +1,54 @@
+@import '@/assets/styles/index.scss';
+
+.section {
+  min-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  min-height: 70vh;
+  background-color: white;
+
+  .transmissionList {
+    width: 25%;
+    padding: 80px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .listBox {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 440px;
+      overflow: scroll;
+    }
+
+    .transmissionCard {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-radius: 4px;
+    }
+  }
+  .calendarSheet {
+    width: 50%;
+    padding: 32px 24px;
+  }
+  .timeSheet {
+    width: 25%;
+    padding: 80px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .timesList {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 440px;
+      overflow: scroll;
+      & li {
+        padding: 16px 24px;
+        border: 1px solid $system_gray05;
+      }
+    }
+  }
+}

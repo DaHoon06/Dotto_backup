@@ -1,0 +1,75 @@
+@import '@/assets/styles/colors.scss';
+
+.dateMenu {
+  position: relative;
+}
+.dateButton {
+  border-radius: 4px;
+  color: $system_gray01;
+  display: flex;
+  align-items: center;
+
+  & span {
+    line-height: 1px;
+  }
+}
+
+.open {
+  background-color: #ffeeea;
+  color: $primary;
+  border-color: transparent;
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+.menuItems {
+  position: absolute;
+  min-width: 412px;
+  width: auto;
+  margin-top: 24px;
+  padding: 24px 36px;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  outline: none;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  justify-content: center;
+  text-align: center;
+}
+.day {
+  opacity: 0.2;
+  padding: 8px;
+  border-radius: 8px;
+}
+.isCurrentMonth {
+  opacity: 1;
+  cursor: pointer;
+}
+.isSelected {
+  background-color: $primary;
+  color: $system_white;
+}
+
+.timeList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.timeChip {
+  width: 80px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $system_gray05;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -1,0 +1,32 @@
+@import '@/assets/styles/colors.scss';
+
+.recommend__user__container {
+  max-width: 396px;
+  width: 100%;
+  max-height: 478px;
+  height: 100%;
+  background-color: $system_white;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid $system_gray05;
+
+  .user__profile {
+    max-height: 80px;
+    display: flex;
+    justify-content: space-between;
+
+    .user__profile__img {
+      max-width: 40px;
+      max-height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1em;
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .recommend__user__container {
+    display: none;
+  }
+}

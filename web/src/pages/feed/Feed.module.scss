@@ -1,0 +1,19 @@
+@import '@/assets/styles/colors.scss';
+
+/* Feed Posting */
+.feed__header__posting {
+  padding: 12px 28px;
+}
+
+
+.feed__main {
+  background-color: $system_gray06;
+  padding-top: 120px;
+  width: 100%;
+  min-height: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+
+

@@ -1,0 +1,30 @@
+@import '@/assets/styles/colors.scss';
+@import '@/assets/styles/typography.scss';
+
+.default {
+  @include body2;
+  @include regular;
+  color: $system_gray01;
+  padding: 8px 12px;
+}
+
+.location {
+  @include body2;
+  @include medium;
+  color: $system_gray03;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px 4px 12px;
+  gap: 4px;
+}
+
+.filter-chip {
+  background-color: $system_gray06;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+}

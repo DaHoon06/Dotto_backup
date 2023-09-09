@@ -1,0 +1,11 @@
+@import '@/assets/styles/index.scss';
+
+.textArea {
+  all: unset;
+  @include sub1;
+  border: none;
+  outline: none;
+  width: 100%;
+  min-height: 480px;
+  box-sizing: border-box;
+}

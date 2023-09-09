@@ -1,0 +1,142 @@
+@import '@/assets/styles/colors.scss';
+
+.search-bar--container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .search__button {
+    position: relative;
+    right: 35px;
+    width: 25px;
+  }
+
+  .search-bar {
+    width: 100%;
+    max-width: 296px;
+    height: 40px;
+    border: 1px solid $system_gray05;
+    outline: none;
+    background: $system_gray06;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    transition: all 0.25s;
+  }
+
+  .search-bar--active {
+    max-width: 588px;
+  }
+
+  .no-keyword--text {
+    text-align: center;
+  }
+
+  .search-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 0;
+
+    li {
+      width: 100%;
+      text-align: left;
+      height: 25px;
+      margin-bottom: 13px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px){
+  .search-bar--container {
+    justify-content: flex-end;
+
+    .search__button {
+      &.on {
+        right: 35px !important;
+      }
+
+      &.off {
+        right: 1rem;
+      }
+    }
+
+    .search-bar {
+      display: none;
+    }
+  }
+}
+
+/*
+  최근 검색한 키워드
+*/
+.search-bar__background--blur {
+  background: rgba(25, 25, 25, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(6px);
+}
+
+.keyword-container {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+  top: 75px;
+  left: 0;
+
+  .list-group {
+    padding-top: 16px;
+    background: $system_white;
+    min-height: 300px;
+  }
+
+  .button--wrapper {
+    text-align: right;
+    margin-right: 2%;
+  }
+
+  &--list {
+    margin: auto;
+    max-width: min(80vw, 610px);
+
+    section {
+      text-align: center;
+    }
+  }
+}
+
+@keyframes search-bar--in-dropdown-animation {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.search-bar--in-dropdown {
+  overflow: hidden;
+}
+
+.search-bar--in-dropdown > article {
+  animation: search-bar--in-dropdown-animation .4s ease;
+}
+
+@keyframes search-bar--out-dropdown-animation {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.search-bar--out-dropdown {
+  overflow: hidden;
+}
+
+.search-bar--out-dropdown > article {
+  animation: search-bar--out-dropdown-animation 0.4s ease;
+  animation-fill-mode: forwards;
+}

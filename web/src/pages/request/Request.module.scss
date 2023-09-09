@@ -1,0 +1,47 @@
+@import '@/assets/styles/colors.scss';
+
+.header {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  background-color: white;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  background-color: $system_gray05;
+  min-height: 100vh;
+  padding: 24px 0;
+
+  & aside {
+    width: auto;
+  }
+}
+
+.mainSection {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  width: 100%;
+  background-color: $system_white;
+  border-radius: 16px;
+  padding: 40px;
+}
+
+.radio {
+  margin: 0;
+}
+
+.textArea {
+  border: 1px solid $system_gray05;
+  padding: 24px;
+  border-radius: 8px;
+  min-height: 160px;
+}

@@ -1,0 +1,217 @@
+@import "@/assets/styles/colors.scss";
+
+.close__button--wrapper {
+  display: none;
+  width: 100%;
+  text-align: left;
+  .close__button {
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .close__button--wrapper {
+    display: inline-block;
+  }
+}
+
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  margin: auto;
+  max-width: 520px;
+  width: 90vw;
+  height: 620px;
+
+  /* 로그인 화면에 있는 버튼 */
+  button {
+    max-width: 336px;
+    max-height: 44px;
+    width: 100%;
+  }
+
+  .logo--wrapper {
+    margin-bottom: 44px;
+    text-align: center;
+  }
+
+  &--group {
+    width: 100%;
+    margin: auto;
+  }
+
+  &__items--wrapper {
+    width: 100%;
+    height: 44px;
+    margin: auto;
+
+    & button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__input {
+    background: $system_white;
+    width: min(70vw, 302px);
+    border: 1px solid $system_gray05;
+    font-size: 18px;
+    padding: 12px 16px;
+    border-radius: 4px;
+
+    &:focus-visible{
+      border-color: $system_black;
+    }
+  }
+
+  .warning-message {
+    color: $primary;
+    font-size: 8px;
+    padding: 10px 0;
+  }
+
+  .social-login-division {
+    width: 100%;
+    margin: 48px auto 15px auto;
+  }
+  .social-login--line {
+    width: min(80vw, 336px);
+  }
+  .social-login__button--group {
+    display: flex;
+    flex-direction: column;
+
+    .google__button {
+      border-radius: 4px;
+      background: $system_white;
+      border: 1px solid $system_gray05;
+      display: flex;
+      align-items: center;
+      margin: auto;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+
+    button.google__button span {
+      font-size: 14px;
+      color: #000000;
+      font-weight: 600;
+      display: block;
+      width: 80%;
+      text-align: center;
+    }
+
+    .kakao__button {
+      border-radius: 4px;
+      background: #fee500;
+      display: flex;
+      align-items: center;
+      margin: auto;
+
+      &:hover {
+        background: #f6de00;
+      }
+    }
+
+    button.kakao__button span {
+      display: block;
+      font-size: 14px;
+      color: #000000;
+      font-weight: 600;
+      width: 80%;
+      text-align: center;
+    }
+  }
+
+  .check-box--wrapper {
+    width: 100%;
+
+    & div {
+      display: flex;
+      align-items: center;
+      width: 336px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .save-id--text {
+      font-size: 9px;
+      margin-left: 5px;
+    }
+  }
+
+  .find-password,
+  .join {
+    color: $system_gray03;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-route--group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+
+    .division {
+      color: $system_gray05;
+    }
+    .route-text {
+      color: $system_gray03;
+      font-size: 16px;
+      text-decoration: none;
+
+      &:hover {
+        font-weight: bold;
+        cursor: pointer;
+        color: #565656;
+      }
+    }
+  }
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  outline: none !important;
+  border: 1px solid #eeeeee;
+  border-radius: 2px;
+  background: #fbfbfb;
+}
+
+input[type="checkbox"]::before {
+  content: "\2713";
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  overflow: hidden;
+  transform: scale(0) translate(-50%, -50%);
+  line-height: 1;
+}
+
+input[type="checkbox"]:hover {
+  border-color: rgba(170, 170, 170, 0.5);
+}
+
+input[type="checkbox"]:checked {
+  background-color: #222222;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+input[type="checkbox"]:checked::before {
+  border-radius: 2px;
+  transform: scale(1) translate(-50%, -50%)
+}

@@ -1,0 +1,63 @@
+@import '@/assets/styles/colors.scss';
+/* 중복 */
+.feed__header__posting {
+  padding: 12px 28px;
+}
+
+
+.feed__detail__main {
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  min-height: 1000px;
+  display: flex;
+  justify-content: center;
+
+  .feed__detail__thumbnail {
+    border-radius: 8px 0 0 8px;
+    background-color: rgba(0, 0, 0, 1);
+    -webkit-filter: brightness(50%);
+    filter: brightness(50%);
+    min-width: 800px;
+    min-height: 800px;
+    object-fit: cover;
+  }
+
+  .feed__detail__container {
+    background-color: $system_white;
+    display: flex;
+    min-width: 1200px;
+    min-height: 800px;
+    border-radius: 8px;
+    margin: auto;
+
+    .feed__detail__body {
+      width: 100%;
+
+      .feed__detail__profile {
+        width: 100%;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+
+        img {
+          border-radius: 50%;
+        }
+      }
+
+      .feed__detail__content {
+        padding: 4px 24px;
+        width: 100%;
+        max-height: 160px;
+        height: auto;
+      }
+    }
+  }
+
+  .feed__detail__close {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 50px;
+    top: 100px;
+  }
+}

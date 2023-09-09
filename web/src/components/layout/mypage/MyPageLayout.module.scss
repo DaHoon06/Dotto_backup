@@ -1,0 +1,8 @@
+@import '@/assets/styles/index.scss';
+
+.main {
+  display: flex;
+  background-color: $system_gray05;
+  min-height: 100vh;
+  position: relative;
+}

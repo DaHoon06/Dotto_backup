@@ -1,0 +1,16 @@
+@import '@/assets/styles/colors.scss';
+
+.feed-post__button {
+  position: fixed;
+  top: 43%;
+  right: 10px;
+  border: 1px solid $system_white;
+  border-radius: 50%;
+  background-color: $system_white;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 1px 4px 0 $system_gray04;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,26 @@
+@import '@/assets/styles/colors.scss';
+
+.kakao-address--modal {
+  width: 90% !important;
+  left: 5% !important;
+  border: 0.5px solid $system_gray05 !important;
+  height: 525px !important;
+  position: absolute !important;
+  z-index: 100 !important;
+  top: 5% !important;
+  background: white !important;
+
+  .address-body {
+    height: 87.5% !important;
+  }
+
+  .address-footer {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid $system_gray05;
+    background-color: #ececec;
+    padding: 10px;
+  }
+}
+
+

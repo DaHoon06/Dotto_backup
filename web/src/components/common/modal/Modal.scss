@@ -1,0 +1,35 @@
+@import "@/assets/styles/colors.scss";
+
+.modal__layer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba($color: $system_black, $alpha: 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+
+  & .modal__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    background-color: $system_white;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+@media screen and (max-width: 767px){
+  .mobile-form {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+}

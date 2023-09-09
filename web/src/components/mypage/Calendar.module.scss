@@ -1,0 +1,32 @@
+.calendar {
+  .calendarWeekends {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    justify-content: center;
+    text-align: left;
+  }
+  .body {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+  }
+  &:last-child {
+    border-bottom: 1px solid #aaa;
+  }
+  .day {
+    color: rgba($color: #000000, $alpha: 0.2);
+    padding: 8px 12px;
+    height: 80px;
+    display: flex;
+    box-sizing: content-box;
+    border-right: 1px solid #aaa;
+  }
+
+  .isCurrentMonth {
+    color: rgba($color: #000000, $alpha: 1);
+    cursor: pointer;
+  }
+}

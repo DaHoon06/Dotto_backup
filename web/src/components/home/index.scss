@@ -1,0 +1,20 @@
+@import '@/assets/styles/colors.scss';
+
+.main__container {
+  max-width: 1200px;
+  width: 100%;
+  min-height: 800px;
+  margin: auto;
+  padding: 160px 0;
+
+  .main__body {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main__container {
+    margin-top: 90px;
+    padding: 2rem 0;
+  }
+}

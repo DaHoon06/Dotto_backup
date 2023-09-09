@@ -1,0 +1,36 @@
+@import '@/assets/styles/colors.scss';
+
+.footer {
+  position: relative;
+  bottom: 0;
+  background: $system_gray01;
+  color: $system_white;
+  width: 100%;
+  font-size: 12px;
+
+  section {
+    height: 10em;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  &-top {
+    display: flex;
+    justify-content: space-around;
+    height: 16em;
+    flex-direction: row;
+    align-items: center;
+    color: $system_gray05;
+    font-size: 0.9em;
+  }
+
+  &-bottom {
+    height: 5em;
+    text-align: center;
+    color: $system_gray05;
+    font-size: 8px;
+  }
+}
+

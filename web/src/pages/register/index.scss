@@ -1,0 +1,370 @@
+@import "../../assets/styles/colors";
+
+.register {
+  width: min(90vw,680px);
+  height: min(95vh, 700px);
+
+  &-items {
+    display: grid;
+    grid-template-columns: min(20vw, 100px) 1fr;
+    align-items: center;
+  }
+
+  .form {
+    text-align: left;
+    width: 100%;
+    padding: min(4vw,1rem) min(4vw,2rem);
+    border-bottom: 1px solid $system_gray06;
+  }
+
+  .register-options--tattoist__form {
+    padding: min(4vw, 1rem) min(4vw, 2rem);
+
+    .upload {
+      width: 13px;
+      margin-right: 12px;
+    }
+
+    .upload-container {
+      width: min(25vw, 140px);
+      height: 90px;
+    }
+
+    .upload__button {
+      display: flex;
+      align-items: center;
+      height: 44px;
+      width: 100%
+    }
+
+    .upload__button input[type="file"] {
+      position: absolute;
+      width: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+    }
+
+    .upload__button label {
+      background-color: white;
+      border: 1px solid #e2e2e2;
+      vertical-align: middle;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #222222;
+      cursor: pointer;
+      border-radius: 4px;
+      height: 44px;
+      width: 100%;
+      max-width: 144px;
+      display: flex;
+      align-items: center;
+    }
+    .upload__button label:hover {
+      border: 1px solid $system_gray01;
+    }
+  }
+
+  .preview {
+    width: 80px;
+    height: 80px;
+    display: flex;
+
+    .preview-delete__button {
+      position: relative;
+      right: 20px;
+      bottom: -3px;
+      width: fit-content;
+      height: fit-content;
+
+      img {
+        background-color: $system_white;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .form-container {
+    height: calc(100% - 70px);
+    .register__form {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  // TAB Layer
+  .tab {
+    display: flex;
+    justify-content: space-between;
+    padding: min(4vw,24px) min(4vw,32px);
+    border-bottom: 1px solid $system_gray05;
+
+    &--progress {
+      display: flex;
+      align-items: center;
+
+      .progress-dot {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: $system_gray05;
+        border-radius: 30px;
+        margin: 0 8px;
+      }
+
+      .progress-dot-active {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: $system_gray01;
+        border-radius: 30px;
+        margin: 0 8px;
+      }
+
+      .active {
+        color: $system_gray01;
+      }
+
+      .tab-title {
+        color: $system_gray04;
+      }
+
+    }
+  }
+
+  // POLICY LAYER
+  .policy {
+    height: calc(100% - 70px);
+    &-body--container {
+      height: 500px;
+      overflow-y: auto;
+    }
+    &-content--container {
+      max-height: 470px;
+      overflow-y: auto;
+    }
+
+    &-contents {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $system_gray05;
+      padding: min(4vw, 20px) min(4vw, 2rem);
+    }
+
+    &__check-box {
+      display: flex;
+      align-items: center;
+    }
+
+    &__check-box--all {
+      display: flex;
+      align-items: center;
+      padding: min(4vw, 20px) min(4vw, 2rem);
+      border-bottom: 1px solid $system_gray05;
+    }
+
+    &-contents--wrapper {
+      padding: 2em 2.25em;
+      text-align: left;
+      overflow-y: auto;
+      overflow-x: hidden;
+      color: $system_gray03;
+      border-bottom: 1px solid $system_gray05;
+      border-left: 1px solid $system_gray05;
+      border-right: 1px solid $system_gray05;
+      max-height: 280px;
+      height: 100%;
+      background-color: #F5F5F5;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    input[type='checkbox'] {
+      display: none;
+    }
+
+    .essential {
+      font-style: normal;
+      font-weight: 500;
+      color: $system_gray03;
+      width: fit-content;
+      font-size: 14px;
+    }
+  }
+
+  // 회원가입 폼
+  &__input {
+    background-color: $system_white;
+    border: 1px solid $system_gray05;
+    border-radius: 4px;
+    height: 22px;
+    padding: 10px 16px;
+    width: 314px;
+    overflow: hidden;
+
+    &:focus {
+      border-color: $system_gray01;
+      color: $system_gray01;
+    }
+
+    &:disabled {
+      background-color: #f5f5f5;
+      border-color: #f5f5f5;
+      color: $system_gray04;
+
+    }
+  }
+
+  .error {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: min(20vw, 100px);
+    height: 10px;
+    text-align: left;
+  }
+  .error-user {
+    padding: 10px 10px 0;
+    height: 10px;
+    text-align: left;
+  }
+  // 회원가입 탭
+  &-options {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .input--email {
+      display: flex;
+      width: 566px;
+    }
+  }
+
+  /* 회원가입 완료 */
+
+  .completed {
+    &-container {
+      width: 100%;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+      height: 100px;
+      padding: 16px 32px;
+    }
+  }
+}
+
+.register-items-top {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*
+회원 유형 선택
+*/
+.register-type--container {
+  height: calc(100% - 70px);
+
+  .register__button--tab {
+    background-color: $system_white;
+    border: 1px solid $system_gray05;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: min(40vw,176px);
+    overflow: hidden;
+    padding: 21px 0;
+    width: min(40vw, 224px);
+  }
+
+  .register__button--tab-active {
+    background-color: $system_white;
+    border: 1px solid $system_gray03;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: min(40vw,176px);
+    overflow: hidden;
+    padding: 21px 0;
+    width: min(40vw, 224px);
+  }
+}
+
+.register__button--container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  max-height: calc(100% - 540px);
+  padding-right: min(4vw, 2em);
+
+  .button {
+    width: 104px;
+    height: 44px;
+  }
+}
+
+.social-icons {
+  border: 2px solid transparent;
+  width: min(10vw, 48px);
+}
+
+.social-icons--active {
+  -webkit-filter: brightness(90%);
+  filter: brightness(90%);
+  border-color: $system_gray01;
+  border-radius: 50%;
+}
+
+.social-info--wrapper {
+  margin-top: min(4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $system_gray06;
+  width: 100%;
+  height: 124px;
+}
+
+@media screen and (max-width: 767px){
+  .register {
+    width: 100%;
+    height: 100%;
+    .policy-contents--wrapper{
+      height: 186px;
+    }
+
+    .register__input {
+      width: min(40vw, 314px);
+      padding: 10px min(3vw, 16px);
+    }
+  }
+}
+
+

@@ -1,0 +1,56 @@
+@import '@/assets/styles/index.scss';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $system_gray06;
+
+  & section {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 1200px;
+    background-color: $system_white;
+    padding: 56px 48px;
+  }
+}
+
+.stickyHeader {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.submitButton {
+  border-radius: 40px;
+}
+
+.form {
+  margin-top: 72px;
+
+  & .textInput {
+    border-radius: 4px;
+    border: 1px solid $system_gray05;
+    height: 52px;
+    @include sub2;
+    color: $system_gray01;
+    padding: 0 20px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.hr {
+  margin: 48px 0;
+}
+.customText {
+  line-height: 25px;
+}
+
+.textAreaBox {
+  padding: 16px 40px;
+  border-radius: 4px;
+  border: 1px solid $system_gray05;
+}

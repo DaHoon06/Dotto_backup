@@ -1,0 +1,74 @@
+@import '../../../assets/styles/typography.scss';
+@import '../../../assets/styles/colors.scss';
+
+.h1 {
+  @include h1;
+}
+.h2 {
+  @include h2;
+}
+.h3 {
+  @include h3;
+}
+.sub1 {
+  @include sub1;
+}
+.sub2 {
+  @include sub2;
+}
+.body1 {
+  @include body1;
+}
+.body2 {
+  @include body2;
+}
+.caption {
+  @include caption;
+}
+
+.regular {
+  @include regular;
+}
+.medium {
+  @include medium;
+}
+.semibold {
+  @include semibold;
+}
+.bold {
+  @include bold;
+}
+
+.gray1 {
+  color: $system_gray01;
+}
+.gray2 {
+  color: $system_gray02;
+}
+.gray3 {
+  color: $system_gray03;
+}
+.gray4 {
+  color: $system_gray04;
+}
+.gray5 {
+  color: $system_gray05;
+}
+.gray6 {
+  color: $system_gray06;
+}
+.primary {
+  color: $primary;
+}
+.red {
+  color: $system_red;
+}
+.blue {
+  color: $system_blue;
+}
+.black {
+  color: $system_black;
+}
+.white {
+  color: $system_white;
+}

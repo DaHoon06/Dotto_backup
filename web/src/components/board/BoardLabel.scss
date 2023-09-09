@@ -1,0 +1,33 @@
+.board-label--container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .board-label--container {
+    align-items: flex-start;
+
+    .title--wrapper {
+      display: flex;
+      flex-direction: column;
+      .title {
+        font-size: min(4vw, 1rem);
+      }
+      .sub-title {
+        font-size: min(3vw, 0.8rem);
+      }
+    }
+    
+    .redirect-label {
+      font-size: min(3vw, 0.8rem);
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+}
+

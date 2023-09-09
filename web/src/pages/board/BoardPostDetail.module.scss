@@ -1,0 +1,16 @@
+@import '@/assets/styles/index.scss';
+
+.main {
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 207px;
+
+  & section {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 1200px;
+  }
+}

@@ -1,0 +1,53 @@
+@mixin h1 {
+  font-size: min(3vw, 32px);
+  line-height: 38px;
+  letter-spacing: 0.15px;
+}
+@mixin h2 {
+  font-size: min(3vw, 28px);
+  line-height: 34px;
+  letter-spacing: 0.15px;
+}
+@mixin h3 {
+  font-size: min(3vw, 24px);
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+@mixin sub1 {
+  font-size: min(3vw, 20px);
+  line-height: 32px;
+  letter-spacing: 0.15px;
+}
+@mixin sub2 {
+  font-size: min(3vw, 18px);
+  line-height: 21px;
+  letter-spacing: 0.15px;
+}
+@mixin body1 {
+  font-size: min(3vw, 16px);
+  line-height: 21px;
+  letter-spacing: 0.15px;
+}
+@mixin body2 {
+  font-size: min(3vw, 14px);
+  line-height: 19px;
+  letter-spacing: 0.15px;
+}
+@mixin caption {
+  font-size: min(3vw, 12px);
+  line-height: 14px;
+  letter-spacing: 0.15px;
+}
+
+@mixin regular {
+  font-weight: 400;
+}
+@mixin medium {
+  font-weight: 500;
+}
+@mixin semibold {
+  font-weight: 600;
+}
+@mixin bold {
+  font-weight: 700;
+}

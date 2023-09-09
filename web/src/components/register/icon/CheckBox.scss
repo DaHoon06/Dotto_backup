@@ -1,0 +1,12 @@
+@import '@/assets/styles/colors.scss';
+.checkbox-icons {
+  width: 20px;
+  height: 20px;
+  .chek-icon {
+    fill: $system_white;
+  }
+  .check-circle {
+    fill: $system_gray01;
+  }
+}
+

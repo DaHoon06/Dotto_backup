@@ -1,0 +1,24 @@
+@import '@/assets/styles/colors.scss';
+
+.top__button--container {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid $system_gray03;
+  border-radius: 50%;
+  background-color: $system_gray01;
+  color: $system_gray05;
+  box-shadow: 0 1px 10px 0 $system_gray05;
+}
+
+@media screen and (max-width: 767px) {
+  .top__button--container {
+    display: none;
+  }
+}

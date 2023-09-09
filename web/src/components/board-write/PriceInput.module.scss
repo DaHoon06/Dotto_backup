@@ -1,0 +1,10 @@
+@import '@/assets/styles/index.scss';
+
+.priceInput {
+  color: $system_gray01;
+  border-radius: 4px;
+  border: 1px solid $system_gray05;
+  height: 52px;
+  @include sub2;
+  padding: 0 20px;
+}

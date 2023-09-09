@@ -1,0 +1,130 @@
+@import '@/assets/styles/colors.scss';
+@import '@/assets/styles/typography.scss';
+
+@mixin button-base {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+
+.white {
+  padding: 12px 24px;
+  border-radius: 4px;
+  background: $system_white;
+  border: 1px solid $system_gray05;
+  color: $system_gray01;
+  @include body2;
+  @include medium;
+  @include button-base;
+  &:hover {
+    border-color: $system_gray04;
+  }
+  &:disabled {
+    color: $system_gray05;
+  }
+  &:active {
+    border-color: $system_gray04;
+    background-color: $system_gray06;
+  }
+}
+
+.black {
+  padding: 12px 24px;
+  background: $system_gray01;
+  border-radius: 4px;
+  color: $system_white;
+  @include body2;
+  @include medium;
+  @include button-base;
+  &:hover {
+    background-color: rgba($color: $system_gray01, $alpha: 0.8);
+  }
+  &:disabled {
+    background-color: none;
+    color: $system_gray04;
+  }
+  &:active {
+    color: $system_gray04;
+  }
+}
+
+.primary {
+  padding: 12px 32px;
+  background: $system_white;
+  background-color: $primary;
+  color: $system_white;
+  border-radius: 40px;
+  border: none;
+  @include sub2;
+  @include medium;
+  @include button-base;
+  &:hover {
+  }
+  &:disabled {
+  }
+  &:active {
+  }
+}
+
+.primary-outline {
+  padding: 12px 32px;
+  background-color: $system_white;
+  color: $primary;
+  border-radius: 40px;
+  border: 1px solid $primary;
+  @include sub2;
+  @include medium;
+  @include button-base;
+  &:hover {
+  }
+  &:disabled {
+  }
+  &:active {
+  }
+}
+
+.gray {
+  padding: 12px 24px;
+  background-color: $system_gray06;
+  color: $system_gray01;
+  border: none;
+  border-radius: 80px;
+  @include body1;
+  @include medium;
+  @include button-base;
+  &:hover {
+    border-color: $system_gray04;
+  }
+  &:disabled {
+    color: $system_gray05;
+  }
+  &:active {
+    border-color: $system_gray04;
+    background-color: $system_gray06;
+  }
+}
+
+.gray-outline {
+  padding: 12px 24px;
+  color: $system_gray04;
+  border: 1px solid $system_gray04;
+  border-radius: 80px;
+  @include body1;
+  @include medium;
+  @include button-base;
+  &:hover {
+    border-color: $system_gray04;
+  }
+  &:disabled {
+    color: $system_gray05;
+  }
+  &:active {
+    border-color: $system_gray04;
+    background-color: $system_gray06;
+  }
+}
